@@ -50,6 +50,7 @@ Create your directories:
 ```
 mkdir .local
 mkdir .local/share
+cd .local/share
 ```
 
 From there, clone this repository:
@@ -57,7 +58,7 @@ From there, clone this repository:
 ```
 git clone https://github.com/art-caliburn/calos
 ```
-Then cd into /calos/ and ./install.sh. Wow crazy. Don't do it yet though, there are a few things you have to configure below:
+Then cd into /calos/ and ./install.sh. Wow crazy. **Don't do it yet though**, there are a few things you have to configure below:
 
 ## Required Configuration
 
