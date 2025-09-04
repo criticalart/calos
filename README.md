@@ -41,7 +41,7 @@ Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. M
 
 ## How 2 Install
 
-Have a fresh-baked Arch install going into this. **Make sure Lumine is your bootloader.**
+Have a fresh-baked Arch install going into this. **Make sure Lumine is your bootloader.** Make sure to set a root password and make an account...
 ```
 sudo pacman -S git nano
 ```
