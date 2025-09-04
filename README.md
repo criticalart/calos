@@ -14,6 +14,7 @@ Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. M
 * Limine is still the default bootloader because why the fuck would you use GRUB
 * While the install was heavily debloated, a few additional packages were added; firefox, gamescope and fortune-mod. Honestly you should be using the first two anyways.
 * Removed anything that has to do with portability, such as battery display. This is meant for a desktop. Since that information is not relevant waybar has been edited to give more information on your system, such as temps and CPU/RAM usage.
+* CAPS LOCK IS BACK. (Xcompose is out)
 * yazi baby. Nautilus is out. He's so hot right now.
 
 ### Style
