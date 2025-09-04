@@ -1,12 +1,12 @@
 # calOS
-Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. Much less bloat. If you would like to try this on your own distro you **must** make certain changes that will be specified towards the bottom of this page. This OS was designed for myself alone and will require certain changes to work properly on your build. Desktop highly recommended. **DO NOT try this out unless you are somewhat competent with a terminal.** This does not support updates via Omarchy. You must know how to update Arch yourself and all the maintenence that comes alongside it.
+Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. Much less bloat. This OS was designed for myself alone and will require certain changes to work properly on your build. Desktop highly recommended. **DO NOT try this out unless you are somewhat competent with a terminal.** This does not support updates via Omarchy. You must know how to update Arch yourself and all the maintenence that comes alongside it.
 
 ## Changes
 
 ### System
 
 * No longer forces disk encryption. You may choose any filesystem you would like. (You should still use btrfs though).
-* Plymouth is no longer supported or used. In its place is a tty/drop-in script to log a specific user into Hyprland automatically with a bash_profile script. **Must be edited to properly work on your own PC.**
+* Plymouth is no longer supported or used. In its place is a tty/drop-in script to log a specific user into Hyprland automatically with a bash_profile script. **Can be configured in skip-username.conf.**
 * **Heavily** debloated the initial install. Final package count is ~650. Many re-installs went into figuring out what can and can't be removed.
 * No longer a dev-oriented build. Removed most, if not all, traces of dev environments. If you use your PC for browsing/gaming, this is for you.
 * Customized boot-message shell script that allows you to launch or perform any command from the first, and only first, terminal window. Want to start your session with fastfetch or fortune displayed? Go for it. Easily customizable in your .bashrc after install.
@@ -65,10 +65,9 @@ Then cd into /calos/ and ./install.sh. Wow crazy. **Don't do it yet though**, th
 
 **The following settings must be changed or you will not be able to boot.**
 
-* Go into the /calos/install directory and find skip_username.conf. Replace "arthur" with your username. This will allow you to only have to type your password upon logging in.
 * Under /calos/config/hypr **make sure to change the monitors.conf file** to match your respective resolution/refresh rate.
 * I always felt that Hyprland by default was a bit too sensitive with the mouse, so I lowered the sensitivity to -0.5. Simply comment this line our or change it to your preference.
 * That's all for the required configurations. I encourage you to do your own research and edit this to your heart's content.
 
 
-That's all there is to it. Omarchy is an absolutely incredible tool but it's a bit too opinionated for me so I made calOS. Try it out and make your own fork/OS afterwards. Thank you DHH/basecamp for documenting everything as well as you did. Made it super easy to make this
+That's all there is to it. Omarchy is an absolutely incredible tool but it's a bit too opinionated for me so I made calOS. Try it out and make your own fork/OS afterwards. Thank you DHH/basecamp for documenting everything as well as you did. Made it super easy to make this.
