@@ -10,7 +10,7 @@ Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. M
 * **Heavily** debloated the initial install. Final package count is ~650. Many re-installs went into figuring out what can and can't be removed.
 * No longer a dev-oriented build. Removed most, if not all, traces of dev environments. If you use your PC for browsing/gaming, this is for you.
 * Customized boot-message shell script that allows you to launch or perform any command from the first, and only first, terminal window. Want to start your session with fastfetch or fortune displayed? Go for it. Easily customizable in your .bashrc after install.
-* Snapshots are no longer forced/required. Since disk encryption/filesystem is no longer forced you are free to choose your own service.
+* Snapshots are no longer forced/required. Since a specific filesystem/disk encryption is no longer forced you are free to choose your own service.
 * Limine is still the default bootloader because why the fuck would you use GRUB
 * While the install was heavily debloated, a few additional packages were added; firefox, gamescope and fortune-mod. Honestly you should be using the first two anyways.
 * Removed anything that has to do with portability, such as battery display. This is meant for a desktop. Since that information is not relevant waybar has been edited to give more information on your system, such as temps and CPU/RAM usage.
@@ -32,7 +32,8 @@ Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. M
 * Changed layering for waybar so it's more compatible for gaming across the board.
 * Tweaked various settings and defaults. Feel free to parse them yourself, one of Omarchy's strengths is how configurable it is so if I added something it doesn't really matter, just change it.
 * Changed firefox to the default browser. Get wrecked, Google.
-* Some cool defaults in autostart.conf, including timers for launching applications in a specific order. Super helpful for layouts. 
+* Some cool defaults in autostart.conf, including timers for launching applications in a specific order. Super helpful for layouts.
+* Moved around the main menu. Config is now front and center for easy access to your configuration files. Removed redundant menu items.
 * A ton of other shit I just don't feel like going over.
 
 # Installation and Configuration
