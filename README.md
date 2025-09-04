@@ -63,7 +63,7 @@ Then cd into /calos/ and ./install.sh. Wow crazy. **Don't do it yet though**, th
 
 ## Required Configuration
 
-**The following settings must be changed or you will not be able to boot.**
+**The following settings must be changed for the user experience, or whatever.**
 
 * Under /calos/config/hypr **make sure to change the monitors.conf file** to match your respective resolution/refresh rate.
 * I always felt that Hyprland by default was a bit too sensitive with the mouse, so I lowered the sensitivity to -0.5. Simply comment this line our or change it to your preference.
