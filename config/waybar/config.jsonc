@@ -1,0 +1,119 @@
+{
+  "reload_style_on_change": true,
+  "layer": "bottom",
+  "position": "top",
+  "spacing": 0,
+  "height": 30,
+  "modules-left": ["custom/omarchy", "hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "cpu",
+    "temperature",
+    "memory",
+    "bluetooth",
+    "pulseaudio"
+  ],
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "active": "󱓻"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+  "custom/omarchy": {
+    "format": "󰣇",
+    "on-click": "omarchy-menu",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+
+  "cpu": {
+    "interval": 3,
+    "format": "󰍛 {usage:2}%",
+    "on-click": "alacritty -e btop"
+  },
+  "temperature": {
+    //"thermal-zone": 1,
+   "interval": "4",
+   "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+   "critical-threshold": 70,
+   "format-critical": "  {temperatureC}°C",
+   "format": "{icon}  {temperatureC}°C",
+   "format-icons": ["", "", ""],
+   "max-length": 7,
+   "min-length": 7,
+   "tooltip": false
+    },
+  "clock": {
+    "format": "{:%A %H:%M}",
+    "format-alt": "{:%d %B W%V %Y}",
+    "tooltip": false
+  },
+  "memory": {
+	  "interval": 3,
+		"format": "  {}%  "
+	},
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "alacritty --class=Impala -e impala"
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "alacritty -e bluetui"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "on-click": "alacritty --class=Wiremix -e wiremix",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 12
+  }
+}

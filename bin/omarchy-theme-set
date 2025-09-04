@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# omarchy-theme-set: Set a theme, specified by its name.
+# Usage: omarchy-theme-set <theme-name>
+
+if [[ -z "$1" && "$1" != "CNCLD" ]]; then
+  echo "Usage: omarchy-theme-set <theme-name>" >&2
+  exit 1
+fi
+
+THEMES_DIR="$HOME/.config/calos/themes/"
+CURRENT_THEME_DIR="$HOME/.config/calos/current/theme"
+
+THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+THEME_PATH="$THEMES_DIR/$THEME_NAME"
+
+# Check if the theme entered exists
+if [[ ! -d "$THEME_PATH" ]]; then
+  echo "Theme '$THEME_NAME' does not exist in $THEMES_DIR" >&2
+  exit 2
+fi
+
+# Update theme symlinks
+ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+
+# Change gnome modes
+if [[ -f ~/.config/calos/current/theme/light.mode ]]; then
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+else
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+fi
+
+# Change gnome icon theme color
+if [[ -f ~/.config/calos/current/theme/icons.theme ]]; then
+  gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/calos/current/theme/icons.theme)"
+else
+  gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"
+fi
+
+# Change Chromium colors
+if command -v chromium &>/dev/null; then
+  if [[ -f ~/.config/calos/current/theme/light.mode ]]; then
+    chromium --no-startup-window --set-color-scheme="light"
+  else
+    chromium --no-startup-window --set-color-scheme="dark"
+  fi
+
+  if [[ -f ~/.config/calos/current/theme/chromium.theme ]]; then
+    chromium --no-startup-window --set-theme-color="$(<~/.config/calos/current/theme/chromium.theme)"
+  else
+    # Use a default, neutral grey if theme doesn't have a color
+    chromium --no-startup-window --set-theme-color="28,32,39"
+  fi
+fi
+
+# Trigger alacritty config reload
+touch "$HOME/.config/alacritty/alacritty.toml"
+
+# Restart components to apply new theme
+pkill -SIGUSR2 btop
+omarchy-restart-waybar
+omarchy-restart-swayosd
+makoctl reload
+hyprctl reload
+
+# Set new background
+omarchy-theme-bg-next

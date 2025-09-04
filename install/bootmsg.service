@@ -1,0 +1,7 @@
+[Unit]
+Description=Welcome Message one-shot service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/true

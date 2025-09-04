@@ -1,0 +1,7 @@
+source ~/.local/share/calos/default/bash/shell
+source ~/.local/share/calos/default/bash/aliases
+source ~/.local/share/calos/default/bash/functions
+source ~/.local/share/calos/default/bash/prompt
+source ~/.local/share/calos/default/bash/init
+source ~/.local/share/calos/default/bash/envs
+[[ $- == *i* ]] && bind -f ~/.local/share/calos/default/bash/inputrc

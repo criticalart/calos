@@ -1,0 +1,45 @@
+@define-color background-color #1c2128f0;  /* Temple stone shadow with transparency */
+@define-color border-color #7ec8c8;        /* Turquoise patina */
+@define-color label #e8e6e3;               /* Marble white */
+@define-color image #d4af37;               /* Temple gold - sacred moments */
+@define-color progress #7ea67c;            /* Jade green progress */
+
+window {
+    background: @background-color;
+    border: 2px solid @border-color;
+    border-radius: 10px;
+}
+
+#container {
+    padding: 15px;
+}
+
+#image {
+    color: @image;
+    font-size: 48px;
+}
+
+#label {
+    color: @label;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+progressbar {
+    background: rgba(62, 68, 82, 0.5);
+    border-radius: 5px;
+    min-height: 10px;
+}
+
+progressbar > trough {
+    background: rgba(62, 68, 82, 0.5);
+    border-radius: 5px;
+}
+
+progressbar > trough > progress {
+    background: linear-gradient(90deg, @progress, @border-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(152, 195, 121, 0.3);
+}

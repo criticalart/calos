@@ -1,0 +1,36 @@
+[colors.primary]
+background = "#1c2128"  # Mountain shadow - moderately dark
+foreground = "#e8e6e3"  # Morning mist - clarity
+
+[colors.cursor]
+cursor = "#7ec8c8"      # Mountain stream - flowing water
+text = "#1c2128"        # Dark contrast
+
+[colors.normal]
+black = "#2c3640"       # Deep slate ridge
+red = "#cd9575"         # Autumn clay - warm earth warning
+green = "#7ea67c"       # Forest green - growth and balance
+yellow = "#d4af37"      # Sunrise gold - enlightenment
+blue = "#6b8cae"        # Mountain sky - clarity
+magenta = "#9b8aa0"     # Highland mist - intuition
+cyan = "#7ec8c8"        # Mountain stream - ancient wisdom
+white = "#c4b5a0"       # Weathered stone - knowledge
+
+[colors.bright]
+black = "#4a5568"       # Weathered ridge stone
+red = "#daa89b"         # Soft autumn clay - gentle urgency
+green = "#93c293"       # Bright forest green - flourishing
+yellow = "#f4e4bc"      # Morning light - breakthrough
+blue = "#8fb4d8"        # Clear mountain sky - peak clarity
+magenta = "#b4a3ba"     # Light highland mist - insight
+cyan = "#9bdede"        # Bright mountain stream - flow
+white = "#ffffff"       # Pure morning mist - absolute truth
+
+[font]
+normal.family = "JetBrainsMono Nerd Font"
+size = 11.0
+
+[window]
+padding.x = 10
+padding.y = 10
+opacity = 0.97

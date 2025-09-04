@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ~/.local/share/calos
+migration_file="$HOME/.local/share/calos/migrations/$(git log -1 --format=%cd --date=unix).sh"
+touch $migration_file
+nvim $migration_file

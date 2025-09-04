@@ -1,0 +1,51 @@
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+source ~/.local/share/calos/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+#
+# Use VSCode instead of neovim as your default editor
+# export EDITOR="code"
+#
+# Set a custom prompt with the directory revealed (alternatively use https://starship.rs)
+# PS1="\W \[\e]0;\w\a\]$PS1"
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
+alias la='eza --icons=auto -a'
+alias ls='eza --icons=auto'
+alias grep='grep --color=auto'
+alias dota='steam steam://rungameid/570/'
+alias please='sudo'
+alias cat='bat '
+alias update='sudo pacman -Syu'
+alias upgrade='sudo pacman -Syu'
+
+if !  systemctl is-active --quiet bootmsg; then
+  fastfetch
+  echo
+  echo "Welcome to caliburn! Running daemon diagnostics:"
+  systemctl --failed
+  echo
+  sudo systemctl start bootmsg.service
+  echo "Todays quote is:"
+  fortune
+  echo
+  echo "happy autisming"
+  echo " "
+fi
+
+
+export STARSHIP_CONFIG=~/.config/calos/current/theme/starship.toml
