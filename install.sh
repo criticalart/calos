@@ -6,6 +6,17 @@ set -eE
 export PATH="$HOME/.local/share/calos/bin:$PATH"
 OMARCHY_INSTALL=~/.local/share/calos/install
 
+echo "Installation Starting..."
+echo
+echo "Please note, this install script will make the current user the default for the login process. If you would like to change that, make sure to edit (or remove) /etc/systemd/system/getty@tty1.service.d/skip-username.conf"
+echo "That file helps create a simple login interface with your username already entered; all you need to do is enter your password. Don't forget to make changes prior to rebooting if you want a different user!"
+sleep 3
+echo "Ready?"
+
+echo "ExecStart=-/sbin/agetty -o '-p -- $USER' --noclear --skip-login - "'$TERM' | tee -a install/skip-username.conf
+
+sleep 1
+
 # Preparation
 source $OMARCHY_INSTALL/preflight/show-env.sh
 source $OMARCHY_INSTALL/preflight/trap-errors.sh
