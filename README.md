@@ -1,5 +1,5 @@
 # calOS
-Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. Much less bloat. Desktop highly recommended. **DO NOT try this out unless you are somewhat competent with a terminal.** This does not support updates via Omarchy. You must know how to update Arch yourself and all the maintenence that comes alongside it. It is essentially a bare Arch Linux install with Hyprland + Omarchy theming + menu support.
+Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. Much less bloat. Configured for desktop users. **DO NOT try this out unless you are somewhat competent with a terminal.** This does not support updates via Omarchy. You must know how to update Arch yourself and all the maintenence that comes alongside it. It is essentially a bare Arch Linux install with Hyprland + Omarchy theming + menu support.
 
 ## Changes
 
