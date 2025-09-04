@@ -6,7 +6,7 @@ Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. M
 ### System
 
 * No longer forces disk encryption. You may choose any filesystem you would like. (You should still use btrfs though).
-* Plymouth is no longer supported or used. In its place is a tty/drop-in script to log a specific user into Hyprland automatically with a bash_profile script. **Must be edited to properly work on your own PC.** Navigate to /install/skip-username.conf and add your username in place of "arthur".
+* Plymouth is no longer supported or used. In its place is a tty/drop-in script to log a specific user into Hyprland automatically with a bash_profile script. **Must be edited to properly work on your own PC.**
 * **Heavily** debloated the initial install. Final package count is ~650. Many re-installs went into figuring out what can and can't be removed.
 * No longer a dev-oriented build. Removed most, if not all, traces of dev environments. If you use your PC for browsing/gaming, this is for you.
 * Customized boot-message shell script that allows you to launch or perform any command from the first, and only first, terminal window. Want to start your session with fastfetch or fortune displayed? Go for it. Easily customizable in your .bashrc after install.
