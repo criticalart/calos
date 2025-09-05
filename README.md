@@ -41,7 +41,8 @@ Arch/Hyprland OS based on Omarchy with extensive edits. Much less opinionated. M
 
 ## How 2 Install
 
-Have a fresh-baked Arch install going into this. **Make sure Lumine is your bootloader.** Make sure to set a root password and make an account...
+**You must have a fresh Arch install going into this.** Feel free to use any settings you want; from disk encryption to file system. The only required settings for the install script to work properly is to **use Limine as your default bootloader** and **set root and create a user** (which you should be doing anyway).
+
 ```
 sudo pacman -S git nano
 ```
@@ -49,9 +50,9 @@ Install git to clone the repository and nano to edit a few configuration files b
 
 Create your directories:
 ```
-mkdir .local
-mkdir .local/share
-cd .local/share
+mkdir ~/.local
+mkdir ~/.local/share
+cd ~/.local/share
 ```
 
 From there, clone this repository:
