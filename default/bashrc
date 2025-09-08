@@ -36,7 +36,7 @@ alias upgrade='sudo pacman -Syu'
 if !  systemctl is-active --quiet bootmsg; then
   fastfetch
   echo
-  echo "Welcome to caliburn! Running daemon diagnostics:"
+  echo "Welcome to $HOSTNAME! Running daemon diagnostics:"
   systemctl --failed
   echo
   sudo systemctl start bootmsg.service
