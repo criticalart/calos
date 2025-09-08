@@ -58,7 +58,7 @@ cd ~/.local/share
 From there, clone this repository:
 
 ```
-git clone https://github.com/art-caliburn/calos
+git clone https://github.com/criticalart/calos
 ```
 Then cd into /calos/ and ./install.sh. Wow crazy. **Don't do it yet though**, there are a few things you have to configure below:
 
