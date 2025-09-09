@@ -75,9 +75,14 @@ sudo cp ~/.local/share/calos/install/motd /etc/motd
 yay -S --noconfirm --needed rose-pine-hyprcursor
 echo "arthur ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl start bootmsg.service" | sudo tee "/etc/sudoers.d/no-bootmsg-prompt"
 sudo cp ~/.local/share/calos/install/bootmsg.service /etc/systemd/system/bootmsg.service
+echo
+echo "Boot message service added and enabled."
+
 xdg-settings set default-web-browser firefox.desktop
 
 # Reboot
+echo
+echo
 echo "Installation completed. Reboot to access system."
 
 if sudo test -f /etc/sudoers.d/99-omarchy-installer; then
