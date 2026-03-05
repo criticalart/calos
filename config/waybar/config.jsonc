@@ -467,7 +467,7 @@
 		],
 		"drawer": {
 			// "transition-duration":
-			// "transition-left-to-right":
+			"transition-left-to-right": false,
 			// "children-class":
 			// "click-to-reveal":
 		}
@@ -475,7 +475,7 @@
 
 	"custom/hypr_menu": {
 		"format": "\uf359",
-		"on-click": "alacritty --class=About --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
+	"on-click": "alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh",
 		"tooltip": false,
     "min-length": 2,
 		"max-length": 2
@@ -483,8 +483,8 @@
 
   	"custom/version": {
 		"exec": "pacman -Qe hyprland",
-		"format": "{} ",
-		"on-click": "alacritty --class=About --hold -e fastfetch -c ~/.config/fastfetch/config-small.jsonc",
+		"format": " {}",
+		"on-click": "alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh",
 		"tooltip": false
 	},
 

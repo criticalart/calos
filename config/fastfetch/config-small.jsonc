@@ -5,134 +5,87 @@
     "type": "file",
     "source": "~/.config/calos/branding/blank.txt",
     "padding": {
-      "top": 12,
-      "right": 14,
-      "left": 1
+      "top": 2,
+      "right": 4,
+      "left": 4
     }
   },
-  "modules": [
-    "break",
+    "display": {
+    "separator": " "
+  },
+   "modules": [
     {
-      "type": "custom",
-      "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
+      "key": "╭───────────╮",
+      "type": "custom"
     },
     {
-      "type": "host",
-      "key": " PC",
-      "keyColor": "green",
+      "key": "│ {#31} user    {#keys}│",
+      "type": "title",
+      "format": "{user-name}"
     },
     {
-      "type": "cpu",
-      "key": "│ ├",
-      "showPeCoreCount": true,
-      "keyColor": "green"
+      "key": "│ {#33}󰅐 uptime  {#keys}│",
+      "type": "uptime"
     },
     {
-      "type": "gpu",
-      "key": "│ ├",
-      "detectionMethod": "pci",
-      "keyColor": "green"
-    },
-    {
+      "key": "│ {#32} display {#keys}│",
       "type": "display",
-      "key": "│ ├󱄄",
-      "keyColor": "green"
+      "compactType": "original-with-refresh-rate"
     },
     {
-      "type": "disk",
-      "key": "│ ├󰋊",
-      "keyColor": "green"
+      "key": "│ {#34}{icon} distro  {#keys}│",
+      "type": "os"
     },
     {
-      "type": "memory",
-      "key": "│ ├",
-      "keyColor": "green"
+      "key": "│ {#35} kernel  {#keys}│",
+      "type": "kernel"
     },
     {
-      "type": "swap",
-      "key": "└ └󰓡 ",
-      "keyColor": "green"
+      "key": "│ {#36} wm      {#keys}│",
+      "type": "wm"
     },
     {
-      "type": "custom",
-      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
-    },
-    "break",
-    {
-      "type": "custom",
-      "format": "\u001b[90m┌──────────────────────Software──────────────────────┐"
+      "key": "│ {#36}󰇄 desktop {#keys}│",
+      "type": "de"
     },
     {
-      "type": "command",
-      "key": "󰣇",
-      "keyColor": "blue",
-      "text": "echo Arch Linux [calOS]"
-    },
-    {
-      "type": "kernel",
-      "key": "│ ├",
-      "keyColor": "blue"
-    },
-    {
-      "type": "wm",
-      "key": "│ ├",
-      "keyColor": "blue"
-    },
-    {
-      "type": "de",
-      "key": " DE",
-      "keyColor": "blue"
-    },
-    {
-      "type": "terminal",
-      "key": "│ ├",
-      "keyColor": "blue"
+      "key": "│ {#32} shell   {#keys}│",
+      "type": "shell"
     },
     {
       "type": "packages",
-      "key": "│ ├󰏖",
-      "keyColor": "blue"
+      "key": "│ {#33}󰏖 apps    {#keys}│"
     },
     {
-      "type": "wmtheme",
-      "key": "│ ├󰉼",
-      "keyColor": "blue"
+      "key": "│ {#34}󰉉 disk    {#keys}│",
+      "type": "disk",
+      "folders": "/"
     },
     {
-      "type": "command",
-      "key": "│ ├󰸌",
-      "keyColor": "blue",
-      "text": "theme=$(calos-theme-current); echo -e \"$theme \\e[38m●\\e[37m●\\e[36m●\\e[35m●\\e[34m●\\e[33m●\\e[32m●\\e[31m●\""
+      "key": "│ {#36} memory  {#keys}│",
+      "type": "memory"
     },
     {
       "type": "terminalfont",
-      "key": "└ └",
-      "keyColor": "blue"
-    },
-    {
-      "type": "custom",
-      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
-    },
-    "break",
-    {
-      "type": "custom",
-      "format": "\u001b[90m┌────────────────────Uptime / Age────────────────────┐"
+      "key": "│ {#35} font    {#keys}│"
     },
     {
       "type": "command",
-      "key": "  OS Age ",
-      "keyColor": "magenta",
+      "key": "│ {#33}󱦟 OS Age  {#keys}│",
       "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
     },
     {
-      "type": "uptime",
-      "key": "  Uptime ",
-      "keyColor": "magenta"
+      "key": "├───────────┤",
+      "type": "custom"
     },
     {
-      "type": "custom",
-      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+      "key": "│ {#39} colors  {#keys}│",
+      "type": "colors",
+      "symbol": "circle"
     },
-    "break"
+    {
+      "key": "╰───────────╯",
+      "type": "custom"
+    }
   ]
 }
