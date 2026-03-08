@@ -34,7 +34,7 @@ CalOS is directed to primarily desktop users who have some familiarity with Arch
 | **Wallpapers**| [swww](https://github.com/LGFae/swww) |
 | **Notifications**| [mako](https://github.com/emersion/mako) |
 | **Terminal** | [Alacritty](https://alacritty.org/) |
-| **Launcher** | [Walker](https://github.com/davatorium/rofi) |
+| **Launcher** | [Walker](https://github.com/abenz1267/walker) |
 | **Font** | whatever u want ;) |
 
 
