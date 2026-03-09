@@ -43,17 +43,19 @@ For the uninitiated, your **Super** key is your windows key. Stop calling it the
 
 | Keybind | Action |
 | --- | --- |
-| `Super + Return` | Open Terminal |
+| `Super + Enter` | Open Terminal |
 | `Super + Q` | Kill Active Window |
 | `Super + Escape` | Open System Menu |
 | `Super + Alt + Space` | Open System Menu |
 | `Super + B` | Browser (Firefox) |
 | `Super + K` | List Keybinds |
 | `Super + Space` | Application Launcher |
-| `Super + Y` | Yazi |
+| `Super + Y` | Yazi (File Manager(|
 | `Super + N` | Neovim |
 | `Super + G` | Toggle Game Window |
-| `Super + S` | BTop++ Monitor |
+| `Super + S` | BTop++ System Monitor |
+| `Super + Backspace` | Toggle Opacity |
+
 
 ### System
 
