@@ -11,10 +11,6 @@ tl;dr its dotfiles baby
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/90e38647-dd65-407b-90ee-3639d1078d50" />
 </p>
 
-### Who is calOS for?
-
-CalOS is directed to primarily desktop users who have some familiarity with Arch Linux and wanted to try their hand at Hyprland. It ships with very gaming-friendly defaults (Steam especially) with a high amount of configurability. Productivity is not the main goal, functionality is. If you use your desktop PC as a glorified web browser, gaming machine or social outlet, calOS is for you. You can always add on whatever else you like, but at its base default configuration, calOS is simply a really nice Hyprland skin designed to be as bare as possible so you can add your own flair. **This is essentially a starter kit for your foray into Hyprland.**
-
 ## Overview
 
 * **🎮 Gaming Friendly**: calOS ships with numerous gaming-oriented configurations, all found within `games.conf` in the `/hypr` directory in your config folder. Features include a special workspace specifically for games, a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global vesktop/discord push to talk support) and Steam pre-installed (if chosen by the installer).
