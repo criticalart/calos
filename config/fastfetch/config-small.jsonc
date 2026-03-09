@@ -6,7 +6,7 @@
     "source": "~/.config/calos/branding/blank.txt",
     "padding": {
       "top": 2,
-      "right": 4,
+      "right": 6,
       "left": 4
     }
   },

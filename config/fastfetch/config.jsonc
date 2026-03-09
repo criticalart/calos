@@ -4,9 +4,9 @@
     "type": "file",
     "source": "~/.config/calos/branding/about.txt",
     "padding": {
-      "top": 1,
-      "right": 1,
-      "left": 1
+      "top": 3,
+      "right": 4,
+      "left": 3
     },
         "color": {
         "1": "blue",
@@ -18,10 +18,11 @@
       "type": "custom",
       "format": "\u001b[90m┌─────────────Hardware──────────────────────┐"
     },
-   {
-      "type": "host",
+    {
+      "type": "command",
       "key": " PC",
-      "keyColor": "green"
+      "keyColor": "green",
+      "text": "echo AUROS X870 STEALTH ICE"
     },
     {
       "type": "cpu",
@@ -30,9 +31,9 @@
       "keyColor": "green"
     },
     {
-      "type": "gpu",
+      "type": "command",
       "key": "│ ├",
-      "detectionMethod": "pci",
+      "text": "echo AMD Sapphire Nitro+ 9070XT",
       "keyColor": "green"
     },
     {
