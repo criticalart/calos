@@ -82,7 +82,7 @@ System keybinds use **CTRL** and  **SUPER**.
 | `Super + Shift + (1,2,3)` | Move Active Window to [Number] Workspace |
 
 
-### Style
+## Style
 
 <details>
 <summary>Sexy Theme Switching Example</summary>
