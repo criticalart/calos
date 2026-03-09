@@ -67,6 +67,19 @@ System keybinds use **CTRL** and  **SUPER**.
 | `Super + CTRL + C` | Clipboard History |
 | `Super + CTRL + S` | Power Options (Reboot/Shutdown) |
 | `Super + CTRL + T` | Theme Menu |
+| `Super + CTRL + G` | Toggle Game Mode On/Off |
+| `Super + CTRL + B` | Cycle Background |
+
+
+### Window Management
+
+| Keybind | Action |
+| --- | --- |
+| `Super + (1,2,3)` | Switch Between [Number] Workspace |
+| `Super + F` | Toggle Floating Window On/Off |
+| `Super + Arrow Keys` | Switch Active Window |
+| `Super + Shift + Arrow Keys` | Swap Active Window |
+| `Super + Shift + (1,2,3)` | Move Active Window to [Number] Workspace |
 
 
 ### Style
