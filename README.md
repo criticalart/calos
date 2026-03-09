@@ -4,16 +4,17 @@
 
 
 # calOS Hyprland Starter
-CalOS is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be both feature-rich, yet nominal; a blank template that the user can build on top of (and it also looks really cool). With less than 600 packages on a total install, calOS combines smart/minimal TUI-based defaults with smooth animations and extensive themes.
+CalOS is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be both feature-rich, yet nominal; a blank template that the user can build on top of (and it also looks really cool). With less than 600 packages on a complete install, calOS combines smart/minimal TUI-based defaults with smooth animations and extensive themeing.
 
 tl;dr its dotfiles baby
+
 <p align="center">
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/90e38647-dd65-407b-90ee-3639d1078d50" />
 </p>
 
 ## Overview
 
-* **🎮 Gaming Friendly**: calOS ships with numerous gaming-oriented configurations, all found within `games.conf` in the `/hypr` directory in your config folder. Features include a special workspace specifically for games, a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global vesktop/discord push to talk support) and Steam pre-installed (if chosen by the installer).
+* **🎮 Gaming Friendly**: calOS ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace specifically for games, a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global vesktop/discord push to talk support) and Steam pre-installed (if chosen by the installer).
 * **💻 Minimal System Apps**: Striving to be as bloat-free as possible, calOS primarily utilizes TUI applications/packages with minimal dependencies for system control. This includes `yazi` as your file browser, `cmus` for music, with `bluetui` and `impala` for bluetooth/wifi support.
 *  **🧲 Total Walker/Waybar Integration**: Thanks to walker's extensive `dmenu` support, calOS has a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your font/style. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Easter egg included.
 *  **🖌️ Style**: Speaking of _style_, calOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Animations are all about being smooth and fast.
