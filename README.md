@@ -14,11 +14,11 @@ tl;dr its dotfiles baby
 
 ## Overview
 
-* **🎮 Gaming Friendly**: calOS ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace specifically for games, a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global vesktop/discord push to talk support) and Steam pre-installed (if chosen by the installer).
-* **💻 Minimal System Apps**: Striving to be as bloat-free as possible, calOS primarily utilizes TUI applications/packages with minimal dependencies for system control. This includes `yazi` as your file browser, `cmus` for music, with `bluetui` and `impala` for bluetooth/wifi support.
-*  **🧲 Total Walker/Waybar Integration**: Thanks to walker's extensive `dmenu` support, calOS has a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your font/style. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Easter egg included.
-*  **🖌️ Style**: Speaking of _style_, calOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Animations are all about being smooth and fast.
-*  ⚖️ **Configurable Install**: With preconfigured dotfiles, you sometimes run the risk of too little control over what you have installed on your system. The installer tries to rectify this by allowing you to choose what defaults you want to use, such as picking your AUR helper `yay` vs `paru` (defaults to paru because iTS BETTER) and whether or not you want to install `Steam` with full system integration.
+* **🎮 Gaming Friendly**: calOS ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace for games, a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global push-to-talk support) and Steam pre-installed (if chosen by the installer).
+* **💻 Minimal System Apps**: Striving to be as bloat-free as possible, calOS primarily utilizes TUI applications/packages with minimal dependencies for system control. This includes `yazi` as your file browser, `cmus` for music, and `bluetui`/`impala` for bluetooth/wifi support respectively.
+*  **🧲 Total Walker/Waybar Integration**: Thanks to walker's extensive `dmenu` support, calOS comes with a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your current theme. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Easter egg included.
+*  **🖌️ Style**: Speaking of _style_, calOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Multiple beziers were either created or imported (from popular configs like caelestia) for a beautiful/smooth system.
+*  **⚖️ Configurable Install**: With preconfigured dotfiles, you sometimes run the risk of too little control over what you have installed on your system. The installer tries to rectify this by allowing you to choose what defaults you want to use, such as picking your AUR helper `yay` vs `paru` (defaults to paru because iTS BETTER) and whether or not you want to install `Steam` with full system integration.
 *  **🔧 Tinker Friendly**: Some dotfiles also make it very difficult to change certain aspects of your system, from keybinds to default applications. This is your computer and you can do whatever you want with it. All configuration files are in the `~/.config` directory, with your `hyprland` configuration files being neatly sourced in separate files for easy editing. Don't like something? Great, change it! To easily browse installed packages and "debloat", open up your system menu and navigate to System -> Packages to see what comes preinstalled.
 
 
@@ -52,6 +52,7 @@ For the uninitiated, your **Super** key is your windows key. Stop calling it the
 | `Super + Space` | Application Launcher |
 | `Super + Y` | Yazi |
 | `Super + N` | Neovim |
+| `Super + G` | Toggle Game Window |
 | `Super + S` | BTop++ Monitor |
 
 ### System
