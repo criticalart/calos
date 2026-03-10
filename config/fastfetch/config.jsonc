@@ -19,10 +19,9 @@
       "format": "\u001b[90m┌─────────────Hardware──────────────────────┐"
     },
     {
-      "type": "command",
+      "type": "host",
       "key": " PC",
-      "keyColor": "green",
-      "text": "echo AUROS X870 STEALTH ICE"
+      "keyColor": "green"
     },
     {
       "type": "cpu",
@@ -31,9 +30,9 @@
       "keyColor": "green"
     },
     {
-      "type": "command",
+      "type": "gpu",
       "key": "│ ├",
-      "text": "echo AMD Sapphire Nitro+ 9070XT",
+      "detectionMethod": "pci",
       "keyColor": "green"
     },
     {
@@ -69,7 +68,7 @@
       "type": "command",
       "key": "󰣇",
       "keyColor": "blue",
-      "text": "echo Arch Linux [calOS]"
+      "text": "echo Arch Linux [calOS v3.4]"
     },
     {
       "type": "kernel",
