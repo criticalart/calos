@@ -32,7 +32,7 @@ update-packages() {
       printf '\n%bPackages pending updates:%b\n' "$BLU" "$RST"
       echo
       pacman -Qu
-      gum confirm --selected.background="111" --prompt.foreground="#6A8EAA" --padding="1 3" "Perform system update?" && sudo pacman -Syu --noconfirm || exit
+      gum confirm --padding="1 3" "Perform system update?" && sudo pacman -Syu --noconfirm || exit
     fi
 
     if ((aur > 0)); then
@@ -40,7 +40,7 @@ update-packages() {
       echo
       paru -Qu
       echo
-      gum confirm --selected.background="111" "Update AUR packages?" && paru -Syu --noconfirm --skipreview --removemake || exit
+      gum confirm --padding="1 3" "Update AUR packages?" && paru -Syu --noconfirm --skipreview --removemake || exit
     fi
 
     notify-send 'Update Complete' -i 'package-install'

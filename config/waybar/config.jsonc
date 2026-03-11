@@ -152,7 +152,7 @@
 	},
 
 	"cpu": {
-		"interval": 10,
+		"interval": 3,
 		"format": "󰍛 {usage}%",
 		"format-warning": "󰀨 {usage}%",
 		"format-critical": "󰀨 {usage}%",
@@ -173,7 +173,7 @@
 	},
 
   "disk": {
-    "interval": 60,
+    "interval": 600,
     "format": " {free}",
     "path": "/",
     "tooltip": true,
@@ -184,7 +184,7 @@
 },
 
 	"memory": {
-		"interval": 10,
+		"interval": 5,
 		"format": "󰘚 {used:0.1f}GB",
 		"format-warning": "󰀧 {percentage}%",
 		"format-critical": "󰀧 {percentage}%",
@@ -241,7 +241,7 @@
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
+    "interval": 10,
     "spacing": 1,
     "on-click": "alacritty --class=Impala -e impala"
   },
@@ -313,6 +313,8 @@
 		// "active-only":
 		// "hide-active":
 		// "all-outputs":
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
 		"format": "{icon}",
 		"format-icons": {
     //  "1": "\ue745",
