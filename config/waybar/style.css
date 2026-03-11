@@ -5,7 +5,7 @@
 @import "../calos/current/theme/waybar.css";
 
 * {
-  font-family: 'CaskaydiaMono Nerd Font';
+  font-family: 'JetBrainsMono Nerd Font';
 	font-size: 15px;
 	color: @main-fg;
 }
@@ -50,7 +50,7 @@ window#waybar > box {
 #custom-left_inv,
 #custom-right_div,
 #custom-right_inv {
-	font-size: 28px;
+	font-size: 23.1px;
 }
 
 /* buttons */

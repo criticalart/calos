@@ -24,26 +24,23 @@
 
 }
 #workspaces .active label {
-	font-size: 21px;
+	font-size: 23px;
 	color: @accent;
 }
 
-
 #workspaces button {
     padding: 0px 6px;
-    margin: 3px 3px;
+    margin: 0px 3px;
     border-radius: 8px;
-    color: @accent;
+    color: @temperature;
     background-color: @background;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
-    color: @accent;
-    background: @background;
     border-radius: 12px;
     transition: all 0.3s ease-in-out;
-    min-width: 35px;
+    min-width: 30px;
 }
 
 #workspaces button:hover {
