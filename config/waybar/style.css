@@ -67,9 +67,9 @@ button:hover {
 /* tooltips */
 
 tooltip {
-	border: 2px solid @main-br;
+	border: 2px solid @accent;
 	border-radius: 10px;
-	background-color: @main-bg;
+	background-color: @background;
 }
 tooltip label {
 	margin: 2px 4px;
