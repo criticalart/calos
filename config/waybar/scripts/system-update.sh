@@ -26,13 +26,13 @@ check-updates() {
 
 update-packages() {
   if ((repo + aur == 0)); then
-    gum spin --spinner "pulse" --spinner.foreground="111" --padding="1 0" --title "No updates found. Press any key to exit..." -- bash -c 'read -n 1 -s'
+    gum spin --spinner "pulse" --spinner.foreground="4" --padding="1 0" --title "No updates found. Press any key to exit..." -- bash -c 'read -n 1 -s'
   else
     if ((repo > 0)); then
       printf '\n%bPackages pending updates:%b\n' "$BLU" "$RST"
       echo
       pacman -Qu
-      gum confirm --padding="1 3" "Perform system update?" && sudo pacman -Syu --noconfirm || exit
+      gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Perform system update?" && sudo pacman -Syu --noconfirm || exit
     fi
 
     if ((aur > 0)); then
@@ -40,12 +40,12 @@ update-packages() {
       echo
       paru -Qu
       echo
-      gum confirm --padding="1 3" "Update AUR packages?" && paru -Syu --noconfirm --skipreview --removemake || exit
+      gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Update AUR packages?" && paru -Syu --noconfirm --skipreview --removemake || exit
     fi
 
     notify-send 'Update Complete' -i 'package-install'
 
-    gum spin --spinner "pulse" --spinner.foreground="111" --padding="4 0" --title "Update complete! Press any key to exit..." -- bash -c 'read -n 1 -s'
+    gum spin --spinner "pulse" --spinner.foreground="4" --padding="4 0" --title "Update complete! Press any key to exit..." -- bash -c 'read -n 1 -s'
   fi
 }
 
@@ -66,7 +66,7 @@ main() {
   local action=$1
   case $action in
   start)
-    gum spin -s minidot --spinner.foreground="111" --padding="1 1" --title="Initializing update script..." -- sleep 1.2
+    gum spin -s minidot --spinner.foreground="4" --padding="1 1" --title="Initializing update script..." -- sleep 1.2
     check-updates
     update-packages
     ;;
