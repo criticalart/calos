@@ -36,7 +36,6 @@ xdg-settings set default-web-browser firefox.desktop
 echo
 systemctl --user enable --now hyprpolkitagent.service
 sudo chmod 666 /dev/uinput
-sudo pacman -Rdd greetd-agreety --noconfirm
 sudo systemctl enable greetd.service
 elephant service enable
 systemctl --user enable --now elephant.service
