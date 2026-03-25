@@ -97,7 +97,7 @@ sleep 1
 
 # Installation Cleanup
 
-gum style --border normal --border-foreground 212 --padding="1 3" "The installer will now begin removing unnecessary files created during install." "Please keep all remaining files in $(gum style --italic '~/.local/share/calos') for system stability."
+gum style --border normal --border-foreground="4" --padding="1 3" "The installer will now begin removing unnecessary files created during install." "Please keep all remaining files in $(gum style --italic '~/.local/share/calos') for system stability."
 sleep 3
 echo
 gum spin -s minidot --spinner.foreground="4" --title="Cleaning up installation..." -- sleep 4
@@ -111,4 +111,4 @@ sleep 5
 echo
 rm ~/.local/share/calos/steam.sh
 rm ~/.local/share/calos/install.sh
-gum confirm "Would you like to reboot to BIOS?" && systemctl reboot --firmware-setup
+gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Would you like to reboot to BIOS?" && systemctl reboot --firmware-setup
