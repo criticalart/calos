@@ -6,6 +6,7 @@ rm -rf ~/.local/share/calos/config
 rm -rf ~/.local/share/calos/.git
 sudo updatedb
 clear
+echo
 cat ~/.local/share/calos/install/logo-complete.txt | tte --xterm-colors --frame-rate 120 spray
 echo
 rm -rf ~/.local/share/calos/install
