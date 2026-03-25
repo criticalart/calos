@@ -37,7 +37,6 @@ EOF
   sudo cp ~/.local/share/calos/install/boot.jpg /boot/boot.jpg
   paru -S --noconfirm --needed limine-mkinitcpio-hook --skipreview
   sudo limine-update
-  sudo pacman -Rns maven --noconfirm
 
 else
   echo "Limine not installed. Installation will resume without additional settings."
