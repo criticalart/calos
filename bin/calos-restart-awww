@@ -1,0 +1,3 @@
+#!/bin/bash
+
+calos-restart-app awww-daemon

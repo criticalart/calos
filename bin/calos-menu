@@ -105,10 +105,10 @@ show_toggle_menu() {
 }
 
 show_update_process_menu() {
-  case $(menu "Restart" "  Hypridle\n󰔎  Hyprsunset\n  Swww Daemon\n󱄄  SwayOSD\n󰌧  Walker\n󰍜  Waybar") in
+  case $(menu "Restart" "  Hypridle\n󰔎  Hyprsunset\n  Awww Daemon\n󱄄  SwayOSD\n󰌧  Walker\n󰍜  Waybar") in
   *Hypridle*) calos-restart-hypridle ;;
   *Hyprsunset*) calos-restart-hyprsunset ;;
-  *Swww*) calos-restart-swww ;;
+  *Awww*) calos-restart-awww ;;
   *SwayOSD*) calos-restart-swayosd ;;
   *Walker*) calos-restart-walker ;;
   *Waybar*) calos-restart-waybar ;;

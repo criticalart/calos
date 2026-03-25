@@ -1,3 +1,0 @@
-#!/bin/bash
-
-calos-restart-app swww-daemon

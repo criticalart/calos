@@ -30,7 +30,7 @@ tl;dr its dotfiles baby
 | **Launcher** | [Walker](https://github.com/abenz1267/walker) |
 | **Waybar** | [Mechabar](https://github.com/sejjy/mechabar) |
 | **Terminal** | [Alacritty](https://alacritty.org/) |
-| **Wallpaper**| [swww](https://github.com/LGFae/swww) |
+| **Wallpaper**| [Awww](https://github.com/LGFae/swww) |
 | **Notifications**| [mako](https://github.com/emersion/mako) |
 | **Browser** | [Firefox](https://github.com/mozilla-firefox/firefox) |
 
