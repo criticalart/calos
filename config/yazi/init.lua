@@ -21,9 +21,3 @@ require("bunny"):setup({
 
 -- full-border
 require("full-border"):setup()
-
--- folder-size
-require("current-size"):setup({
-	equal_ignore = { "~", "/", "/home" }, -- full path match
-	-- sub_ignore = {"~/deskenv/master","~/deskenv/dev"} -- sub path match
-})
