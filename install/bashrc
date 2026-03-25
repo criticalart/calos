@@ -23,8 +23,6 @@ mkcd() { mkdir "$1" && cd "$1"; }
 # aliases
 
 alias oops='sudo $(history -p !!)'
-alias la='eza --icons=auto -a'
-alias ls='eza --icons=auto'
 alias grep='grep --color=auto'
 alias please='sudo'
 alias cat='bat --style grid,header,header-filename,header-filesize '
