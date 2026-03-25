@@ -20,6 +20,10 @@ extract = [
  {  run = '7z x "$@" -o*',  desc = "Extract with 7zip" }
 ]
 
+extracttar = [
+{ run = 'tar -xf "$@"', desc = "Extrar .tar.xz file" }
+]
+
 music = [
 { run = 'ffplay -nodisp -autoexit "$@"' },
 ]
@@ -76,6 +80,10 @@ rules = [
 
 { url = "*.mkv", use = "video"},
 
-{ url = "*.mp4", use = "video"}
+{ url = "*.mp4", use = "video"},
+
+{ url = "*.tar.xz", use = "extracttar"},
+
+{ url = "*.tar.gz", use = "extracttar"}
 
 ]
