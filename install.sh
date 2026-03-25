@@ -9,12 +9,13 @@ CALOS_INSTALL=~/.local/share/calos/install
 sudo pacman -S --noconfirm --needed gum
 
 clear
+echo
 cat ~/.local/share/calos/install/logo-complete.txt
 echo
 gum style --border normal --border-foreground="4" --padding="1 3" "Welcome to $(gum style --bold --foreground 212 'calOS')!" " " "This script will turn your base Arch Linux install into a clean, minimal, and functional Hyprland setup." "The installer will install/enable $(gum style --foreground 212 'Chaotic-AUR') as well as $(gum style --italic 'Paru') to function as your AUR helper." "There will be an option towards the end of the install to switch to yay as your AUR helper." " " "Make sure you are running this installation script on a $(gum style --foreground 212 'fresh Arch Linux installation')!"
 echo
 sleep 6
-gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Proceed with Install?" && gum spin -s line --title="Installation starting..." -- sleep 2 || exit 1
+gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Proceed with Install?" && gum spin -s minidot --spinner.foreground="4" --title="Installation starting..." -- sleep 2 || exit 1
 echo
 
 # Scripts for error reporting and repository edits
@@ -31,7 +32,7 @@ gum style --border normal --border-foreground="4" --padding="1 3" "$(gum style -
 sleep 6
 echo
 gum spin -s minidot --spinner.foreground="4" --title="Resuming install..." -- sleep 4
-sudo pacman -S --noconfirm --needed yaru-icon-theme clipse
+sudo pacman -S --noconfirm --needed yaru-icon-theme clipse wayland
 paru -S --noconfirm --needed python-terminaltexteffects rose-pine-hyprcursor elephant elephant-desktopapplications elephant-menus elephant-calc walker --skipreview --removemake --cleanafter
 clear
 
