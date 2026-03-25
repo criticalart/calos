@@ -68,7 +68,7 @@
       "type": "command",
       "key": "󰣇",
       "keyColor": "blue",
-      "text": "echo Arch Linux [calOS v3.4]"
+      "text": "echo Arch Linux [calOS v4]"
     },
     {
       "type": "kernel",
