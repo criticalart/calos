@@ -86,7 +86,7 @@
     "format-disabled": "󰂲",
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "alacritty --class=bluetui -e bluetui"
+    "on-click": "alacritty --class=Bluetui -e bluetui"
   },
 
 	"clock#time": {
@@ -282,11 +282,18 @@
       "Alacritty": "  Alacritty",
 			"firefox": "󰈹  Mozilla Firefox",
 			"btop": "  BTOP++ System Information",
-      "yazi": "  Yazi",
+      "yazi": "  Yazi",
+      "System-Update": "󰚰  System Update",
+      "About": "󰖷  System Information",
       "Neovim": "  Neovim",
-      "cmus": "󰝚  cmus Music Player",
+      "ffplay": "󰯜  FFmpeg",
+      "pqiv": "  pqiv",
+      "cmus": "󰲸  cmus Music Player",
       "vesktop": "  Discord",
       "steam": "  Steam",
+      "Bluetui": "󰂯  Bluetui",
+      "Impala": "󰖩  Impala",
+      "Wiremix": "󱡬  Wiremix",
       "FFPWA-01K961PSAZSCYS2324FFDRTC7Q": "Apple Music",
       "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "󰣇  ArchLinux Wiki",
       "FFPWA-01KAC9901ABNXA5Q8EHX1KRDFV": "HBO Max",
