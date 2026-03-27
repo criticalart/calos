@@ -7,7 +7,6 @@ require("bunny"):setup({
 		{ key = "b", path = "/boot", desc = "Boot" },
 		{ key = "c", path = "~/.config", desc = "Config" },
 		{ key = "t", path = "~/.local/share/calos/themes/", desc = "Themes" },
-		{ key = "w", path = "~/wksp/", desc = "Workspace" },
 		{ key = "g", path = "~/.local/share/Steam/steamapps/common", desc = "Steam Games" },
 		{ key = "d", path = "~/Downloads", desc = "Downloads" },
 		-- key and path attributes are required, desc is optional
