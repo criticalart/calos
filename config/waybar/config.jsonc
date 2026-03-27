@@ -275,19 +275,22 @@
 	"hyprland/window": {
 		"format": "{class}",
 		"rewrite": {
-			"^$": "Desktop",
+			"^$": "󰍹  Desktop",
 			// "^Alacritty$": "btop++",
-      "com.github.PintaProject.Pinta": "Pinta Image Editor",
-			"cava": "CAVA Audio Visualizer",
-			"firefox": "Mozilla Firefox",
-			"btop": "BTOP++ System Information",
-      "cmus": "cmus Music Player",
-      "vesktop": "Discord",
-      "steam": "Steam",
+      "com.github.PintaProject.Pinta": "  Pinta Image Editor",
+			"cava": "  CAVA Audio Visualizer",
+      "Alacritty": "  Alacritty",
+			"firefox": "󰈹  Mozilla Firefox",
+			"btop": "  BTOP++ System Information",
+      "yazi": "  Yazi",
+      "Neovim": "  Neovim",
+      "cmus": "󰝚  cmus Music Player",
+      "vesktop": "  Discord",
+      "steam": "  Steam",
       "FFPWA-01K961PSAZSCYS2324FFDRTC7Q": "Apple Music",
-      "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "ArchLinux Wiki",
+      "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "󰣇  ArchLinux Wiki",
       "FFPWA-01KAC9901ABNXA5Q8EHX1KRDFV": "HBO Max",
-      "FFPWA-01K966XKVA9QGPGYZB5K84ZBR8": "Hyprland Wiki"
+      "FFPWA-01K966XKVA9QGPGYZB5K84ZBR8": "  Hyprland Wiki"
 		},
 		// "separate-outputs":
 		"icon": false,
