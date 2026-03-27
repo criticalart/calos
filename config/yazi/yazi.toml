@@ -4,6 +4,10 @@ show_hidden = true
 
 [opener]
 
+wallpaper = [
+{ run = 'awww img %s1', desc = "Set as Wallpaper" }
+]
+
 imageedit = [
 { run = 'pinta "$@"', desc = "Pinta Image Editor" }
 ]
@@ -44,9 +48,9 @@ rules = [
 
 { url = "*.gif", use = "image" },
 
-{ url = "*.jpg", use =  [ "image", "imageedit" ] },
+{ url = "*.jpg", use =  [ "image", "imageedit", "wallpaper" ] },
 
-{ url = "*.png", use =  [ "image", "imageedit" ] },
+{ url = "*.png", use =  [ "image", "imageedit", "wallpaper" ] },
 
 { url = "*.conf", use = "text" },
 
@@ -87,3 +91,7 @@ rules = [
 { url = "*.tar.gz", use = "extracttar"}
 
 ]
+
+[[plugin.prepend_previewers]]
+url = "*/"
+run = "eza-preview"

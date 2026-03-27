@@ -8,5 +8,20 @@ use = "yazi-rs/plugins:full-border"
 rev = "4e55902"
 hash = "3996fc74044bc44144b323686f887e1"
 
+[[plugin.deps]]
+use = "ahkohd/eza-preview"
+rev = "7a2d60f"
+hash = "eed8e19469f3dca38fd977eb938dd34e"
+
+[[plugin.deps]]
+use = "pirafrank/what-size"
+rev = "179ebf6"
+hash = "57056b9728006881d580ccabe8154a9c"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "1962818"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
 [flavor]
 deps = []
