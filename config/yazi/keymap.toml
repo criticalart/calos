@@ -1,24 +1,30 @@
 [[mgr.prepend_keymap]]
 on = "n"
 run = "create"
+
 [[mgr.prepend_keymap]]
 on  = "<C-h>"
 run = "hidden toggle"
+
 [[mgr.prepend_keymap]]
 on  = "o"
 run = "open --interactive"
+
 [[mgr.prepend_keymap]]
 desc = "Start bunny.yazi"
 on = ";"
 run = "plugin bunny"
+
 [[mgr.prepend_keymap]]
 on = "i"
 run  = "plugin what-size"
 desc = "Calc size of selection or cwd" 
+
 [[mgr.prepend_keymap]]
 on   = "<Enter>"
 run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
+
 [[mgr.prepend_keymap]]
 on   = "l"
 run  = "plugin smart-enter"
@@ -29,7 +35,18 @@ on   = "<Esc>"
 run  = "close"
 desc = "Cancel input"
 
+[[mgr.prepend_keymap]]
+  on = [ "e", "=" ] 
+  run = "plugin eza-preview inc-level"
+  desc = "Increment tree level"
+
+[[mgr.prepend_keymap]]
+  on = [ "e", "-" ] 
+  run = "plugin eza-preview dec-level"
+  desc = "Decrement tree level"
+
 # Optionally, add another keymap to immediately fuzzy search bookmarks
+
 [[mgr.prepend_keymap]]
 desc = "Start bunny.yazi fuzzy search"
 on = "'"
