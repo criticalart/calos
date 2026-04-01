@@ -3,12 +3,14 @@
 fzf_args=(
   --multi
   --preview 'pacman -Qi {1}'
-  --preview-label='alt-p: toggle description, alt-j/k: scroll, tab: multi-select'
+  --preview-label='Use alt-up/down arrow to scroll through package information'
   --preview-label-pos='bottom'
   --preview-window 'down:60%:wrap'
   --bind 'alt-p:toggle-preview'
-  --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
+  --bind 'alt-down:preview-half-page-down,alt-up:preview-half-page-up'
   --bind 'alt-k:preview-up,alt-j:preview-down'
+  --highlight-line
+  --layout=reverse
   --color 'pointer:red,marker:red'
 )
 
