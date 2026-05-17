@@ -6,5 +6,5 @@ sleep 8
 gum spin -s minidot --spinner.foreground="4" --padding="1 1" --title="Installing Steam..." -- sleep 2
 sudo pacman --needed -S steam
 echo
-sed -i "/exec-once/"'s/^#//' ~/.config/hypr/autostart.conf
+sed -i 's/^\(\s*\)--\(hl.exec_cmd("uwsm app -- steam".*\)/\1\2/' ~/.config/hypr/autostart.lua
 clear
