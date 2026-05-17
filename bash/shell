@@ -1,7 +1,14 @@
-# Technicolor dreams
-force_color_prompt=yes
-color_prompt=yes
+# History control
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
 
-# Simple prompt with path in the window/pane title and caret for typing line
-PS1=$'\uf0a9 '
-PS1="\[\e]0;\w\a\]$PS1"
+# Autocompletion
+if [[ ! -v BASH_COMPLETION_VERSINFO && -f /usr/share/bash-completion/bash_completion ]]; then
+  source /usr/share/bash-completion/bash_completion
+fi
+
+# Set complete path
+export PATH="./bin:$HOME/.local/bin:$PATH"
+set +h
