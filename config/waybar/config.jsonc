@@ -258,9 +258,7 @@
         "noise_reduction": 0.55,
         "input_delay": 2,
         "format-icons": [ " ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-        "actions": {
-                   "on-click-right": "mode"
-                   }
+        "on-click": "playerctl play-pause"
     },
 
   "network": {
