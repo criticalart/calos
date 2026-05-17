@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [[ $(cat ~/.config/hypr/monitors.lua | grep "disabled = true, --monmode") ]]; then
+  if pgrep -x waybar >/dev/null; then
+    pkill -x waybar
+  fi
+  hyprctl eval 'hl.config({misc = { disable_autoreload = true }})'
+  cp ~/.config/hypr/scripts/tvmode.lua ~/.config/hypr/monitors.lua
+  sleep 1
+  hyprctl eval 'hl.config({misc = { disable_autoreload = false }})'
+  hyprctl reload
+  sleep 1
+  hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
+  awww img -o "HDMI-A-1" --transition-fps 60 --transition-type left --transition-duration 2 ~/.config/calos/current/background
+  sleep 2
+  systemctl --user start waybar.service >/dev/null 2>&1 &
+else
+  if pgrep -x waybar >/dev/null; then
+    pkill -x waybar
+  fi
+  hyprctl eval 'hl.config({misc = { disable_autoreload = true }})'
+  cp ~/.config/hypr/scripts/monmode.lua ~/.config/hypr/monitors.lua
+  sleep 1
+  hyprctl eval 'hl.config({misc = { disable_autoreload = false }})'
+  hyprctl reload
+  sleep 1
+  hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
+  awww img -o "DP-1" --transition-fps 144 --transition-type right --transition-duration 2 ~/.config/calos/current/background
+  sleep 2
+  systemctl --user start waybar.service >/dev/null 2>&1 &
+fi

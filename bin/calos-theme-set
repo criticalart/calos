@@ -39,13 +39,16 @@ fi
 # Change background with theme
 calos-theme-bg-next
 
+# forces current theme default background
+# swww img .config/calos/current/theme/backgrounds/1.jpg --resize stretch --transition-type any --transition-fps 144 --transition-duration 1.25
+
 # Trigger alacritty config reload
 touch "$HOME/.config/alacritty/alacritty.toml"
 
 # Restart components to apply new theme
 pkill -SIGUSR2 btop
 pkill -SIGUSR1 cava
+makoctl reload
 calos-restart-waybar
 calos-restart-swayosd
-makoctl reload
 hyprctl reload

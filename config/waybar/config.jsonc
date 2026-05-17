@@ -31,6 +31,8 @@
 	],
 	"modules-right": [
 		"mpris",
+    "cava",
+   // "custom/space",
 		"custom/left_div#2",
     "pulseaudio",
     "hyprland/submap",
@@ -177,8 +179,8 @@
     "format": " {free}",
     "path": "/",
     "tooltip": true,
-    "max-length": 9,
-    "min-length": 9,
+    "max-length": 10,
+    "min-length": 10,
     "on-click": "alacritty --class=Impala --hold -e sudo dust 2> /dev/null",
     "tooltip-format": "{used} out of {total} used."
 },
@@ -229,8 +231,37 @@
 		// "dynamic-separator":
 		// "dynamic-importance-order":
 		// "min-length":
-		"max-length": 1000
+		"max-length": 85
 	},
+
+"cava": {
+        //"cava_config": "$XDG_CONFIG_HOME/calos/current/theme/cava/config",
+        "framerate": 60,
+        "autosens": 0,
+        "sensitivity": 1,
+        "bars": 14,
+        "min-length": 1,
+        "max-length": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "hide_on_silence": false,
+        "sleep_timer": 2,
+        "format_silent": "             ",
+        "method": "pipewire",
+        "source": "auto",
+        "data_format": "ascii",
+        "stereo": true,
+        "reverse": true,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.55,
+        "input_delay": 2,
+        "format-icons": [ " ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
+    },
 
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
@@ -267,8 +298,8 @@
    "format-critical": "  {temperatureC}°C",
    "format": "  {temperatureC}°C ",
    "format-icons": ["", "", ""],
-   "max-length": 9,
-   "min-length": 9,
+   "max-length": 10,
+   "min-length": 10,
    "tooltip": false 
   },
 
@@ -285,15 +316,17 @@
       "yazi": "  Yazi",
       "System-Update": "󰚰  System Update",
       "About": "󰖷  System Information",
+      "arthur@caliburn": "  arthur@caliburn",
       "Neovim": "  Neovim",
       "ffplay": "󰯜  FFmpeg",
       "pqiv": "  pqiv",
-      "cmus": "󰲸  cmus Music Player",
+      "cmus": "󰝚  cmus Music Player",
       "vesktop": "  Discord",
       "steam": "  Steam",
       "Bluetui": "󰂯  Bluetui",
       "Impala": "󰖩  Impala",
       "Wiremix": "󱡬  Wiremix",
+      "clipse": "  Clipse",
       "FFPWA-01K961PSAZSCYS2324FFDRTC7Q": "Apple Music",
       "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "󰣇  ArchLinux Wiki",
       "FFPWA-01KAC9901ABNXA5Q8EHX1KRDFV": "HBO Max",
@@ -327,7 +360,6 @@
     "on-scroll-down": "hyprctl dispatch workspace r+1",
 		"format": "{icon}",
 		"format-icons": {
-    //  "1": "\ue745",
     //  "2": "\ue795",
      // "3": "\uf1b6",
 		  "active": "",
@@ -355,7 +387,7 @@
   "min-length": 2,
 	"max-length": 2,
   "justify": "center",
-  "on-click": "hyprctl dispatch submap",
+  "on-click": "~/.config/waybar/scripts/submap.sh",
   "tooltip": true,
 	"tooltip-format": "SUPER + CTRL + G to disable"
 },
@@ -403,6 +435,10 @@
 
 	"custom/left_div#1": {
 		"format": "",
+		"tooltip": false
+	},	
+  "custom/space": {
+		"format": "  ",
 		"tooltip": false
 	},
 	"custom/left_div#2": {

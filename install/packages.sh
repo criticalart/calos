@@ -46,7 +46,7 @@ sudo pacman -S --noconfirm --needed \
   ttf-cascadia-mono-nerd \
   ttf-font-awesome \
   uwsm \
-  waybar \
+  waybar-git \
   wiremix \
   wireplumber \
   wl-clip-persist \

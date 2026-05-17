@@ -9,7 +9,7 @@ if [[ ! -d "$OUTPUT_DIR" ]]; then
 fi
 
 SCOPE=""
-AUDIO="false"
+AUDIO="true"
 WEBCAM="false"
 
 for arg in "$@"; do
@@ -61,7 +61,7 @@ start_screenrecording() {
 
   # Merge audio tracks into one - separate tracks only play one at a time in most players
   [[ "$AUDIO" == "true" ]] && audio_args="-a default_output|default_input"
-
+  notify-send "Screen Recording Started" "Click the recording icon to stop recording." -t 3000
   gpu-screen-recorder -w "$@" -f 60 -c mp4 -o "$filename" $audio_args &
   toggle_screenrecording_indicator
 }

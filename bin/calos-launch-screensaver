@@ -10,12 +10,20 @@ pgrep -f "$TERMINAL --class Screensaver" && exit 0
 
 focused=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')
 
+hypr_focus_monitor() {
+  hyprctl dispatch "hl.dsp.focus({ monitor = \"$1\" })" >/dev/null 2>&1 || hyprctl dispatch focusmonitor "$1" >/dev/null
+}
+
+hypr_exec() {
+  local command="$1"
+
+  hyprctl dispatch "hl.dsp.exec_cmd([[$command]])" >/dev/null 2>&1 || hyprctl dispatch exec -- bash -lc "$command" >/dev/null
+}
+
 for m in $(hyprctl monitors -j | jq -r '.[] | .name'); do
-  hyprctl dispatch focusmonitor $m
-  hyprctl dispatch exec -- \
-    alacritty --class Screensaver \
-    --config-file ~/.config/alacritty/screensaver.toml \
-    -e calos-cmd-screensaver
+  hypr_focus_monitor "$m"
+  hypr_exec "alacritty --class=Screensaver --config-file ~/.config/alacritty/screensaver.toml -e calos-cmd-screensaver"
+
 done
 
-hyprctl dispatch focusmonitor $focused
+hypr_focus_monitor "$focused"

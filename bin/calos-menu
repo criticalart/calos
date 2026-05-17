@@ -95,9 +95,10 @@ show_screenrecord_menu() {
 }
 
 show_toggle_menu() {
-  case $(menu "Toggle" "󰔎  Hyprsunset\n󰍜  Waybar\n󰺷  Game Mode\n󱥂  Notifications") in
+  case $(menu "Toggle" "󰔎  Hyprsunset\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󱥂  Notifications") in
   *Hyprsunset*) calos-toggle-nightlight ;;
   *Waybar*) calos-toggle-waybar ;;
+  *Big*) ~/.config/waybar/scripts/bigpic.sh ;;
   *Game*) calos-toggle-gamemode ;;
   *Notifications*) makoctl mode -t do-not-disturb && makoctl mode | grep -q 'do-not-disturb' && notify-send "Silenced notifications" || notify-send "Enabled notifications" ;;
   *) show_main_menu ;;
@@ -121,7 +122,7 @@ show_system_menu() {
   *Packages*) alacritty --class Calos -e calos-pkg-list ;;
   *Screensaver*) calos-launch-screensaver force ;;
   *Restart*) systemctl reboot ;;
-  *Update*) alacritty --class=System-Update -e ~/.config/waybar/scripts/system-update.sh start ;;
+  *Update*) alacritty --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start ;;
   *Clipboard*) alacritty --class clipse -e clipse ;;
     # *Logoff*) systemctl --user start wayland-session-shutdown.target ;;
   *Shutdown*) systemctl poweroff ;;
