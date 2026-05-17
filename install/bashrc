@@ -1,4 +1,4 @@
-source ~/.local/share/calos/bash/rc
+source ~/.local/share/calos/default/bash/rc
 
 # set up fzf key bindings and fuzzy completion
 
@@ -26,29 +26,19 @@ alias oops='sudo $(history -p !!)'
 alias grep='grep --color=auto'
 alias please='sudo'
 alias cat='bat --style grid,header,header-filename,header-filesize '
-alias update='sudo pacman -Syu'
-alias upgrade='sudo pacman -Syu'
 alias svim='sudoedit '
-alias packages='calos-pkg-list'
-# alias weather='curl wttr.in/[ADD_CITY_HERE]?format=3'
+alias showoff='clear && fastfetch && echo $'\n' && fortune'
 
 # first terminal boot service
 
 if ! systemctl is-active --quiet bootmsg; then
-  sleep 2
-  fastfetch
-  echo
-  echo "Welcome to $HOSTNAME! Running initial startup scripts and daemon diagnostics:"
-  pamixer --set-volume 80
-  systemctl --failed
-  echo
+#  echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+  clear
+#  pamixer --set-volume 80
   sudo systemctl start bootmsg.service
-  echo
-  echo "Todays quote is:"
-  fortune
-  echo
-  echo "happy autisming"
-  echo
+  clear
+  fastfetch
+  hyprctl -q hyprsunset temperature 6600
 fi
 
 # starship config
