@@ -1,4 +1,4 @@
-source ~/.local/share/calos/default/bash/rc
+source ~/.local/share/calos/bash/rc
 
 # set up fzf key bindings and fuzzy completion
 
