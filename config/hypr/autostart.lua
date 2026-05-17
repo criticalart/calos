@@ -37,6 +37,5 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(cava_launch)
 
 	-- Application autostart
-	--hl.exec_cmd("uwsm app -- vesktop", { workspace = "3 silent" })
 	--hl.exec_cmd("uwsm app -- steam", { workspace = "3 silent" })
 end)
