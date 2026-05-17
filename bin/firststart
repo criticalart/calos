@@ -4,8 +4,8 @@ sleep 1
 sed -i '/hl\.exec_cmd("firststart")/d' ~/.config/hypr/autostart.lua
 notify-send "Welcome to calOS!" "Installation successful." -t 3000
 sleep 3
-notify-send "Use SUPER + K to review default keybinds." "These can be configured by editing ~/.config/hypr/keybindings.conf." -t 7000
-notify-send "SUPER + ESCAPE will bring up your system menu." -t 7000
+notify-send "Check ~/.config/hypr for configuration files!" "These are documented files that can help you fine-tune your system." -t 7000
+notify-send "SUPER (release) will bring up your system menu." -t 7000
 notify-send "SUPER + SPACE shows your application launcher." -t 7000
 elephant service enable
 systemctl --user enable --now elephant.service
