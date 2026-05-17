@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sleep 1
-sed -i "/exec-once = firststart/"'s///' ~/.config/hypr/autostart.conf
+sed -i '/hl\.exec_cmd("firststart")/d' ~/.config/hypr/autostart.lua
 notify-send "Welcome to calOS!" "Installation successful." -t 3000
 sleep 3
 notify-send "Use SUPER + K to review default keybinds." "These can be configured by editing ~/.config/hypr/keybindings.conf." -t 7000
