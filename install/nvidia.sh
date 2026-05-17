@@ -48,7 +48,7 @@ EOF
   # Add NVIDIA environment variables based on GPU architecture
   if [[ $GPU_ARCH = "turing_plus" ]]; then
     # Turing+ (RTX 20xx, GTX 16xx, and newer) with GSP firmware support
-    cat >>"$HOME/.config/hypr/envs.conf" <<'EOF'
+    cat >>"$HOME/.config/hypr/hyprland.lua" <<'EOF'
 
 # NVIDIA (Turing+ with GSP firmware)
 env = NVD_BACKEND,direct
@@ -57,7 +57,7 @@ env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 EOF
   elif [[ $GPU_ARCH = "maxwell_pascal_volta" ]]; then
     # Maxwell/Pascal/Volta (GTX 9xx/10xx, GT 10xx, Quadro P/M/GV, MX series, Titan X/Xp/V) lack GSP firmware
-    cat >>"$HOME/.config/hypr/envs.conf" <<'EOF'
+    cat >>"$HOME/.config/hypr/hyprland.lua" <<'EOF'
 
 # NVIDIA (Maxwell/Pascal/Volta without GSP firmware)
 env = NVD_BACKEND,egl
