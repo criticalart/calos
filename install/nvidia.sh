@@ -50,7 +50,6 @@ EOF
     # Turing+ (RTX 20xx, GTX 16xx, and newer) with GSP firmware support
     cat >>"$HOME/.config/hypr/hyprland.lua" <<'EOF'
 
-# NVIDIA (Turing+ with GSP firmware)
 env = NVD_BACKEND,direct
 env = LIBVA_DRIVER_NAME,nvidia
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
@@ -59,7 +58,6 @@ EOF
     # Maxwell/Pascal/Volta (GTX 9xx/10xx, GT 10xx, Quadro P/M/GV, MX series, Titan X/Xp/V) lack GSP firmware
     cat >>"$HOME/.config/hypr/hyprland.lua" <<'EOF'
 
-# NVIDIA (Maxwell/Pascal/Volta without GSP firmware)
 env = NVD_BACKEND,egl
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 EOF
