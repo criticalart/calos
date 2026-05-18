@@ -94,6 +94,15 @@ hl.window_rule({
 	opacity = "1 1",
 })
 
+hl.window_rule({
+	name = "Steam Property Float",
+	float = true,
+	match = {
+		class = "^(steam)$",
+		title = "negative:^(Steam)$",
+	},
+})
+
 -- Gaming Mode Submap config
 
 hl.bind(
