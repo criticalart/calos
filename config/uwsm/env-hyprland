@@ -1,3 +1,3 @@
-export HYPRCURSOR_THEME=rose-pine-hyprcursor
+export HYPRCURSOR_THEME=Default-Hyprcursor
 export HYPRCURSOR_SIZE=28
 export HYPRSHOT_DIR=~/Pictures/Screenshots

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Put all on-boot commands you would like to put here, examples included.
+
+sleep 1.4
+notify-send -t 1750 "Welcome to calOS!" 'Initializing...'
+sleep 1
+hyprctl -q hyprsunset temperature 6600
+# pactl load-module module-null-sink sink_name=CavaSink sink_properties=device.description=Cava_Music_Only
+# pactl load-module module-loopback source=CavaSink.monitor sink=@DEFAULT_SINK@
+pamixer --set-volume 80
+awww img ~/.config/calos/current/background --resize stretch --transition-type center --transition-fps 144 --transition-duration 2
+ffplay -autoexit -nodisp ~/.config/start.mp3

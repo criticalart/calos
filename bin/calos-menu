@@ -118,15 +118,15 @@ show_update_process_menu() {
 }
 
 show_system_menu() {
-  case $(menu "System" "󱄄  Screensaver\n  Clipboard\n  Packages\n󰚰  Update\n󰜉  Restart\n󰐥  Shutdown\n󰗽  BIOS Reboot") in
+  case $(menu "System" "󱄄  Screensaver\n  Clipboard\n  Packages\n󰚰  Update\n󰗽  BIOS Reboot\n󰜉  Restart\n󰐥  Shutdown") in
   *Packages*) alacritty --class Calos -e calos-pkg-list ;;
   *Screensaver*) calos-launch-screensaver force ;;
   *Restart*) systemctl reboot ;;
   *Update*) alacritty --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start ;;
+  *BIOS*) systemctl reboot --firmware-setup ;;
   *Clipboard*) alacritty --class clipse -e clipse ;;
     # *Logoff*) systemctl --user start wayland-session-shutdown.target ;;
-  *Shutdown*) systemctl poweroff ;;
-  *BIOS*) systemctl reboot --firmware-setup ;;
+  *Shutdown*) calos-shutdown ;;
   *) show_main_menu ;;
   esac
 }

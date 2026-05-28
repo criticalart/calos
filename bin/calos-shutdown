@@ -1,0 +1,9 @@
+#!/bin/bash
+
+calos-cmd-close-all-windows
+sleep 0.5
+pkill -SIGUSR1 waybar
+awww clear-cache
+awww kill
+ffplay -autoexit -nodisp ~/.config/shutdown.mp3
+systemctl poweroff

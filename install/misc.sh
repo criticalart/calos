@@ -25,7 +25,7 @@ fi
 
 # Prevent systemd-networkd-wait-online timeout on boot
 sudo systemctl disable systemd-networkd-wait-online.service
-sudo systemctl mask systemd-networkd-wait-online.service 
+sudo systemctl mask systemd-networkd-wait-online.service
 
 # Turn on bluetooth by default
 sudo systemctl enable bluetooth.service
@@ -46,4 +46,8 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl start bootmsg.service" | 
 sudo cp ~/.local/share/calos/install/bootmsg.service /etc/systemd/system/bootmsg.service
 sudo cp ~/.local/share/calos/install/bash_profile ~/.bash_profile
 mkdir -p ~/.local/share/fonts
+mkdir -p ~/.local/share/icons
+mv ~/.local/share/calos/install/defaultxcursor/ ~/.local/share/icons/BreezeX-Black
+mv ~/.local/share/calos/install/defaulthyprcursor/ ~/.local/share/icons/Default-Hyprcursor
+
 fc-cache

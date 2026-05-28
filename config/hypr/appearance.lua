@@ -13,20 +13,21 @@ hl.config({
 
 	decoration = {
 		rounding = 7,
-		rounding_power = 2.4,
+		rounding_power = 3,
 
-		active_opacity = 0.99,
-		inactive_opacity = 0.95,
+		active_opacity = 0.95,
+		inactive_opacity = 0.86,
+		fullscreen_opacity = 1,
 
 		blur = {
 			enabled = true,
 			new_optimizations = true,
-			size = 10,
-			passes = 1,
+			size = 7,
+			passes = 3,
 			brightness = 1,
 			noise = 0.05,
-			contrast = 0.89,
-			vibrancy = 0.5,
+			contrast = 1.3,
+			vibrancy = 0.7,
 			vibrancy_darkness = 0.5,
 			popups = false,
 			popups_ignorealpha = 0.6,
@@ -36,10 +37,10 @@ hl.config({
 
 		shadow = {
 			enabled = true,
-			range = 25,
+			range = 16,
 			offset = "0 4",
-			render_power = 10,
-			color = "rgba(1a1a1aee)",
+			render_power = 4,
+			color = "0xee1a1a1a",
 		},
 
 		dim_inactive = true,
@@ -58,12 +59,13 @@ hl.curve("easeoutquint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } 
 hl.curve("easeinout", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
 hl.curve("almostlinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 } } })
 hl.curve("workspaceslide", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
+hl.curve("boing", { type = "spring", mass = 1, stiffness = 30, dampening = 6 })
 
 -- Animations
 
 hl.animation({ leaf = "global", enabled = true, speed = 5, bezier = "default" })
 hl.animation({ leaf = "windows", enabled = true, speed = 4.79, bezier = "easeoutquint" })
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, bezier = "emphasizeddeccel" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4.8, bezier = "emphasizeddeccel" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "emphasizedaccel" })
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 5, bezier = "standard", style = "slide" })
 hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.73, bezier = "almostlinear" })
@@ -79,7 +81,7 @@ hl.animation({
 	enabled = true,
 	speed = 4,
 	bezier = "specialworkswitch",
-	style = "slide top 50%",
+	style = "slidefadevert top 45%",
 })
 hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "standard" })
 hl.animation({ leaf = "fadeDim", enabled = true, speed = 6, bezier = "standard" })

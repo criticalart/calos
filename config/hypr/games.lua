@@ -28,7 +28,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "Game Window",
 	match = {
-		class = "steam_app_.*|dota2|eden|.*Metroid.*|Godot|Ryujinx|gamescope|ffxiv_dx11.exe", -- add your games here, follow regex!
+		class = "steam_app_.*|dota2|eden|.*Metroid.*|Godot|Ryujinx|gamescope|ffxiv_dx11.exe|Crystal Project.bin.x86_64", -- add your games here, follow regex!
 	},
 
 	fullscreen = true,
@@ -62,17 +62,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "Big Picture Rules", -- Big Picture mode can cause problems sometimes, be careful!
-	match = {
-		initial_title = "Steam Big Picture Mode",
-	},
-
-	opacity = "1 1",
-	rounding = 0,
-	workspace = "10",
-})
-
-hl.window_rule({
 	name = "Steam Friends",
 	match = {
 		title = "Friends List",
@@ -101,6 +90,17 @@ hl.window_rule({
 		class = "^(steam)$",
 		title = "negative:^(Steam)$",
 	},
+})
+
+hl.window_rule({
+	name = "Big Picture Rules", -- Big Picture mode can cause problems sometimes, be careful!
+	match = {
+		initial_title = "Steam Big Picture Mode",
+	},
+
+	opacity = "1 1",
+	rounding = 0,
+	workspace = "10",
 })
 
 -- Gaming Mode Submap config

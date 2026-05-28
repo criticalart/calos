@@ -39,7 +39,9 @@ hl.window_rule({
 	match = {
 		class = "cava",
 	},
-	workspace = "5 silent",
+	workspace = "special:home",
+	suppress_event = "activatefocus",
+	no_initial_focus = true,
 })
 
 hl.window_rule({
@@ -51,6 +53,8 @@ hl.window_rule({
 	center = true,
 	dim_around = true,
 	size = "900 650",
+	rounding = 20,
+	rounding_power = 10,
 })
 
 hl.window_rule({
@@ -63,6 +67,7 @@ hl.window_rule({
 	size = "775 350",
 	move = { "monitor_w - 800", "(monitor_h * 0.03)" },
 	animation = "slide top",
+	rounding = false,
 })
 
 hl.window_rule({
@@ -151,6 +156,16 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
+		class = "^(file_chooser)$",
+	},
+
+	float = true,
+	size = "800 600",
+	opacity = "1 1",
+})
+
+hl.window_rule({
+	match = {
 		title = "^(Library)$",
 	},
 
@@ -182,5 +197,11 @@ hl.layer_rule({
 
 -- custom script for the 'homepage'
 
-require("scripts.grid")
-hl.workspace_rule({ workspace = "5", layout = "lua:grid" })
+require("scripts.spiral")
+
+hl.workspace_rule({
+	workspace = "special:home",
+	layout = "lua:spiral",
+	no_rounding = true,
+	decorate = true,
+})

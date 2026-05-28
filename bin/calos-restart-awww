@@ -1,3 +1,5 @@
 #!/bin/bash
 
 calos-restart-app awww-daemon
+awww img ~/.config/calos/current/background --resize stretch --transition-type center --tr
+ansition-fps 144 --transition-duration 2
