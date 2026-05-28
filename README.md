@@ -9,7 +9,7 @@ CalOS is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be
 tl;dr its dotfiles baby
 
 <p align="center">
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/90e38647-dd65-407b-90ee-3639d1078d50" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/78fd0520-30ce-468e-b17e-e95a1a1013eb" />
 </p>
 
 ## Overview
@@ -96,9 +96,9 @@ https://github.com/user-attachments/assets/07587456-a2ed-4ae3-8ec3-8985569445b8
 Many, many, many (autistic) hours were spent tweaking each theme CalOS ships with to compliment the entire OS. Your waybar, audio visualizer, terminal and system monitoring tools will all change based on the theme you're feeling. This took so long you son of a bitch you better use the themes
 
 <p align="center">
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/6b212088-7e7b-4a73-aea7-413f2f004816" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/c4a07c54-fd81-4713-b5a3-f6bbe4f7a10a" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e0c7e999-cfa9-46d4-84dd-7ba250ae107f" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/f0d1f0b0-f0b2-4ce5-85e3-e188bae29b5d" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ab0eca78-8598-48f3-a5da-cf2f5f79cb3e" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e56d55e4-9a9e-45ca-9a27-f7b2d0b060ba" />
 </p>
 
 
