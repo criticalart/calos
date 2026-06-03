@@ -110,5 +110,3 @@ require("windowrules")
 
 hl.env("GTK_USE_PORTAL", "1")
 hl.env("GDK_DEBUG", "portals")
-hl.env("XCURSOR_THEME", "BreezeX-Black")
-hl.env("XCURSOR_SIZE", "24")
