@@ -89,7 +89,7 @@ System keybinds use **CTRL** and  **SUPER**.
 <details>
 <summary>Sexy Theme Switching Example</summary>
 
-https://github.com/user-attachments/assets/07587456-a2ed-4ae3-8ec3-8985569445b8
+https://github.com/user-attachments/assets/0449763a-7b47-4c28-baa5-220d985f0a81
 
 </details>
 
