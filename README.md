@@ -43,12 +43,12 @@ For the uninitiated, your **Super** key is your windows key. Stop calling it the
 
 | Keybind | Action |
 | --- | --- |
+| SUPER | Open System Menu |
 | `Super + Enter` | Open Terminal |
 | `Super + Q` | Kill Active Window |
-| `Super + Escape` | Open System Menu |
+| `Super + Escape` | Open Homepage |
 | `Super + Alt + Space` | Open System Menu (Alt) |
 | `Super + B` | Browser (Firefox) |
-| `Super + K` | List Keybinds |
 | `Super + Space` | Application Launcher |
 | `Super + Y` | Yazi (File Manager(|
 | `Super + N` | Neovim |
@@ -64,12 +64,12 @@ System keybinds use **CTRL** and  **SUPER**.
 | Keybind | Action |
 | --- | --- |
 | `Super + CTRL + L` | Screensaver |
-| `Super + CTRL + N` | Toggle Bluelight Filter |
-| `Super + CTRL + W` | Toggle Waybar On/Off |
+| `Super + CTRL + N` | Toggle Bluelight |
+| `Super + CTRL + W` | Toggle Waybar |
 | `Super + CTRL + C` | Clipboard History |
-| `Super + CTRL + S` | Power Options (Reboot/Shutdown) |
+| `Super + CTRL + S` | Power Options |
 | `Super + CTRL + T` | Theme Menu |
-| `Super + CTRL + G` | Toggle Game Mode On/Off |
+| `Super + CTRL + G` | Toggle Game Mode |
 | `Super + CTRL + B` | Cycle Background |
 
 
@@ -128,7 +128,7 @@ Then `cd` into /calos/ and run `./install.sh.` Wow crazy.
 
 ## Post Installation
 
-* Try to familiarize yourself with all the keybinds to really get the most out of the system. Use `Super + K` to bring up your keybinds, sorted by importance.
+* Try to familiarize yourself with all the keybinds to really get the most out of the system. 
 * If you are a lazy sack of shit just read through the ~/.config/hypr configuration files as those are what you use to interact with your system.
 
 ## Why Paru?

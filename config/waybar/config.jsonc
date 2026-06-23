@@ -235,7 +235,7 @@
 	},
 
 "cava": {
-        //"cava_config": "$XDG_CONFIG_HOME/calos/current/theme/cava/config",
+        //"cava_config": "$XDG_CONFIG_HOME/calos/current/theme/cava/config_cmus",
         "framerate": 60,
         "autosens": 0,
         "sensitivity": 1,

@@ -2,8 +2,9 @@
 
 if [[ $(hyprctl submap) == gaming ]]; then
   hyprctl dispatch 'hl.dsp.submap("reset")'
-  notify-send 'SUPER Key Functionality Enabled' 'All functionality has been restored to default settings.'
+  notify-send 'Game Mode Disabled' 'SUPER Key functionality has been restored.'
 else
   hyprctl dispatch 'hl.dsp.submap("gaming")'
-  notify-send 'SUPER Key Functionality Disabled' 'To revert to standard keybindings, use SUPER + CTRL + R.\nKeybind for closing applications is now SUPER + ESC.\nUse ALT + SUPER + SPACE to open system menu.'
+  notify-send 'Game Mode Enabled / SUPER key functionality limited' '\nUse CTRL + SUPER + G to toggle game mode on/off.\nSUPER + CTRL + ESCAPE closes the active window'
+
 fi

@@ -6,7 +6,9 @@ if ! command -v tte &>/dev/null; then
 fi
 
 # Exit early if screensave is already running
-pgrep -f "$TERMINAL --class Screensaver" && exit 0
+if pgrep -f "$TERMINAL.*Screensaver" &>/dev/null; then
+  exit 0
+fi
 
 focused=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')
 

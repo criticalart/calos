@@ -28,7 +28,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "Game Window",
 	match = {
-		class = "steam_app_.*|dota2|eden|.*Metroid.*|Godot|Ryujinx|gamescope|ffxiv_dx11.exe|Crystal Project.bin.x86_64", -- add your games here, follow regex!
+		class = "steam_app_.*|gamescope", -- add your games here, follow regex!
 	},
 
 	fullscreen = true,
@@ -62,30 +62,9 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "Steam Friends",
-	match = {
-		title = "Friends List",
-	},
-
-	float = true,
-	opacity = "1 1",
-	size = "800 800",
-	move = "200 200",
-})
-
-hl.window_rule({
-	name = "Steam Settings",
-	match = {
-		title = "Steam Settings",
-	},
-
-	float = true,
-	opacity = "1 1",
-})
-
-hl.window_rule({
 	name = "Steam Property Float",
 	float = true,
+	opacity = "1 1",
 	match = {
 		class = "^(steam)$",
 		title = "negative:^(Steam)$",
@@ -103,26 +82,34 @@ hl.window_rule({
 	workspace = "10",
 })
 
+hl.window_rule({
+	name = "Steam Friends",
+	match = {
+		title = "Friends List",
+	},
+
+	float = false,
+})
+
 -- Gaming Mode Submap config
 
 hl.bind(
 	"SUPER + CTRL + G",
 	hl.dsp.exec_cmd(
-		"notify-send 'SUPER Key Functionality Disabled' 'To revert to standard keybindings, use SUPER + CTRL + R.\nKeybind for closing applications is now SUPER + ESC.\nYou can also click the waybar icon to revert back.'"
+		"notify-send 'Game Mode Enabled / SUPER key functionality limited' '\nUse CTRL + SUPER + G to toggle game mode on/off.\nSUPER + CTRL + ESCAPE now closes the active window.'"
 	)
 )
 hl.bind("SUPER + CTRL + G", hl.dsp.submap("gaming"))
 
 hl.define_submap("gaming", function()
 	hl.bind(
-		"SUPER + CTRL + R",
-		hl.dsp.exec_cmd(
-			"notify-send 'SUPER Key Functionality Enabled' 'All functionality has been restored to default settings.'"
-		)
+		"SUPER + CTRL + G",
+		hl.dsp.exec_cmd("notify-send 'Game Mode Disabled' 'SUPER Key functionality has been restored.'")
 	)
-	hl.bind("SUPER + ESCAPE", hl.dsp.window.close())
+	hl.bind("SUPER + CTRL + ESCAPE", hl.dsp.window.close())
 	hl.bind("SUPER + G", hl.dsp.workspace.toggle_special("game"))
 	hl.bind("SUPER + ALT + SPACE", hl.dsp.exec_cmd("calos-menu"))
+	hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
 
 	-- defaults that should have the universal flag, will be removed eventually
 	for i = 1, 9 do
@@ -138,6 +125,7 @@ hl.define_submap("gaming", function()
 	hl.bind("SUPER + up", hl.dsp.focus({ direction = "up" }))
 	hl.bind("SUPER + down", hl.dsp.focus({ direction = "down" }))
 
+	hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-menu"), { release = true })
 	hl.bind("SUPER + SHIFT + LEFT", hl.dsp.window.swap({ direction = "l" }))
 	hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.window.swap({ direction = "r" }))
 	hl.bind("SUPER + SHIFT + UP", hl.dsp.window.swap({ direction = "u" }))
@@ -147,5 +135,5 @@ hl.define_submap("gaming", function()
 	-- end of universal defaults
 
 	--submap reset
-	hl.bind("SUPER + CTRL + R", hl.dsp.submap("reset"))
+	hl.bind("SUPER + CTRL + G", hl.dsp.submap("reset"))
 end)
