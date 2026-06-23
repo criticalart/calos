@@ -2,7 +2,7 @@
 
 if pgrep -x waybar >/dev/null; then
   pkill -x waybar
-  notify-send "Waybar disabled." "Use CTRL + SUPER + W or the calOS Menu to re-enable it."
+  notify-send " Waybar Disabled" "Use CTRL + SUPER + W or the calOS Menu to re-enable it."
 else
   systemctl --user start waybar.service >/dev/null 2>&1 &
 fi

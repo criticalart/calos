@@ -119,6 +119,7 @@ hl.window_rule({
 	keep_aspect_ratio = true,
 	border_size = 0,
 	opacity = "1 1",
+	decorate = false,
 	move = { "100", "(monitor_h * 0.08)" },
 })
 
@@ -198,10 +199,22 @@ hl.layer_rule({
 -- custom script for the 'homepage'
 
 require("scripts.spiral")
+require("scripts.columns")
 
 hl.workspace_rule({
 	workspace = "special:home",
 	layout = "lua:spiral",
 	no_rounding = true,
 	decorate = true,
+	animation = "slide top",
+})
+
+hl.workspace_rule({
+	workspace = "3",
+	layout = "master",
+})
+
+hl.workspace_rule({
+	workspace = "2",
+	layout = "lua:columns",
 })

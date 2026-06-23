@@ -21,7 +21,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -s b -t service -- swayosd-server")
 	hl.exec_cmd("firststart")
 	hl.exec_cmd("clipse -listen")
-	hl.exec_cmd(boot)
+	--hl.exec_cmd(boot)
 
 	-- Homepage
 	hl.exec_cmd("sleep 2 && " .. terminal .. " --class cmus -e cmus", { workspace = "special:home silent" })
