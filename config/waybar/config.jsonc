@@ -5,42 +5,41 @@
 
 	"modules-left": [
 		"group/main_menu",
-  //  "custom/left_div#2",
 		"hyprland/workspaces",
-	//	"custom/right_div#5",
 		"hyprland/window"
 	],
 	"modules-center": [
-		"custom/left_div#2",
+		"custom/tempdiv",
 		"temperature",
-		"custom/left_div#3",
+		"custom/memdiv",
 		"memory",
-		"custom/left_div#4",
+		"custom/cpudiv",
 		"cpu",
-		"custom/left_inv#1",
-		"custom/left_div#5",
+		"custom/leftinvdiv",
+		"custom/leftdistrodiv",
 		"custom/distro",
-		"custom/right_div#2",
-		"custom/right_inv#1",
+		"custom/rightdistrodiv",
+		"custom/rightinvdiv",
 		"clock#time",
-		"custom/right_div#3",
+		"custom/timediv",
 		"clock#date",
-		"custom/right_div#4",
+		"custom/datediv",
 		"disk",
-		"custom/right_div#5"
+		"custom/diskdiv"
 	],
 	"modules-right": [
 		"mpris",
     "cava",
-   // "custom/space",
-		"custom/left_div#2",
+		"custom/tempdiv",
     "pulseaudio",
-    "hyprland/submap",
+    "custom/gamemode",
+    "custom/notifications",
+    "custom/bluelight",
     "custom/screenrecording-indicator",
     "network",
 		"bluetooth",
 		"custom/system_update",
-    "custom/right_div#5",
+    "custom/diskdiv",
 		"group/hypr_switcher"
 	],
 
@@ -86,6 +85,8 @@
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
+    "min-length": 2,
+    "max-length": 2,
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
     "on-click": "alacritty --class=Bluetui -e bluetui"
@@ -235,8 +236,8 @@
 	},
 
 "cava": {
-        //"cava_config": "$XDG_CONFIG_HOME/calos/current/theme/cava/config_cmus",
-        "framerate": 60,
+        // "cava_config": "$XDG_CONFIG_HOME/cava/config_cmus",
+        "framerate": 30,
         "autosens": 0,
         "sensitivity": 1,
         "bars": 14,
@@ -245,10 +246,10 @@
         "lower_cutoff_freq": 50,
         "higher_cutoff_freq": 10000,
         "hide_on_silence": false,
-        "sleep_timer": 2,
+        "sleep_timer": 1,
         "format_silent": "             ",
         "method": "pipewire",
-        "source": "auto",
+        "source": "cmus_audio.monitor",
         "data_format": "ascii",
         "stereo": true,
         "reverse": true,
@@ -312,6 +313,7 @@
 			"firefox": "󰈹  Mozilla Firefox",
 			"btop": "  BTOP++ System Information",
       "yazi": "  Yazi",
+      "file_chooser": "  Yazi",
       "System-Update": "󰚰  System Update",
       "About": "󰖷  System Information",
       "arthur@caliburn": "  arthur@caliburn",
@@ -335,6 +337,7 @@
 		// "icon-size":
 		// "min-length":
 		// "max-length":
+    "on-click-right": "hyprctl dispatch 'hl.dsp.window.close()'",
 		"tooltip": false,
 		"swap-icon-label": false
 	},
@@ -380,15 +383,6 @@
 		"cursor": true
 	},
 
-"hyprland/submap": {
-	"format": "󰊴",
-  "min-length": 2,
-	"max-length": 2,
-  "justify": "center",
-  "on-click": "~/.config/waybar/scripts/submap.sh",
-  "tooltip": true,
-	"tooltip-format": "SUPER + CTRL + G to disable"
-},
 
 	"group/main_menu": {
 		"orientation": "horizontal",
@@ -412,26 +406,30 @@
 		"min-length": 4,
 		"max-length": 4,
 		"on-click": "calos-menu",
-		"tooltip": false,	},
+		"tooltip": true,
+    "tooltip-format": "System Menu"
+  },
 
 	"custom/user": {
 		"exec": "id --user --name",
 		"format": "{}",
 		"on-click": "calos-menu",
-		"tooltip": false
+		"tooltip": true,
+    "tooltip-format": "System Menu"
 	},
 
 	"custom/distro": {
 		"format": "󰣇",
-    "on-click": "calos-walker-app",
-		"tooltip": false
+    "on-click": "calos-toggle-home",
+		"tooltip": true,
+    "tooltip-format": "Application Launcher",
 	},
 
 	/*-------------------
 		left dividers
 	-------------------*/
 
-	"custom/left_div#1": {
+	"custom/tempdiv": {
 		"format": "",
 		"tooltip": false
 	},	
@@ -439,68 +437,45 @@
 		"format": "  ",
 		"tooltip": false
 	},
-	"custom/left_div#2": {
+	"custom/cpudiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_div#3": {
+	"custom/memdiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_div#4": {
+	"custom/leftdistrodiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_div#5": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#6": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#7": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_div#8": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left_inv#1": {
+	"custom/leftinvdiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/left_inv#2": {
-		"format": "",
-		"tooltip": false
-	},
+
 
 	/*--------------------
 		right dividers
 	--------------------*/
 
-	"custom/right_div#1": {
+	"custom/rightdistrodiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#2": {
+	"custom/timediv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#3": {
+	"custom/datediv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#4": {
+	"custom/diskdiv": {
 		"format": "",
 		"tooltip": false
 	},
-	"custom/right_div#5": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right_inv#1": {
+	"custom/rightinvdiv": {
 		"format": "",
 		"tooltip": false
 	},
@@ -515,13 +490,12 @@
 			// "transition-duration":
 			"transition-left-to-right": false,
 			// "children-class":
-			// "click-to-reveal":
+			"click-to-reveal": true,
 		}
 	},
 
 	"custom/hypr_menu": {
 		"format": "\uf359",
-	"on-click": "alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh",
 		"tooltip": false,
     "min-length": 2,
 		"max-length": 2
@@ -538,8 +512,35 @@
     "on-click": "calos-cmd-screenrecord",
     "exec": "~/.config/waybar/scripts/screen-recording.sh",
     "signal": 8,
-    "min-length": 3,
-    "max-length": 3,
+    "min-length": 2,
+    "max-length": 2,
+   "return-type": "json"
+  },
+
+    "custom/notifications": {
+    "on-click": "calos-toggle-notifications",
+    "exec": "~/.config/waybar/scripts/notifications.sh",
+    "signal": 9,
+    "min-length": 2,
+    "max-length": 2,
+   "return-type": "json"
+  },
+
+    "custom/bluelight": {
+    "on-click": "calos-toggle-nightlight",
+    "exec": "~/.config/waybar/scripts/bluelight.sh",
+    "signal": 11,
+    "min-length": 2,
+    "max-length": 2,
+   "return-type": "json"
+  },
+
+    "custom/gamemode": {
+    "on-click": "calos-toggle-gamemode",
+    "exec": "~/.config/waybar/scripts/submap.sh",
+    "signal": 10,
+    "min-length": 2,
+    "max-length": 2,
    "return-type": "json"
   },
 
@@ -549,7 +550,7 @@
 		// "exec-on-event":
 		// "hide-empty-text":
 		"return-type": "json",
-		"interval": 7200,
+		"interval": 3600,
 		// "restart-interval":
 		// "signal":
 		"format": "{}",

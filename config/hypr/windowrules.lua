@@ -196,6 +196,9 @@ hl.layer_rule({
 	animation = "slide right",
 })
 
+-- Enable blur for waybar
+hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.5 })
+
 -- custom script for the 'homepage'
 
 require("scripts.spiral")

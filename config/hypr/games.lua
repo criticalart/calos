@@ -28,7 +28,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "Game Window",
 	match = {
-		class = "steam_app_.*|gamescope", -- add your games here, follow regex!
+		class = "steam_app_.*|dota2|eden|.*Metroid.*|Godot|Ryujinx|gamescope|ffxiv_dx11.exe|Crystal Project.bin.x86_64", -- add your games here, follow regex!
 	},
 
 	fullscreen = true,
@@ -93,20 +93,15 @@ hl.window_rule({
 
 -- Gaming Mode Submap config
 
-hl.bind(
-	"SUPER + CTRL + G",
-	hl.dsp.exec_cmd(
-		"notify-send 'Game Mode Enabled / SUPER key functionality limited' '\nUse CTRL + SUPER + G to toggle game mode on/off.\nSUPER + CTRL + ESCAPE now closes the active window.'"
-	)
-)
-hl.bind("SUPER + CTRL + G", hl.dsp.submap("gaming"))
+hl.bind("SUPER + CTRL + G", hl.dsp.exec_cmd("calos-toggle-gamemode"))
 
 hl.define_submap("gaming", function()
 	hl.bind(
 		"SUPER + CTRL + G",
-		hl.dsp.exec_cmd("notify-send 'Game Mode Disabled' 'SUPER Key functionality has been restored.'")
+		hl.dsp.exec_cmd("notify-send '󰊵 Game Mode Disabled' 'SUPER Key functionality has been restored.'")
 	)
 	hl.bind("SUPER + CTRL + ESCAPE", hl.dsp.window.close())
+	hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("sh -c \"notify-send 'Current Time' \\\"\\$(date '+%I:%M %p')\\\"\""))
 	hl.bind("SUPER + G", hl.dsp.workspace.toggle_special("game"))
 	hl.bind("SUPER + ALT + SPACE", hl.dsp.exec_cmd("calos-menu"))
 	hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
@@ -135,5 +130,6 @@ hl.define_submap("gaming", function()
 	-- end of universal defaults
 
 	--submap reset
-	hl.bind("SUPER + CTRL + G", hl.dsp.submap("reset"))
+
+	hl.bind("SUPER + CTRL + G", hl.dsp.exec_cmd("calos-toggle-gamemode"))
 end)

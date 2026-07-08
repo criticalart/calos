@@ -1,8 +1,7 @@
 @import "styles/modules-center.css";
 @import "styles/modules-left.css";
 @import "styles/modules-right.css";
-@import "theme.css";
-@import "../calos/current/theme/waybar.css";
+@import "colors.css";
 
 * {
   font-family: 'JetBrainsMono Nerd Font';
@@ -14,7 +13,8 @@
 
 window#waybar {
 	background-color: #1C2128;
-  border-radius: 6px;
+  border-radius: 4px;
+  opacity: 0.86;
 }
 
 /* main background */
@@ -46,12 +46,26 @@ window#waybar > box {
 
 /* dividers */
 
-#custom-left_div,
-#custom-left_inv,
-#custom-right_div,
-#custom-right_inv {
+#custom-tempdiv label,
+#custom-memdiv label,
+#custom-cpudiv label,
+#custom-leftdistrodiv label,
+#custom-leftinvdiv label,
+#custom-rightinvdiv label,
+#custom-rightdistrodiv label,
+#custom-timediv label,
+#custom-datediv label,
+#custom-diskdiv label {
 	font-size: 23.1px;
 }
+
+
+/*
+#custom-leftinvdiv label,
+#custom-leftdistrodiv label,
+#custom-rightdistrodiv label,
+#custom-rightinvdiv label { font-size: 26.4px;}
+*/
 
 /* buttons */
 
@@ -80,55 +94,4 @@ tooltip decoration {
 	background-color: transparent;
 }
 
-/* right-module-options */
-
-#network{
-    transition: all .3s ease;
-    padding: 0 12px;
-    background-color: @temperature;
-}
-#bluetooth{
-transition: all .3s ease;
-padding: 0 12px;
-background-color: @temperature;
-}
-#pulseaudio{
-    transition: all .3s ease;
-    padding: 0 12px;
-    background-color: @temperature;
-}
-#mpris{
-    transition: all .3s ease;
-    padding: 0 12px;
-}
-#submap{
-    transition: all .3s ease;
-    background-color: @temperature;
-        padding: 0 12px;
-  }
-#custom-system_update{
-    transition: all .3s ease;
-    padding: 0 12px;
-    background-color: @temperature;
-}
-#custom-screenrecording-indicator{
-    transition: all .3s ease;
-    padding: 0 12px;
-    background-color: @temperature;
-}
-
-#cava {
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    opacity: 1;
-    padding-left: 10px;
-    padding-right: 20px;
-    letter-spacing: 0px;
-}
-
-#cava.silent {
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    opacity: 0;
-    padding-left: 0px;
-    padding-right: 0px;
-    letter-spacing: -14px; 
-  }
+@import "../calos/current/theme/waybar.css";

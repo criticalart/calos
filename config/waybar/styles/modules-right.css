@@ -1,48 +1,83 @@
-@import "../theme.css";
+@import "../colors.css";
 
-/* media info */
 
-#mpris {
-	padding: 0 12px;
-	font-weight: normal;
+
+/* right-module-options */
+
+#network{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
 }
 
-/* volume */
-
-#custom-left_div.6 {
-	color: @volume;
+#bluetooth{
+transition: all .3s ease;
+padding: 0 12px;
+background-color: @temperature;
 }
-#pulseaudio {
-
+#pulseaudio{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
 }
-
-/* brightness */
-
-#custom-left_div.7 {
-	background-color: @volume;
-	color: @backlight;
+#mpris{
+    transition: all .3s ease;
+    padding: 0 12px;
 }
-#backlight {
-	background-color: @backlight;
-}
-
-/* battery */
-
-#custom-left_div.8 {
-	background-color: @backlight;
-	color: @battery;
-}
-#battery {
-	background-color: @battery;
-}
-#custom-left_inv.2 {
-	color: @battery;
+#submap{
+    transition: all .3s ease;
+    background-color: @temperature;
+        padding: 0 12px;
+  }
+#custom-system_update{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
 }
 
-#custom-hypr_menu {
+#custom-screenrecording-indicator{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+
+#custom-notifications label {
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+
+#custom-bluelight label {
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+
+#custom-gamemode label{
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+
+#cava {
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 1;
+    padding-left: 10px;
+    padding-right: 20px;
+    letter-spacing: 0px;
+}
+
+#cava.silent {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    letter-spacing: -14px; 
+  }
+
+#custom-hypr_menu label {
 	border-radius: 16px;
 	padding: 0 19px 0 16px;
 	font-size: 15px;
 	color: @accent;
 }
-

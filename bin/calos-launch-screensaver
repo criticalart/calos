@@ -10,6 +10,11 @@ if pgrep -f "$TERMINAL.*Screensaver" &>/dev/null; then
   exit 0
 fi
 
+# Allow screensaver to be turned off but also force started
+#if [[ -f ~/.local/state/calos/toggles/screensaver-off ]] && [[ $1 != "force" ]]; then
+#  exit 1
+#fi
+
 focused=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')
 
 hypr_focus_monitor() {

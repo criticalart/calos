@@ -22,7 +22,7 @@ hl.config({
 		blur = {
 			enabled = true,
 			new_optimizations = true,
-			size = 7,
+			size = 4,
 			passes = 3,
 			brightness = 1,
 			noise = 0.05,
@@ -81,7 +81,7 @@ hl.animation({
 	enabled = true,
 	speed = 4,
 	bezier = "specialworkswitch",
-	style = "slidefadevert top 45%",
+	style = "slidefadevert 50%",
 })
 hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "standard" })
 hl.animation({ leaf = "fadeDim", enabled = true, speed = 6, bezier = "standard" })

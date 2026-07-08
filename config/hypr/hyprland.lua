@@ -65,7 +65,7 @@ hl.config({
 
 hl.workspace_rule({
 	workspace = "w[tv1]",
-	gaps_out = { top = 10, right = 250, bottom = 10, left = 250 },
+	gaps_out = { top = 10, right = 350, bottom = 10, left = 350 },
 })
 
 hl.workspace_rule({

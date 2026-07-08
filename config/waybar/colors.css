@@ -1,0 +1,11 @@
+@define-color text			#c6d0f5;
+@define-color base			#303446;
+@define-color crust			#232634;
+@define-color main-bg		@crust;
+@define-color main-fg		@text;
+@define-color hover-bg		@base;
+@define-color hover-fg		alpha(@text, 0.75);
+@define-color outline		shade(@crust, 0.5);
+@define-color warning		@yellow;
+@define-color critical		@red;
+@define-color charging		@green;

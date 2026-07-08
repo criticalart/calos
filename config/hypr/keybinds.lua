@@ -41,6 +41,8 @@ hl.bind("SUPER + CTRL + N", hl.dsp.exec_cmd("calos-toggle-nightlight"))
 hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("calos-menu system"))
 hl.bind("SUPER + H", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
 hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
+
 hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-launch-screensaver"))
 hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("swayosd-client --caps-lock"))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("calos-cmd-close-all-windows")) -- will close all windows on current workspace

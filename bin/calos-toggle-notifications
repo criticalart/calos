@@ -1,0 +1,11 @@
+#!/bin/bash
+
+makoctl mode -t do-not-disturb
+
+if makoctl mode | grep -q 'do-not-disturb'; then
+  notify-send -u critical "󱙎 Silenced Notifications"
+else
+  notify-send -u low "󰍥 Notifications Enabled"
+fi
+
+pkill -RTMIN+9 waybar

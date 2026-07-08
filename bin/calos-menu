@@ -17,6 +17,13 @@ back_to() {
   fi
 }
 
+toggle_existing_menu() {
+  if pgrep -f "walker.*--dmenu" >/dev/null; then
+    walker --close >/dev/null 2>&1
+    exit 0
+  fi
+}
+
 menu() {
   local prompt="$1"
   local options="$2"
@@ -95,12 +102,14 @@ show_screenrecord_menu() {
 }
 
 show_toggle_menu() {
-  case $(menu "Toggle" "󰔎  Hyprsunset\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󱥂  Notifications") in
+  case $(menu "Toggle" "󰔎  Hyprsunset\n󱄄  Screensaver\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󰍹  Display Swap\n󱥂  Notifications") in
   *Hyprsunset*) calos-toggle-nightlight ;;
+  *Display*) calos-toggle-output ;;
+  *Screensaver*) calos-launch-screensaver ;;
   *Waybar*) calos-toggle-waybar ;;
-  *Big*) ~/.config/waybar/scripts/bigpic.sh ;;
+  *Big*) ~/wksp/scripts/bigpic.sh ;;
   *Game*) calos-toggle-gamemode ;;
-  *Notifications*) makoctl mode -t do-not-disturb && makoctl mode | grep -q 'do-not-disturb' && notify-send "Silenced notifications" || notify-send "Enabled notifications" ;;
+  *Notifications*) calos-toggle-notifications ;;
   *) show_main_menu ;;
   esac
 }
@@ -151,6 +160,8 @@ go_to_menu() {
   *system*) show_system_menu ;;
   esac
 }
+
+toggle_existing_menu
 
 if [[ -n "$1" ]]; then
   go_to_menu "$1"
