@@ -19,8 +19,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -t service -- walker --gapplication-service")
 	hl.exec_cmd("uwsm app -s b -t service -- awww-daemon")
 	hl.exec_cmd("uwsm app -s b -t service -- swayosd-server")
+	hl.exec_cmd("firststart")
 	hl.exec_cmd("clipse -listen")
-	hl.exec_cmd(boot)
+	--hl.exec_cmd(boot)
 
 	-- Homepage
 	hl.exec_cmd("sleep 2 && " .. terminal .. " --class cmus -e cmus", { workspace = "special:home silent" })
@@ -32,6 +33,5 @@ hl.on("hyprland.start", function()
 	)
 
 	-- Application autostart
-	hl.exec_cmd("uwsm app -- vesktop", { workspace = "3 silent" })
-	hl.exec_cmd("LD_PRELOAD=/usr/lib32/libextest.so steam", { workspace = "3 silent" })
+	--hl.exec_cmd("uwsm app -- steam", { workspace = "3 silent" })
 end)
