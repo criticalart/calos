@@ -108,7 +108,7 @@ Many, many, many (autistic) hours were spent tweaking each theme CalOS ships wit
 
 ## How 2 Install
 
-**You must have a fresh Arch install going into this.** Feel free to use any settings you want; from disk encryption to file system type. **Limine is heavily encouraged to be used as your bootloader as the installer enables extra features if it detects it.** Other bootloaders will function just fine, however. The only required settings are a **user with root** (which you should be using anyway, you dummy) and **pipewire to be installed**. 
+**You must have a fresh Arch install going into this.** Feel free to use any settings you want; from disk encryption to file system type. **Limine is heavily encouraged to be used as your bootloader as the installer enables extra features if it detects it.** Other bootloaders will function just fine, however. The only required settings are a **user with root** (which you should be using anyway, you dummy) and **pipewire/bluetooth to be installed** (waybar will not like you if they're not). 
 
 ```
 sudo pacman -S git
