@@ -2,17 +2,17 @@
 
 # Check if limine is the bootloader
 
-if [ -n "$(find /boot | grep -i 'limine')" ]; then
+if [ -n "$(sudo find /boot | grep -i 'limine')" ]; then
 
   # Check for alternative limine configuration files and if found, remove them for limine-mkinitcpio functionality
 
-  if test -f /boot/limine/limine.conf; then
+  if sudo test -f /boot/limine/limine.conf; then
     sudo rm /boot/limine/limine.conf
   else
     echo "Configuration file not found, checking alternative locations..."
   fi
 
-  if test -f /boot/EFI/limine/limine.conf; then
+  if sudo test -f /boot/EFI/limine/limine.conf; then
     sudo rm /boot/EFI/limine/limine.conf
   else
     echo "No alternative Limine configurations found, resuming install..."
