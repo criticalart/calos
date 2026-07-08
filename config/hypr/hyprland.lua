@@ -105,6 +105,7 @@ require("input")
 require("keybinds")
 require("monitors")
 require("windowrules")
+require("scripts.zoom")
 
 -- ENV Variables
 

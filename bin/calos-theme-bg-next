@@ -38,4 +38,4 @@ fi
 ln -nsf "$NEW_BACKGROUND" "$CURRENT_BACKGROUND_LINK"
 
 # set new background
-awww img "$CURRENT_BACKGROUND_LINK" --resize stretch --transition-type any --transition-fps 144 --transition-duration 1.5
+awww img "$CURRENT_BACKGROUND_LINK" --resize stretch --transition-type fade --transition-fps 144 --transition-duration 0.8

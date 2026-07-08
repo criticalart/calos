@@ -37,15 +37,12 @@ else
 fi
 
 # Change background with theme
+
+calos-restart-swayosd
+hyprctl reload
 calos-theme-bg-next
-
-# Trigger alacritty config reload
 touch "$HOME/.config/alacritty/alacritty.toml"
-
-# Restart components to apply new theme
 pkill -SIGUSR2 btop
 pkill -SIGUSR1 cava
 makoctl reload
-calos-restart-swayosd
-hyprctl reload
 pkill -SIGUSR2 waybar

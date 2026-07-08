@@ -11,7 +11,7 @@ elephant service enable
 systemctl --user enable --now elephant.service
 sleep 7
 notify-send "Please select a default theme." "This can be changed at any time by using the system menu or SUPER + CTRL + T." -t 5000
-systemctl --user enable waybar.service
+systemctl --user enable --now waybar.service
 sed -i 's/--hl.exec_cmd(boot)/hl.exec_cmd(boot)/' ~/.config/hypr/autostart.lua
 rm ~/.local/share/calos/bin/firststart
 exec walker -H -N -n -m menus:calosthemes --minwidth 300 --height 600
