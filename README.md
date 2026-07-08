@@ -9,7 +9,9 @@ CalOS is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be
 tl;dr its dotfiles baby
 
 <p align="center">
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/78fd0520-30ce-468e-b17e-e95a1a1013eb" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/2f62d640-fcb1-454b-8622-cd5865cac043" />
+  <i>Homescreen / Task Manager</i>
+  
 </p>
 
 ## Overview
