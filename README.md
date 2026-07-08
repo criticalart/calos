@@ -98,7 +98,7 @@ https://github.com/user-attachments/assets/0449763a-7b47-4c28-baa5-220d985f0a81
 Many, many, many (autistic) hours were spent tweaking each theme CalOS ships with to compliment the entire OS. Your waybar, audio visualizer, terminal and system monitoring tools will all change based on the theme you're feeling. This took so long you son of a bitch you better use the themes
 
 <p align="center">
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/f0d1f0b0-f0b2-4ce5-85e3-e188bae29b5d" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/00d41f7a-8629-4803-af75-97c022a5c377" />
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ab0eca78-8598-48f3-a5da-cf2f5f79cb3e" />
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e56d55e4-9a9e-45ca-9a27-f7b2d0b060ba" />
 </p>
