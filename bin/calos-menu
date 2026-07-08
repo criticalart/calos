@@ -86,9 +86,9 @@ show_capture_menu() {
 
 show_screenshot_menu() {
   case $(menu "Screenshot" "  Region\n  Window\n  Display") in
-  *Region*) calos-cmd-screenshot ;;
-  *Window*) calos-cmd-screenshot window ;;
-  *Display*) calos-cmd-screenshot output ;;
+  *Region*) hyprshot -m region --freeze ;;
+  *Window*) hyprshot -m window ;;
+  *Display*) hyprshot -m output ;;
   *) show_capture_menu ;;
   esac
 }
