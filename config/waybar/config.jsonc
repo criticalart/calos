@@ -178,11 +178,11 @@
   "disk": {
     "interval": 600,
     "format": " {free}",
-    "path": "/",
+    "paths": "/",
     "tooltip": true,
     "max-length": 10,
     "min-length": 10,
-    "on-click": "alacritty --class=Impala --hold -e sudo dust 2> /dev/null",
+    "on-click": "alacritty --class=dust -e ~/.config/waybar/scripts/dust.sh",
     "tooltip-format": "{used} out of {total} used."
 },
 
@@ -249,7 +249,7 @@
         "sleep_timer": 1,
         "format_silent": "             ",
         "method": "pipewire",
-        "source": "cmus_audio.monitor",
+        "source": "auto",
         "data_format": "ascii",
         "stereo": true,
         "reverse": true,
@@ -303,6 +303,8 @@
   },
 
 	"hyprland/window": {
+    "tooltip": true,
+    "tooltip-format": "Right Click to Exit",
 		"format": "{class}",
 		"rewrite": {
 			"^$": "󰍹  Desktop",
@@ -327,6 +329,7 @@
       "Impala": "󰖩  Impala",
       "Wiremix": "󱡬  Wiremix",
       "clipse": "  Clipse",
+      "dust": "  Dust",
       "FFPWA-01K961PSAZSCYS2324FFDRTC7Q": "Apple Music",
       "FFPWA-01K965RT5B50H7XFYV0EAQN4B8": "󰣇  ArchLinux Wiki",
       "FFPWA-01KAC9901ABNXA5Q8EHX1KRDFV": "HBO Max",
@@ -338,7 +341,6 @@
 		// "min-length":
 		// "max-length":
     "on-click-right": "hyprctl dispatch 'hl.dsp.window.close()'",
-		"tooltip": false,
 		"swap-icon-label": false
 	},
 
@@ -363,14 +365,14 @@
 		"format-icons": {
     //  "2": "\ue795",
      // "3": "\uf1b6",
-		  "active": "",
+		  "active": "",
 			"default": ""
 		},
 		"persistent-workspaces": {
 			"*": 5
 		},
 		// "persistent-only":
-		// "show-special":
+		// "show-special": true,
 		// "special-visible-only":
 		// "sort-by":
 		// "window-rewrite":
@@ -422,7 +424,7 @@
 		"format": "󰣇",
     "on-click": "calos-toggle-home",
 		"tooltip": true,
-    "tooltip-format": "Application Launcher",
+    "tooltip-format": "Home Page",
 	},
 
 	/*-------------------
@@ -536,7 +538,8 @@
   },
 
     "custom/gamemode": {
-    "on-click": "calos-toggle-gamemode",
+    "on-click": "calos-toggle-game",
+    "on-click-right": "calos-toggle-gamemode",
     "exec": "~/.config/waybar/scripts/submap.sh",
     "signal": 10,
     "min-length": 2,
