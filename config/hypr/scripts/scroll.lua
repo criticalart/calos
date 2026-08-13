@@ -22,8 +22,8 @@ local function throttled_dsp(dsp)
 	end
 end
 
-local prevWs = hl.dsp.focus({ workspace = "r-1" })
-local nextWs = hl.dsp.focus({ workspace = "r+1" })
+local prevWs = hl.dsp.focus({ workspace = "r+1" })
+local nextWs = hl.dsp.focus({ workspace = "r-1" })
 
 hl.bind("SUPER + mouse_down", throttled_dsp(prevWs))
 hl.bind("SUPER + mouse_up", throttled_dsp(nextWs))

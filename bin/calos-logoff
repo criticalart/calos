@@ -1,0 +1,11 @@
+#!/bin/bash
+
+calos-cmd-close-all-windows
+playerctl pause
+sleep 0.5
+pkill -SIGUSR1 waybar
+awww img ~/.config/calos/branding/off.png --resize stretch --transition-type fade --transition-fps 144 --transition-duration 0.8
+awww clear-cache
+sed -i -E 's/^.*("start_hidden": true,)/  \1/' ~/.config/waybar/config.jsonc
+ffplay -autoexit -nodisp -volume 30 ~/.config/calos/branding/shutdown.mp3
+loginctl terminate-user ""

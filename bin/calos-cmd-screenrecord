@@ -27,7 +27,7 @@ start_screenrecording() {
   # Merge audio tracks into one - separate tracks only play one at a time in most players
   [[ "$AUDIO" == "true" ]] && audio_args="-a default_output|default_input"
   [[ "$MICAUDIO" == "false" ]] && audio_args="-a default_output"
-  notify-send "󰯜 Screen Recording Started" "Click the recording icon or use SUPER + PRINT to stop." -t 3000
+  notify-send "󰯜 Screen Recording Started" "Click the recording icon or press SUPER + PRINT to stop." -t 3000
   gpu-screen-recorder -w "$@" -f 60 -c mp4 -o "$filename" $audio_args &
   local timeout=0
   while ! pgrep -x "gpu-screen-recorder" >/dev/null && [ $timeout -lt 10 ]; do

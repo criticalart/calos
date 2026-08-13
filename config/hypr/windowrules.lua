@@ -59,12 +59,25 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
+		class = "dust",
+	},
+
+	float = true,
+	center = true,
+	dim_around = true,
+	size = "900 650",
+	rounding = 20,
+	rounding_power = 10,
+})
+
+hl.window_rule({
+	match = {
 		class = "About",
 	},
 
 	float = true,
 	dim_around = true,
-	size = "775 350",
+	size = "775 375",
 	move = { "monitor_w - 800", "(monitor_h * 0.03)" },
 	animation = "slide top",
 	rounding = false,
@@ -182,7 +195,7 @@ hl.layer_rule({
 	},
 
 	blur = true,
-	animation = "popin 50%",
+	animation = "popin 100%",
 	ignore_alpha = 0,
 })
 
@@ -197,6 +210,7 @@ hl.layer_rule({
 })
 
 -- Enable blur for waybar
+
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.5 })
 
 -- custom script for the 'homepage'
@@ -204,12 +218,13 @@ hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.
 require("scripts.spiral")
 require("scripts.columns")
 
+-- per-workspacee layout rules
+
 hl.workspace_rule({
 	workspace = "special:home",
 	layout = "lua:spiral",
 	no_rounding = true,
 	decorate = true,
-	animation = "slide top",
 })
 
 hl.workspace_rule({
@@ -220,4 +235,9 @@ hl.workspace_rule({
 hl.workspace_rule({
 	workspace = "2",
 	layout = "lua:columns",
+})
+
+hl.workspace_rule({
+	workspace = "4",
+	layout = "scrolling",
 })

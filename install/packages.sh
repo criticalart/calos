@@ -39,6 +39,8 @@ sudo pacman -S --noconfirm --needed \
   ripgrep \
   slurp \
   starship \
+  quickshell \
+  imagemagick \
   awww \
   swayosd \
   tldr \

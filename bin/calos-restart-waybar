@@ -1,5 +1,7 @@
 #!/bin/bash
 
+hyprctl eval 'hl.layer_rule({ match = { namespace = "^waybar$" }, animation = "popin 20%" })'
+
 if pgrep -x waybar >/dev/null; then
   systemctl --user restart waybar.service >/dev/null 2>&1 &
 else

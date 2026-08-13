@@ -9,7 +9,7 @@
 
 -- Default gaming workspace key, default is 'G' (for game get it)
 
-hl.bind("SUPER + G", hl.dsp.workspace.toggle_special("game"))
+hl.bind("SUPER + G", hl.dsp.exec_cmd("calos-toggle-game"))
 
 -- Add your launchers/games to the options below as needed; defaults should cover most things probably maybe
 
@@ -96,13 +96,9 @@ hl.window_rule({
 hl.bind("SUPER + CTRL + G", hl.dsp.exec_cmd("calos-toggle-gamemode"))
 
 hl.define_submap("gaming", function()
-	hl.bind(
-		"SUPER + CTRL + G",
-		hl.dsp.exec_cmd("notify-send '󰊵 Game Mode Disabled' 'SUPER Key functionality has been restored.'")
-	)
-	hl.bind("SUPER + CTRL + ESCAPE", hl.dsp.window.close())
+	hl.bind("SUPER + CTRL + Q", hl.dsp.window.close())
 	hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("sh -c \"notify-send 'Current Time' \\\"\\$(date '+%I:%M %p')\\\"\""))
-	hl.bind("SUPER + G", hl.dsp.workspace.toggle_special("game"))
+	hl.bind("SUPER + G", hl.dsp.exec_cmd("calos-toggle-game"))
 	hl.bind("SUPER + ALT + SPACE", hl.dsp.exec_cmd("calos-menu"))
 	hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
 

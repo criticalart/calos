@@ -25,7 +25,7 @@ update-packages() {
       echo
       pacman -Qu
       local kernel_updated=0
-      if pacman -Qu | grep -q -E "^(linux|linux-zen|fastfetch) "; then
+      if pacman -Qu | grep -q -E "^(linux|linux-zen) "; then
         kernel_updated=1
       fi
       gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Perform system update?" && sudo pacman -Syu --noconfirm || exit

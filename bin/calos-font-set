@@ -5,14 +5,13 @@ font_name="$1"
 if [[ -n "$font_name" && "$font_name" != "CNCLD" ]]; then
   if fc-list | grep -iq "$font_name"; then
     sed -i "s/family = \".*\"/family = \"$font_name\"/g" ~/.config/alacritty/alacritty.toml
-    sed -i "s/font-family = \".*\"/font-family = \"$font_name\"/g" ~/.config/ghostty/config
     sed -i "s/font-family: .*/font-family: '$font_name';/g" ~/.config/waybar/style.css
     sed -i "s/font-family: .*/font-family: '$font_name';/g" ~/.config/swayosd/style.css
 
-    calos-restart-waybar
     calos-restart-swayosd
     calos-restart-walker
-
+    touch "$HOME/.config/alacritty/alacritty.toml"
+    pkill -SIGUSR2 btop
   else
     echo "Font '$font_name' not found."
     exit 1

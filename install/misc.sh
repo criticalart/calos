@@ -47,6 +47,7 @@ sudo cp ~/.local/share/calos/install/bootmsg.service /etc/systemd/system/bootmsg
 sudo cp ~/.local/share/calos/install/bash_profile ~/.bash_profile
 mkdir -p ~/.local/share/fonts
 mkdir -p ~/.local/share/icons
+mkdir -p ~/Pictures/Wallpapers
 mv ~/.local/share/calos/install/defaultxcursor/ ~/.local/share/icons/BreezeX-Black
 mv ~/.local/share/calos/install/defaulthyprcursor/ ~/.local/share/icons/Default-Hyprcursor
 

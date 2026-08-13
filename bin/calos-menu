@@ -104,7 +104,7 @@ show_screenrecord_menu() {
 show_toggle_menu() {
   case $(menu "Toggle" "󰔎  Hyprsunset\n󱄄  Screensaver\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󰍹  Display Swap\n󱥂  Notifications") in
   *Hyprsunset*) calos-toggle-nightlight ;;
-  *Display*) calos-toggle-output ;;
+  # *Display*) calos-toggle-output ;;
   *Screensaver*) calos-launch-screensaver ;;
   *Waybar*) calos-toggle-waybar ;;
   *Big*) ~/wksp/scripts/bigpic.sh ;;
@@ -130,15 +130,9 @@ show_system_menu() {
   case $(menu "System" "  Clipboard\n  Packages\n󰚰  Update\n󰗽  BIOS Reboot\n󰜉  Logout\n󰐥  Shutdown") in
   *Packages*) alacritty --class Calos -e calos-pkg-list ;;
   # *Restart*) systemctl reboot ;;
-  *Update*) alacritty --class=System-Update -e ~/.config/waybar/scripts/system-update.sh start ;;
+  *Update*) alacritty --class=System-Update -e calos-cmd-update ;;
   *Clipboard*) alacritty --class clipse -e clipse ;;
-  *Logout*)
-    calos-cmd-close-all-windows
-    awww clear-cache
-    awww kill
-    ffplay -autoexit -nodisp ~/.config/shutdown.mp3
-    loginctl terminate-user ""
-    ;;
+  *Logout*) calos-logoff ;;
   *Shutdown*) calos-shutdown ;;
   *BIOS*) systemctl reboot --firmware-setup ;;
   *) show_main_menu ;;

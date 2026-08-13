@@ -1,3 +1,6 @@
 #!/bin/bash
 
+hyprctl eval 'hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 5, bezier = "specialworkswitch", style = "slidevert top" })'
 hyprctl dispatch 'hl.dsp.workspace.toggle_special("game")'
+sleep 0.6
+hyprctl reload

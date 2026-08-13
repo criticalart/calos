@@ -7,8 +7,8 @@
 --╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝
 ----------------------------------------------------------------
 
-local terminal = "alacritty"
-local browser = "firefox"
+local terminal = "uwsm app -- alacritty"
+local browser = "uwsm app -- firefox"
 
 -----------------------------
 ---- SYSTEM APPLICATIONS ----
@@ -21,7 +21,7 @@ hl.bind("SUPER + S", hl.dsp.exec_cmd(terminal .. " --class 'BTOP++ System Monito
 hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi -e yazi"))
 hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-menu"), { release = true })
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
-hl.bind("SUPER + D", hl.dsp.exec_cmd("vesktop"))
+hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- vesktop"))
 
 ---------------------------
 ---- SYSTEM MANAGEMENT ----
@@ -111,7 +111,7 @@ hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + J", hl.dsp.layout("togglesplit"))
 hl.bind("SUPER + P", hl.dsp.window.pseudo())
-hl.bind("SUPER + TAB", hl.dsp.window.cycle_next({ next = false }))
+hl.exec_cmd("uwsm app -s b -t service -- qs -c overview")
 
 ------------------------
 ---- SCREEN CAPTURE ----

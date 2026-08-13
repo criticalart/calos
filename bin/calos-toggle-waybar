@@ -1,8 +1,10 @@
 #!/bin/bash
 
+hyprctl eval 'hl.layer_rule({ match = { namespace = "^waybar$" }, animation = "popin 20%" })'
+
 if pgrep -x waybar >/dev/null; then
-  pkill -x waybar
   notify-send " Waybar Disabled" "Use CTRL + SUPER + W or the calOS Menu to re-enable it."
+  pkill -x waybar
 else
   systemctl --user start waybar.service >/dev/null 2>&1 &
 fi

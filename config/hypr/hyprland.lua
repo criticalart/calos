@@ -60,12 +60,13 @@ hl.config({
 		disable_watchdog_warning = true,
 		close_special_on_empty = true,
 		focus_on_activate = true,
+		background_color = "0x000000",
 	},
 })
 
 hl.workspace_rule({
 	workspace = "w[tv1]",
-	gaps_out = { top = 10, right = 350, bottom = 10, left = 350 },
+	gaps_out = { top = 10, right = 450, bottom = 10, left = 450 },
 })
 
 hl.workspace_rule({
