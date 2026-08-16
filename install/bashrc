@@ -32,13 +32,10 @@ alias showoff='clear && fastfetch && echo $'\n' && fortune'
 # first terminal boot service
 
 if ! systemctl is-active --quiet bootmsg; then
-#  echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
   clear
-#  pamixer --set-volume 80
   sudo systemctl start bootmsg.service
   clear
   fastfetch
-  hyprctl -q hyprsunset temperature 6600
 fi
 
 # starship config

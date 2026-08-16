@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ! pgrep -x qs >/dev/null; then
+  uwsm app -s b -t service -- qs -c overview
+else
+  pkill -x qs
+  sleep 1
+  uwsm app -s b -t service -- qs -c overview
+fi

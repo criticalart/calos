@@ -33,6 +33,14 @@ hl.window_rule({
 	tag = "+pip",
 })
 
+hl.window_rule({
+	match = {
+		class = "firefox",
+	},
+
+	tag = "+browser",
+})
+
 -- System Application Rules
 
 hl.window_rule({
@@ -136,6 +144,14 @@ hl.window_rule({
 	move = { "100", "(monitor_h * 0.08)" },
 })
 
+hl.window_rule({
+	match = {
+		tag = "browser",
+	},
+
+	opacity = "1 override 1 override",
+})
+
 -- Screensaver default
 
 hl.window_rule({
@@ -195,8 +211,8 @@ hl.layer_rule({
 	},
 
 	blur = true,
-	animation = "popin 100%",
 	ignore_alpha = 0,
+	no_anim = true,
 })
 
 hl.layer_rule({
@@ -207,6 +223,15 @@ hl.layer_rule({
 	blur = true,
 	ignore_alpha = 0.2,
 	animation = "slide right",
+})
+
+hl.layer_rule({
+	match = {
+		namespace = "quickshell:overview-blur",
+	},
+
+	blur = true,
+	ignore_alpha = 0.8,
 })
 
 -- Enable blur for waybar

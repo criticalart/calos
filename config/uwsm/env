@@ -7,6 +7,7 @@ export GOPATH=$HOME/.local/go
 export GOMODCACHE=$HOME/.local/go/mod
 export RUSTUP_HOME=$HOME/.local/rustup
 export WINEPREFIX=$HOME/.local/wine
+export CUDA_CACHE_PATH="$HOME/.local/nv"
 
 export XCURSOR_SIZE=28
 export XCURSOR_THEME=BreezeX-Black

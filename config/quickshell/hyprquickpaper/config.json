@@ -1,7 +1,7 @@
 {
-    "wallpaper_path": "/home/arthur/Pictures/Wallpapers/",
-    "cache_path": "/home/arthur/.cache/quickshell/thumbs/",
-    "number_of_pictures": 7,
-    "border_color": "#C27B63",
+    "wallpaper_path": "wallpath",
+    "cache_path": "cachpath",
+    "number_of_pictures": 10,
+    "border_color": "#8E8E93",
     "cache_batch_size": 20
 }

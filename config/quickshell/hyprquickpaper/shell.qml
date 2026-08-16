@@ -198,7 +198,7 @@ PanelWindow {
 
                 onWheel: function(wheel) {
                     list.contentX = list.clampX(
-                        list.contentX - wheel.angleDelta.y * 2
+                        list.contentX - wheel.angleDelta.y * 20
                     )
                     wheel.accepted = false
                 }

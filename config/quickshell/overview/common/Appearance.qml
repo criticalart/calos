@@ -33,32 +33,32 @@ Singleton {
         source: "Appearance.colors.qml"
     }
 
-    property QtObject defaultColors: QtObject {
-        property bool darkmode: true
-        property color m3primary: "#E5B6F2"
-        property color m3onPrimary: "#452152"
-        property color m3primaryContainer: "#5D386A"
-        property color m3onPrimaryContainer: "#F9D8FF"
-        property color m3secondary: "#D5C0D7"
-        property color m3onSecondary: "#392C3D"
-        property color m3secondaryContainer: "#534457"
-        property color m3onSecondaryContainer: "#F2DCF3"
-        property color m3background: "#161217"
-        property color m3onBackground: "#EAE0E7"
-        property color m3surface: "#161217"
-        property color m3surfaceContainerLow: "#1F1A1F"
-        property color m3surfaceContainer: "#231E23"
-        property color m3surfaceContainerHigh: "#2D282E"
-        property color m3surfaceContainerHighest: "#383339"
-        property color m3onSurface: "#EAE0E7"
-        property color m3surfaceVariant: "#4C444D"
-        property color m3onSurfaceVariant: "#CFC3CD"
-        property color m3inverseSurface: "#EAE0E7"
-        property color m3inverseOnSurface: "#342F34"
-        property color m3outline: "#988E97"
-        property color m3outlineVariant: "#4C444D"
-        property color m3shadow: "#000000"
-    }
+property QtObject defaultColors: QtObject {
+    property bool darkmode: true
+    property color m3primary: "#D0D0D6"
+    property color m3onPrimary: "#1C1C20"
+    property color m3primaryContainer: "#424248"
+    property color m3onPrimaryContainer: "#EDEDF0"
+    property color m3secondary: "#C4C4C9"
+    property color m3onSecondary: "#2E2E32"
+    property color m3secondaryContainer: "#444449"
+    property color m3onSecondaryContainer: "#E2E2E6"
+    property color m3background: "#141416"
+    property color m3onBackground: "#E4E4E7"
+    property color m3surface: "#141416"
+    property color m3surfaceContainerLow: "#1B1B1E"
+    property color m3surfaceContainer: "#202024"
+    property color m3surfaceContainerHigh: "#2A2A2E"
+    property color m3surfaceContainerHighest: "#35353A"
+    property color m3onSurface: "#E4E4E7"
+    property color m3surfaceVariant: "#45454A"
+    property color m3onSurfaceVariant: "#C5C5CA"
+    property color m3inverseSurface: "#E4E4E7"
+    property color m3inverseOnSurface: "#303034"
+    property color m3outline: "#8E8E93"
+    property color m3outlineVariant: "#45454A"
+    property color m3shadow: "#000000"
+}
 
     property QtObject caelestiaColors: QtObject {
         property bool darkmode: defaultColors.darkmode

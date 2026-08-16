@@ -2,13 +2,16 @@
 require("bunny"):setup({
 	hops = {
 		{ key = "/", path = "/", desc = "Root" },
-		{ key = "h", path = "~", desc = "Home" },
+		{ key = ";", path = "~", desc = "Home" },
+		{ key = "h", path = "~/.config/hypr/", desc = "Hyprlandjk" },
 		{ key = "m", path = "/mnt", desc = "Mount" },
-		{ key = "b", path = "/boot", desc = "Boot" },
+		{ key = "b", path = "~/.local/share/calos/bin/", desc = "Binaries" },
 		{ key = "c", path = "~/.config", desc = "Config" },
 		{ key = "t", path = "~/.local/share/calos/themes/", desc = "Themes" },
 		{ key = "p", path = "~/Pictures", desc = "Pictures" },
 		{ key = "d", path = "~/Downloads", desc = "Downloads" },
+		{ key = "v", path = "~/Videos/", desc = "Videos" },
+		{ key = "w", path = "~/wksp/", desc = "Workspace" },
 		-- key and path attributes are required, desc is optional
 	},
 	desc_strategy = "path", -- If desc isn't present, use "path" or "filename", default is "path"

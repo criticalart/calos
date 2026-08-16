@@ -3,7 +3,7 @@
   
   "logo": {
     "type": "file",
-    "source": "~/.config/calos/branding/blank.txt",
+    "source": "~/.config/calos/branding/mini-fast.txt",
     "padding": {
       "top": 2,
       "right": 6,

@@ -355,7 +355,7 @@
 		"swap-icon-label": false
 	},
 
-	"hyprland/workspaces": {
+	/*"hyprland/workspaces": {
 		// "active-only":
 		// "hide-active":
 		// "all-outputs":
@@ -383,8 +383,40 @@
 		// "on-scroll-up":
 		// "on-scroll-down":
 		"cursor": true
-	},
+	},*/
 
+"hyprland/workspaces": {
+		// "active-only":
+		// "hide-active":
+		// "all-outputs":
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+		"format": "{icon}",
+		"format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "home": "",
+      "game":"󱎓",
+		},
+		"persistent-workspaces": {
+			"*": 5
+		},
+		// "persistent-only":
+		"show-special": true,
+		// "special-visible-only":
+		// "sort-by":
+		// "window-rewrite":
+		// "window-rewrite-default":
+		// "format-window-separator":
+		// "move-to-monitor":
+		// "ignore-workspaces":
+		// "on-scroll-up":
+		// "on-scroll-down":
+		"cursor": true
+	},
 
 	"group/main_menu": {
 		"orientation": "horizontal",

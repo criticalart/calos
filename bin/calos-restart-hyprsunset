@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if ! pgrep -x hyprsunset >/dev/null; then
-  setsid uwsm app -s b -t service -- hyprsunset &
+  uwsm app -s b -t service -- hyprsunset
 else
   pkill -x hyprsunset
   sleep 1
-  setsid uwsm app -s b -t service -- hyprsunset &
+  uwsm app -s b -t service -- hyprsunset
 fi

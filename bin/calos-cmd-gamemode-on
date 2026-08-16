@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $(hyprctl submap) == gaming ]]; then
+  exit 0
+else
+  hyprctl dispatch 'hl.dsp.submap("gaming")'
+  notify-send '󰊴 Game Mode Enabled - SUPER Key Limited' 'Use CTRL + SUPER + G to toggle game mode on/off.\nSUPER + CTRL + Q now closes the active window.'
+fi
+
+pkill -RTMIN+10 waybar

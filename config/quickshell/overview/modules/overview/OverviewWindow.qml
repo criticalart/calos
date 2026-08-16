@@ -210,7 +210,7 @@ Item { // Window
             anchors.right: parent.right
             spacing: Appearance.font.pixelSize.smaller * 0.5
 
-            Image {
+            /*Image {
                 id: windowIcon
                 visible: root.showIcons
                 property var iconSize: {
@@ -222,7 +222,7 @@ Item { // Window
                 width: iconSize
                 height: iconSize
                 sourceSize: Qt.size(Math.max(1, Math.round(iconSize)), Math.max(1, Math.round(iconSize)))
-            }
+              }*/
         }
     }
 

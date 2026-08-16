@@ -8,8 +8,6 @@ sudo pacman -S --noconfirm --needed \
   cmus \
   dust \
   eza \
-  fortune-mod \
-  fastfetch \
   fd \
   firefox \
   fzf \

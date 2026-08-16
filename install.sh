@@ -33,7 +33,7 @@ sleep 6
 echo
 gum spin -s pulse --spinner.foreground="4" --title="Resuming install..." -- sleep 4
 sudo pacman -S --noconfirm --needed yaru-icon-theme clipse wayland
-paru -S --noconfirm --needed python-terminaltexteffects rose-pine-hyprcursor elephant elephant-desktopapplications elephant-menus elephant-calc walker --skipreview --removemake --cleanafter
+paru -S --noconfirm --needed python-terminaltexteffects elephant elephant-desktopapplications elephant-menus walker --skipreview --removemake --cleanafter
 clear
 
 # Main packages, configuration and scripts

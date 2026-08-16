@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [[ $(cat ~/.config/hypr/monitors.lua | grep "disabled = true, --monmode") ]]; then
+  if pgrep -x waybar >/dev/null; then
+    pkill -x waybar
+  fi
+  hyprctl eval 'hl.config({misc = { disable_autoreload = true }})'
+  cp ~/.config/hypr/scripts/tvmode.lua ~/.config/hypr/monitors.lua
+  sleep 1
+  hyprctl eval 'hl.config({misc = { disable_autoreload = false }})'
+  hyprctl reload
+  sleep 1
+  hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
+  awww img -o "HDMI-A-1" --transition-fps 60 --transition-type wipe --transition-angle 150 --transition-duration 2 ~/.config/calos/current/background
+  hyprctl eval 'hl.layer_rule({ match = { namespace = "^waybar$" }, animation = "slide left" })'
+  sleep 2
+  systemctl --user start waybar.service >/dev/null 2>&1 &
+  wpctl set-default $(wpctl status | grep -i "(HDMI" | head -n 1 | sed -E 's/[^0-9]*([0-9]+).*/\1/')
+  sleep 0.5
+  hyprctl reload
+else
+  if pgrep -x waybar >/dev/null; then
+    pkill -x waybar
+  fi
+  hyprctl eval 'hl.config({misc = { disable_autoreload = true }})'
+  cp ~/.config/hypr/scripts/monmode.lua ~/.config/hypr/monitors.lua
+  sleep 1
+  hyprctl eval 'hl.config({misc = { disable_autoreload = false }})'
+  hyprctl reload
+  sleep 1
+  hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
+  awww img -o "DP-1" --transition-fps 144 --transition-type wipe --transition-angle 330 --transition-duration 2 ~/.config/calos/current/background
+  hyprctl eval 'hl.layer_rule({ match = { namespace = "^waybar$" }, animation = "slide right" })'
+  sleep 2
+  wpctl set-default $(wpctl status | grep -i "Ryzen HD Audio Controller Analog Stereo" | head -n 1 | sed -E 's/[^0-9]*([0-9]+).*/\1/')
+  systemctl --user start waybar.service >/dev/null 2>&1 &
+  sleep 0.5
+  hyprctl reload
+fi

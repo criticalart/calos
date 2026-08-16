@@ -8,4 +8,4 @@ awww img ~/.config/calos/branding/off.png --resize stretch --transition-type fad
 awww clear-cache
 sed -i -E 's/^.*("start_hidden": true,)/  \1/' ~/.config/waybar/config.jsonc
 ffplay -autoexit -nodisp -volume 20 ~/.config/calos/branding/shutdown.mp3
-loginctl terminate-user ""
+systemctl reboot --firmware-setup

@@ -19,24 +19,34 @@
 	padding: 0 1px;
 
 }
-#workspaces .active label {
-	font-size: 23px;
+
+#workspaces button {
+    min-width: 36px; 
+    padding: 0;
+    margin: 0 3px;
+}
+
+#workspaces button label {
+	font-size: 14px;
 	color: @accent;
 }
 
-#workspaces button {
-    padding: 0px 6px;
+#workspaces button.empty label {
+    padding: 0px 0px;
+    font-size: 14px;
     margin: 0px 3px;
     border-radius: 8px;
     color: @temperature;
     background-color: @background;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
-#workspaces button.active {
-    border-radius: 12px;
-    transition: all 0.3s ease-in-out;
-    min-width: 30px;
+#workspaces button.active label {
+	font-size: 18px;
+	color: @accent;    
+  transition: all 0.2s ease-in-out;
+  min-width: 3px;
+  border-radius: 12px;
 }
 
 #workspaces button:hover {

@@ -61,6 +61,7 @@ Singleton {
     }
 
     function applyAlpha(color, alpha) {
+        if (!color || color === "" || color === "undefined") return "transparent";
         var c = Qt.color(color);
         var a = Math.max(0, Math.min(1, alpha));
         return Qt.rgba(c.r, c.g, c.b, a);

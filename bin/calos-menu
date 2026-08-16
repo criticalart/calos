@@ -56,8 +56,8 @@ show_style_menu() {
   case $(menu "Style" "󰸌  Theme\n  Font\n  Background\n󱄄  Fastfetch") in
   *Theme*) show_theme_menu ;;
   *Font*) show_font_menu ;;
-  *Background*) calos-theme-bg-next ;;
-  *Fastfetch*) edit_in_nvim ~/.config/calos/branding/about.txt ;;
+  *Background*) quickshell -c hyprquickpaper ;;
+  *Fastfetch*) edit_in_nvim ~/.config/calos/branding/fastfetch.txt ;;
   *) show_main_menu ;;
   esac
 }
@@ -104,7 +104,7 @@ show_screenrecord_menu() {
 show_toggle_menu() {
   case $(menu "Toggle" "󰔎  Hyprsunset\n󱄄  Screensaver\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󰍹  Display Swap\n󱥂  Notifications") in
   *Hyprsunset*) calos-toggle-nightlight ;;
-  # *Display*) calos-toggle-output ;;
+  *Display*) calos-toggle-output ;;
   *Screensaver*) calos-launch-screensaver ;;
   *Waybar*) calos-toggle-waybar ;;
   *Big*) ~/wksp/scripts/bigpic.sh ;;
@@ -115,13 +115,14 @@ show_toggle_menu() {
 }
 
 show_update_process_menu() {
-  case $(menu "Restart" "  Hypridle\n󰔎  Hyprsunset\n  Awww Daemon\n󱄄  SwayOSD\n󰌧  Walker\n󰍜  Waybar") in
+  case $(menu "Restart" "  Hypridle\n󰔎  Hyprsunset\n  Awww Daemon\n󱄄  SwayOSD\n  Overview\n󰌧  Walker\n󰍜  Waybar") in
   *Hypridle*) calos-restart-hypridle ;;
   *Hyprsunset*) calos-restart-hyprsunset ;;
   *Awww*) calos-restart-awww ;;
   *SwayOSD*) calos-restart-swayosd ;;
   *Walker*) calos-restart-walker ;;
   *Waybar*) calos-restart-waybar ;;
+  *Overview) calos-restart-overview ;;
   *) show_main_menu ;;
   esac
 }
@@ -134,7 +135,7 @@ show_system_menu() {
   *Clipboard*) alacritty --class clipse -e clipse ;;
   *Logout*) calos-logoff ;;
   *Shutdown*) calos-shutdown ;;
-  *BIOS*) systemctl reboot --firmware-setup ;;
+  *BIOS*) calos-bios-reboot ;;
   *) show_main_menu ;;
   esac
 }

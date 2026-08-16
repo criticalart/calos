@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $(hyprctl submap) == gaming ]]; then
+  hyprctl dispatch 'hl.dsp.submap("reset")'
+  notify-send '󰊵 Game Mode Disabled' 'SUPER Key functionality has been restored.'
+else
+  exit 0
+fi
+
+pkill -RTMIN+10 waybar
