@@ -95,11 +95,8 @@ Variants {
 				GridLayout {
 					anchors.centerIn: parent
 
-					width: parent.width * 0.25
-					height: parent.height * 0.25
-
 					columns: 3
-					columnSpacing: 10
+					columnSpacing: 40
 					rowSpacing: 0
 
 			Repeater {
