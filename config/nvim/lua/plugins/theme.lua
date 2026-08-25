@@ -1,13 +1,1 @@
-return {
-    {
-        "vague-theme/vague.nvim",
-        lazy = false,
-        priority = 1000,
-    },
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "vague",
-        },
-    },
-}
+/home/arthur/.config/calos/current/theme/neovim.lua

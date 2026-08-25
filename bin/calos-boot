@@ -1,10 +1,11 @@
 #!/bin/bash
 
+pactl load-module module-null-sink sink_name=cmus_audio sink_properties=device.description=CMUS_Audio
+pactl load-module module-loopback source=cmus_audio.monitor
 sleep 1.5
-notify-send -t 1750 " Welcome to calOS!" 'Initializing...'
+notify-send -t 1750 "  Welcome to -caliburnOS-!" 'Initializing...'
 sleep 1
 hyprctl -q hyprsunset temperature 6600
-pactl load-module module-null-sink sink_name=cmus_audio sink_properties=device.description=CMUS_Audio
 pamixer --set-volume 80
 awww img ~/.config/calos/current/background --resize stretch --transition-type wipe --transition-angle 150 --transition-fps 144 --transition-duration 2.4
 pkill -SIGUSR2 waybar
@@ -14,4 +15,3 @@ sleep 0.1
 ffplay -autoexit -nodisp -volume 60 ~/.config/calos/branding/start.mp3 &
 sleep 0.8
 pkill -SIGUSR1 waybar
-pactl load-module module-loopback source=cmus_audio.monitor

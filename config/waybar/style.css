@@ -10,7 +10,6 @@
 }
 
 window#waybar {
-
 transition: opacity 1.1s ease-in-out;
 }
 
@@ -59,13 +58,16 @@ window#waybar > box {
 #custom-memdiv label,
 #custom-cpudiv label,
 #custom-leftdistrodiv label,
-#custom-leftinvdiv label,
-#custom-rightinvdiv label,
 #custom-rightdistrodiv label,
 #custom-timediv label,
 #custom-datediv label,
 #custom-diskdiv label {
 	font-size: 23.1px;
+}
+
+#custom-leftinvdiv label,
+#custom-rightinvdiv label {
+  font-size: 23.2px;
 }
 
 #workspaces button.active {

@@ -4,9 +4,9 @@
     "type": "file",
     "source": "~/.config/calos/branding/fastfetch.txt",
     "padding": {
-      "top": 3,
-      "right": 4,
-      "left": 3
+      "top": 2,
+      "right": 6,
+      "left": 4
     },
         "color": {
         "1": "blue",
@@ -19,35 +19,36 @@
       "format": "\u001b[90m┌─────────────Hardware──────────────────────┐"
     },
     {
-      "type": "host",
-      "key": " PC",
-      "keyColor": "green"
+      "type": "command",
+      "key": "│ ┌ ",
+      "keyColor": "green",
+      "text": "echo GIGABYTE X870 AORUS Stealth ICE"
     },
     {
       "type": "cpu",
-      "key": "│ ├",
+      "key": "│ ├ ",
       "showPeCoreCount": true,
       "keyColor": "green"
     },
     {
       "type": "gpu",
-      "key": "│ ├",
+      "key": "│ ├ ",
       "detectionMethod": "pci",
       "keyColor": "green"
     },
     {
       "type": "display",
-      "key": "│ ├󱄄",
+      "key": "│ ├󱄄 ",
       "keyColor": "green"
     },
     {
       "type": "disk",
-      "key": "│ ├󰋊",
+      "key": "│ ├󰋊 ",
       "keyColor": "green"
     },
     {
       "type": "memory",
-      "key": "│ └",
+      "key": "│ └ ",
       "keyColor": "green"
     },
 //    {
@@ -66,49 +67,49 @@
     },
     {
       "type": "command",
-      "key": "󰣇",
+      "key": "│ ┌󰣇 ",
       "keyColor": "blue",
-      "text": "echo Arch Linux [calOS v0.6.0]"
+      "text": "echo 'caliburnOS v0.8.7 (Arch)'",
     },
     {
       "type": "kernel",
-      "key": "│ ├",
+      "key": "│ ├ ",
       "keyColor": "blue"
     },
     {
       "type": "wm",
-      "key": "│ ├",
+      "key": "│ ├ ",
       "keyColor": "blue"
     },
     {
       "type": "de",
-      "key": " DE",
+      "key": " DE ",
       "keyColor": "blue"
     },
     {
       "type": "terminal",
-      "key": "│ ├",
+      "key": "│ ├ ",
       "keyColor": "blue"
     },
     {
       "type": "packages",
-      "key": "│ ├󰏖",
+      "key": "│ ├󰏖 ",
       "keyColor": "blue"
     },
     {
       "type": "wmtheme",
-      "key": "│ ├󰉼",
+      "key": "│ ├󰉼 ",
       "keyColor": "blue"
     },
     {
       "type": "command",
-      "key": "│ ├󰸌",
+      "key": "│ ├󰸌 ",
       "keyColor": "blue",
       "text": "theme=$(calos-theme-current); echo -e \"$theme \\e[38m●\\e[37m●\\e[36m●\\e[35m●\\e[34m●\\e[33m●\\e[32m●\\e[31m●\""
     },
     {
       "type": "command",
-      "key": "│ └",
+      "key": "│ └ ",
       "keyColor": "blue",
       "text": "font=$(calos-font-current); echo -e $font"
     },
@@ -119,7 +120,7 @@
     "break",
     {
       "type": "custom",
-      "format": "\u001b[90m┌────────────Uptime / Age────────────────────┐"
+      "format": "\u001b[90m┌────────────Uptime / Age───────────────────┐"
     },
     {
       "type": "command",

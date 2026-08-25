@@ -1,0 +1,21 @@
+#!/bin/bash
+
+STYLE="$HOME/.config/walker/themes/calos-default/style.css"
+
+case "$1" in
+center)
+  # anchors
+  sed -i '/^\.box-wrapper {/,/^}/ s/margin: .*/margin: 47px 0 0 1462px;/' "$STYLE"
+  walker
+  ;;
+
+corner)
+  # anchors
+  if hyprctl layers | grep -q 'waybar'; then
+    sed -i '/^\.box-wrapper {/,/^}/ s/margin: .*/margin: 47px 0 0 4px;/' "$STYLE"
+  else
+    sed -i '/^\.box-wrapper {/,/^}/ s/margin: .*/margin: 4px 0 0 4px;/' "$STYLE"
+  fi
+  calos-menu
+  ;;
+esac

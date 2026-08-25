@@ -48,15 +48,15 @@ terminal() {
 }
 
 edit_in_nvim() {
-  notify-send "Editing fastfetch logo configuration in Neovim." "$1"
+  notify-send "Editing fastfetch logo configuration in Neovim" "$1"
   $TERMINAL --class Calos -e nvim "$1"
 }
 
 show_style_menu() {
   case $(menu "Style" "󰸌  Theme\n  Font\n  Background\n󱄄  Fastfetch") in
-  *Theme*) show_theme_menu ;;
+  *Theme*) qs -c theme ;;
   *Font*) show_font_menu ;;
-  *Background*) quickshell -c hyprquickpaper ;;
+  *Background*) quickshell -c wallselect ;;
   *Fastfetch*) edit_in_nvim ~/.config/calos/branding/fastfetch.txt ;;
   *) show_main_menu ;;
   esac
@@ -102,12 +102,11 @@ show_screenrecord_menu() {
 }
 
 show_toggle_menu() {
-  case $(menu "Toggle" "󰔎  Hyprsunset\n󱄄  Screensaver\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󰍹  Display Swap\n󱥂  Notifications") in
+  case $(menu "Toggle" "󱄄  Screensaver\n󰔎  Hyprsunset\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󱥂  Notifications") in
   *Hyprsunset*) calos-toggle-nightlight ;;
-  *Display*) calos-toggle-output ;;
   *Screensaver*) calos-launch-screensaver ;;
   *Waybar*) calos-toggle-waybar ;;
-  *Big*) ~/wksp/scripts/bigpic.sh ;;
+  *Big*) calos-toggle-bigpic ;;
   *Game*) calos-toggle-gamemode ;;
   *Notifications*) calos-toggle-notifications ;;
   *) show_main_menu ;;

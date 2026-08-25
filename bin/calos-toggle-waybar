@@ -1,10 +1,13 @@
 #!/bin/bash
 
 hyprctl eval 'hl.layer_rule({ match = { namespace = "^waybar$" }, animation = "popin 20%" })'
+WALKER="$HOME/.config/walker/themes/calos-default/style.css"
 
-if pgrep -x waybar >/dev/null; then
-  notify-send " Waybar Disabled" "Use CTRL + SUPER + W or the calOS Menu to re-enable it."
+if hyprctl layers | grep -q 'waybar'; then
+  sed -i 's/margin: 50px 0 0 4px;/margin: 4px 0 0 4px;/' "$WALKER"
   pkill -x waybar
+  notify-send "  Waybar Disabled" "Use CTRL + SUPER + W or the System Menu to enable it."
 else
-  systemctl --user start waybar.service >/dev/null 2>&1 &
+  sed -i 's/margin: 4px 0 0 4px;/margin: 50px 0 0 4px;/' "$WALKER"
+  systemctl --user restart waybar.service >/dev/null 2>&1 &
 fi

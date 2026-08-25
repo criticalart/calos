@@ -1,11 +1,11 @@
-@define-color selected-text #89b4fa;
-@define-color text #cdd6f4;
-@define-color base #1e1e2e;
-@define-color border #cdd6f4;
-@define-color foreground #cdd6f4;
-@define-color background #1e1e2e;
-@define-color hover #9495c0;           
-@define-color accent #babbf1;   
+@define-color selected-text #CBA6F7;
+@define-color text #CDD6F4;
+@define-color base #1E1E2E;
+@define-color border #45485F;
+@define-color foreground #CDD6F4;
+@define-color background #1E1E2E;
+@define-color hover #737896;
+@define-color accent #CBA6F7;
 
 window {
   background: transparent;

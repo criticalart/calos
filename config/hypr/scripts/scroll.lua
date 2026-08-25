@@ -1,25 +1,25 @@
 hl.config({
-	binds = {
-		scroll_event_delay = 0,
-	},
+  binds = {
+    scroll_event_delay = 0,
+  },
 })
 
 local throttled = false
 
 local function throttled_dsp(dsp)
-	return function()
-		if throttled then
-			return
-		end
-		throttled = true
-		hl.dispatch(dsp)
-		hl.timer(function()
-			throttled = false
-		end, {
-			timeout = 200,
-			type = "oneshot",
-		})
-	end
+  return function()
+    if throttled then
+      return
+    end
+    throttled = true
+    hl.dispatch(dsp)
+    hl.timer(function()
+      throttled = false
+    end, {
+      timeout = 200,
+      type = "oneshot",
+    })
+  end
 end
 
 local prevWs = hl.dsp.focus({ workspace = "r+1" })

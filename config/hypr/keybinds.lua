@@ -14,13 +14,13 @@ local browser = "uwsm-app -- firefox"
 ---- SYSTEM APPLICATIONS ----
 -----------------------------
 
-hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("walker --maxheight 350 -p Launch..."))
+hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("calos-walker-launch center"))
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal .. " --working-directory=$(calos-cmd-terminal-cwd)"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd(terminal .. " --class Neovim -e nvim"))
 hl.bind("SUPER + S", hl.dsp.exec_cmd(terminal .. " --class 'BTOP++ System Monitor' -e btop"))
 hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi -e yazi"))
-hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-menu"), { release = true })
-hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-menu"), { release = true })
+hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
+hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- vesktop"))
 
@@ -30,27 +30,29 @@ hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- vesktop"))
 
 require("scripts.ctrlbinds") -- allows "CTRL + " shortcuts to work with SUPER, such as copy/paste and new tabs
 hl.bind("SUPER + BACKSPACE", hl.dsp.exec_cmd("calos-toggle-opacity"))
-hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("walker -H -N -n -m menus:calosthemes --minwidth 200 --height 400"))
-hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c hyprquickpaper"))
+hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("qs -c theme"))
+hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c wallselect"))
 hl.bind("SUPER + CTRL + C", hl.dsp.exec_cmd(terminal .. " --class clipse -e clipse"))
 hl.bind("SUPER + CTRL + W", hl.dsp.exec_cmd("calos-toggle-waybar"))
 hl.bind(
-	"SUPER + CTRL + U",
-	hl.dsp.exec_cmd(terminal .. " --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start")
+  "SUPER + CTRL + U",
+  hl.dsp.exec_cmd(terminal .. " --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start")
 )
 hl.bind("SUPER + CTRL + N", hl.dsp.exec_cmd("calos-toggle-nightlight"))
 hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("calos-menu system"))
-hl.bind("SUPER + H", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
-hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
+hl.bind("SUPER + H", hl.dsp.workspace.toggle_special("home"))             -- equivalent to the "home page"
+hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home"))        -- equivalent to the "home page"
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
 
 hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-launch-screensaver"))
 hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("swayosd-client --caps-lock"))
-hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("calos-cmd-close-all-windows")) -- will close all windows on current workspace
-hl.bind("XF86PowerOff", hl.dsp.exec_cmd("calos-menu system"))
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu")) -- will close all windows on current workspace
+hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"))
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("~/wksp/scripts/bigpic.sh"))
 hl.bind("SUPER + ALT + M", hl.dsp.exec_cmd("calos-toggle-output"))
+
+
 ---------------------------
 ---- BROWSER SHORTCUTS ----
 ---------------------------
@@ -69,10 +71,10 @@ hl.bind("SUPER + SHIFT + G", hl.dsp.exec_cmd(browser .. " --new-window https://g
 hl.bind("SUPER + COMMA", hl.dsp.exec_cmd("makoctl dismiss"))
 hl.bind("SUPER + SHIFT + COMMA", hl.dsp.exec_cmd("makoctl dismiss --all"))
 hl.bind(
-	"SUPER + CTRL + COMMA",
-	hl.dsp.exec_cmd(
-		"makoctl mode -t do-not-disturb && makoctl mode | grep -q 'do-not-disturb' && notify-send 'Silenced notifications' || notify-send 'Enabled notifications'"
-	)
+  "SUPER + CTRL + COMMA",
+  hl.dsp.exec_cmd(
+    "makoctl mode -t do-not-disturb && makoctl mode | grep -q 'do-not-disturb' && notify-send 'Silenced notifications' || notify-send 'Enabled notifications'"
+  )
 )
 
 --------------------------------
@@ -80,8 +82,8 @@ hl.bind(
 --------------------------------
 
 for i = 1, 9 do
-	hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
-	hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+  hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
+  hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
 hl.bind("SUPER + 0", hl.dsp.focus({ workspace = 10 }))

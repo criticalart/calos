@@ -80,3 +80,6 @@ theme[upload_start]="#3d2f2a"
 theme[upload_mid]="#fd6a85"
 theme[upload_end]="#feb5c7"
 
+theme[process_start]="#B9785F"
+theme[process_mid]="#C97D63"
+theme[process_end]="#DE8569"

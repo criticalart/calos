@@ -72,7 +72,7 @@
 	// "modifier-reset":
 	// "exclusive":
 	// "fixed-center":
-	// "passthrough":
+	// ":
 	// "ipc":
 	// "id":
 	"reload_style_on_change": true,
@@ -249,7 +249,7 @@
         "sleep_timer": 1,
         "format_silent": "             ",
         "method": "pipewire",
-        "source": "auto",
+        "source": "cmus_audio.monitor",
         "data_format": "ascii",
         "stereo": true,
         "reverse": true,
@@ -292,7 +292,7 @@
 	  "temperature": {
     //"thermal-zone": 1,
    "interval": "4",
-   "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+   "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
    "critical-threshold": 70,
    "format-critical": "  {temperatureC}°C",
    "format": "  {temperatureC}°C ",
@@ -307,7 +307,7 @@
     "tooltip-format": "Right Click to Exit",
 		"format": "{class}",
 		"rewrite": {
-			"^$": "󰍹  Desktop",
+			"^$": "",
 			// "^Alacritty$": "btop++",
       "com.github.PintaProject.Pinta": "  Pinta Image Editor",
 			"cava": "  CAVA Audio Visualizer",
@@ -320,6 +320,7 @@
       "About": "󰖷  System Information",
       "arthur@caliburn": "  arthur@caliburn",
       "Neovim": "  Neovim",
+      "Calos": "  Neovim",
       "ffplay": "󰯜  FFmpeg",
       "pqiv": "  pqiv",
       "cmus": "󰝚  cmus Music Player",
@@ -406,6 +407,7 @@
 		},
 		// "persistent-only":
 		"show-special": true,
+    "tooltip": false,
 		// "special-visible-only":
 		// "sort-by":
 		// "window-rewrite":
@@ -439,7 +441,7 @@
 		// "rotate":
 		"min-length": 4,
 		"max-length": 4,
-		"on-click": "calos-menu",
+		"on-click": "calos-walker-launch corner",
 		"tooltip": true,
     "tooltip-format": "System Menu"
   },
@@ -447,16 +449,16 @@
 	"custom/user": {
 		"exec": "id --user --name",
 		"format": "{}",
-		"on-click": "calos-menu",
+		"on-click": "calos-walker-launch corner",
 		"tooltip": true,
     "tooltip-format": "System Menu"
 	},
 
 	"custom/distro": {
 		"format": "󰣇",
-    "on-click": "calos-toggle-home",
+    "on-click": "calos-walker-launch center",
 		"tooltip": true,
-    "tooltip-format": "Home Page",
+    "tooltip-format": "App Launcher",
 	},
 
 	/*-------------------
@@ -518,13 +520,16 @@
 		"orientation": "horizontal",
 		"modules": [
 			"custom/hypr_menu",
-			"custom/version"
+      "custom/power_menu",
+			"custom/version",
+      "custom/overlay",
+      "custom/home",
 		],
 		"drawer": {
 			// "transition-duration":
 			"transition-left-to-right": false,
 			// "children-class":
-			"click-to-reveal": true,
+			"click-to-reveal": false,
 		}
 	},
 
@@ -536,10 +541,35 @@
 	},
 
   	"custom/version": {
-		"exec": "pacman -Qe hyprland",
-		"format": " {}",
+		"format": "  ",
 		"on-click": "alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh",
-		"tooltip": false
+		"tooltip": false,
+    "min-length": 4,
+    "max-length": 4,
+	},
+
+  	"custom/overlay": {
+		"format": " 󱂬 ",
+		"on-click": "qs ipc -c overview call overview toggle",
+		"tooltip": false,
+    "min-length": 4,
+    "max-length": 4,
+	},
+
+  	"custom/home": {
+		"format": " 󰋜 ",
+		"on-click": "calos-toggle-home",
+		"tooltip": false,
+    "min-length": 4,
+    "max-length": 4,
+	},
+
+	"custom/power_menu": {
+		"format": " 󰐥 ",
+		"tooltip": false,
+    "min-length": 4,
+    "on-click": "qs -c powermenu",
+		"max-length": 4
 	},
 
     "custom/screenrecording-indicator": {

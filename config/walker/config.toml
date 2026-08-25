@@ -8,14 +8,15 @@ theme = "calos-default"                                                   # them
 disable_mouse = false                                                       # disable mouse (on input and list only)
 debug = false
 additional_theme_location = "~/.config/walker/themes/"
-hide_quick_activation = false
-app_launch_prefix = "uwsm app -- "
+hide_quick_activation = true
+app_launch_prefix = "uwsm-app -- "
+hide_action_hints = true
 
 [shell]
 anchor_top = true
-anchor_bottom = true
+anchor_bottom = false
 anchor_left = true
-anchor_right = true
+anchor_right = false
 
 [placeholders]
 "default" = { input = " Search...", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
@@ -30,7 +31,6 @@ resume_last_query = ["ctrl r"]
 [providers]
 default = [
   "desktopapplications",
-  "calc",
 ] # providers to be queried by default
 empty = ["desktopapplications"] # providers to be queried when query is empty
 max_results = 50 # global max results

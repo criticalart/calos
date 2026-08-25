@@ -55,7 +55,7 @@ download-updates() {
   gum style --padding="1 1" "Checking for updates..."
   sleep 0.4
 
-  pacman -Sy --noconfirm >/dev/null 2>&1 &
+  sudo pacman -Sy --noconfirm >/dev/null 2>&1 &
   PACMAN_PID=$!
 
   step=1
@@ -72,7 +72,7 @@ download-updates() {
     sleep 0.15
   done
 
-  printf "\r$(gum style --foreground 111 "[#################] 100%% - Databases synced!")"
+  printf "\r$(gum style --foreground 114 "[#################] 100%% - Databases synced!")"
   echo ""
   echo
 

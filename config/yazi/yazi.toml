@@ -5,35 +5,47 @@ show_hidden = true
 [opener]
 
 wallpaper = [
-{ run = 'awww img %s1', desc = "Set as Wallpaper" }
+{ run = 'awww img %s --resize stretch --transition-type random --transition-fps 144 --transition-duration 1; ln -nsf %s $HOME/.config/calos/current/background; sleep 0.2; cp %s ~/Pictures/Wallpapers/', desc = "Set and Add as Wallpaper" }
 ]
 
 imageedit = [
-{ run = 'pinta "$@"', desc = "Pinta Image Editor" }
+{ run = 'pinta %s', desc = "Pinta Image Editor" }
 ]
 
 image = [
-{ run = 'pqiv -i --scale-mode-screen-fraction=0.33 "$@"', desc = "Pqiv Image Viewer" },
+{ run = 'pqiv -i --scale-mode-screen-fraction=0.33 %s', desc = "Pqiv Image Viewer" },
 ]
 
 text = [
-	{ run = 'nvim "$@"', block = true, desc = "Neovim Text Editor"},
+	{ run = 'nvim %s', block = true, desc = "Neovim Text Editor"},
+]
+ 
+glow = [
+	{ run = 'glow -t %s', block = true, desc = "Glow Markdown Viewer"},
 ]
 
 extract = [
- {  run = '7z x "$@" -o*',  desc = "Extract with 7zip" }
+ {  run = '7z x %s -o*',  desc = "Extract with 7zip" }
 ]
 
 extracttar = [
-{ run = 'tar -xf "$@"', desc = "Extrar .tar.xz file" }
+{ run = 'tar -xf %s', desc = "Extrar .tar.xz file" }
+]
+
+execute = [
+    { run = '%s', block = true, desc = "Execute as shell command"},
 ]
 
 music = [
-{ run = 'ffplay -nodisp -autoexit "$@"' },
+{ run = 'ffplay -nodisp -autoexit %s' },
 ]
 
 video = [
-{ run = 'ffplay "$@"' },
+{ run = 'ffplay %s' },
+]
+
+imageclip = [
+{ run = 'wl-copy --type image/png < %s', desc = "Copy Image to Clipboard" },
 ]
 
 [open]
@@ -46,11 +58,11 @@ rules = [
 
 { url = "*.7z", use = "extract" },
 
-{ url = "*.gif", use = "image" },
+{ url = "*.gif", use = [ "image", "imageclip" ] },
 
-{ url = "*.jpg", use =  [ "image", "imageedit", "wallpaper" ] },
+{ url = "*.jpg", use =  [ "image", "imageedit", "wallpaper", "imageclip" ] },
 
-{ url = "*.png", use =  [ "image", "imageedit", "wallpaper" ] },
+{ url = "*.png", use =  [ "image", "imageedit", "wallpaper", "imageclip" ] },
 
 { url = "*.conf", use = "text" },
 
@@ -68,8 +80,6 @@ rules = [
 
 { url = "*.lua", use = "text" },
 
-{ url = "*.md", use = "text" },
-
 { url = "*.css", use = "text" },
 
 { url = "*.js", use = "text" },
@@ -80,17 +90,21 @@ rules = [
 
 { url = "*.wav", use = "music"},
 
+{url = "*.md", use = [ "glow", "text" ]},
+
 { url = "*.ogg", use = "music"},
 
 { url = "*.mkv", use = "video"},
 
 { url = "*.mp4", use = "video"},
 
+{url = "*.sh", use = [ "text", "execute" ]},
+
 { url = "*.tar.xz", use = "extracttar"},
 
 { url = "*.tar.gz", use = "extracttar"},
 
-  { url = "*", use = "text" }
+  { url = "*", use = [ "text", "execute" ] }
 
 ]
 

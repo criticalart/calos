@@ -13,8 +13,6 @@ window {
 }
 
 window .box-wrapper {
-  background: alpha(@background, 0.89);
+  background: alpha(@background, 0.99);
   color: @text;
 }
-
-

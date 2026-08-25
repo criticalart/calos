@@ -29,26 +29,24 @@ download-updates() {
   gum style --padding="1 1" "Checking for updates..."
   sleep 0.4
 
-  pacman -Sy --noconfirm >/dev/null 2>&1 &
+  sudo pacman -Sy --noconfirm >/dev/null 2>&1 &
   PACMAN_PID=$!
 
   step=1
   max_steps=17
 
   while kill -0 "$PACMAN_PID" 2>/dev/null; do
-    # Calculate position for a smooth cycling bar
     pos=$(((step % max_steps) + 1))
     pct=$((pos * 100 / max_steps))
     bar=$(printf "%-${pos}s" "#" | tr ' ' '#')
 
-    # Print line
     printf "\r$(gum style "[%-17s] Syncing... %d%%")" "$bar" "$pct"
 
     ((step++))
     sleep 0.15
   done
 
-  printf "\r$(gum style --foreground 111 "[#################] 100%% - Databases synced!")"
+  printf "\r$(gum style --foreground 114 "[#################] 100%% - Databases synced!")"
   echo ""
   echo
 
@@ -59,7 +57,6 @@ download-updates() {
     echo ""
     clear
   else
-    # No updates available
     gum spin --spinner "pulse" --spinner.foreground="4" --padding="0 0" --title "No updates found. Press any key to exit..." -- bash -c 'read -n 1 -s'
     exit 0
   fi

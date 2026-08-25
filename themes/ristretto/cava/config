@@ -82,8 +82,8 @@
 ; method = pulse
 ; source = auto
 
-; method = pipewire
-; source = auto
+method = pipewire
+source = alsa_output.pci-0000_73_00.6.analog-stereo.monitor
 
 ; method = alsa
 ; source = hw:Loopback,1
@@ -295,9 +295,14 @@
 # Gradient mode, only hex defined colors (and thereby ncurses mode) are supported,
 # background must also be defined in hex  or remain commented out. 1 = on, 0 = off.
 # You can define as many as 8 different colors. They range from bottom to top of screen
+[color]
 gradient = 1
-gradient_count = 4
-gradient_color_4 = '#ff3d61'
-gradient_color_3 = '#f7768e'
-gradient_color_2 = '#ff9e64'
-gradient_color_1 = '#e0af68'
+
+gradient_color_1 = '#6E5149'
+gradient_color_2 = '#805B54'
+gradient_color_3 = '#A26F67'
+gradient_color_4 = '#DE8569'
+gradient_color_5 = '#F9CC6C'
+gradient_color_6 = '#C58B91'
+gradient_color_7 = '#A8A9EB'
+gradient_color_8 = '#FD6883'

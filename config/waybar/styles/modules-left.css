@@ -4,6 +4,7 @@
 
 #custom-user label {
 	padding-right: 12px;
+  padding-left: 8px;
 	font-weight: normal;
   color: @accent;
 }
@@ -11,6 +12,7 @@
 #custom-menu_open label {
 	font-weight: normal;
   color: @accent;
+  font-size: 15px;
 }
 
 /* workspaces */
@@ -42,7 +44,7 @@
 }
 
 #workspaces button.active label {
-	font-size: 18px;
+	font-size: 19px;
 	color: @accent;    
   transition: all 0.2s ease-in-out;
   min-width: 3px;
