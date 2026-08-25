@@ -5,7 +5,7 @@ show_hidden = true
 [opener]
 
 wallpaper = [
-{ run = 'awww img %s --resize stretch --transition-type random --transition-fps 144 --transition-duration 1; ln -nsf %s $HOME/.config/calos/current/background; sleep 0.2; cp %s ~/Pictures/Wallpapers/', desc = "Set and Add as Wallpaper" }
+{ run = 'awww img %s --resize stretch --transition-type random --transition-fps 144 --transition-duration 1; sleep 0.2; cp %s ~/Pictures/Wallpapers/', desc = "Set and Add as Wallpaper" }
 ]
 
 imageedit = [
@@ -52,59 +52,25 @@ imageclip = [
 
 rules = [
 
-{ url = "*.zip", use = "extract" },
+{ url = "*.{zip,rar,7z}", use = "extract" },
 
-{ url = "*.rar", use = "extract" },
+{ url = "*.gif", use = ["image", "imageclip"] },
 
-{ url = "*.7z", use = "extract" },
+{ url = "*.{jpg,png}", use = ["image", "imageedit", "wallpaper", "imageclip"] },
 
-{ url = "*.gif", use = [ "image", "imageclip" ] },
+{ url = "*.{conf,toml,txt,ini,jsonc,yml,json,lua,css,js,bash*}", use = "text" },
 
-{ url = "*.jpg", use =  [ "image", "imageedit", "wallpaper", "imageclip" ] },
+{ url = "*.{mp3,wav,ogg}", use = "music" },
 
-{ url = "*.png", use =  [ "image", "imageedit", "wallpaper", "imageclip" ] },
+{ url = "*.{mkv,mp4}", use = "video" },
 
-{ url = "*.conf", use = "text" },
+{ url = "*.md", use = ["glow", "text"] },
 
-{ url = "*.toml", use = "text" },
+{ url = "*.sh", use = ["text", "execute"] },
 
-{ url = "*.txt", use = "text" },
+{ url = "*.{tar.xz,tar.gz}", use = "extracttar" },
 
-{ url = "*.ini", use = "text" },
-
-{ url = "*.jsonc", use = "text" },
-
-{ url = "*.yml", use = "text" },
-
-{ url = "*.json", use = "text" },
-
-{ url = "*.lua", use = "text" },
-
-{ url = "*.css", use = "text" },
-
-{ url = "*.js", use = "text" },
-
-{ url = "*.bash*", use = "text" },
-
-{ url = "*.mp3", use = "music"},
-
-{ url = "*.wav", use = "music"},
-
-{url = "*.md", use = [ "glow", "text" ]},
-
-{ url = "*.ogg", use = "music"},
-
-{ url = "*.mkv", use = "video"},
-
-{ url = "*.mp4", use = "video"},
-
-{url = "*.sh", use = [ "text", "execute" ]},
-
-{ url = "*.tar.xz", use = "extracttar"},
-
-{ url = "*.tar.gz", use = "extracttar"},
-
-  { url = "*", use = [ "text", "execute" ] }
+{ url = "*", use = ["text", "execute"] },
 
 ]
 

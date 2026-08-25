@@ -1,7 +1,0 @@
-{
-    "wallpaper_path": "wallpath",
-    "cache_path": "cachpath",
-    "number_of_pictures": 10,
-    "border_color": "#8E8E93",
-    "cache_batch_size": 20
-}
