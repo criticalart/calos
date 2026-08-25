@@ -3,8 +3,8 @@
 </p>
 
 
-# calOS Hyprland Starter
-CalOS is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be both feature-rich, yet nominal; a blank template that the user can build on top of. With less than 600 packages on a complete install, calOS combines smart/minimal TUI-based defaults with smooth animations and extensive themeing. As of v0.8.5 quickshell integration has been complete, bringing a ton of smooth animations and polish for minimal system overhead.
+# caliburnOS Hyprland Starter
+-caliburnOS- is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be both feature-rich, yet nominal; a blank template that the user can build on top of. With less than 600 packages on a complete install, -caliburnOS combines smart/minimal TUI-based defaults with smooth animations and extensive themeing. As of v0.8.5 quickshell integration has been complete, bringing a ton of smooth animations and polish for minimal system overhead.
 
 tl;dr its dotfiles baby
 
@@ -15,10 +15,10 @@ tl;dr its dotfiles baby
 
 ## Overview
 
-* **💻 Minimal System Apps**: Striving to be as bloat-free as possible, calOS primarily utilizes TUI applications/packages with minimal dependencies for system control. Examples include `yazi` as your file browser, `cmus` for playing local audio, and `bluetui`/`impala` for bluetooth/wifi support respectively.
-* **🎮 Gaming Friendly**: calOS ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace for games (`Super + G`), a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global push-to-talk support) and Steam pre-installed (if chosen by the installer).
-*  **🧲 Complete Walker/Waybar Integration**: Thanks to walker's extensive `dmenu` support, calOS comes with a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your current theme. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Easter egg included.
-*  **🖌️ Style**: Speaking of _style_, calOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Multiple beziers were either created or imported (from popular configs like caelestia) for a beautifuly animated system. Quickshell is woven beautifully in the OS, from your power menu to your theme menu.
+* **💻 Minimal System Apps**: Striving to be as bloat-free as possible, -caliburnOS primarily utilizes TUI applications/packages with minimal dependencies for system control. Examples include `yazi` as your file browser, `cmus` for playing local audio, and `bluetui`/`impala` for bluetooth/wifi support respectively.
+* **🎮 Gaming Friendly**: -caliburnOS ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace for games (`Super + G`), a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global push-to-talk support) and Steam pre-installed (if chosen by the installer).
+*  **🧲 Complete Walker/Waybar Integration**: Thanks to walker's extensive `dmenu` support, -caliburnOS comes with a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your current theme. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Easter egg included.
+*  **🖌️ Style**: Speaking of _style_, -caliburnOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Multiple beziers were either created or imported (from popular configs like caelestia) for a beautifuly animated system. Quickshell is woven beautifully in the OS, from your power menu to your theme menu.
 *  **⚖️ Configurable Install**: With preconfigured dotfiles, you sometimes run the risk of too little control over what you have installed on your system. The installer rectifies this by allowing you to choose what defaults you prefer, such as picking your AUR helper `yay` vs `paru` (defaults to paru because iTS BETTER) and whether or not you want to install `Steam` with full system integration.
 *  **🔧 Tinker Friendly**: Some dotfiles also make it very difficult to change certain aspects of your system, from keybinds to default applications. This is your computer and you can do whatever you want with it. All configuration files are in the `~/.config` directory, with your `hyprland` configuration files being neatly sourced in separate files for easy editing. Don't like something? Great, change it! To easily browse installed packages and "de-bloat", open up your system menu and navigate to System -> Packages to see what comes preinstalled.
 
@@ -92,14 +92,7 @@ System keybinds use **CTRL** and  **SUPER**.
   <i>Theme Menu</i>
 </p>
 
-<details>
-<summary>Sexy Theme Switching Example</summary>
-
-https://github.com/user-attachments/assets/0449763a-7b47-4c28-baa5-220d985f0a81
-
-</details>
-
-Many, many, many (autistic) hours were spent tweaking each theme CalOS ships with to compliment the entire OS. Your waybar, audio visualizer, terminal and system monitoring tools will all change based on the theme you're feeling. This took so long you son of a bitch you better use the themes
+Many, many, many (autistic) hours were spent tweaking each theme caliburnOS ships with to compliment the entire OS. Your waybar, audio visualizer, terminal and system monitoring tools will all change based on the theme you're feeling. This took so long you son of a bitch you better use the themes. All themes and screenshots taken below are from the themes bundled within caliburnOS.
 
 <p align="center">
   <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/42c7fe7a-1705-4a97-b31d-9d87717562be" />
