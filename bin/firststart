@@ -18,4 +18,4 @@ sed -i 's/--hl.exec_cmd(boot)/hl.exec_cmd(boot)/' ~/.config/hypr/autostart.lua
 rm ~/.local/share/calos/bin/firststart
 sleep 0.5
 pkill -SIGUSR1 waybar
-exec walker -H -N -n -m menus:calosthemes --minwidth 300 --height 600
+qs -c theme
