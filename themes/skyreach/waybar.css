@@ -1,0 +1,9 @@
+@define-color foreground #e8e6e3;  /* Marble white */
+@define-color background #1c2128;  /* Temple stone shadow */
+@define-color accent #6D8CAB;
+@define-color temperature #153954;
+@define-color memory #335370;
+@define-color cpu #506f8d;
+@define-color time #506f8d;
+@define-color date #335370;
+@define-color tray #153954;

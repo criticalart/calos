@@ -21,3 +21,5 @@ ln -snf ~/.config/calos/current/theme/btop.theme ~/.config/btop/themes/current.t
 
 mkdir -p ~/.config/mako
 ln -snf ~/.config/calos/current/theme/mako.ini ~/.config/mako/config
+
+# fix theme selector

@@ -1,0 +1,51 @@
+# ────────────────────────────────────────────────────────────
+# Omarchy Gold Rush theme for Alacritty
+# By tahayvr
+# https://github.com/tahayvr
+# ────────────────────────────────────────────────────────────
+
+[window]
+# Window padding (px)
+padding.x = 12
+padding.y = 12
+
+[font]
+size = 14.0
+
+[colors]
+[colors.primary]
+background = "#121212"  # Changed to specified black
+foreground = "#D9D9D9"  # Grayer foreground
+dim_foreground = "#C9A227"
+
+[colors.cursor]
+text = "#D9D9D9"
+cursor = "#C9A227"
+
+[colors.vi_mode_cursor]
+text = "#D9D9D9"
+cursor = "#C9A227"
+
+[colors.selection]
+text = "CellForeground"
+background = "#926C15"
+
+[colors.normal]
+black = "#76520E"
+red = "#DBB42C"
+green = "#A47E1B"
+yellow = "#FAD643"
+blue = "#926C15"
+magenta = "#B69121"
+cyan = "#805B10"
+white = "#EDC531"
+
+[colors.bright]
+black = "#805B10"
+red = "#EDC531"
+green = "#B69121"
+yellow = "#FFEE69"
+blue = "#A47E1B"
+magenta = "#C9A227"
+cyan = "#DBB42C"
+white = "#FAD643"

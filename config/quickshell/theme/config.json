@@ -1,6 +1,6 @@
 {
-    "theme_path": "/home/arthur/.config/calos/themes",
-    "cache_path": "/home/arthur/.cache/calos/theme-previews",
+    "theme_path": "/home/themepath/.config/calos/themes",
+    "cache_path": "/home/thachepath/.cache/quickshell/themes",
     "cache_batch_size": 8,
     "number_of_themes": 6,
     "border_color": "#ffffff"

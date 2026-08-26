@@ -1,0 +1,30 @@
+[colors.primary]
+# The primary colors for the terminal window
+background = '#111422'
+foreground = '#bcc1dc'
+
+[colors.cursor]
+text = 'CellBackground'
+cursor = 'CellForeground'
+
+[colors.normal]
+# Normal colors used by applications
+black = '#111422'
+red = '#E35535'
+green = '#3CEC85'
+yellow = '#EACD61'
+blue = '#69C3FF'
+magenta = '#F38CEC'
+cyan = '#22ECDB'
+white = '#bcc1dc'
+
+[colors.bright]
+# Bright colors used for emphasis
+black = '#313b62'
+red = '#ff4319'
+green = '#29ff82'
+yellow = '#ffd94c'
+blue = '#69c3ff'
+magenta = '#ff80f6'
+cyan = '#0fffeb'
+white = '#ffffff'

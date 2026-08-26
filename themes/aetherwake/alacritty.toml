@@ -1,0 +1,78 @@
+# Vague theme for Alacritty
+# Based on https://github.com/vague2k/vague.nvim
+# License: MIT
+
+[colors]
+[colors.primary]
+background = '#141415'
+foreground = '#cdcdcd'
+
+[colors.cursor]
+text = '#141415'
+cursor = '#6e94b2'
+
+[colors.vi_mode_cursor]
+text = '#141415'
+cursor = '#bb9dbd'
+
+[colors.search.matches]
+foreground = '#141415'
+background = '#f3be7c'
+
+[colors.search.focused_match]
+foreground = '#141415'
+background = '#7fa563'
+
+[colors.footer_bar]
+foreground = '#141415'
+background = '#606079'
+
+[colors.hints.start]
+foreground = '#141415'
+background = '#f3be7c'
+
+[colors.hints.end]
+foreground = '#141415'
+background = '#606079'
+
+[colors.selection]
+text = '#141415'
+background = '#8ba9c1'
+
+[colors.normal]
+black = '#252530'
+red = '#d8647e'
+green = '#7fa563'
+yellow = '#f3be7c'
+blue = '#6e94b2'
+magenta = '#bb9dbd'
+cyan = '#aeaed1'
+white = '#cdcdcd'
+
+[colors.bright]
+black = '#606079'
+red = '#e08398'
+green = '#99b782'
+yellow = '#f5cb96'
+blue = '#8ba9c1'
+magenta = '#c9b1ca'
+cyan = '#bebeda'
+white = '#d7d7d7'
+
+[colors.dim]
+black = '#252530'
+red = '#d8647e'
+green = '#7fa563'
+yellow = '#f3be7c'
+blue = '#6e94b2'
+magenta = '#bb9dbd'
+cyan = '#aeaed1'
+white = '#cdcdcd'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#f3be7c'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#bb9dbd'

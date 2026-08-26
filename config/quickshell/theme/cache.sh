@@ -26,7 +26,7 @@ for theme in "$theme_path"/*/; do
 
   echo "Generating thumbnail for $theme_name"
 
-  convert "$img" \
+  magick "$img" \
     -thumbnail x750 \
     -strip \
     -quality 85 \

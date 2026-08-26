@@ -381,7 +381,9 @@ PanelWindow {
 
                 color: configs.border_color
 
+                font.family: "Noto Sans"
                 font.pixelSize: 34
+                font.weight: Font.Medium
 
                 style: Text.Outline
                 styleColor: "#000000"

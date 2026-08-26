@@ -118,7 +118,7 @@ hl.window_rule({
 
   center = true,
   float = true,
-  animation = "slide bottom",
+  animation = "slide bottom 10%",
   size = "800 600",
 })
 
@@ -145,8 +145,8 @@ hl.window_rule({
   },
 
   float = true,
-  size = "800 600",
-  move = { "2634", "49" },
+  size = "700 600",
+  move = { "2734", "49" },
   animation = "popin 90%",
 })
 

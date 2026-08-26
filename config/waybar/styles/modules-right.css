@@ -82,6 +82,6 @@ background-color: @temperature;
 #custom-hypr_menu label {
 	border-radius: 16px;
 	padding: 1px 19px 0 14px;
-	font-size: 17px;
+	font-size: 17.5px;
 	color: @accent;
 }

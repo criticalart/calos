@@ -1,0 +1,87 @@
+# Vague theme for btop
+# Based on https://github.com/vague2k/vague.nvim
+# License: MIT
+
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]="#141415"
+
+# Main text color
+theme[main_fg]="#cdcdcd"
+
+# Title color for boxes
+theme[title]="#cdcdcd"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#6e94b2"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#252530"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#8ba9c1"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#606079"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="#cdcdcd"
+
+# Background color of the percentage meters
+theme[meter_bg]="#252530"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#cdcdcd"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#6e94b2" #Blue
+theme[mem_box]="#7fa563" #Green
+theme[net_box]="#d8647e" #Red
+theme[proc_box]="#bb9dbd" #Magenta
+
+# Box divider line and small boxes line color
+theme[div_line]="#606079"
+
+# Temperature graph color (Green -> Yellow -> Red)
+theme[temp_start]="#7fa563"
+theme[temp_mid]="#f3be7c"
+theme[temp_end]="#d8647e"
+
+# CPU graph colors (Blue -> Cyan -> Bright Blue)
+theme[cpu_start]="#6e94b2"
+theme[cpu_mid]="#aeaed1"
+theme[cpu_end]="#8ba9c1"
+
+# Mem/Disk free meter (Magenta -> Cyan -> Blue)
+theme[free_start]="#bb9dbd"
+theme[free_mid]="#aeaed1"
+theme[free_end]="#6e94b2"
+
+# Mem/Disk cached meter (Cyan -> Blue)
+theme[cached_start]="#aeaed1"
+theme[cached_mid]="#6e94b2"
+theme[cached_end]="#8ba9c1"
+
+# Mem/Disk available meter (Yellow -> Red)
+theme[available_start]="#f3be7c"
+theme[available_mid]="#e08398"
+theme[available_end]="#d8647e"
+
+# Mem/Disk used meter (Green -> Cyan)
+theme[used_start]="#7fa563"
+theme[used_mid]="#99b782"
+theme[used_end]="#aeaed1"
+
+# Download graph colors (Yellow -> Red)
+theme[download_start]="#f3be7c"
+theme[download_mid]="#e08398"
+theme[download_end]="#d8647e"
+
+# Upload graph colors (Green -> Cyan)
+theme[upload_start]="#7fa563"
+theme[upload_mid]="#99b782"
+theme[upload_end]="#aeaed1"
+
+# Process box color gradient for threads, mem and cpu usage (Blue -> Cyan -> Magenta)
+theme[process_start]="#6e94b2"
+theme[process_mid]="#aeaed1"
+theme[process_end]="#bb9dbd"

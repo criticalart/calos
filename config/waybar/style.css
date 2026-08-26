@@ -4,7 +4,7 @@
 @import "colors.css";
 
 * {
-  font-family: 'JetBrainsMonoNL Nerd Font';
+  font-family: 'JetBrainsMono Nerd Font';
 	font-size: 15px;
 	color: @main-fg;
 }
@@ -68,10 +68,6 @@ window#waybar > box {
 #custom-leftinvdiv label,
 #custom-rightinvdiv label {
   font-size: 23.2px;
-}
-
-#workspaces button.active {
-  font-size: 12px;
 }
 
 /* buttons */

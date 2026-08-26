@@ -1,23 +1,24 @@
 #!/bin/bash
 
-BAT="/sys/class/power_supply/hidpp_battery_1"
+BATTERY_PATH=$(printf '%s\n' /sys/class/power_supply/hidpp_battery_* 2>/dev/null | head -n 1)
 
-capacity=$(<"$BAT/capacity")
-
-if [[ "$status" == "Charging" ]]; then
-  icon="󰂄"
-else
-  if ((capacity <= 10)); then
-    icon="  "
-  elif ((capacity <= 25)); then
-    icon="  "
-  elif ((capacity <= 50)); then
-    icon="  "
-  elif ((capacity <= 75)); then
-    icon="  "
-  else
-    icon="  "
-  fi
+if [ ! -d "$BATTERY_PATH" ]; then
+  printf '{"text":"","tooltip":"󰍽 G502X Plus: Charging"}\n'
+  exit 0
 fi
 
-printf '{"text":"%s","tooltip":"󰍽 G502X Plus: %s%%"}\n' "$icon" "$capacity"
+BATTERY=$(cat "$BATTERY_PATH/capacity")
+
+if ((BATTERY >= 85)); then
+  ICON=""
+elif ((BATTERY >= 60)); then
+  ICON=""
+elif ((BATTERY >= 30)); then
+  ICON=""
+elif ((BATTERY >= 11)); then
+  ICON=""
+else
+  ICON=""
+fi
+
+printf '{"text":"%s","tooltip":"󰍽 G502X Plus: %s%%"}\n' "$ICON" "$BATTERY"
