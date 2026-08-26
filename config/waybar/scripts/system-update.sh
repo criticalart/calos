@@ -43,7 +43,7 @@ display-tooltip() {
     echo "{ \"text\": \"󰸟\", \"tooltip\": \"System Up to Date\" }"
   elif pacman -Qu | grep -q -E "^(linux|linux-zen) "; then
     echo "{ \"text\": \"󰚰 \", \"tooltip\": \"$tooltip\\nKernel Update Available\" }"
-  elif pacman -Qu | grep -q -E "hyprland"; then
+  elif pacman -Qu | grep -q -E '^hyprland '; then
     echo "{ \"text\": \"󱔅\", \"tooltip\": \"$tooltip\\nHyprland Update Available\" }"
   else
     echo "{ \"text\": \"󱧑\", \"tooltip\": \"$tooltip\" }"

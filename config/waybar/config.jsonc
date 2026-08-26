@@ -101,7 +101,7 @@
 		"min-length": 7,
 		"max-length": 7,
 		// "rotate": 0,
-		// "on-click":
+		"on-click": "qs -c clock",
 		// "on-click-middle":
 		// "on-click-right":
 		// "on-scroll-up":
@@ -317,6 +317,7 @@
       "yazi": "  Yazi",
       "file_chooser": "  Yazi",
       "System-Update": "󰚰  System Update",
+      "packages": "󱧘  Installed Packages",
       "About": "󰖷  System Information",
       "arthur@caliburn": "  arthur@caliburn",
       "Neovim": "  Neovim",
@@ -347,7 +348,7 @@
 
 	"hyprland/windowcount": {
 		"format": "[{}]",
-		// "format-empty":
+		//"format-empty": "",
 		// "format-windowed":
 		// "format-fullscreen":
 		// "separate-outputs":
@@ -436,7 +437,7 @@
 
 	"custom/menu_open": {
 
-		"format": ">",
+		"format": "\uf359",
 		// "format-icons":
 		// "rotate":
 		"min-length": 4,
@@ -522,6 +523,7 @@
 			"custom/hypr_menu",
       "custom/power_menu",
 			"custom/version",
+      "custom/g502-battery",
       "custom/overlay",
       "custom/home",
 		],
@@ -533,8 +535,17 @@
 		}
 	},
 
+"custom/g502-battery": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/scripts/g502-battery.sh",
+    "return-type": "json",
+    "interval": 60,    
+    "min-length": 4,
+    "max-length": 4,
+},
+
 	"custom/hypr_menu": {
-		"format": "\uf359",
+		"format": "󰮫",
 		"tooltip": false,
     "min-length": 2,
 		"max-length": 2

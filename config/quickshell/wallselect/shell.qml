@@ -5,539 +5,597 @@ import Qt.labs.folderlistmodel
 import Quickshell.Wayland
 
 PanelWindow {
-    id: main
-
-    anchors {
-        top: true
-        bottom: true
-        left: true
-        right: true
-    }
+	id: main
+
+	property int imageHeight: 650
+	property int inactiveImageHeight: 500
 
-    color: "transparent"
+	anchors {
+		top: true
+		bottom: true
+		left: true
+		right: true
+	}
 
-    aboveWindows: true
-    exclusionMode: "Ignore"
-    exclusiveZone: 1
+	color: "transparent"
 
-    WlrLayershell.layer: WlrLayer.Overlay
-    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+	aboveWindows: true
+	exclusionMode: "Ignore"
+	exclusiveZone: 1
 
-    Component.onCompleted: {
-        Quickshell.execDetached([
-            "bash",
-            Quickshell.shellPath("cache.sh"),
-            Quickshell.shellDir
-        ])
+	WlrLayershell.layer: WlrLayer.Overlay
+	WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-        console.log(Quickshell.shellDir)
-    }
+	Component.onCompleted: {
+		Quickshell.execDetached([
+			"bash",
+			Quickshell.shellPath("cache.sh"),
+			Quickshell.shellDir
+		])
+	}
 
-    FileView {
-        path: Quickshell.shellPath("config.json")
-        watchChanges: true
-        onFileChanged: reload()
+	Component.onDestruction: {
+		cacheRetryTimer.stop()
+	}
 
-        JsonAdapter {
-            id: configs
+	FileView {
+		path: Quickshell.shellPath("config.json")
+		watchChanges: true
+		onFileChanged: reload()
 
-            property string wallpaper_path
-            property string cache_path
-            property int number_of_pictures
-            property string border_color
-        }
-    }
+		JsonAdapter {
+			id: configs
 
-    FolderListModel {
-        id: folderModel
+			property string wallpaper_path
+			property string cache_path
+			property int number_of_pictures
+			property string border_color
+		}
+	}
 
-        folder: "file://" + configs.wallpaper_path
+	FolderListModel {
+		id: folderModel
 
-        showDirs: false
-        nameFilters: ["*.png", "*.jpg"]
-        sortField: FolderListModel.Name
-    }
+		folder: "file://" + configs.wallpaper_path
 
-    MouseArea {
-        id: backgroundArea
+		showDirs: false
+		nameFilters: ["*.png", "*.jpg"]
+		sortField: FolderListModel.Name
+	}
 
-        anchors.fill: parent
-        z: 0
+	MouseArea {
+		id: backgroundArea
 
-        onClicked: {
-            Qt.quit()
-        }
-      }
+		anchors.fill: parent
+		z: 0
 
-    HoverHandler {
-        id: mouseMovementHandler
+		onClicked: {
+			Qt.quit()
+		}
+	}
 
-        onPointChanged: {
-            const position = point.position
+	HoverHandler {
+		id: mouseMovementHandler
 
-            if (
-                list.keyboardMode &&
-                (
-                    position.x !== list.lastMousePosition.x ||
-                    position.y !== list.lastMousePosition.y
-                )
-            ) {
-                list.keyboardMode = false
-            }
+		property point lastPosition: point.position
 
-            list.lastMousePosition = position
-        }
-    }
+		onPointChanged: {
+			if (
+				point.position.x === lastPosition.x &&
+				point.position.y === lastPosition.y
+			) {
+				return
+			}
 
-    ListView {
-        id: list
+			lastPosition = point.position
 
-        anchors {
-            left: parent.left
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-        }
+			list.mouseEnabled = true
+			list.keyboardMode = false
+		}
+	}
 
-        height: 650
+	ListView {
+		id: list
 
-        z: 1
+		anchors {
+			left: parent.left
+			right: parent.right
+			verticalCenter: parent.verticalCenter
+		}
 
-        focus: true
+		height: main.imageHeight
 
-        model: folderModel
-        orientation: ListView.Horizontal
+		z: 1
 
-        spacing: 0
-        clip: true
+		focus: true
 
-        cacheBuffer: width
+		model: folderModel
+		orientation: ListView.Horizontal
 
-        property int selectedIndex: 0
-        property int previousSelectedIndex: 0
+		spacing: 0
+		clip: true
 
-        property bool keyboardMode: false
-        property point lastMousePosition: Qt.point(0, 0)
+		cacheBuffer: width
 
-        property real tileWidth:
-            configs.number_of_pictures > 0
-            ? Math.max(
-                1,
-                width / configs.number_of_pictures - 10
-            )
-            : 0
+		property int selectedIndex: 0
+		property int previousSelectedIndex: 0
 
-        property real wheelTargetX: contentX
+		property bool keyboardMode: false
+		property bool mouseEnabled: false
 
-        function selectIndex(index) {
-            index = clampIndex(index)
+		property real tileWidth:
+			configs.number_of_pictures > 0
+			? Math.max(
+				1,
+				width / configs.number_of_pictures - 10
+			)
+			: 0
 
-            if (index === selectedIndex)
-                return
+		property real wheelTargetX: contentX
 
-            previousSelectedIndex = selectedIndex
-            selectedIndex = index
-        }
+		function selectIndex(index) {
+			index = Math.max(
+				0,
+				Math.min(index, count - 1)
+			)
 
-        function keyboardSelect(index) {
-            keyboardMode = true
-            lastMousePosition = mouseMovementHandler.point.position
+			if (index === selectedIndex)
+				return
 
-            selectIndex(index)
-            ensureVisibleAnimated(selectedIndex)
-        }
+			previousSelectedIndex = selectedIndex
+			selectedIndex = index
+		}
 
-        function clampIndex(i) {
-            return Math.max(0, Math.min(i, count - 1))
-        }
+		function keyboardSelect(index) {
+			keyboardMode = true
+			mouseEnabled = false
 
-        function activateCurrent() {
-            const path = folderModel.get(
-                selectedIndex,
-                "filePath"
-            )
+			mouseMovementHandler.lastPosition =
+				mouseMovementHandler.point.position
 
-            Quickshell.execDetached([
-                "bash",
-                Quickshell.shellPath("commands.sh"),
-                path
-            ])
+			selectIndex(index)
+			ensureVisibleAnimated(selectedIndex)
+		}
 
-            Qt.quit()
-        }
+		function activateCurrent() {
+			const path = folderModel.get(
+				selectedIndex,
+				"filePath"
+			)
 
-        function clampX(x) {
-            const maxX = Math.max(0, contentWidth - width)
+			Quickshell.execDetached([
+				"bash",
+				Quickshell.shellPath("commands.sh"),
+				path
+			])
 
-            return Math.max(
-                0,
-                Math.min(x, maxX)
-            )
-        }
+			Qt.quit()
+		}
 
-        function ensureVisibleAnimated(i) {
-            const item = list.itemAtIndex(i)
+		function clampX(x) {
+			const maxX = Math.max(0, contentWidth - width)
 
-            if (!item)
-                return
+			return Math.max(
+				0,
+				Math.min(x, maxX)
+			)
+		}
 
-            const itemStart = item.x
-            const itemEnd = item.x + item.width
+		function ensureVisibleAnimated(i) {
+			const item = list.itemAtIndex(i)
 
-            let target = contentX
+			if (!item)
+				return
 
-            if (itemStart < contentX) {
-                target = itemStart
-            } else if (itemEnd > contentX + width) {
-                target = itemEnd - width
-            }
+			if (i === 0) {
+				keyboardScrollAnimation.stop()
 
-            target = clampX(target)
+				if (contentX !== 0) {
+					keyboardScrollAnimation.from = contentX
+					keyboardScrollAnimation.to = 0
+					keyboardScrollAnimation.start()
+				}
 
-            if (target !== contentX) {
-                keyboardScrollAnimation.stop()
+				return
+			}
 
-                keyboardScrollAnimation.from = contentX
-                keyboardScrollAnimation.to = target
+			const expandedWidth =
+				list.tileWidth * 1.50 + 40
 
-                keyboardScrollAnimation.start()
-            }
-        }
+			const extraWidth =
+				Math.max(
+					0,
+					expandedWidth - list.tileWidth
+				)
 
-        NumberAnimation {
-            id: keyboardScrollAnimation
+			const itemStart =
+				item.x - extraWidth / 2
 
-            target: list
-            property: "contentX"
+			const itemEnd =
+				item.x +
+				item.width +
+				extraWidth / 2
 
-            duration: 110
+			let target = contentX
 
-            easing.type: Easing.OutCubic
-        }
+			if (itemStart < contentX) {
+				target = itemStart
+			} else if (itemEnd > contentX + width) {
+				target = itemEnd - width
+			}
 
-        NumberAnimation {
-            id: wheelAnimation
+			target = clampX(target)
 
-            target: list
-            property: "contentX"
+			if (target !== contentX) {
+				keyboardScrollAnimation.stop()
 
-            duration: 150
+				keyboardScrollAnimation.from = contentX
+				keyboardScrollAnimation.to = target
 
-            easing.type: Easing.OutCubic
-        }
+				keyboardScrollAnimation.start()
+			}
+		}
 
-        Component.onCompleted: {
-            wheelTargetX = contentX
-        }
+		NumberAnimation {
+			id: keyboardScrollAnimation
 
-        delegate: Item {
-            id: delegateItem
+			target: list
+			property: "contentX"
 
-            required property int index
+			duration: 110
 
-            property bool active:
-                index === list.selectedIndex
+			easing.type: Easing.OutCubic
+		}
 
-            property real entranceOffset: 25
+		NumberAnimation {
+			id: wheelAnimation
 
-            width: list.tileWidth
-            height: 650
+			target: list
+			property: "contentX"
 
-            z: {
-                if (index === list.selectedIndex)
-                    return 10
+			duration: 150
 
-                if (index === list.previousSelectedIndex)
-                    return 9
+			easing.type: Easing.OutCubic
+		}
 
-                return 0
-            }
+		Timer {
+			id: cacheRetryTimer
 
-            opacity: 0
+			interval: 1000
+			repeat: true
+			running: true
 
-            Item {
-                id: wallpaperItem
+			onTriggered: {
+				let failed = false
 
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                    verticalCenter: parent.verticalCenter
-                }
+				for (let i = 0; i < list.count; i++) {
+					const item = list.itemAtIndex(i)
 
-                width: active
-                       ? list.tileWidth * 1.50 + 40
-                       : list.tileWidth
+					if (!item)
+						continue
 
-                height: active ? 650 : 500
+					if (item.retryImage())
+						failed = true
+				}
 
-                transform: Translate {
-                    y: delegateItem.entranceOffset
-                }
+				if (!failed)
+					stop()
+			}
+		}
 
-                Behavior on width {
-                    NumberAnimation {
-                        duration: 150
-                        easing.type: Easing.OutCubic
-                    }
-                }
+		delegate: Item {
+			id: delegateItem
 
-                Behavior on height {
-                    NumberAnimation {
-                        duration: 150
-                        easing.type: Easing.OutCubic
-                    }
-                }
+			required property int index
 
-                Text {
-                    id: alt
+			property bool active:
+				index === list.selectedIndex
 
-                    visible: img.status === Image.Error
+			property real entranceOffset: 25
 
-                    text: "Caching"
-                    color: configs.border_color
+			function retryImage() {
+				if (img.status !== Image.Error)
+					return false
 
-                    anchors.centerIn: parent
+				const source = img.source
 
-                    font.pixelSize: 16
+				img.source = ""
+				img.source = source
 
-                    transform: Shear {
-                        xFactor: -0.25
-                    }
-                }
+				return true
+			}
 
-                Image {
-                    id: img
+			width: list.tileWidth
+			height: main.imageHeight
 
-                    anchors.fill: parent
+			z: {
+				if (index === list.selectedIndex)
+					return 10
 
-                    fillMode: Image.PreserveAspectCrop
+				if (index === list.previousSelectedIndex)
+					return 9
 
-                    asynchronous: true
-                    cache: true
-                    smooth: true
+				return 0
+			}
 
-                    source:
-                        "file://" +
-                        configs.cache_path +
-                        folderModel.get(index, "fileName")
+			opacity: 0
 
-                    sourceSize.width:
-                        list.tileWidth * 1.50
+			Item {
+				id: wallpaperItem
 
-                    sourceSize.height: 650
+				anchors {
+					horizontalCenter: parent.horizontalCenter
+					verticalCenter: parent.verticalCenter
+				}
 
-                    transform: Shear {
-                        xFactor: -0.25
-                    }
+				width: active
+					? list.tileWidth * 1.50 + 40
+					: list.tileWidth
 
-                    Timer {
-                        id: retryTimer
+				height: active
+					? main.imageHeight
+					: main.inactiveImageHeight
 
-                        interval: 1000
-                        repeat: false
+				transform: Translate {
+					y: delegateItem.entranceOffset
+				}
 
-                        onTriggered: {
-                            let s = img.source
+				Behavior on width {
+					NumberAnimation {
+						duration: 150
+						easing.type: Easing.OutCubic
+					}
+				}
 
-                            img.source = ""
+				Behavior on height {
+					NumberAnimation {
+						duration: 150
+						easing.type: Easing.OutCubic
+					}
+				}
 
-                            img.source = s
-                        }
-                    }
+				Text {
+					id: alt
 
-                    onStatusChanged: {
-                        if (status === Image.Error) {
-                            retryTimer.start()
-                        }
-                    }
-                }
+					visible: img.status === Image.Error
 
-                Rectangle {
-                    id: border
+					text: "Caching"
+					color: configs.border_color
 
-                    anchors.fill: parent
+					anchors.centerIn: parent
 
-                    z: 10
+					font.pixelSize: 16
 
-                    color: "transparent"
+					transform: Shear {
+						xFactor: -0.25
+					}
+				}
 
-                    border.width: 2
-                    border.color: configs.border_color
+				Image {
+					id: img
 
-                    radius: 8
+					anchors.fill: parent
 
-                    opacity: delegateItem.active ? 1 : 0
+					fillMode: Image.PreserveAspectCrop
 
-                    transform: Shear {
-                        xFactor: -0.25
-                    }
+					asynchronous: true
+					cache: true
+					smooth: true
 
-                    Behavior on opacity {
-                        NumberAnimation {
-                            duration: 200
-                            easing.type: Easing.OutCubic
-                        }
-                    }
-                }
-            }
+					source:
+						"file://" +
+						configs.cache_path +
+						folderModel.get(index, "fileName")
 
-            MouseArea {
-                id: hitArea
+					sourceSize.width:
+						list.tileWidth * 1.50
 
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                    verticalCenter: parent.verticalCenter
-                }
+					sourceSize.height: main.imageHeight
 
-                width: wallpaperItem.width
-                height: wallpaperItem.height
+					transform: Shear {
+						xFactor: -0.25
+					}
+				}
 
-                z: 20
+				Rectangle {
+					id: border
 
-                hoverEnabled: true
+					anchors.fill: parent
 
-                transform: Shear {
-                    xFactor: -0.25
-                }
+					z: 10
 
-                Timer {
-                    id: hoverTimer
+					color: "transparent"
 
-                    interval: 40
-                    repeat: false
+					border.width: 2
+					border.color: configs.border_color
 
-                    onTriggered: {
-                        if (!list.keyboardMode)
-                            list.selectIndex(index)
-                    }
-                }
+					radius: 4
 
-                onEntered: {
-                    if (!list.keyboardMode)
-                        hoverTimer.start()
-                }
+					opacity: delegateItem.active ? 1 : 0
 
-                onExited: {
-                    hoverTimer.stop()
-                }
+					transform: Shear {
+						xFactor: -0.25
+					}
 
-                onClicked: {
-                    hoverTimer.stop()
+					Behavior on opacity {
+						NumberAnimation {
+							duration: 200
+							easing.type: Easing.OutCubic
+						}
+					}
+				}
+			}
 
-                    list.keyboardMode = false
+			MouseArea {
+				id: hitArea
 
-                    list.selectIndex(index)
-                    list.activateCurrent()
-                }
+				anchors {
+					horizontalCenter: parent.horizontalCenter
+					verticalCenter: parent.verticalCenter
+				}
 
-                onWheel: function(wheel) {
-                    hoverTimer.stop()
+				width: wallpaperItem.width
+				height: wallpaperItem.height
 
-                    list.keyboardMode = false
+				z: 20
 
-                    if (!wheelAnimation.running) {
-                        list.wheelTargetX = list.contentX
-                    }
+				hoverEnabled: true
 
-                    list.wheelTargetX = list.clampX(
-                        list.wheelTargetX -
-                        wheel.angleDelta.y * 2
-                    )
+				transform: Shear {
+					xFactor: -0.25
+				}
 
-                    wheelAnimation.stop()
+				Timer {
+					id: hoverTimer
 
-                    wheelAnimation.from = list.contentX
-                    wheelAnimation.to = list.wheelTargetX
+					interval: 40
+					repeat: false
 
-                    wheelAnimation.start()
+					onTriggered: {
+						if (!list.keyboardMode)
+							list.selectIndex(index)
+					}
+				}
 
-                    wheel.accepted = true
-                }
-            }
+				onEntered: {
+					if (
+						!list.keyboardMode &&
+						list.mouseEnabled
+					) {
+						hoverTimer.start()
+					}
+				}
 
-            Timer {
-                id: entranceTimer
+				onExited: {
+					hoverTimer.stop()
+				}
 
-                interval: index * 30
-                repeat: false
-                running: true
+				onClicked: {
+					hoverTimer.stop()
 
-                onTriggered: {
-                    entranceAnimation.start()
-                }
-            }
+					list.keyboardMode = false
 
-            ParallelAnimation {
-                id: entranceAnimation
+					list.selectIndex(index)
+					list.activateCurrent()
+				}
 
-                NumberAnimation {
-                    target: delegateItem
-                    property: "opacity"
+				onWheel: function(wheel) {
+					hoverTimer.stop()
 
-                    from: 0
-                    to: 1
+					list.keyboardMode = false
 
-                    duration: 300
+					if (!wheelAnimation.running) {
+						list.wheelTargetX = list.contentX
+					}
 
-                    easing.type: Easing.OutCubic
-                }
+					list.wheelTargetX = list.clampX(
+						list.wheelTargetX -
+						wheel.angleDelta.y * 2
+					)
 
-                NumberAnimation {
-                    target: delegateItem
-                    property: "entranceOffset"
+					wheelAnimation.stop()
 
-                    from: 25
-                    to: 0
+					wheelAnimation.from = list.contentX
+					wheelAnimation.to = list.wheelTargetX
 
-                    duration: 300
+					wheelAnimation.start()
 
-                    easing.type: Easing.OutCubic
-                }
-            }
-        }
+					wheel.accepted = true
+				}
+			}
 
-        Keys.onPressed: function(event) {
-            const step = 1
-            const big = configs.number_of_pictures
+			Component.onCompleted: {
+				if (index < 15) {
+					entranceTimer.start()
+				} else {
+					delegateItem.opacity = 1
+					delegateItem.entranceOffset = 0
+				}
+			}
 
-            if (
-                event.key === Qt.Key_L ||
-                event.key === Qt.Key_Right
-            ) {
-                keyboardSelect(selectedIndex + step)
+			Timer {
+				id: entranceTimer
 
-            } else if (
-                event.key === Qt.Key_H ||
-                event.key === Qt.Key_Left
-            ) {
-                keyboardSelect(selectedIndex - step)
+				interval: index * 30
+				repeat: false
 
-            } else if (
-                event.key === Qt.Key_J ||
-                event.key === Qt.Key_Down
-            ) {
-                keyboardSelect(selectedIndex + big)
+				onTriggered: {
+					entranceAnimation.start()
+				}
+			}
 
-            } else if (
-                event.key === Qt.Key_K ||
-                event.key === Qt.Key_Up
-            ) {
-                keyboardSelect(selectedIndex - big)
+			ParallelAnimation {
+				id: entranceAnimation
 
-            } else if (
-                event.key === Qt.Key_Space ||
-                event.key === Qt.Key_Return
-            ) {
-                activateCurrent()
+				NumberAnimation {
+					target: delegateItem
+					property: "opacity"
 
-            } else if (
-                event.key === Qt.Key_Escape
-            ) {
-                Qt.quit()
+					from: 0
+					to: 1
 
-            } else {
-                return
-            }
+					duration: 300
 
-            event.accepted = true
-        }
-    }
+					easing.type: Easing.OutCubic
+				}
+
+				NumberAnimation {
+					target: delegateItem
+					property: "entranceOffset"
+
+					from: 25
+					to: 0
+
+					duration: 300
+
+					easing.type: Easing.OutCubic
+				}
+			}
+		}
+
+		Keys.onPressed: function(event) {
+			const step = 1
+
+			if (
+				event.key === Qt.Key_L ||
+				event.key === Qt.Key_Right
+			) {
+				keyboardSelect(selectedIndex + step)
+
+			} else if (
+				event.key === Qt.Key_H ||
+				event.key === Qt.Key_Left
+			) {
+				keyboardSelect(selectedIndex - step)
+
+			} else if (
+				event.key === Qt.Key_J ||
+				event.key === Qt.Key_Down
+			) {
+				keyboardSelect(selectedIndex + 5)
+
+			} else if (
+				event.key === Qt.Key_K ||
+				event.key === Qt.Key_Up
+			) {
+				keyboardSelect(selectedIndex - 5)
+
+			} else if (
+				event.key === Qt.Key_Space ||
+				event.key === Qt.Key_Return
+			) {
+				activateCurrent()
+
+			} else if (
+				event.key === Qt.Key_Escape
+			) {
+				Qt.quit()
+
+			} else {
+				return
+			}
+
+			event.accepted = true
+		}
+	}
 }

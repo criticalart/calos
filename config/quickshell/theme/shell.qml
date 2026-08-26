@@ -64,44 +64,24 @@ PanelWindow {
         }
     }
 
-    HoverHandler {
-        id: mouseMovementHandler
-
-        onPointChanged: {
-            const position = point.position
-
-            if (
-                list.keyboardMode &&
-                (
-                    position.x !== list.lastMousePosition.x ||
-                    position.y !== list.lastMousePosition.y
-                )
-            ) {
-                list.keyboardMode = false
-            }
-
-            list.lastMousePosition = position
-        }
-    }
-
     Rectangle {
-    id: dimOverlay
+        id: dimOverlay
 
-    anchors.fill: parent
-
-    z: 0
-
-    color: "#000000"
-    opacity: 0.45
-
-    MouseArea {
         anchors.fill: parent
 
-        onClicked: {
-            Qt.quit()
+        z: 0
+
+        color: "#000000"
+        opacity: 0.45
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                Qt.quit()
+            }
         }
     }
-}
 
     ListView {
         id: list
@@ -112,13 +92,14 @@ PanelWindow {
             verticalCenter: parent.verticalCenter
         }
 
-        height: 900
-        leftMargin: 100
+        height: 960
 
         z: 1
+
         focus: true
 
         model: themeModelLoader.item
+
         orientation: ListView.Horizontal
 
         spacing: 0
@@ -129,45 +110,78 @@ PanelWindow {
         property int selectedIndex: 0
         property int previousSelectedIndex: 0
 
-        property bool keyboardMode: false
-        property point lastMousePosition: Qt.point(0, 0)
+        property int themeCount:
+            configs.number_of_themes > 0
+            ? configs.number_of_themes
+            : (themeModelLoader.item?.count ?? 0)
 
         property real tileWidth:
-            themeModelLoader.item &&
-            themeModelLoader.item.count > 0
-            ? Math.max(
-                1,
-                width / Math.max(
-                    1,
-                    configs.number_of_themes > 0
-                    ? configs.number_of_themes
-                    : themeModelLoader.item.count
-                ) - 10
-            )
+            themeCount > 0
+            ? Math.max(1, width / themeCount - 10)
             : 0
 
-        property real wheelTargetX: contentX
+        property real centerPadding:
+            Math.max(
+                0,
+                (width - tileWidth) / 2
+            )
+
+        header: Item {
+            width: list.centerPadding
+            height: list.height
+        }
+
+        footer: Item {
+            width: list.centerPadding
+            height: list.height
+        }
+
+        function clampIndex(index) {
+            return Math.max(
+                0,
+                Math.min(index, count - 1)
+            )
+        }
+
+        function centeredContentX(index) {
+            const item = list.itemAtIndex(index)
+
+            if (!item)
+                return contentX
+
+            return item.x +
+                   item.width / 2 -
+                   list.width / 2
+        }
+
+        function centerSelected(animated) {
+            const target = centeredContentX(selectedIndex)
+
+            if (!animated) {
+                contentX = target
+                return
+            }
+
+            centerAnimation.stop()
+
+            centerAnimation.from = contentX
+            centerAnimation.to = target
+
+            centerAnimation.start()
+        }
 
         function selectIndex(index) {
             index = clampIndex(index)
 
             if (index === selectedIndex)
-                return
+                return false
 
             previousSelectedIndex = selectedIndex
             selectedIndex = index
-        }
 
-        function keyboardSelect(index) {
-            keyboardMode = true
-            lastMousePosition = mouseMovementHandler.point.position
+            centerSelected(true)
 
-            selectIndex(index)
-            ensureVisibleAnimated(selectedIndex)
-        }
-
-        function clampIndex(i) {
-            return Math.max(0, Math.min(i, count - 1))
+            return true
         }
 
         function activateCurrent() {
@@ -184,77 +198,39 @@ PanelWindow {
             Qt.quit()
         }
 
-        function clampX(x) {
-            const maxX = Math.max(0, contentWidth - width)
-
-            return Math.max(
-                0,
-                Math.min(x, maxX)
-            )
-        }
-
-        function ensureVisibleAnimated(i) {
-            const item = list.itemAtIndex(i)
-
-            if (!item)
-                return
-
-            const itemStart = item.x
-            const itemEnd = item.x + item.width
-
-            let target = contentX
-
-            if (itemStart < contentX) {
-                target = itemStart
-            } else if (itemEnd > contentX + width) {
-                target = itemEnd - width
-            }
-
-            target = clampX(target)
-
-            if (target !== contentX) {
-                keyboardScrollAnimation.stop()
-
-                keyboardScrollAnimation.from = contentX
-                keyboardScrollAnimation.to = target
-
-                keyboardScrollAnimation.start()
-            }
-        }
-
         NumberAnimation {
-            id: keyboardScrollAnimation
+            id: centerAnimation
 
             target: list
             property: "contentX"
 
-            duration: 110
+            duration: 180
 
             easing.type: Easing.OutCubic
         }
 
-        NumberAnimation {
-            id: wheelAnimation
+        Timer {
+            id: wheelTimer
 
-            target: list
-            property: "contentX"
-
-            duration: 150
-
-            easing.type: Easing.OutCubic
+            interval: 100
+            repeat: false
         }
 
         Component.onCompleted: {
-            wheelTargetX = contentX
-          }
-
-
+            Qt.callLater(function() {
+                if (list.count > 0)
+                    list.centerSelected(false)
+            })
+        }
 
         delegate: Item {
             id: delegateItem
 
             required property int index
             required property string fileName
+
+            width: list.tileWidth
+            height: list.height
 
             property bool active:
                 index === list.selectedIndex
@@ -285,9 +261,6 @@ PanelWindow {
                 themeName +
                 ".png"
 
-            width: list.tileWidth
-            height: 900
-
             z: {
                 if (index === list.selectedIndex)
                     return 10
@@ -305,14 +278,19 @@ PanelWindow {
 
                 anchors {
                     horizontalCenter: parent.horizontalCenter
+                    horizontalCenterOffset: 115
                     verticalCenter: parent.verticalCenter
                 }
 
-                width: active
-                       ? list.tileWidth * 1.65 + 50
-                       : list.tileWidth
+                width:
+                    delegateItem.active
+                    ? list.tileWidth * 1.65 + 50
+                    : list.tileWidth
 
-                height: active ? 810 : 610
+                height:
+                    delegateItem.active
+                    ? 810
+                    : 610
 
                 transform: Translate {
                     y: delegateItem.entranceOffset
@@ -367,7 +345,7 @@ PanelWindow {
                     border.width: 2
                     border.color: configs.border_color
 
-                    radius: 8
+                    radius: 4
 
                     opacity:
                         delegateItem.active
@@ -392,9 +370,9 @@ PanelWindow {
 
                 anchors {
                     horizontalCenter: wallpaperItem.horizontalCenter
-                    horizontalCenterOffset: -200
+                    horizontalCenterOffset: -180
                     top: wallpaperItem.bottom
-                    topMargin: -6
+                    topMargin: 10
                 }
 
                 z: 30
@@ -403,7 +381,10 @@ PanelWindow {
 
                 color: configs.border_color
 
-                font.pixelSize: 38
+                font.pixelSize: 34
+
+                style: Text.Outline
+                styleColor: "#000000"
 
                 horizontalAlignment: Text.AlignHCenter
 
@@ -433,62 +414,23 @@ PanelWindow {
 
                 z: 20
 
-                hoverEnabled: true
-
-                transform: Shear {
-                    xFactor: -0.25
-                }
-
-                Timer {
-                    id: hoverTimer
-
-                    interval: 40
-                    repeat: false
-
-                    onTriggered: {
-                        if (!list.keyboardMode)
-                            list.selectIndex(index)
-                    }
-                }
-
-                onEntered: {
-                    if (!list.keyboardMode)
-                        hoverTimer.start()
-                }
-
-                onExited: {
-                    hoverTimer.stop()
-                }
-
                 onClicked: {
-                    hoverTimer.stop()
-
-                    list.keyboardMode = false
-
-                    list.selectIndex(index)
-                    list.activateCurrent()
+                    if (!list.selectIndex(index))
+                        list.activateCurrent()
                 }
 
                 onWheel: function(wheel) {
-                    hoverTimer.stop()
-
-                    list.keyboardMode = false
-
-                    if (!wheelAnimation.running) {
-                        list.wheelTargetX = list.contentX
+                    if (wheelTimer.running) {
+                        wheel.accepted = true
+                        return
                     }
 
-                    list.wheelTargetX = list.clampX(
-                        list.wheelTargetX -
-                        wheel.angleDelta.y * 2
-                    )
+                    wheelTimer.start()
 
-                    wheelAnimation.stop()
-
-                    wheelAnimation.from = list.contentX
-                    wheelAnimation.to = list.wheelTargetX
-
-                    wheelAnimation.start()
+                    if (wheel.angleDelta.y < 0)
+                        list.selectIndex(list.selectedIndex + 1)
+                    else
+                        list.selectIndex(list.selectedIndex - 1)
 
                     wheel.accepted = true
                 }
@@ -497,9 +439,13 @@ PanelWindow {
             Timer {
                 id: entranceTimer
 
-                interval: index * 30
+                interval:
+                    index < 15
+                    ? index * 30
+                    : 0
+
                 repeat: false
-                running: true
+                running: index < 15
 
                 onTriggered: {
                     entranceAnimation.start()
@@ -536,46 +482,36 @@ PanelWindow {
         }
 
         Keys.onPressed: function(event) {
-            const step = 1
-
-            const big =
-                configs.number_of_themes > 0
-                ? configs.number_of_themes
-                : (
-                    themeModelLoader.item
-                    ? themeModelLoader.item.count
-                    : 1
-                )
 
             if (
                 event.key === Qt.Key_L ||
                 event.key === Qt.Key_Right
             ) {
-                keyboardSelect(selectedIndex + step)
+                list.selectIndex(selectedIndex + 1)
 
             } else if (
                 event.key === Qt.Key_H ||
                 event.key === Qt.Key_Left
             ) {
-                keyboardSelect(selectedIndex - step)
+                list.selectIndex(selectedIndex - 1)
 
             } else if (
                 event.key === Qt.Key_J ||
                 event.key === Qt.Key_Down
             ) {
-                keyboardSelect(selectedIndex + big)
+                list.selectIndex(selectedIndex + 3)
 
             } else if (
                 event.key === Qt.Key_K ||
                 event.key === Qt.Key_Up
             ) {
-                keyboardSelect(selectedIndex - big)
+                list.selectIndex(selectedIndex - 3)
 
             } else if (
                 event.key === Qt.Key_Space ||
                 event.key === Qt.Key_Return
             ) {
-                activateCurrent()
+                list.activateCurrent()
 
             } else if (
                 event.key === Qt.Key_Escape

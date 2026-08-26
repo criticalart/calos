@@ -5,7 +5,7 @@ show_hidden = true
 [opener]
 
 wallpaper = [
-{ run = 'awww img %s --resize stretch --transition-type random --transition-fps 144 --transition-duration 1; sleep 0.2; cp %s ~/Pictures/Wallpapers/', desc = "Set and Add as Wallpaper" }
+{ run = 'awww img %s --resize stretch --transition-type random --transition-fps 144 --transition-duration 1; ln -nsf %s $HOME/.config/calos/current/background; sleep 0.2; cp %s ~/Pictures/Wallpapers/', desc = "Set and Add as Wallpaper" }
 ]
 
 imageedit = [

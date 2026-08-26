@@ -11,7 +11,7 @@
 
 hl.window_rule({
   match = {
-    class = "^(Impala|Bluetui|Wiremix|com.gabm.satty|Calos|TUI.float)$",
+    class = "^(Impala|Bluetui|Wiremix|com.gabm.satty|TUI.float)$",
   },
 
   tag = "+floating-window",
@@ -93,12 +93,32 @@ hl.window_rule({
 
 hl.window_rule({
   match = {
+    class = "Calos"
+  },
+
+  center = true,
+  float = true,
+  size = "800 600",
+})
+
+hl.window_rule({
+  match = {
+    class = "packages"
+  },
+
+  center = true,
+  float = true,
+  size = "800 600",
+})
+
+hl.window_rule({
+  match = {
     class = "clipse",
   },
 
   center = true,
   float = true,
-  animation = "slide bottom 10%",
+  animation = "slide bottom",
   size = "800 600",
 })
 
@@ -127,6 +147,7 @@ hl.window_rule({
   float = true,
   size = "800 600",
   move = { "2634", "49" },
+  animation = "popin 90%",
 })
 
 hl.window_rule({

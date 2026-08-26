@@ -62,7 +62,7 @@ hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd(browser .. " --private-window"))
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(browser .. " --new-window https://twitch.tv"))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd(browser .. " --new-window https://reddit.com"))
 hl.bind("SUPER + SHIFT + Y", hl.dsp.exec_cmd(browser .. " --new-window https://youtube.com"))
-hl.bind("SUPER + SHIFT + G", hl.dsp.exec_cmd(browser .. " --new-window https://github.com"))
+hl.bind("SUPER + SHIFT + G", hl.dsp.exec_cmd(browser .. " --new-window https://github.com/criticalart/calos"))
 
 ------------------------------
 ---- NOTIFICATION CONTROL ----

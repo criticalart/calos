@@ -10,9 +10,9 @@
 }
 
 #custom-menu_open label {
-	font-weight: normal;
+	font-weight: bold;
   color: @accent;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* workspaces */

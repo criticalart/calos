@@ -4,7 +4,7 @@
 @import "colors.css";
 
 * {
-  font-family: 'JetBrainsMono Nerd Font';
+  font-family: 'JetBrainsMonoNL Nerd Font';
 	font-size: 15px;
 	color: @main-fg;
 }

@@ -2,21 +2,18 @@ local close_on_click = {
   About = true,
   Impala = true,
   Bluetui = true,
+  Wiremix = true,
+  dust = true,
+  packages = true,
+  clipse = true,
 }
 
-local close_bind = hl.bind("mouse:272", hl.dsp.window.close(), {
+hl.bind("mouse:273", function()
+  local w = hl.get_active_window()
+
+  if w and close_on_click[w.class] then
+    hl.dispatch(hl.dsp.window.close())
+  end
+end, {
   non_consuming = true,
 })
-
-close_bind:set_enabled(false)
-
-local close_enabled = false
-
-hl.on("window.active", function(w)
-  local should_enable = w ~= nil and close_on_click[w.class] == true
-
-  if should_enable ~= close_enabled then
-    close_bind:set_enabled(should_enable)
-    close_enabled = should_enable
-  end
-end)
