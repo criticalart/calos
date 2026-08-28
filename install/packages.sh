@@ -41,7 +41,7 @@ sudo pacman -S --noconfirm --needed \
   imagemagick \
   awww \
   swayosd \
-  tldr \
+  tealdeer \
   tree-sitter-cli \
   ttf-cascadia-mono-nerd \
   ttf-font-awesome \
