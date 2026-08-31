@@ -47,6 +47,7 @@ sudo pacman -S --noconfirm --needed \
   ttf-font-awesome \
   uwsm \
   viu \
+  kmon \
   waybar-git \
   wiremix \
   wireplumber \

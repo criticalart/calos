@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+file="$1"
+
+info=$(ffprobe -v quiet \
+  -show_entries format_tags=title,artist,album \
+  -show_entries format=format_name,duration,bit_rate \
+  -show_entries stream=codec_name,sample_rate,bits_per_sample,channels \
+  -of default=noprint_wrappers=1 \
+  -- "$file")
+
+while IFS='=' read -r key value; do
+  case "$key" in
+  TAG:title) title="$value" ;;
+  TAG:artist) artist="$value" ;;
+  TAG:album) album="$value" ;;
+  format_name) format="$value" ;;
+  codec_name) codec="$value" ;;
+  sample_rate) sample_rate="$value" ;;
+  bits_per_sample) bit_depth="$value" ;;
+  channels) channels="$value" ;;
+  bit_rate) bitrate="$value" ;;
+  duration) duration="$value" ;;
+  esac
+done <<<"$info"
+
+# Duration
+if [[ -n "$duration" ]]; then
+  seconds=${duration%.*}
+  duration=$(printf '%02d:%02d' \
+    "$((seconds / 60))" \
+    "$((seconds % 60))")
+fi
+
+# Sample rate
+if [[ -n "$sample_rate" ]]; then
+  sample_rate="$((sample_rate / 1000)) kHz"
+fi
+
+# Bitrate
+if [[ -n "$bitrate" ]]; then
+  bitrate="$((bitrate / 1000)) kb/s"
+fi
+
+# Channels
+case "$channels" in
+1) channels="Mono" ;;
+2) channels="Stereo" ;;
+*) channels="${channels:-Unknown}" ;;
+esac
+
+printf 'TITLE       %s\n' "${title:-Unknown}"
+printf 'ARTIST      %s\n' "${artist:-Unknown}"
+printf 'ALBUM       %s\n' "${album:-Unknown}"
+printf '────────────────────────\n'
+printf 'FORMAT      %s\n' "${format:-Unknown}"
+printf 'CODEC       %s\n' "${codec:-Unknown}"
+printf 'SAMPLE RATE %s\n' "${sample_rate:-Unknown}"
+printf 'BIT DEPTH   %s\n' "${bit_depth:+${bit_depth}-bit}"
+printf 'CHANNELS    %s\n' "$channels"
+printf 'BITRATE     %s\n' "${bitrate:-Unknown}"
+printf 'DURATION    %s\n' "${duration:-Unknown}"

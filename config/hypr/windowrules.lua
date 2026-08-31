@@ -57,6 +57,8 @@ hl.window_rule({
     class = "System-Update",
   },
 
+  border_size = 0,
+  decorate = false,
   float = true,
   center = true,
   dim_around = true,
@@ -70,6 +72,23 @@ hl.window_rule({
     class = "dust",
   },
 
+  border_size = 0,
+  decorate = false,
+  float = true,
+  center = true,
+  dim_around = true,
+  size = "900 650",
+  rounding = 20,
+  rounding_power = 10,
+})
+
+hl.window_rule({
+  match = {
+    class = "kernel",
+  },
+
+  border_size = 0,
+  decorate = false,
   float = true,
   center = true,
   dim_around = true,
@@ -83,7 +102,9 @@ hl.window_rule({
     class = "About",
   },
 
+  border_size = 0,
   float = true,
+  decorate = false,
   dim_around = true,
   size = "775 375",
   move = { "monitor_w - 800", "47" },
@@ -163,6 +184,18 @@ hl.window_rule({
   opacity = "1 1",
   decorate = false,
   move = { "100", "(monitor_h * 0.08)" },
+})
+
+hl.window_rule({
+  match = {
+    class = "twitch",
+  },
+
+  float = true,
+  border_size = 0,
+  size = "600 500",
+  move = { "100", ("monitor_h * 0.25") }
+
 })
 
 hl.window_rule({

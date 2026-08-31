@@ -49,7 +49,7 @@ hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-launch-screensaver"))
 hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("swayosd-client --caps-lock"))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu")) -- will close all windows on current workspace
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"))
-hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("~/wksp/scripts/bigpic.sh"))
+hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("calos-toggle-bigpic"))
 hl.bind("SUPER + ALT + M", hl.dsp.exec_cmd("calos-toggle-output"))
 
 
