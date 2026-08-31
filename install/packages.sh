@@ -53,6 +53,7 @@ sudo pacman -S --noconfirm --needed \
   wiremix \
   wireplumber \
   wl-clip-persist \
+  ttf-jetbrains-mono-nerd \
   wl-clipboard \
   xdg-desktop-portal-gtk \
   xdg-desktop-portal-hyprland \

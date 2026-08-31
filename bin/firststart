@@ -17,6 +17,7 @@ sleep 0.2
 sed -i -E 's/^.*("start_hidden": true,)/  \/\/ \1/' ~/.config/waybar/config.jsonc
 sed -i 's/--hl.exec_cmd(boot)/hl.exec_cmd(boot)/' ~/.config/hypr/autostart.lua
 sleep 0.5
+calos-font-set JetBrainsMono Nerd Font
 qs -c theme
 wait
 ffplay -autoexit -nodisp -volume 60 ~/.config/calos/branding/start.mp3 &
