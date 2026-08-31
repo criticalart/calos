@@ -19,10 +19,9 @@
       "format": "\u001b[90m┌─────────────────Hardware──────────────────┐"
     },
     {
-      "type": "command",
+      "type": "host",
       "key": "│ ┌ ",
       "keyColor": "green",
-      "text": "echo GIGABYTE X870 AORUS Stealth ICE"
     },
     {
       "type": "cpu",
@@ -69,7 +68,7 @@
       "type": "command",
       "key": "│ ┌󰣇 ",
       "keyColor": "blue",
-      "text": "echo 'caliburnOS v0.8.9 (Arch)'",
+      "text": "echo 'caliburnOS v0.9.1 (Arch)'",
     },
     {
       "type": "kernel",
