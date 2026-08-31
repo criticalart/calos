@@ -19,8 +19,12 @@ WALLFIX=$(echo "$HOME/Pictures/Wallpapers/")
 CACHEFIX=$(echo "$HOME/.cache/quickshell/thumbs/")
 THEMEFIX=$(echo "$HOME/.config/calos/themes")
 THACHEFIX=$(echo "$HOME/.cache/quickshell/themes")
+REGCSS=$(echo "file:///home/$USER/.config/calos/current/theme/regreet.css")
+REGTOML=$(echo "/home/$USER/.config/calos/current/background")
 
 sed -i "s|themepath|$WALLFIX|" ~/.config/quickshell/hyprquickpaper/config.json
 sed -i "s|cachpath|$CACHEFIX|" ~/.config/quickshell/hyprquickpaper/config.json
 sed -i "s|themepath|$THEMEFIX|" ~/.config/quickshell/theme/config.json
 sed -i "s|thachepath|$THACHEFIX|" ~/.config/quickshell/theme/config.json
+sed -i "s|regreetcssreplace|$REGCSS|" ~/.local/share/calos/install/regreet.css
+sed -i "s|regreetbgreplace|$REGCSS|" ~/.local/share/calos/install/regreet.toml
