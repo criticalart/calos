@@ -5,7 +5,7 @@
 #custom-tempdiv label {
 	color: @temperature;
 }
-#temperature {
+#custom-temperature {
 	background-color: @temperature;
 }
 
@@ -15,7 +15,7 @@
 	background-color: @temperature;
 	color: @memory;
 }
-#memory {
+#custom-memory {
 	background-color: @memory;
 }
 
@@ -25,8 +25,8 @@
 	background-color: @memory;
 	color: @cpu;
 }
-#cpu {
-	background-color: @cpu;
+#custom-cpu {
+	background-color: @memory;
 }
 #custom-leftinvdiv label {
 	color: @cpu;
@@ -53,8 +53,7 @@
 #idle_inhibitor {
 	background-color: @time;
 }
-#clock.time {
-	padding-right: 6px;
+#custom-clock.time {
 	background-color: @time;
 }
 #custom-timediv label {
@@ -66,7 +65,7 @@
 
 #clock.date {
 	padding-left: 6px;
-	background-color: @date;
+	background-color: @time;
 }
 #custom-datediv label {
 	background-color: @tray;
@@ -78,6 +77,6 @@
 #custom-diskdiv label {
 	color: @tray;
 }
-#disk {
+#custom-disk {
 	background-color: @temperature;
 }

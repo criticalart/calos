@@ -109,7 +109,7 @@ end)
 -- }}}1
 -- Get selecting state {{{1
 local get_selected = ya.sync(function()
-    return (not cx.active.mode.is_visual) and (#cx.active.selected ~= 0)
+    return (cx.active.mode.is_normal) and (#cx.active.selected ~= 0)
 end)
 -- }}}1
 -- Set separators {{{1

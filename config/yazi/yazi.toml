@@ -77,3 +77,15 @@ rules = [
 [[plugin.prepend_previewers]]
 url = "*/"
 run = "eza-preview"
+
+[[plugin.prepend_previewers]]
+url = "*.md"
+run = 'faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dracula -- "$1"'
+
+[[plugin.prepend_previewers]]
+url = "*{png,jpg,jpeg}"
+run = 'faster-piper -- viu -b -w 50 -h 25 -- "$1"'
+
+[[plugin.prepend_previewers]]
+url = "*{webp,gif}"
+run = 'faster-piper -- identify -format "Format: %m\nDimensions: %wx%h\nDepth: %z-bit\nColorspace: %[colorspace]\nFilesize: %b\n" -- "$1"'

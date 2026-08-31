@@ -4,7 +4,7 @@
 @import "colors.css";
 
 * {
-  font-family: 'JetBrainsMono Nerd Font';
+  font-family: 'JetBrainsMonoNL Nerd Font';
 	font-size: 15px;
 	color: @main-fg;
 }
@@ -20,9 +20,10 @@ opacity: 0;
 /* main outline */
 
 window#waybar {
-	background-color: #1C2128;
-  border-radius: 4px;
-  opacity: 0.86;
+    background-color: #1C2128;
+    border: 1px solid @date;
+    border-radius: 4px;
+    opacity: 0.86;
 }
 
 /* main background */
@@ -69,6 +70,7 @@ window#waybar > box {
 #custom-rightinvdiv label {
   font-size: 23.2px;
 }
+
 
 /* buttons */
 

@@ -13,7 +13,8 @@ require("bunny"):setup({
     { key = "v", path = "~/Videos/",                    desc = "Videos" },
     { key = "w", path = "~/wksp/",                      desc = "Workspace" },
     { key = "s", path = "/mnt/storage/",                desc = "Storage" },
-    { key = "r", path = "~/.local/share/Trash/",        desc = "Recycle Bin" }
+    { key = "r", path = "~/.local/share/Trash/",        desc = "Recycle Bin" },
+    { key = "q", path = "~/.config/quickshell/",        desc = "Quickshell" }
     -- key and path attributes are required, desc is optional
   },
   desc_strategy = "path", -- If desc isn't present, use "path" or "filename", default is "path"

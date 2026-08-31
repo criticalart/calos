@@ -10,21 +10,21 @@
 	],
 	"modules-center": [
 		"custom/tempdiv",
-		"temperature",
+		"custom/temperature",
 		"custom/memdiv",
-		"memory",
+		"custom/cpu",
 		"custom/cpudiv",
-		"cpu",
+		"custom/clock#time",
 		"custom/leftinvdiv",
 		"custom/leftdistrodiv",
 		"custom/distro",
 		"custom/rightdistrodiv",
 		"custom/rightinvdiv",
-		"clock#time",
-		"custom/timediv",
 		"clock#date",
+		"custom/timediv",
+		"custom/memory",
 		"custom/datediv",
-		"disk",
+		"custom/disk",
 		"custom/diskdiv"
 	],
 	"modules-right": [
@@ -92,24 +92,15 @@
     "on-click": "alacritty --class=Bluetui -e bluetui"
   },
 
-	"clock#time": {
-		// "interval":
-		"format": " {:%H:%M}",
-		// "timezone":
-		// "timezones":
-		// "locale":
-		"min-length": 7,
-		"max-length": 7,
-		// "rotate": 0,
-		"on-click": "qs -c clock",
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		"tooltip-format": "{:%I:%M %p}"
-	},
+"custom/clock#time": {
+    "exec": "~/.config/waybar/scripts/clock.sh",
+    "return-type": "json",
+    "format": "{}",
+    "min-length": 9,
+    "max-length": 9,
+    "on-click": "qs -c clock",
+    "tooltip": true
+},
 
 	/*--------------
 		calendar
@@ -121,8 +112,8 @@
 		// "timezone":
 		// "timezones":
 		// "locale":
-		"min-length": 8,
-		"max-length": 8,
+		"min-length": 9,
+		"max-length": 9,
 		// "rotate":
 		// "on-click":
 		// "on-click-middle":
@@ -154,59 +145,37 @@
 		}
 	},
 
-	"cpu": {
-		"interval": 3,
-		"format": "󰍛 {usage}%",
-		"format-warning": "󰀨 {usage}%",
-		"format-critical": "󰀨 {usage}%",
-		"min-length": 7,
-		"max-length": 7,
-		// "rotate":
-		"states": {
-			"warning": 75,
-			"critical": 90
-		},
-		// "on-click": "alacritty --class=Impala -e btop -p 2",
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		"tooltip": false
-	},
-
-  "disk": {
-    "interval": 600,
-    "format": " {free}",
-    "paths": "/",
+"custom/cpu": {
+    "interval": 3,
+    "exec": "~/.config/waybar/scripts/cpu.sh",
+    "return-type": "json",
+    "format": "{}",
     "tooltip": true,
-    "max-length": 10,
-    "min-length": 10,
-    "on-click": "alacritty --class=dust -e ~/.config/waybar/scripts/dust.sh",
-    "tooltip-format": "{used} out of {total} used."
+    "min-length": 9,
+    "max-length": 9,
+    "on-click": "alacritty --class=kernel -e sudo kmon"
 },
 
-	"memory": {
-		"interval": 5,
-		"format": "󰘚 {used:0.1f}GB",
-		"format-warning": "󰀧 {percentage}%",
-		"format-critical": "󰀧 {percentage}%",
-		// "rotate":
-		"states": {
-			"warning": 75,
-			"critical": 90
-		},
-		"min-length": 9,
-		"max-length": 9,
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		// "smooth-scrolling-threshold":
-		// "tooltip":
-		"tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB"
-	},
+"custom/disk": {
+    "interval": 600,
+    "exec": "~/.config/waybar/scripts/disk.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "alacritty --class=dust -e ~/.config/waybar/scripts/dust.sh",
+    "max-length": 9,
+    "min-length": 9
+},
+
+"custom/memory": {
+    "interval": 4,
+    "exec": "~/.config/waybar/scripts/memory.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "max-length": 9,
+    "min-length": 9
+},
 
 	"mpris": {
 		// "player":
@@ -289,18 +258,15 @@
     }
   },
 
-	  "temperature": {
-    //"thermal-zone": 1,
-   "interval": "4",
-   "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-   "critical-threshold": 70,
-   "format-critical": "  {temperatureC}°C",
-   "format": "  {temperatureC}°C ",
-   "format-icons": ["", "", ""],
-   "max-length": 10,
-   "min-length": 10,
-   "tooltip": false 
-  },
+"custom/temperature": {
+    "interval": 4,
+    "exec": "~/.config/waybar/scripts/temperature.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "max-length": 9,
+    "min-length": 9
+},
 
 	"hyprland/window": {
     "tooltip": true,
@@ -324,6 +290,7 @@
       "Calos": "  Neovim",
       "ffplay": "󰯜  FFmpeg",
       "pqiv": "  pqiv",
+      "kernel": "󰘚  Kernel Manager",
       "cmus": "󰝚  cmus Music Player",
       "vesktop": "  Discord",
       "steam": "  Steam",
@@ -401,7 +368,7 @@
       "4": "IV",
       "5": "V",
       "home": "",
-      "game":"󱎓",
+      "game":"󰊴",
 		},
 		"persistent-workspaces": {
 			"*": 5
@@ -437,7 +404,7 @@
 
 	"custom/menu_open": {
 
-		"format": "\uf359",
+		"format": "󰀻",
 		// "format-icons":
 		// "rotate":
 		"min-length": 4,
@@ -547,10 +514,11 @@
 },
 
 	"custom/hypr_menu": {
-		"format": "󰮫",
+		"format": "󰍜",
 		"tooltip": false,
     "min-length": 2,
-		"max-length": 2
+		"max-length": 2,
+    "on-click": "calos-toggle-home"
 	},
 
   	"custom/version": {

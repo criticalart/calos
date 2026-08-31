@@ -179,7 +179,7 @@ function M:peek(job)
 		})
 	elseif empty_output then
 		ya.preview_widget(job, {
-			ui.Text({ ui.Line("No items") }):area(job.area):align(ui.Text.CENTER),
+			ui.Text({ ui.Line("No items") }):area(job.area):align(ui.Align.CENTER),
 		})
 	else
 		ya.preview_widget(job, {

@@ -12,8 +12,9 @@
 #custom-menu_open label {
 	font-weight: bold;
   color: @accent;
-  font-size: 17px;
+  font-size: 20px;
 }
+
 
 /* workspaces */
 

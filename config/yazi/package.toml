@@ -1,27 +1,32 @@
 [[plugin.deps]]
 use = "stelcodes/bunny"
-rev = "7137a44"
-hash = "58bfa473bcac8574400e573787954512"
+rev = "71b14a3"
+hash = "18a2829738214fe9bca99a2fef19113d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "4e55902"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "c591a36"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
-rev = "7a2d60f"
-hash = "eed8e19469f3dca38fd977eb938dd34e"
+rev = "e8fb6c8"
+hash = "c238595c801caa4f28553b9af8cf8804"
 
 [[plugin.deps]]
 use = "pirafrank/what-size"
-rev = "179ebf6"
-hash = "57056b9728006881d580ccabe8154a9c"
+rev = "ec94d9a"
+hash = "4b546f609ab8630a083cecf9ab5091d2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "1962818"
+rev = "c591a36"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[[plugin.deps]]
+use = "alberti42/faster-piper"
+rev = "bb90261"
+hash = "12b5e342d54db42b5b023faa1a11f28e"
 
 [flavor]
 deps = []
