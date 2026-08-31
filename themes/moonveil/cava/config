@@ -83,7 +83,7 @@
 ; source = auto
 
 method = pipewire
-source = alsa_output.pci-0000_73_00.6.analog-stereo.monitor
+source = auto
 
 ; method = alsa
 ; source = hw:Loopback,1
