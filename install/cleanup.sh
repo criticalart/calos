@@ -1,3 +1,4 @@
+~/.local/share/calos/themes/theme-update.sh
 cp ~/.local/share/calos/applications/hidden/* ~/.local/share/applications/
 cp ~/.local/share/calos/applications/nvim.desktop ~/.local/share/applications/
 rm -rf ~/.local/share/calos/applications
