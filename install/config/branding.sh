@@ -15,10 +15,10 @@ cp ~/.local/share/calos/install/themechange.mp3 ~/.config/calos/themechange.mp3
 cp ~/.local/share/calos/install/off.png ~/.config/calos/branding/off.png
 cp ~/.local/share/calos/install/defwall1.png ~/Pictures/Wallpapers/wall1.png
 cp ~/.local/share/calos/install/defwall2.jpg ~/Pictures/Wallpapers/wall2.png
-WALLFIX=$(echo "$USER/Pictures/Wallpapers/")
-CACHEFIX=$(echo "$USER/.cache/quickshell/thumbs/")
-THEMEFIX=$(echo "$USER/.config/calos/themes")
-THACHEFIX=$(echo "$USER/.cache/quickshell/themes")
+WALLFIX=$(echo "$HOME/Pictures/Wallpapers/")
+CACHEFIX=$(echo "$HOME/.cache/quickshell/thumbs/")
+THEMEFIX=$(echo "$HOME/.config/calos/themes")
+THACHEFIX=$(echo "$HOME/.cache/quickshell/themes")
 REGCSS=$(echo "file:///home/$USER/.config/calos/current/theme/regreet.css")
 REGTOML=$(echo "/home/$USER/.config/calos/current/background")
 
