@@ -10,7 +10,7 @@ debug = false
 additional_theme_location = "~/.config/walker/themes/"
 hide_quick_activation = true
 app_launch_prefix = "uwsm-app -- "
-hide_action_hints = true
+hide_action_hints = false
 
 [shell]
 anchor_top = true

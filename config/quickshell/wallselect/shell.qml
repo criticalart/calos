@@ -32,10 +32,24 @@ PanelWindow {
 			Quickshell.shellPath("cache.sh"),
 			Quickshell.shellDir
 		])
+
+		initialEntranceTimer.start()
 	}
 
 	Component.onDestruction: {
 		cacheRetryTimer.stop()
+		initialEntranceTimer.stop()
+	}
+
+	Timer {
+		id: initialEntranceTimer
+
+		interval: 50
+		repeat: false
+
+		onTriggered: {
+			list.startEntranceAnimation()
+		}
 	}
 
 	FileView {
@@ -122,6 +136,8 @@ PanelWindow {
 
 		property bool keyboardMode: false
 		property bool mouseEnabled: false
+
+		property bool initialAnimationStarted: false
 
 		property real tileWidth:
 			configs.number_of_pictures > 0
@@ -236,6 +252,20 @@ PanelWindow {
 			}
 		}
 
+		function startEntranceAnimation() {
+			if (initialAnimationStarted)
+				return
+
+			initialAnimationStarted = true
+
+			for (let i = 0; i < list.count; i++) {
+				const item = list.itemAtIndex(i)
+
+				if (item)
+					item.startEntrance()
+			}
+		}
+
 		NumberAnimation {
 			id: keyboardScrollAnimation
 
@@ -303,6 +333,10 @@ PanelWindow {
 				img.source = source
 
 				return true
+			}
+
+			function startEntrance() {
+				entranceTimer.restart()
 			}
 
 			width: list.tileWidth
@@ -505,11 +539,9 @@ PanelWindow {
 			}
 
 			Component.onCompleted: {
-				if (index < 15) {
-					entranceTimer.start()
-				} else {
-					delegateItem.opacity = 1
-					delegateItem.entranceOffset = 0
+				if (list.initialAnimationStarted) {
+					opacity = 1
+					entranceOffset = 0
 				}
 			}
 

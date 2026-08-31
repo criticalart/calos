@@ -4,6 +4,7 @@ import QtQuick
 import Qt.labs.folderlistmodel
 import Quickshell.Wayland
 
+
 PanelWindow {
     id: main
 
@@ -53,10 +54,60 @@ PanelWindow {
         }
     }
 
+    Process {
+        id: currentThemeProcess
+
+        command: [
+            "bash",
+            "-c",
+            "basename \"$(realpath \"$HOME/.config/calos/current/theme\")\""
+        ]
+
+        running: true
+
+        stdout: StdioCollector {
+            id: currentThemeOutput
+
+            onStreamFinished: {
+                const currentTheme = text.trim()
+
+                if (!currentTheme)
+                    return
+
+                const model = themeModelLoader.item
+
+                if (!model)
+                    return
+
+                for (let i = 0; i < model.count; i++) {
+                    if (model.get(i, "fileName") === currentTheme) {
+                        list.selectedIndex = i
+
+                        list.positionViewAtIndex(
+                            i,
+                            ListView.Contain
+                        )
+
+                        Qt.callLater(function() {
+                            list.centerSelected(false)
+
+                            Qt.callLater(function() {
+                                list.startEntranceAnimation()
+                            })
+                        })
+
+                        return
+                    }
+                }
+            }
+        }
+    }
+
     MouseArea {
         id: backgroundArea
 
         anchors.fill: parent
+
         z: -1
 
         onClicked: {
@@ -105,10 +156,12 @@ PanelWindow {
         spacing: 0
         clip: true
 
-        cacheBuffer: width
+        cacheBuffer: width * 4
 
         property int selectedIndex: 0
         property int previousSelectedIndex: 0
+
+        property bool initialAnimationStarted: false
 
         property int themeCount:
             configs.number_of_themes > 0
@@ -198,6 +251,22 @@ PanelWindow {
             Qt.quit()
         }
 
+        function startEntranceAnimation() {
+            if (initialAnimationStarted)
+                return
+
+            initialAnimationStarted = true
+
+            for (let i = 0; i < list.count; i++) {
+                const item = list.itemAtIndex(i)
+
+                if (!item)
+                    continue
+
+                item.startEntrance()
+            }
+        }
+
         NumberAnimation {
             id: centerAnimation
 
@@ -214,13 +283,6 @@ PanelWindow {
 
             interval: 100
             repeat: false
-        }
-
-        Component.onCompleted: {
-            Qt.callLater(function() {
-                if (list.count > 0)
-                    list.centerSelected(false)
-            })
         }
 
         delegate: Item {
@@ -261,6 +323,9 @@ PanelWindow {
                 themeName +
                 ".png"
 
+            property int distanceFromSelected:
+                Math.abs(index - list.selectedIndex)
+
             z: {
                 if (index === list.selectedIndex)
                     return 10
@@ -273,12 +338,23 @@ PanelWindow {
 
             opacity: 0
 
+            function startEntrance() {
+                entranceTimer.restart()
+            }
+
+            Component.onCompleted: {
+                if (list.initialAnimationStarted) {
+                    opacity = 1
+                    entranceOffset = 0
+                }
+            }
+
             Item {
                 id: wallpaperItem
 
                 anchors {
                     horizontalCenter: parent.horizontalCenter
-                    horizontalCenterOffset: 115
+                    horizontalCenterOffset: 40
                     verticalCenter: parent.verticalCenter
                 }
 
@@ -289,8 +365,8 @@ PanelWindow {
 
                 height:
                     delegateItem.active
-                    ? 810
-                    : 610
+                    ? 800
+                    : 600
 
                 transform: Translate {
                     y: delegateItem.entranceOffset
@@ -317,19 +393,18 @@ PanelWindow {
 
                     fillMode: Image.PreserveAspectCrop
 
-                    asynchronous: true
+                    asynchronous: !delegateItem.active
                     cache: true
                     smooth: true
 
                     source: delegateItem.cachedPreview
 
-                    sourceSize.width:
-                        list.tileWidth * 1.65
+                    sourceSize.width: 800
 
-                    sourceSize.height: 1200
+                    sourceSize.height: 600
 
                     transform: Shear {
-                        xFactor: -0.25
+                        xFactor: -0.125
                     }
                 }
 
@@ -353,7 +428,7 @@ PanelWindow {
                         : 0
 
                     transform: Shear {
-                        xFactor: -0.25
+                        xFactor: -0.125
                     }
 
                     Behavior on opacity {
@@ -370,9 +445,9 @@ PanelWindow {
 
                 anchors {
                     horizontalCenter: wallpaperItem.horizontalCenter
-                    horizontalCenterOffset: -180
+                    horizontalCenterOffset: -90
                     top: wallpaperItem.bottom
-                    topMargin: 10
+                    topMargin: 14
                 }
 
                 z: 30
@@ -442,12 +517,10 @@ PanelWindow {
                 id: entranceTimer
 
                 interval:
-                    index < 15
-                    ? index * 30
-                    : 0
+                    delegateItem.distanceFromSelected * 75
 
                 repeat: false
-                running: index < 15
+                running: false
 
                 onTriggered: {
                     entranceAnimation.start()

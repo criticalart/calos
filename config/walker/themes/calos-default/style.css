@@ -127,8 +127,11 @@ child:selected .item-box * {
   -gtk-icon-transform: scale(0.9);
 }
 
-.current {
-  font-style: italic;
+.current .item-text,
+.current .item-subtext {
+  color: @accent;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .keybinds {
