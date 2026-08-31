@@ -3,6 +3,7 @@
 sleep 1
 sed -i '/hl\.exec_cmd("firststart")/d' ~/.config/hypr/autostart.lua
 notify-send "Welcome to calOS!" "Installation successful." -t 3000
+nvim --headless "+qa" >/dev/null 2>&1 &
 sleep 3
 notify-send "Check ~/.config/hypr for configuration files!" "These are documented files that can help you fine-tune your system." -t 7000
 notify-send "SUPER (release) will bring up your system menu." -t 7000
