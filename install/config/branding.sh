@@ -22,9 +22,14 @@ THACHEFIX=$(echo "$USER/.cache/quickshell/themes")
 REGCSS=$(echo "file:///home/$USER/.config/calos/current/theme/regreet.css")
 REGTOML=$(echo "/home/$USER/.config/calos/current/background")
 
-sed -i "s|themepath|$WALLFIX|" ~/.config/quickshell/wallselect/config.json
+sed -i "s|wallthemefix|$WALLFIX|" ~/.config/quickshell/wallselect/config.json
 sed -i "s|cachpath|$CACHEFIX|" ~/.config/quickshell/wallselect/config.json
 sed -i "s|themepath|$THEMEFIX|" ~/.config/quickshell/theme/config.json
 sed -i "s|thachepath|$THACHEFIX|" ~/.config/quickshell/theme/config.json
 sed -i "s|regreetcssreplace|$REGCSS|" ~/.local/share/calos/install/regreet.css
 sed -i "s|regreetbgreplace|$REGCSS|" ~/.local/share/calos/install/regreet.toml
+
+# allows regreet to read your theme directory and browse up to it. recommended to change after install
+
+chmod o+x ~ ~/.local ~/.local/share
+chmod -R o+rX ~/.local/share/calos/themes
