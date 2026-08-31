@@ -2,7 +2,7 @@ skip_selection=true
 
 [background]
 # Path to the background image/video
-path = "/home/arthur/.config/calos/current/background"
+path = "regreetbgreplace"
 
 # How the background image covers the screen if the aspect ratio doesn't match
 # Available values: "Fill", "Contain", "Cover", "ScaleDown"
