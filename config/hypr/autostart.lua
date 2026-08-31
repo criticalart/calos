@@ -38,6 +38,6 @@ hl.on("hyprland.start", function()
   )
 
   -- Application autostart
-  hl.exec_cmd("LD_PRELOAD=/usr/lib32/libextest.so steam", { workspace = "3 silent" })
-  hl.exec_cmd("uwsm-app -- vesktop", { workspace = "3 silent" })
-end)
+  --hl.exec_cmd("LD_PRELOAD=/usr/lib32/libextest.so steam", { workspace = "3 silent" })
+  --hl.exec_cmd("uwsm-app -- vesktop", { workspace = "3 silent" })
+--end)
