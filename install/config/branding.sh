@@ -27,7 +27,7 @@ sed -i "s|cachpath|$CACHEFIX|" ~/.config/quickshell/wallselect/config.json
 sed -i "s|themepath|$THEMEFIX|" ~/.config/quickshell/theme/config.json
 sed -i "s|thachepath|$THACHEFIX|" ~/.config/quickshell/theme/config.json
 sed -i "s|regreetcssreplace|$REGCSS|" ~/.local/share/calos/install/regreet.css
-sed -i "s|regreetbgreplace|$REGCSS|" ~/.local/share/calos/install/regreet.toml
+sed -i "s|regreetbgreplace|$REGTOML|" ~/.local/share/calos/install/regreet.toml
 
 # allows regreet to read your theme directory and browse up to it. recommended to change after install
 
