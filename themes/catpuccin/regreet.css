@@ -1,0 +1,13 @@
+/* Catppuccin — ReGreet */
+
+@define-color background   #1E1E2E;
+@define-color surface      #303042;
+@define-color surface_alt  #585B70;
+
+@define-color foreground   #CDD6F4;
+@define-color muted        #7F849C;
+
+@define-color accent       #A69BE0;
+@define-color border       #CBA6F7;
+
+@define-color error        #F38BA8;

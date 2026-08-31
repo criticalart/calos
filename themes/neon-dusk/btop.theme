@@ -1,0 +1,92 @@
+# Btop theme
+# Based on Waybar + CAVA palette
+
+
+# Main background
+theme[main_bg]="#2C2525"
+
+# Main text color
+theme[main_fg]="#E6D9DB"
+
+# Title color for boxes
+theme[title]="#E6D9DB"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#DE8569"
+
+
+# Selected process
+theme[selected_bg]="#493536"
+theme[selected_fg]="#E6D9DB"
+
+
+# Inactive / disabled text
+theme[inactive_fg]="#806B6B"
+
+
+# Misc process information
+theme[proc_misc]="#A26F67"
+
+
+# Box outlines
+theme[cpu_box]="#6E5149"
+theme[mem_box]="#805B54"
+theme[net_box]="#6E5149"
+theme[proc_box]="#805B54"
+
+# Dividers
+theme[div_line]="#624A47"
+
+
+# Temperature graph
+theme[temp_start]="#7E5F5D"
+theme[temp_mid]="#C17A5C"
+theme[temp_end]="#DE8569"
+
+
+# CPU graph
+theme[cpu_start]="#805B54"
+theme[cpu_mid]="#BC7258"
+theme[cpu_end]="#DE8569"
+
+
+# Memory / Disk free
+theme[free_start]="#5F5147"
+theme[free_mid]="#A26F67"
+theme[free_end]="#CDA861"
+
+
+# Memory / Disk cached
+theme[cached_start]="#5D5153"
+theme[cached_mid]="#95747B"
+theme[cached_end]="#A89AA7"
+
+
+# Memory / Disk available
+theme[available_start]="#70594D"
+theme[available_mid]="#C49A62"
+theme[available_end]="#D3AD5F"
+
+
+# Memory / Disk used
+theme[used_start]="#6E5149"
+theme[used_mid]="#B66C58"
+theme[used_end]="#DE8569"
+
+
+# Download graph
+theme[download_start]="#4B4447"
+theme[download_mid]="#8F7278"
+theme[download_end]="#A89AA7"
+
+
+# Upload graph
+theme[upload_start]="#5A4141"
+theme[upload_mid]="#B66C58"
+theme[upload_end]="#DE8569"
+
+
+# Process graph
+theme[process_start]="#7E5A50"
+theme[process_mid]="#C17A5C"
+theme[process_end]="#DE8569"

@@ -1,0 +1,13 @@
+/* Untitled — ReGreet */
+
+@define-color background   #232829;
+@define-color surface      #2B3F40;
+@define-color surface_alt  #485D5D;
+
+@define-color foreground   #DCD6D6;
+@define-color muted        #788587;
+
+@define-color accent       #869D9D;
+@define-color border       #9BB6A6;
+
+@define-color error        #BEA7B0;

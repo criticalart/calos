@@ -1,0 +1,13 @@
+/* Moonveil — ReGreet */
+
+@define-color background   #141415;
+@define-color surface      #252530;
+@define-color surface_alt  #30303D;
+
+@define-color foreground   #CDCDCD;
+@define-color muted        #606079;
+
+@define-color accent       #8FA6B8;
+@define-color border       #6E94B2;
+
+@define-color error        #D8647E;

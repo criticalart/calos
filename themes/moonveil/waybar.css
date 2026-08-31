@@ -1,0 +1,9 @@
+@define-color foreground #cdcdcd;
+@define-color background #141415;
+@define-color accent #D2DAE3;
+@define-color temperature #252b32;
+@define-color memory #4b525a;
+@define-color cpu #767d85;
+@define-color time #767d85;
+@define-color date #4b525a;
+@define-color tray #252b32;

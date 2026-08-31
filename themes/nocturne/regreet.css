@@ -1,0 +1,13 @@
+/* Calos Night — ReGreet */
+
+@define-color background   #11131F;
+@define-color surface      #1A1B26;
+@define-color surface_alt  #343653;
+
+@define-color foreground   #D8D7E8;
+@define-color muted        #747899;
+
+@define-color accent       #987DB7;
+@define-color border       #45486B;
+
+@define-color error        #C2788E;

@@ -1,0 +1,29 @@
+return {
+  {
+    "tahayvr/matteblack.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "matteblack",
+    },
+  },
+
+  {
+    "LazyVim/LazyVim",
+    opts = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "matteblack",
+        callback = function()
+          vim.api.nvim_set_hl(0, "Visual", {
+            bg = "#8A4A3A",
+            fg = "#FAFAFA",
+          })
+        end,
+      })
+    end,
+  },
+}

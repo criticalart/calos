@@ -1,0 +1,13 @@
+/* Golden Gate — ReGreet */
+
+@define-color background   #121212;
+@define-color surface      #241F12;
+@define-color surface_alt  #76520E;
+
+@define-color foreground   #D9D9D9;
+@define-color muted        #76520E;
+
+@define-color accent       #C9A227;
+@define-color border       #B69121;
+
+@define-color error        #FAD643;

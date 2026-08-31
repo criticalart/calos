@@ -1,0 +1,13 @@
+/* Matte Black — ReGreet */
+
+@define-color background   #111111;
+@define-color surface      #1C1C1C;
+@define-color surface_alt  #292929;
+
+@define-color foreground   #EAEAEA;
+@define-color muted        #8A8A8D;
+
+@define-color accent       #D58A4A;
+@define-color border       #8A8A8D;
+
+@define-color error        #B91C1C;

@@ -1,0 +1,13 @@
+/* Red Desert — ReGreet */
+
+@define-color background   #181C1F;
+@define-color surface      #292526;
+@define-color surface_alt  #403234;
+
+@define-color foreground   #FDF9F8;
+@define-color muted        #B18D85;
+
+@define-color accent       #9F6769;
+@define-color border       #9F6769;
+
+@define-color error        #CD9575;

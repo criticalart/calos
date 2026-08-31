@@ -1,0 +1,13 @@
+/* Solarized Osaka — ReGreet */
+
+@define-color background   #001C2B;
+@define-color surface      #082A3A;
+@define-color surface_alt  #0D3546;
+
+@define-color foreground   #E4E9E8;
+@define-color muted        #6F8D98;
+
+@define-color accent       #2696B8;
+@define-color border       #315F70;
+
+@define-color error        #D65C5C;

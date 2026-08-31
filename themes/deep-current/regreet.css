@@ -1,0 +1,13 @@
+/* Deep Current — ReGreet */
+
+@define-color background   #111422;
+@define-color surface      #002C3D;
+@define-color surface_alt  #004D5F;
+
+@define-color foreground   #BCC1DC;
+@define-color muted        #424761;
+
+@define-color accent       #7CBDD2;
+@define-color border       #2A7083;
+
+@define-color error        #E35535;

@@ -1,0 +1,13 @@
+/* Gruvbox — ReGreet */
+
+@define-color background   #282828;
+@define-color surface      #32302F;
+@define-color surface_alt  #3C3836;
+
+@define-color foreground   #EBDBB2;
+@define-color muted        #A89984;
+
+@define-color accent       #9BAA5F;
+@define-color border       #A89984;
+
+@define-color error        #CC241D;

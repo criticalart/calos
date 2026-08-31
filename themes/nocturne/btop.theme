@@ -1,0 +1,98 @@
+# Theme: Calos Night
+# Harmonized indigo / lavender / dusty pink palette
+
+# Main bg
+theme[main_bg]="#11131F"
+
+# Main text color
+theme[main_fg]="#D8D7E8"
+
+# Title color for boxes
+theme[title]="#D8D7E8"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#8FA6D8"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#343653"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#E0DEED"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#747899"
+
+# Misc colors for processes box including mini cpu graphs,
+# details memory graph and details status text
+theme[proc_misc]="#8FA6D8"
+
+# Cpu box outline color
+theme[cpu_box]="#45486B"
+
+# Memory/disks box outline color
+theme[mem_box]="#45486B"
+
+# Net up/down box outline color
+theme[net_box]="#45486B"
+
+# Processes box outline color
+theme[proc_box]="#45486B"
+
+# Box divider line and small boxes line color
+theme[div_line]="#45486B"
+
+
+# ────────────────────────────────────────
+# Temperature
+# Cool blue → dusty rose → muted red
+# ────────────────────────────────────────
+
+theme[temp_start]="#6686C8"
+theme[temp_mid]="#A482A9"
+theme[temp_end]="#C2788E"
+
+
+# ────────────────────────────────────────
+# CPU
+# Blue → lavender → dusty pink
+# ────────────────────────────────────────
+
+theme[cpu_start]="#6686C8"
+theme[cpu_mid]="#8F82C7"
+theme[cpu_end]="#C080A8"
+
+
+# ────────────────────────────────────────
+# Memory / Disk meters
+# Blue → lavender → dusty pink
+# ────────────────────────────────────────
+
+theme[free_start]="#6686C8"
+theme[free_mid]="#8F82C7"
+theme[free_end]="#C080A8"
+
+theme[cached_start]="#6686C8"
+theme[cached_mid]="#8F82C7"
+theme[cached_end]="#C080A8"
+
+theme[available_start]="#6686C8"
+theme[available_mid]="#8F82C7"
+theme[available_end]="#C080A8"
+
+theme[used_start]="#6686C8"
+theme[used_mid]="#8F82C7"
+theme[used_end]="#C080A8"
+
+
+# ────────────────────────────────────────
+# Network
+# Blue → lavender → dusty pink
+# ────────────────────────────────────────
+
+theme[download_start]="#6686C8"
+theme[download_mid]="#8F82C7"
+theme[download_end]="#C080A8"
+
+theme[upload_start]="#6686C8"
+theme[upload_mid]="#8F82C7"
+theme[upload_end]="#C080A8"

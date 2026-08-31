@@ -1,0 +1,13 @@
+/* Muted Forest — ReGreet */
+
+@define-color background   #101C19;
+@define-color surface      #1C3026;
+@define-color surface_alt  #315B45;
+
+@define-color foreground   #D8DDD7;
+@define-color muted        #3F7650;
+
+@define-color accent       #5EAF63;
+@define-color border       #315B45;
+
+@define-color error        #9BA65A;

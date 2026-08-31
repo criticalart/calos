@@ -1,0 +1,118 @@
+# ────────────────────────────────────────────────────────────
+# btop theme - Graphite
+# ────────────────────────────────────────────────────────────
+
+# Main background
+theme[main_bg]="#111111"
+
+# Main text
+theme[main_fg]="#E6E6E6"
+
+# Title color for boxes
+theme[title]="#D0D0D0"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#F2F2F2"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#F2F2F2"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#8A4A3A"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#FAFAFA"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#707070"
+
+# Misc colors for processes box including mini cpu graphs,
+# details memory graph and details status text
+theme[proc_misc]="#A6A6A6"
+
+# CPU box outline color
+theme[cpu_box]="#4A4A4A"
+
+# Memory/disks box outline color
+theme[mem_box]="#4A4A4A"
+
+# Net up/down box outline color
+theme[net_box]="#4A4A4A"
+
+# Processes box outline color
+theme[proc_box]="#4A4A4A"
+
+# Box divider line and small boxes line color
+theme[div_line]="#303030"
+
+
+# ────────────────────────────────────────────────────────────
+# Temperature graph colors
+# ────────────────────────────────────────────────────────────
+
+theme[temp_start]="#303030"
+theme[temp_mid]="#707070"
+theme[temp_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# CPU graph colors
+# ────────────────────────────────────────────────────────────
+
+theme[cpu_start]="#303030"
+theme[cpu_mid]="#707070"
+theme[cpu_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# Mem/Disk free meter
+# ────────────────────────────────────────────────────────────
+
+theme[free_start]="#303030"
+theme[free_mid]="#707070"
+theme[free_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# Mem/Disk cached meter
+# ────────────────────────────────────────────────────────────
+
+theme[cached_start]="#303030"
+theme[cached_mid]="#707070"
+theme[cached_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# Mem/Disk available meter
+# ────────────────────────────────────────────────────────────
+
+theme[available_start]="#303030"
+theme[available_mid]="#707070"
+theme[available_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# Mem/Disk used meter
+# ────────────────────────────────────────────────────────────
+
+theme[used_start]="#303030"
+theme[used_mid]="#707070"
+theme[used_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# Download graph colors
+# ────────────────────────────────────────────────────────────
+
+theme[download_start]="#303030"
+theme[download_mid]="#707070"
+theme[download_end]="#D0D0D0"
+
+
+# ────────────────────────────────────────────────────────────
+# Upload graph colors
+# ────────────────────────────────────────────────────────────
+
+theme[upload_start]="#303030"
+theme[upload_mid]="#707070"
+theme[upload_end]="#D0D0D0"

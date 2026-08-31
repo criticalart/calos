@@ -1,0 +1,13 @@
+/* Neon Dusk — ReGreet */
+
+@define-color background   #2C2525;
+@define-color surface      #493536;
+@define-color surface_alt  #624A47;
+
+@define-color foreground   #E6D9DB;
+@define-color muted        #806B6B;
+
+@define-color accent       #DE8569;
+@define-color border       #6E5149;
+
+@define-color error        #DE8569;

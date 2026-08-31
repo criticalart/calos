@@ -1,0 +1,13 @@
+/* Sage Resilience — ReGreet */
+
+@define-color background   #1C2128;
+@define-color surface      #24303A;
+@define-color surface_alt  #4A5568;
+
+@define-color foreground   #E8E6E3;
+@define-color muted        #4A5568;
+
+@define-color accent       #6D8CAB;
+@define-color border       #7EA67C;
+
+@define-color error        #CD9575;
