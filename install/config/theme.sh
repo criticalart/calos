@@ -10,8 +10,8 @@ for f in ~/.local/share/calos/themes/*; do ln -nfs "$f" ~/.config/calos/themes/;
 
 # Set initial theme
 mkdir -p ~/.config/calos/current
-ln -snf ~/.config/calos/themes/vague ~/.config/calos/current/theme
-ln -snf ~/.config/calos/current/theme/backgrounds/1-nord.jpg ~/.config/calos/current/background
+ln -snf ~/.config/calos/themes/moonveil ~/.config/calos/current/theme
+ln -snf ~/.config/calos/current/theme/backgrounds/moon-loom.png ~/.config/calos/current/background
 
 # Set specific app links for current theme
 ln -snf ~/.config/calos/current/theme/neovim.lua ~/.config/nvim/lua/plugins/theme.lua

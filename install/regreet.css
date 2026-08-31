@@ -1,0 +1,192 @@
+@import url("file:///home/arthur/.config/calos/current/theme/regreet.css");
+
+
+/* ───────────────────────────────────────────────
+   Main window
+   ─────────────────────────────────────────────── */
+
+window {
+    background: transparent;
+}
+
+
+/* ───────────────────────────────────────────────
+   Main login container
+   ─────────────────────────────────────────────── */
+
+frame.background {
+    background: transparent;
+    border: none;
+}
+
+
+/* ───────────────────────────────────────────────
+   Login box
+   ─────────────────────────────────────────────── */
+
+frame.background > grid {
+    background: alpha(@background, 0.92);
+    border: 1px solid @border;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 8px 30px alpha(#000000, 0.35);
+}
+
+
+/* ───────────────────────────────────────────────
+   User selection
+   ─────────────────────────────────────────────── */
+
+frame.background > grid entry {
+    color: @foreground;
+    background: @surface;
+    border: 1px solid @border;
+    border-radius: 5px;
+}
+
+frame.background > grid entry:focus {
+    border-color: @accent;
+    box-shadow: none;
+}
+
+
+/* ───────────────────────────────────────────────
+   Password entry
+   ─────────────────────────────────────────────── */
+
+frame.background > grid entry.password {
+    color: @foreground;
+    background: @surface;
+    border: 1px solid @border;
+    border-radius: 5px;
+}
+
+frame.background > grid entry.password:focus {
+    border-color: @accent;
+    box-shadow: none;
+}
+
+
+/* ───────────────────────────────────────────────
+   Labels
+   ─────────────────────────────────────────────── */
+
+frame.background > grid label {
+    color: @foreground;
+}
+
+frame.background > grid label.dim-label {
+    color: @muted;
+}
+
+
+/* ───────────────────────────────────────────────
+   Session selector
+   ─────────────────────────────────────────────── */
+
+frame.background > grid combobox {
+    color: @foreground;
+    background: @surface;
+    border: 1px solid @border;
+    border-radius: 5px;
+}
+
+frame.background > grid combobox:hover {
+    border-color: @accent;
+}
+
+
+/* ───────────────────────────────────────────────
+   Suggested / Login button
+   ─────────────────────────────────────────────── */
+
+frame.background > grid button.suggested-action {
+    color: #FFFFFF;
+    background: @accent;
+    border: 1px solid @accent;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+frame.background > grid button.suggested-action:hover {
+    background: #2DA5C9;
+    border-color: #2DA5C9;
+}
+
+frame.background > grid button.suggested-action:active {
+    background: #1E7F9D;
+    border-color: #1E7F9D;
+}
+
+
+/* ───────────────────────────────────────────────
+   Other buttons
+   ─────────────────────────────────────────────── */
+
+frame.background > grid button:not(.suggested-action) {
+    color: @muted;
+    background: transparent;
+    border: 1px solid @border;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+frame.background > grid button:not(.suggested-action):hover {
+    color: @foreground;
+    background: alpha(@accent, 0.12);
+    border-color: @accent;
+}
+
+frame.background button.image-button.toggle {
+    opacity: 0;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+infobar {
+    opacity: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+/* ───────────────────────────────────────────────
+   Clock
+   ─────────────────────────────────────────────── */
+
+frame.background.top {
+    background: alpha(@background, 0.68);
+    color: @foreground;
+    border: 1px solid @border;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 5px 14px;
+}
+
+frame.background.top label {
+    color: @foreground;
+    font-family: "Inter";
+    font-size: 16px;
+}
+
+/* Misc fixes */
+
+grid > label:nth-child(4) {
+    opacity: 0;
+}
+
+grid > label:nth-child(2) {
+    opacity: 0;
+}
+
+grid > entry.password {
+    transform: translateX(-60px);
+}
+
+grid > combobox {
+    transform: translateX(-60px);
+}

@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm --needed \
   firefox \
   fzf \
   greetd \
-  greetd-tuigreet \
+  greetd-regreet \
   hyprland \
   hypridle \
   hyprland-guiutils \
@@ -46,6 +46,7 @@ sudo pacman -S --noconfirm --needed \
   ttf-cascadia-mono-nerd \
   ttf-font-awesome \
   uwsm \
+  viu \
   waybar-git \
   wiremix \
   wireplumber \

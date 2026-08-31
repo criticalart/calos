@@ -1,0 +1,44 @@
+skip_selection=true
+
+[background]
+# Path to the background image/video
+path = "/home/arthur/.config/calos/current/background"
+
+# How the background image covers the screen if the aspect ratio doesn't match
+# Available values: "Fill", "Contain", "Cover", "ScaleDown"
+# Refer to: https://docs.gtk.org/gtk4/enum.ContentFit.html
+# NOTE: This is ignored if ReGreet isn't compiled with GTK v4.8 support.
+fit = "Cover"
+
+[GTK]
+# Whether to use the dark theme
+
+[commands]
+reboot = [ "systemctl", "reboot" ]
+poweroff = [ "systemctl", "poweroff" ]
+
+[appearance]
+# The message that initially displays on startup
+greeting_msg = "Welcome to caliburnOS!"
+
+[widget.clock]
+# Clock date & time format
+# See https://docs.rs/chrono/latest/chrono/format/strftime/index.html
+format = "%a %H:%M"
+
+# Override system timezone (IANA Time Zone Database name, aka /etc/zoneinfo path)
+# Remove to use the system time zone.
+timezone = "America/Los_Angeles"
+
+# How often to update the text
+resolution = "500ms"
+
+# Ask GTK to make the label at least this wide. This helps keeps the parent element layout and width consistent.
+# Experiment with different widths, the interpretation of this value is entirely up to GTK.
+label_width = 150
+
+# Locale setting for the clock's date & time format and language
+# This controls the language and regional format used for time-related elements like AM/PM symbols,
+# month and weekday names, and number formatting.
+# Remove to use the system locale.
+locale = "en_US"

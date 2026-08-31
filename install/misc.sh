@@ -40,6 +40,9 @@ sudo systemctl enable greetd.service
 elephant service enable
 systemctl --user enable --now elephant.service
 sudo cp ~/.local/share/calos/install/greet-config.toml /etc/greetd/config.toml
+sudo cp ~/.local/share/calos/install/regreet.toml /etc/greetd/regreet.toml
+sudo cp ~/.local/share/calos/install/regreet.css /etc/greetd/regreet.css
+sudo cp ~/.local/share/calos/install/hyprgreet.lua /etc/greetd/hyprland.lua
 sudo cp ~/.local/share/calos/install/motd /etc/motd
 sudo cp ~/.local/share/calos/install/issue /etc/issue
 echo "$USER ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl start bootmsg.service" | sudo tee "/etc/sudoers.d/no-bootmsg-prompt"
@@ -47,7 +50,6 @@ sudo cp ~/.local/share/calos/install/bootmsg.service /etc/systemd/system/bootmsg
 sudo cp ~/.local/share/calos/install/bash_profile ~/.bash_profile
 mkdir -p ~/.local/share/fonts
 mkdir -p ~/.local/share/icons
-mkdir -p ~/Pictures/Wallpapers
 mv ~/.local/share/calos/install/defaultxcursor/ ~/.local/share/icons/BreezeX-Black
 mv ~/.local/share/calos/install/defaulthyprcursor/ ~/.local/share/icons/Default-Hyprcursor
 
