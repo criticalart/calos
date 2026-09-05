@@ -2,14 +2,16 @@
 
 STYLE="$HOME/.config/walker/themes/calos-default/style.css"
 
+SCREEN_WIDTH=$(hyprctl monitors -j | jq '.[] | select(.focused == true) | .width')
+SCREEN_HEIGHT=$(hyprctl monitors -j | jq '.[] | select(.focused == true) | .height')
+BOX_WIDTH=450
+BOX_HEIGHT=500
+MARGIN_LEFT=$(( (SCREEN_WIDTH - BOX_WIDTH) / 2 ))
+MARGIN_TOP=$(( (SCREEN_HEIGHT - BOX_HEIGHT) / 2 ))
+
 case "$1" in
 center)
-  # anchors
-  if hyprctl layers | grep -q 'waybar'; then
-    sed -i '/^\.box-wrapper {/,/^}/ s/margin: .*/margin: 47px 0 0 1462px;/' "$STYLE"
-  else
-    sed -i '/^\.box-wrapper {/,/^}/ s/margin: .*/margin: 4px 0 0 1462px;/' "$STYLE"
-  fi
+  sed -i "/^\.box-wrapper {/,/^}/ s/margin: .*/margin: ${MARGIN_TOP}px 0 0 ${MARGIN_LEFT}px;/" "$STYLE"
   walker
   ;;
 
