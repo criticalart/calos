@@ -29,8 +29,16 @@ hypr_exec() {
 
 for m in $(hyprctl monitors -j | jq -r '.[] | .name'); do
   hypr_focus_monitor "$m"
-  hypr_exec "alacritty --class=Screensaver --config-file ~/.config/alacritty/screensaver.toml -e calos-cmd-screensaver"
 
+  width=$(hyprctl monitors -j | jq -r --arg m "$m" '.[] | select(.name==$m) | .width')
+
+  if (( width < 2000 )); then
+    font_size=13
+  else
+    font_size=18
+  fi
+
+  hypr_exec "alacritty --class=Screensaver --config-file ~/.config/alacritty/screensaver.toml -o font.size=$font_size -e calos-cmd-screensaver"
 done
 
 hypr_focus_monitor "$focused"
