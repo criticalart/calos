@@ -124,6 +124,16 @@ hl.window_rule({
 
 hl.window_rule({
   match = {
+    class = "yazi-float"
+  },
+
+  center = true,
+  float = true,
+  size = "1000 600",
+})
+
+hl.window_rule({
+  match = {
     class = "packages"
   },
 
@@ -192,6 +202,7 @@ hl.window_rule({
   },
 
   float = true,
+  pin = true,
   border_size = 0,
   size = "600 500",
   move = { "100", ("monitor_h * 0.25") }
@@ -224,7 +235,7 @@ hl.window_rule({
 
   no_initial_focus = true,
   suppress_event = "activatefocus",
-  workspace = "3 silent",
+  workspace = "special:steamcord silent",
 })
 
 -- Miscellaneous Rules
@@ -308,7 +319,7 @@ hl.workspace_rule({
 })
 
 hl.workspace_rule({
-  workspace = "3",
+  workspace = "special:steamcord",
   layout = "master",
 })
 

@@ -56,9 +56,9 @@
     "previewMode": "live",
     "includeInactiveMonitorPreviews": true,
     "previewRecaptureDelayMs": 60,
-    "showSpecialWorkspaces": false,
-    "specialWorkspaces": [],
-    "specialWorkspaceColumns": 5,
+    "showSpecialWorkspaces": true,
+    "specialWorkspaces": ["steamcord","game","home"],
+    "specialWorkspaceColumns": 3,
     "emptyWorkspaceWallpaper": "",
     "specialEmptyWorkspaceWallpaper": "",
     "effects": {

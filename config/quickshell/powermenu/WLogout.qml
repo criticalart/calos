@@ -139,7 +139,7 @@ Variants {
                 GridLayout {
                     anchors.centerIn: parent
 
-                    columns: 3
+                    columns: 4
                     columnSpacing: 40
                     rowSpacing: 0
 

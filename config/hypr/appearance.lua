@@ -11,42 +11,47 @@
 
 hl.config({
 
-	decoration = {
-		rounding = 7,
-		rounding_power = 3,
+  general = {
+    gaps_in = 2,
+    gaps_out = 5,
+    border_size = 1,
+  },
 
-		active_opacity = 0.95,
-		inactive_opacity = 0.86,
-		fullscreen_opacity = 1,
+  decoration = {
+    rounding = 1,
+    rounding_power = 1,
 
-		blur = {
-			enabled = true,
-			new_optimizations = true,
-			size = 4,
-			passes = 3,
-			brightness = 1,
-			noise = 0.05,
-			contrast = 1.3,
-			vibrancy = 0.7,
-			vibrancy_darkness = 0.5,
-			popups = false,
-			popups_ignorealpha = 0.6,
-			input_methods = true,
-			input_methods_ignorealpha = 0.8,
-		},
+    active_opacity = 0.95,
+    inactive_opacity = 0.86,
+    fullscreen_opacity = 1,
 
-		shadow = {
-			enabled = true,
-			range = 16,
-			offset = "0 4",
-			render_power = 4,
-			color = "0xee1a1a1a",
-		},
+    blur = {
+      enabled = true,
+      new_optimizations = true,
+      size = 4,
+      passes = 3,
+      brightness = 1,
+      noise = 0.05,
+      contrast = 1.3,
+      vibrancy = 0.7,
+      vibrancy_darkness = 0.5,
+      popups = false,
+      popups_ignorealpha = 0.6,
+      input_methods = true,
+      input_methods_ignorealpha = 0.8,
+    },
 
-		dim_inactive = true,
-		dim_strength = 0.05,
-		dim_special = 0.07,
-	},
+    shadow = {
+      enabled = true,
+      range = 16,
+      render_power = 4,
+      color = "0xee1a1a1a",
+    },
+
+    dim_inactive = true,
+    dim_strength = 0.05,
+    dim_special = 0.07,
+  },
 })
 
 -- Bezier Curves
@@ -78,11 +83,11 @@ hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 1.79, bezier = "al
 hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "almostlinear" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4.6, bezier = "workspaceslide", style = "slidefade 25%" })
 hl.animation({
-	leaf = "specialWorkspace",
-	enabled = true,
-	speed = 9,
-	spring = "boing",
-	style = "slidefadevert 50%",
+  leaf = "specialWorkspace",
+  enabled = true,
+  speed = 4.6,
+  bezier = "specialworkswitch",
+  style = "slide top 80%",
 })
 hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "standard" })
 hl.animation({ leaf = "fadeDim", enabled = true, speed = 6, bezier = "standard" })

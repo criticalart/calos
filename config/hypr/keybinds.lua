@@ -17,12 +17,12 @@ local browser = "uwsm-app -- firefox"
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("calos-walker-launch center"))
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal .. " --working-directory=$(calos-cmd-terminal-cwd)"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd(terminal .. " --class Neovim -e nvim"))
-hl.bind("SUPER + S", hl.dsp.exec_cmd(terminal .. " --class 'BTOP++ System Monitor' -e btop"))
-hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi -e yazi"))
+hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("steamcord")) -- equivalent to the "home page"
+hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi-float -e yazi"))
 hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
 hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
-hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- vesktop"))
+hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("steamcord")) -- equivalent to the "home page"
 
 ---------------------------
 ---- SYSTEM MANAGEMENT ----
@@ -45,7 +45,7 @@ hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home"))        -- equ
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
 
-hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-launch-screensaver"))
+hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-cmd-lockscreen"))
 hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("swayosd-client --caps-lock"))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu")) -- will close all windows on current workspace
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"))

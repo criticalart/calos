@@ -71,16 +71,51 @@ Item {
     }
     property bool useEventPreviewRefresh: previewsEnabled && previewMode === "event"
 
+    readonly property var monitorSpecialWorkspaceNames: {
+        const names = [];
+        for (const ws of (allWorkspaces ?? [])) {
+            const name = `${ws?.name ?? ""}`;
+            if (!name.startsWith("special:"))
+                continue;
+            if (`${ws?.monitor ?? ""}` !== `${root.monitor?.name ?? ""}`)
+                continue;
+            names.push(name.slice(8));
+        }
+        return names;
+    }
+
+    readonly property var specialWorkspaceNamesFromWindows: {
+        const names = [];
+        for (const addr in windowByAddress) {
+            const win = windowByAddress[addr];
+            if ((win?.monitor ?? -1) !== (root.monitor?.id ?? -1))
+                continue;
+            const wsName = `${win?.workspace?.name ?? ""}`;
+            if (!wsName.startsWith("special:"))
+                continue;
+            names.push(wsName.slice(8));
+        }
+        return names;
+    }
+
     readonly property var visibleSpecialWorkspaces: {
         if (!showSpecialWorkspaces)
             return [];
 
         const out = [];
-        for (const configured of configuredSpecialWorkspaces ?? []) {
-            const cleaned = `${configured ?? ""}`.trim();
-            if (cleaned.length > 0 && !out.includes(cleaned))
-                out.push(cleaned);
-        }
+        const pushUnique = (value) => {
+            const cleaned = `${value ?? ""}`.trim();
+            if (cleaned.length === 0 || out.includes(cleaned))
+                return;
+            out.push(cleaned);
+        };
+
+        for (const configured of configuredSpecialWorkspaces ?? [])
+            pushUnique(configured);
+        for (const name of monitorSpecialWorkspaceNames)
+            pushUnique(name);
+        for (const name of specialWorkspaceNamesFromWindows)
+            pushUnique(name);
 
         return out;
     }
@@ -88,12 +123,13 @@ Item {
     readonly property bool hasSpecialWorkspaceSection: visibleSpecialWorkspaces.length > 0
     readonly property bool hasEmptyWorkspaceWallpaper: `${emptyWorkspaceWallpaperPath ?? ""}`.trim().length > 0
     readonly property bool hasSpecialEmptyWorkspaceWallpaper: `${specialEmptyWorkspaceWallpaperPath ?? ""}`.trim().length > 0
+    readonly property string createSpecialWorkspaceTarget: "__create_special_workspace__"
     readonly property real specialWorkspaceTileHeight: root.workspaceImplicitHeight
     readonly property real specialStripGap: workspaceSpacing * 1.8
     readonly property real specialStripPadding: Math.max(8, 12 * root.scale)
     readonly property real specialStripTitleHeight: Math.max(14, Appearance.font.pixelSize.small * root.scale)
     readonly property real specialStripTitleGap: Math.max(6, 8 * root.scale)
-    readonly property int totalSpecialTiles: visibleSpecialWorkspaces.length
+    readonly property int totalSpecialTiles: visibleSpecialWorkspaces.length + 1
     readonly property real specialSectionWidth: workspaceColumnLayout.implicitWidth
     readonly property real specialGridInnerWidth: Math.max(0, root.specialSectionWidth - root.specialStripPadding * 2)
     readonly property int effectiveSpecialColumns: Math.max(1, Math.min(root.specialWorkspaceColumns, root.totalSpecialTiles))
@@ -206,6 +242,22 @@ Item {
         if (raw.length === 0)
             return "Special";
         return raw.replace(/[-_]+/g, " ");
+    }
+
+    function nextSpecialWorkspaceName() {
+        const taken = new Set();
+        for (const name of visibleSpecialWorkspaces)
+            taken.add(`${name ?? ""}`.trim().toLowerCase());
+
+        const base = "stash";
+        if (!taken.has(base))
+            return base;
+
+        let index = 2;
+        while (taken.has(`${base}-${index}`))
+            index += 1;
+
+        return `${base}-${index}`;
     }
 
     function wallpaperSource(path) {
@@ -778,7 +830,19 @@ Item {
                                                     root.draggingFromWorkspace = -1
                                                     root.draggingTargetWorkspace = -1
                                                     root.draggingTargetSpecialWorkspace = ""
-                                                    if (targetSpecialWorkspace && targetSpecialWorkspace !== specialWorkspaceTile.specialName) {
+                                                    if (targetSpecialWorkspace === root.createSpecialWorkspaceTarget) {
+                                                        const createdName = root.nextSpecialWorkspaceName()
+                                                        //INFO: From special TO NEW special
+                                                        if (Hyprland.usingLua) {
+                                                            Hyprland.dispatch(`hl.dsp.window.move({workspace = 'special:${createdName}', follow = false, window = 'address:${specialWindow.windowData?.address}'})`);
+                                                        } else {
+                                                            Hyprland.dispatch(`movetoworkspacesilent special:${createdName}, address:${specialWindow.windowData?.address}`)
+                                                        }
+                                                        specialWindow.returnToHomeParent()
+                                                        specialWindow.x = specialWindow.initX
+                                                        specialWindow.y = specialWindow.initY
+                                                    }
+                                                    else if (targetSpecialWorkspace && targetSpecialWorkspace !== specialWorkspaceTile.specialName) {
                                                         // Idk
                                                         if (Hyprland.usingLua) {
                                                             Hyprland.dispatch(`hl.dsp.window.move({workspace = 'special:${targetSpecialWorkspace}', follow = false, window = 'address:${specialWindow.windowData?.address}'})`);
@@ -838,7 +902,101 @@ Item {
                                 }
                             }
                         }
+                        Rectangle {
+                            id: createSpecialWorkspaceTile
+                            property bool showWallpaper: root.hasSpecialEmptyWorkspaceWallpaper
+                            implicitWidth: root.specialWorkspaceTileWidth
+                            implicitHeight: root.specialWorkspaceTileHeight
+                            radius: Appearance.rounding.screenRounding * root.scale
+                            color: showWallpaper ? "transparent" : ColorUtils.applyAlpha(
+                                root.glassMode
+                                    ? ColorUtils.mix(Appearance.colors.colSecondaryContainer, Appearance.colors.colLayer1, 0.58)
+                                    : ColorUtils.mix(Appearance.colors.colLayer2, Appearance.colors.colLayer1, 0.55),
+                                root.draggingTargetSpecialWorkspace === root.createSpecialWorkspaceTarget ? 0.90 : root.effectiveWorkspaceOpacity
+                            )
+                            border.width: 1
+                            border.color: root.draggingTargetSpecialWorkspace === root.createSpecialWorkspaceTarget
+                                ? ColorUtils.applyAlpha(root.activeBorderColor, 0.96)
+                                : ColorUtils.applyAlpha(Appearance.colors.colSecondary, 0.46)
 
+                            Image {
+                                visible: createSpecialWorkspaceTile.showWallpaper
+                                anchors.fill: parent
+                                source: root.wallpaperSource(root.specialEmptyWorkspaceWallpaperPath)
+                                fillMode: Image.PreserveAspectCrop
+                                asynchronous: true
+                                cache: true
+                                smooth: true
+                                mipmap: true
+                            }
+
+                            Rectangle {
+                                visible: createSpecialWorkspaceTile.showWallpaper
+                                anchors.fill: parent
+                                radius: parent.radius
+                                color: ColorUtils.applyAlpha(
+                                    root.glassMode
+                                        ? ColorUtils.mix(Appearance.colors.colSecondaryContainer, Appearance.colors.colLayer0, 0.40)
+                                        : ColorUtils.mix(Appearance.colors.colLayer2, Appearance.colors.colLayer1, 0.55),
+                                    root.draggingTargetSpecialWorkspace === root.createSpecialWorkspaceTarget
+                                        ? Math.min(0.28, root.emptyWorkspaceWallpaperOverlayOpacity + 0.08)
+                                        : root.emptyWorkspaceWallpaperOverlayOpacity
+                                )
+                            }
+
+                            Rectangle {
+                                anchors.fill: parent
+                                anchors.margins: 1
+                                radius: Math.max(parent.radius - 1, 0)
+                                color: "transparent"
+                                border.width: 1
+                                border.color: ColorUtils.applyAlpha("#FFFFFF", root.glassMode ? 0.12 : 0.08)
+                            }
+
+                            Column {
+                                anchors.centerIn: parent
+                                spacing: 0
+
+                                StyledText {
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    visible: !createSpecialWorkspaceTile.showWallpaper
+                                    text: root.draggingTargetSpecialWorkspace === root.createSpecialWorkspaceTarget ? "Release" : "+"
+                                    font.family: Appearance.font.family.expressive
+                                    font.pixelSize: root.draggingTargetSpecialWorkspace === root.createSpecialWorkspaceTarget
+                                        ? Appearance.font.pixelSize.larger * root.scale
+                                        : Appearance.font.pixelSize.huge * 1.25 * root.scale
+                                    font.weight: Font.DemiBold
+                                    color: ColorUtils.applyAlpha(Appearance.colors.colOnLayer1, 0.92)
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                acceptedButtons: Qt.LeftButton
+                                onClicked: {
+                                    const createdName = root.nextSpecialWorkspaceName();
+                                    GlobalStates.overviewOpen = false;
+                                    if (Hyprland.usingLua) {
+                                        Hyprland.dispatch(`hl.dsp.workspace.toggle_special('${createdName}')`);
+                                    } else {
+                                        Hyprland.dispatch(`togglespecialworkspace ${createdName}`);
+                                    }
+                                }
+                            }
+
+                            DropArea {
+                                anchors.fill: parent
+                                onEntered: {
+                                    root.draggingTargetWorkspace = -1;
+                                    root.draggingTargetSpecialWorkspace = root.createSpecialWorkspaceTarget;
+                                }
+                                onExited: {
+                                    if (root.draggingTargetSpecialWorkspace === root.createSpecialWorkspaceTarget)
+                                        root.draggingTargetSpecialWorkspace = "";
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -961,7 +1119,17 @@ Item {
                             root.draggingFromWorkspace = -1
                             root.draggingTargetWorkspace = -1
                             root.draggingTargetSpecialWorkspace = ""
-                            if (targetSpecialWorkspace && targetSpecialWorkspace !== root.specialWorkspaceName(windowData)) {
+                            if (targetSpecialWorkspace === root.createSpecialWorkspaceTarget) {
+                                const createdName = root.nextSpecialWorkspaceName()
+                                //INFO: From normal TO special
+                                if (Hyprland.usingLua) {
+                                    Hyprland.dispatch(`hl.dsp.window.move({workspace = 'special:${createdName}', follow = false, window = 'address:${window.windowData?.address}'})`);
+                                } else {
+                                    Hyprland.dispatch(`movetoworkspacesilent special:${createdName}, address:${window.windowData?.address}`)
+                                }
+                                updateWindowPosition.restart()
+                            }
+                            else if (targetSpecialWorkspace && targetSpecialWorkspace !== root.specialWorkspaceName(windowData)) {
                                 // Idk
                                 if (Hyprland.usingLua) {
                                     Hyprland.dispatch(`hl.dsp.window.move({workspace = 'special:${targetSpecialWorkspace}', follow = false, window = 'address:${window.windowData?.address}'})`);

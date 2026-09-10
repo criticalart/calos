@@ -9,7 +9,13 @@
 
 -- Default gaming workspace key, default is 'G' (for game get it)
 
-hl.bind("SUPER + G", hl.dsp.exec_cmd("calos-toggle-game"))
+hl.bind("SUPER + G", function()
+  local windows = hl.get_workspace_windows("special:game")
+
+  if windows and #windows > 0 then
+    hl.exec_cmd("calos-toggle-game")
+  end
+end)
 
 -- Add your launchers/games to the options below as needed; defaults should cover most things probably maybe
 
@@ -22,7 +28,7 @@ hl.window_rule({
   float = true,
   center = true,
   persistent_size = true,
-  workspace = 3,
+  workspace = "special:steamcord",
 })
 
 hl.window_rule({
@@ -45,7 +51,7 @@ hl.window_rule({
   },
 
   float = false,
-  workspace = 3,
+  workspace = "special:steamcord",
 })
 
 -- Steam specific options
@@ -58,7 +64,7 @@ hl.window_rule({
 
   suppress_event = "activatefocus",
   no_initial_focus = true,
-  workspace = "3 silent", -- change this to whatever workspace you want your steam to run, defaults to 3 in autostart as well
+  workspace = "special:steamcord silent", -- change this to whatever workspace you want your steam to run, defaults to 3 in autostart as well
 })
 
 hl.window_rule({
@@ -117,7 +123,8 @@ hl.define_submap("gaming", function()
   hl.bind("SUPER + up", hl.dsp.focus({ direction = "up" }))
   hl.bind("SUPER + down", hl.dsp.focus({ direction = "down" }))
 
-  hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-menu"), { release = true })
+  hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
+  hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
   hl.bind("SUPER + SHIFT + LEFT", hl.dsp.window.swap({ direction = "l" }))
   hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.window.swap({ direction = "r" }))
   hl.bind("SUPER + SHIFT + UP", hl.dsp.window.swap({ direction = "u" }))
