@@ -109,8 +109,8 @@ Many, many, many (autistic) hours were spent tweaking each theme caliburnOS ship
   <br>
   <i>Glorious Window Management</i>
   <br><br>
-
-  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/24e09b2a-c260-4ecc-898b-84b783278f14" />
+  
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ddd5bd24-b951-4663-8de1-d11a4e1fac7b" />
   <br>
   <i>ok maybe a bit too much quickshell</i>
 </p>
