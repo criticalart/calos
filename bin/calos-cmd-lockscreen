@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pkill -SIGUSR1 waybar
+qs -c lockscreen
+wait
+pkill -SIGUSR1 waybar

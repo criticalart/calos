@@ -8,5 +8,5 @@ sleep 0.4
 pkill -SIGUSR1 waybar
 awww clear-cache
 sed -i -E 's/^.*("start_hidden": true,)/  \1/' ~/.config/waybar/config.jsonc
-ffplay -autoexit -nodisp -volume 20 ~/.config/calos/branding/shutdown.mp3
+pw-play --volume 0.2 ~/.config/calos/branding/shutdown.mp3
 systemctl reboot --firmware-setup

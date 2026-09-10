@@ -12,6 +12,6 @@ pkill -SIGUSR2 waybar
 sleep 0.1
 sed -i -E 's/^.*("start_hidden": true,)/  \/\/ \1/' ~/.config/waybar/config.jsonc
 sleep 0.1
-ffplay -autoexit -nodisp -volume 60 ~/.config/calos/branding/start.mp3 &
+pw-play --volume 0.6 ~/.config/calos/branding/start.mp3 &
 sleep 0.8
 pkill -SIGUSR1 waybar
