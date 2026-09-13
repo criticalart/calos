@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! pgrep -f "$TERMINAL --class=Wiremix" >/dev/null; then
+  alacritty --class=Wiremix -e wiremix
+else
+  pkill -f "$TERMINAL --class=Wiremix" 2>/dev/null
+fi

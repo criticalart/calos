@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! pgrep -f "$TERMINAL --class=Impala" >/dev/null; then
+  alacritty --class=Impala -e impala
+else
+  pkill -f "$TERMINAL --class=Impala" 2>/dev/null
+fi

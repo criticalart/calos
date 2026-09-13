@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! pgrep -f "$TERMINAL --class=Bluetui" >/dev/null; then
+  alacritty --class=Bluetui -e bluetui
+else
+  pkill -f "$TERMINAL --class=Bluetui" 2>/dev/null
+fi

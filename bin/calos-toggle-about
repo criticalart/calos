@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! pgrep -f "$TERMINAL --class=About" >/dev/null; then
+  alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh
+else
+  pkill -f "$TERMINAL --class=About" 2>/dev/null
+fi
