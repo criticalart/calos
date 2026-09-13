@@ -19,4 +19,4 @@ USAGE=$(awk -v used="$USED" -v total="$TOTAL" \
   'BEGIN {printf "%.1f", (used / total) * 100}')
 
 printf '%s\n' \
-  "{\"text\":\"󰘚 ${USED_GIB}GiB\",\"tooltip\":\"󰘚 Memory\\r│─ Used       →  ${USED_GIB} / ${TOTAL_GIB} GiB\\r├─ Usage      →  ${USAGE}%\\r├─ Available  →  ${AVAILABLE_GIB} GiB\\r└─ Cached     →  ${CACHED_GIB} GiB\"}"
+  "{\"text\":\"󰘚 ${USED_GIB}GiB\",\"tooltip\":\"󰘚 GSKILL Flare X5 64GB DDR5\\r├─ Used       →  ${USED_GIB} / ${TOTAL_GIB} GiB\\r├─ Usage      →  ${USAGE}%\\r├─ Available  →  ${AVAILABLE_GIB} GiB\\r└─ Cached     →  ${CACHED_GIB} GiB\"}"

@@ -1,3 +1,27 @@
+/*                                                                                                                                       
+                                                                              bbbbbbbb                                                 
+                                                                              b::::::b                                                 
+                                                                              b::::::b                                                 
+                                                                              b::::::b                                                 
+                                                                               b:::::b                                                 
+wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb:::::bbbbbbbbb      aaaaaaaaaaaaa  rrrrr   rrrrrrrrr   
+ w:::::w         w:::::w         w:::::w a::::::::::::ay:::::y         y:::::y b::::::::::::::bb    a::::::::::::a r::::rrr:::::::::r  
+  w:::::w       w:::::::w       w:::::w  aaaaaaaaa:::::ay:::::y       y:::::y  b::::::::::::::::b   aaaaaaaaa:::::ar:::::::::::::::::r 
+   w:::::w     w:::::::::w     w:::::w            a::::a y:::::y     y:::::y   b:::::bbbbb:::::::b           a::::arr::::::rrrrr::::::r
+    w:::::w   w:::::w:::::w   w:::::w      aaaaaaa:::::a  y:::::y   y:::::y    b:::::b    b::::::b    aaaaaaa:::::a r:::::r     r:::::r
+     w:::::w w:::::w w:::::w w:::::w     aa::::::::::::a   y:::::y y:::::y     b:::::b     b:::::b  aa::::::::::::a r:::::r     rrrrrrr
+      w:::::w:::::w   w:::::w:::::w     a::::aaaa::::::a    y:::::y:::::y      b:::::b     b:::::b a::::aaaa::::::a r:::::r            
+       w:::::::::w     w:::::::::w     a::::a    a:::::a     y:::::::::y       b:::::b     b:::::ba::::a    a:::::a r:::::r            
+        w:::::::w       w:::::::w      a::::a    a:::::a      y:::::::y        b:::::bbbbbb::::::ba::::a    a:::::a r:::::r            
+         w:::::w         w:::::w       a:::::aaaa::::::a       y:::::y         b::::::::::::::::b a:::::aaaa::::::a r:::::r            
+          w:::w           w:::w         a::::::::::aa:::a     y:::::y          b:::::::::::::::b   a::::::::::aa:::ar:::::r            
+           www             www           aaaaaaaaaa  aaaa    y:::::y           bbbbbbbbbbbbbbbb     aaaaaaaaaa  aaaarrrrrrr            
+                                                            y:::::y                                                                    
+                                                           y:::::y                                                                     
+                                                          y:::::y                                                                      
+                                                         y:::::y                                                                       
+                                                        yyyyyyy*/
+
 {
 	/*------------
 		layout
@@ -37,6 +61,7 @@
     "custom/bluelight",
     "custom/screenrecording-indicator",
     "network",
+    "custom/recovery-usb",
 		"bluetooth",
 		"custom/system_update",
     "custom/diskdiv",
@@ -89,7 +114,7 @@
     "max-length": 2,
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "alacritty --class=Bluetui -e bluetui"
+    "on-click": "calos-toggle-bluetui"
   },
 
 "custom/clock#time": {
@@ -98,7 +123,7 @@
     "format": "{}",
     "min-length": 9,
     "max-length": 9,
-    "on-click": "qs -c clock",
+    "on-click": "calos-cmd-lockscreen",
     "tooltip": true
 },
 
@@ -157,7 +182,7 @@
 },
 
 "custom/disk": {
-    "interval": 600,
+    "interval": 60,
     "exec": "~/.config/waybar/scripts/disk.sh",
     "return-type": "json",
     "format": "{}",
@@ -191,10 +216,10 @@
 		// "on-click-middle":
 		// "on-click-right":
 		"player-icons": {
-			"default": "󰐊"
+			"default": ""
 		},
 		"status-icons": {
-			"paused": "󰏤"
+			"paused": ""
 		},
 		// "dynamic-order":
 		// "dynamic-len":
@@ -242,12 +267,12 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 10,
     "spacing": 1,
-    "on-click": "alacritty --class=Impala -e impala"
+    "on-click": "calos-toggle-impala"
   },
 
   "pulseaudio": {
     "format": "{icon}  {volume}%",
-    "on-click": "alacritty --class=Wiremix -e wiremix",
+    "on-click": "calos-toggle-wiremix",
     "on-click-right": "pamixer -t",
     "tooltip": false,
     "tooltip-format": "Playing at {volume}%",
@@ -281,7 +306,9 @@
 			"firefox": "󰈹  Mozilla Firefox",
 			"btop": "  BTOP++ System Information",
       "yazi": "  Yazi",
+      "yazi-float": "  Yazi",
       "file_chooser": "  Yazi",
+      "usb": "",
       "System-Update": "󰚰  System Update",
       "packages": "󱧘  Installed Packages",
       "About": "󰖷  System Information",
@@ -324,36 +351,6 @@
 		"swap-icon-label": false
 	},
 
-	/*"hyprland/workspaces": {
-		// "active-only":
-		// "hide-active":
-		// "all-outputs":
-    "on-scroll-up": "hyprctl dispatch workspace r-1",
-    "on-scroll-down": "hyprctl dispatch workspace r+1",
-		"format": "{icon}",
-		"format-icons": {
-    //  "2": "\ue795",
-     // "3": "\uf1b6",
-		  "active": "",
-			"default": ""
-		},
-		"persistent-workspaces": {
-			"*": 5
-		},
-		// "persistent-only":
-		// "show-special": true,
-		// "special-visible-only":
-		// "sort-by":
-		// "window-rewrite":
-		// "window-rewrite-default":
-		// "format-window-separator":
-		// "move-to-monitor":
-		// "ignore-workspaces":
-		// "on-scroll-up":
-		// "on-scroll-down":
-		"cursor": true
-	},*/
-
 "hyprland/workspaces": {
 		// "active-only":
 		// "hide-active":
@@ -369,6 +366,7 @@
       "5": "V",
       "home": "",
       "game":"󰊴",
+      "steamcord":"",
 		},
 		"persistent-workspaces": {
 			"*": 5
@@ -491,7 +489,7 @@
       "custom/power_menu",
 			"custom/version",
       "custom/g502-battery",
-      "custom/overlay",
+      "custom/steamcord",
       "custom/home",
 		],
 		"drawer": {
@@ -515,23 +513,32 @@
 
 	"custom/hypr_menu": {
 		"format": "󰍜",
-		"tooltip": false,
+		"tooltip": true,
+    "tooltip-format": "Click to Open Overview",
     "min-length": 2,
 		"max-length": 2,
-    "on-click": "calos-toggle-home"
+    "on-click": "qs ipc -c overview call overview toggle"
+	},
+
+	"custom/steamcord": {
+		"format": "",
+		"tooltip": false,
+    "min-length": 4,
+		"max-length": 4,
+    "on-click": "calos-toggle-steamcord"
 	},
 
   	"custom/version": {
 		"format": "  ",
-		"on-click": "alacritty --class=About -e ~/.config/waybar/scripts/sysinfo.sh",
+		"on-click": "calos-toggle-about",
 		"tooltip": false,
     "min-length": 4,
     "max-length": 4,
 	},
 
   	"custom/overlay": {
-		"format": " 󱂬 ",
-		"on-click": "qs ipc -c overview call overview toggle",
+		"format": "  ",
+		"on-click": "calos-cmd-lockscreen",
 		"tooltip": false,
     "min-length": 4,
     "max-length": 4,
@@ -571,6 +578,14 @@
    "return-type": "json"
   },
 
+"custom/recovery-usb": {
+    "on-click": "alacritty --class=usb -e ~/.config/waybar/scripts/recovery-usb-unmount.sh",
+    "exec": "~/.config/waybar/scripts/recovery-usb.sh",
+    "signal": 13,
+    "min-length": 2,
+    "max-length": 2,
+    "return-type": "json"
+},
     "custom/bluelight": {
     "on-click": "calos-toggle-nightlight",
     "exec": "~/.config/waybar/scripts/bluelight.sh",
@@ -581,8 +596,8 @@
   },
 
     "custom/gamemode": {
-    "on-click": "calos-toggle-game",
-    "on-click-right": "calos-toggle-gamemode",
+    "on-click": "calos-toggle-gamemode",
+    "on-click-right": "calos-toggle-game",
     "exec": "~/.config/waybar/scripts/submap.sh",
     "signal": 10,
     "min-length": 2,

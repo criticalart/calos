@@ -47,6 +47,12 @@ background-color: @temperature;
     background-color: @temperature;
 }
 
+#custom-recovery-usb label {
+    transition: all .3s ease;
+    padding: 0 12px;
+    background-color: @temperature;
+}
+
 #custom-bluelight label {
     transition: all .3s ease;
     padding: 0 12px;

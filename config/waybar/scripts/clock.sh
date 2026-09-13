@@ -18,7 +18,7 @@ while true; do
   CHICAGO=$(TZ="America/Chicago" date +"%I:%M %p")
 
   printf '%s\n' \
-    "{\"text\":\"${ICON} ${BAR_TIME}\",\"tooltip\":\"󰥔 World Clock\\r│─ Local (NV)   →  ${LOCAL}\\r│─ New York     →  ${NEW_YORK}\\r├─ Chicago      →  ${CHICAGO}\\r├─ Denver       →  ${DENVER}\\r└─ Los Angeles  →  ${LOS_ANGELES}\"}"
+    "{\"text\":\"${ICON} ${BAR_TIME}\",\"tooltip\":\"󰥔 World Clock\\r├─ Local (NV)   →  ${LOCAL}\\r├─ New York     →  ${NEW_YORK}\\r├─ Chicago      →  ${CHICAGO}\\r├─ Denver       →  ${DENVER}\\r└─ Los Angeles  →  ${LOS_ANGELES}\"}"
 
   # Sleep until the next minute
   sleep $((60 - $(date +%S)))

@@ -3,10 +3,6 @@
 MODEL="Ryzen 7 9800X3D"
 STATE="${XDG_RUNTIME_DIR}/waybar-cpu-stat"
 
-# ───────────────────────────────────────────────
-# CPU usage
-# ───────────────────────────────────────────────
-
 read -r _ user nice system idle iowait irq softirq steal _ </proc/stat
 
 total=$((user + nice + system + idle + iowait + irq + softirq + steal))
@@ -19,38 +15,34 @@ if [[ -r "$STATE" ]]; then
   idle_diff=$((idle_total - prev_idle))
 
   if ((total_diff > 0)); then
-    usage=$((100 * (total_diff - idle_diff) / total_diff))
+    usage=$(awk -v total="$total_diff" -v idle="$idle_diff" '
+  BEGIN {
+    value = 100 * (total - idle) / total
+    printf "%4.1f", value
+  }
+')
   else
-    usage=0
+    usage="0.0"
   fi
 else
-  usage=0
+  usage="0.0"
 fi
 
 printf '%s %s\n' "$total" "$idle_total" >"$STATE"
 
-# ───────────────────────────────────────────────
-# CPU topology
-# ───────────────────────────────────────────────
-
 cores=$(grep -m1 '^cpu cores' /proc/cpuinfo | cut -d: -f2)
 threads=$(grep -c '^processor' /proc/cpuinfo)
 
-# ───────────────────────────────────────────────
-# CPU frequency
-# ───────────────────────────────────────────────
-
-freq=$(awk '/^cpu MHz/ { sum += $4; count++ }
-    END {
-        if (count)
-            printf "%.1f", sum / count / 1000
-        else
-            print "0.0"
-    }' /proc/cpuinfo)
-
-# ───────────────────────────────────────────────
-# CPU temperature
-# ───────────────────────────────────────────────
+freq=$(awk '/^cpu MHz/ {
+    sum += $4
+    count++
+}
+END {
+    if (count)
+        printf "%.1f", sum / count / 1000
+    else
+        print "0.0"
+}' /proc/cpuinfo)
 
 temp="N/A"
 
@@ -81,7 +73,7 @@ cache=$(grep -m1 '^cache size' /proc/cpuinfo | cut -d: -f2- | xargs)
 # Waybar output
 # ───────────────────────────────────────────────
 
-printf '{"text":" %3s%%","tooltip":"󰘚 %s\\r│─ Cores  → %sC / %sT\\r├─ Clock  →  %s GHz\\r├─ Cache  →  %s\\r└─ Temp   →  %s°C"}\n' \
+printf '{"text":" %s%%","tooltip":"󰘚 %s\\r├─ Cores  → %sC / %sT\\r├─ Clock  →  %s GHz\\r├─ Cache  →  %s\\r└─ Temp   →  %s°C"}\n' \
   "$usage" \
   "$MODEL" \
   "$cores" \

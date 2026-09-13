@@ -27,4 +27,4 @@ NVME=$(get_temp nvme temp1_input)
 SYSTEM=$(get_temp prom21_xhci temp1_input)
 
 printf '%s\n' \
-  "{\"text\":\"  ${GPU}°C\",\"tooltip\":\" System Temperature\\r├─ CPU      →  ${CPU}°C\\r├─ GPU      →  ${GPU}°C\\r├─ Hotspot  →  ${GPU_HOT}°C\\r├─ NVMe     →  ${NVME}°C\\r└─ System   →  ${SYSTEM}°C\"}"
+  "{\"text\":\"  ${GPU}°C\",\"tooltip\":\" System Temperature\\r├─ CPU      →  ${CPU}°C\\r├─ GPU      →  ${GPU}°C\\r│ └─ Core   →  ${GPU_HOT}°C\\r├─ NVMe     →  ${NVME}°C\\r└─ System   →  ${SYSTEM}°C\"}"

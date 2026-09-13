@@ -10,7 +10,7 @@ FREE=$(df -B1 / | awk 'NR==2 {print $4}')
 PERCENT=$(df -P / | awk 'NR==2 {print $5}')
 
 # ───────────────────────────────────────────────
-# /dev/sdb3
+# /dev/sda1
 # ───────────────────────────────────────────────
 
 SDB3_TOTAL=$(df -B1 /dev/sda1 | awk 'NR==2 {print $2}')
@@ -37,14 +37,34 @@ TOTAL_GB=$(gb "$TOTAL")
 USED_GB=$(gb "$USED")
 FREE_GB=$(gb "$FREE")
 
-# /dev/sdb3
+# /dev/sda1
 SDB3_TOTAL_GB=$(gb "$SDB3_TOTAL")
 SDB3_USED_GB=$(gb "$SDB3_USED")
 SDB3_FREE_GB=$(gb "$SDB3_FREE")
+
+# ───────────────────────────────────────────────
+# Recovery USB
+# ───────────────────────────────────────────────
+
+USB_INFO="󱊟 Recovery USB\\r└─ Status → Unmounted"
+
+USB_MOUNT=$(findmnt -n -o TARGET -S /dev/disk/by-label/PERSONAL 2>/dev/null)
+
+if [[ -n "$USB_MOUNT" ]]; then
+  USB_TOTAL=$(df -B1 "$USB_MOUNT" | awk 'NR==2 {print $2}')
+  USB_USED=$(df -B1 "$USB_MOUNT" | awk 'NR==2 {print $3}')
+  USB_FREE=$(df -B1 "$USB_MOUNT" | awk 'NR==2 {print $4}')
+
+  USB_TOTAL_GB=$(gb "$USB_TOTAL")
+  USB_USED_GB=$(gb "$USB_USED")
+  USB_FREE_GB=$(gb "$USB_FREE")
+
+  USB_INFO="󱊟 Recovery USB\\r├─ Total  → ${USB_TOTAL_GB} GB\\r├─ Used   → ${USB_USED_GB} GB\\r└─ Free   → ${USB_FREE_GB} GB"
+fi
 
 # ───────────────────────────────────────────────
 # Waybar output
 # ───────────────────────────────────────────────
 
 printf '%s\n' \
-  "{\"text\":\" ${FREE_TIB}TiB\",\"tooltip\":\" Primary NVME\\r│─ Total  →  ${TOTAL_GB} GB\\r├─ Used   →  ${USED_GB} GB\\r└─ Free   →  ${FREE_GB} GB\\r\\r Storage SSD\\r│─ Total  →  ${SDB3_TOTAL_GB} GB\\r├─ Used   →  ${SDB3_USED_GB} GB\\r└─ Free   →  ${SDB3_FREE_GB} GB\"}"
+  "{\"text\":\" ${FREE_TIB}TiB\",\"tooltip\":\" WD_BLACK SN8100 2TB\\r├─ Total  →  ${TOTAL_GB} GB\\r├─ Used   →  ${USED_GB} GB\\r└─ Free   →  ${FREE_GB} GB\\r\\r Storage SSD\\r├─ Total  →  ${SDB3_TOTAL_GB} GB\\r├─ Used   →  ${SDB3_USED_GB} GB\\r└─ Free   →  ${SDB3_FREE_GB} GB\\r\\r${USB_INFO}\"}"
