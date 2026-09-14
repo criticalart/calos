@@ -57,14 +57,11 @@ hl.window_rule({
     class = "System-Update",
   },
 
-  border_size = 0,
-  decorate = false,
+  border_size = 1,
   float = true,
   center = true,
   dim_around = true,
   size = "900 650",
-  rounding = 20,
-  rounding_power = 10,
 })
 
 hl.window_rule({
@@ -72,14 +69,11 @@ hl.window_rule({
     class = "dust",
   },
 
-  border_size = 0,
-  decorate = false,
+  border_size = 1,
   float = true,
   center = true,
   dim_around = true,
   size = "900 650",
-  rounding = 20,
-  rounding_power = 10,
 })
 
 hl.window_rule({
@@ -87,14 +81,11 @@ hl.window_rule({
     class = "kernel",
   },
 
-  border_size = 0,
-  decorate = false,
+  border_size = 1,
   float = true,
   center = true,
   dim_around = true,
   size = "900 650",
-  rounding = 20,
-  rounding_power = 10,
 })
 
 hl.window_rule({
@@ -104,11 +95,24 @@ hl.window_rule({
 
   border_size = 0,
   float = true,
-  decorate = false,
   dim_around = true,
   size = "775 375",
   move = { "monitor_w - 800", "47" },
   animation = "slide top",
+  rounding = false,
+})
+
+hl.window_rule({
+  match = {
+    class = "usb",
+  },
+
+  border_size = 1,
+  float = true,
+  dim_around = true,
+  size = "496 150",
+  move = { "monitor_w - 500", "47" },
+  animation = "popin 100%",
   rounding = false,
 })
 

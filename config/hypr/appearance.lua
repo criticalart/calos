@@ -12,8 +12,8 @@
 hl.config({
 
   general = {
-    gaps_in = 2,
-    gaps_out = 5,
+    gaps_in = 3,
+    gaps_out = 6,
     border_size = 1,
   },
 
@@ -22,16 +22,16 @@ hl.config({
     rounding_power = 1,
 
     active_opacity = 0.95,
-    inactive_opacity = 0.86,
+    inactive_opacity = 0.88,
     fullscreen_opacity = 1,
 
     blur = {
       enabled = true,
       new_optimizations = true,
       size = 4,
-      passes = 3,
+      passes = 2,
       brightness = 1,
-      noise = 0.05,
+      noise = 0.03,
       contrast = 1.3,
       vibrancy = 0.7,
       vibrancy_darkness = 0.5,
@@ -43,15 +43,23 @@ hl.config({
 
     shadow = {
       enabled = true,
-      range = 16,
+      range = 10,
       render_power = 4,
-      color = "0xee1a1a1a",
+      color = "0x901a1a1a",
     },
 
     dim_inactive = true,
     dim_strength = 0.05,
     dim_special = 0.07,
   },
+
+  animations = {
+    enabled = true, -- RICE O CLOCK
+  },
+
+  misc = {
+    background_color = "0x000000",
+  }
 })
 
 -- Bezier Curves
@@ -61,7 +69,6 @@ hl.curve("emphasizedaccel", { type = "bezier", points = { { 0.3, 0 }, { 0.8, 1.1
 hl.curve("emphasizeddeccel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
 hl.curve("standard", { type = "bezier", points = { { 0.2, 0 }, { 0, 1 } } })
 hl.curve("easeoutquint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
-hl.curve("easeinout", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
 hl.curve("almostlinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 } } })
 hl.curve("workspaceslide", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
 hl.curve("boing", { type = "spring", mass = 1, stiffness = 95, dampening = 12 })

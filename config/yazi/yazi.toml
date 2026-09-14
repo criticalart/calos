@@ -1,4 +1,26 @@
-# yazi.toml
+
+#                                                            iiii  
+#                                                           i::::i 
+#                                                            iiii  
+#                                                                  
+#yyyyyyy           yyyyyyyaaaaaaaaaaaaa   zzzzzzzzzzzzzzzzziiiiiii 
+# y:::::y         y:::::y a::::::::::::a  z:::::::::::::::zi:::::i 
+#  y:::::y       y:::::y  aaaaaaaaa:::::a z::::::::::::::z  i::::i 
+#   y:::::y     y:::::y            a::::a zzzzzzzz::::::z   i::::i 
+#    y:::::y   y:::::y      aaaaaaa:::::a       z::::::z    i::::i 
+#     y:::::y y:::::y     aa::::::::::::a      z::::::z     i::::i 
+#      y:::::y:::::y     a::::aaaa::::::a     z::::::z      i::::i 
+#       y:::::::::y     a::::a    a:::::a    z::::::z       i::::i 
+#        y:::::::y      a::::a    a:::::a   z::::::zzzzzzzzi::::::i
+#         y:::::y       a:::::aaaa::::::a  z::::::::::::::zi::::::i
+#        y:::::y         a::::::::::aa:::az:::::::::::::::zi::::::i
+#       y:::::y           aaaaaaaaaa  aaaazzzzzzzzzzzzzzzzziiiiiiii
+#      y:::::y                                                     
+#     y:::::y                                                      
+#    y:::::y                                                       
+#   y:::::y                                                        
+#  yyyyyyy                                                         
+
 [mgr]
 show_hidden = true
 
@@ -62,7 +84,7 @@ rules = [
 
 { url = "*.{mp3,wav,ogg}", use = "music" },
 
-{ url = "*.{mkv,mp4}", use = "video" },
+{ url = "*.{mkv,mp4}", use = ["video"] },
 
 { url = "*.md", use = ["glow", "text"] },
 

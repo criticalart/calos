@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if ! pgrep -f "qs -c lockscreen" >/dev/null && ! pgrep -f "$TERMINAL --class=Screensaver" >/dev/null; then
+  calos-cmd-lockscreen
+fi
