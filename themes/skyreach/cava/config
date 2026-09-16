@@ -268,12 +268,11 @@ source = alsa_output.pci-0000_73_00.6.analog-stereo.monitor
 
 [color]
 gradient = 1
-gradient_color_1 = '#00BCD4'
-gradient_color_2 = '#009688'
-gradient_color_3 = '#4CAF50'
-gradient_color_4 = '#8BC34A'
-gradient_color_5 = '#CDDC39'
-gradient_color_6 = '#FFEB3B'
-gradient_color_7 = '#FFC107'
-gradient_color_8 = '#FF5722'
-
+gradient_color_1 = '#31505A'
+gradient_color_2 = '#42666A'
+gradient_color_3 = '#5B7A72'
+gradient_color_4 = '#7B8F62'
+gradient_color_5 = '#9A9A55'
+gradient_color_6 = '#B49A4A'
+gradient_color_7 = '#C79E55'
+gradient_color_8 = '#D0B27A'
