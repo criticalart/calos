@@ -1,230 +1,223 @@
-$()$(
-  bash
-  #!/bin/bash
+#!/bin/bash
 
-  export PATH="$HOME/.local/share/calos/bin:$PATH"
+export PATH="$HOME/.local/share/calos/bin:$PATH"
 
-  # Set to true when going directly to a submenu, so we can exit directly
-  BACK_TO_EXIT=true
+# Set to true when going directly to a submenu, so we can exit directly
+BACK_TO_EXIT=true
 
-  back_to() {
-    local parent_menu="$1"
+back_to() {
+  local parent_menu="$1"
 
-    if [[ "$BACK_TO_EXIT" == "true" ]]; then
-      exit 0
-    elif [[ -n "$parent_menu" ]]; then
-      "$parent_menu"
-    else
-      show_main_menu
-    fi
-  }
-
-  toggle_existing_menu() {
-    if pgrep -f "walker.*--dmenu" >/dev/null; then
-      walker --close >/dev/null 2>&1
-      exit 0
-    fi
-  }
-
-  menu() {
-    local prompt="$1"
-    local options="$2"
-    local extra="$3"
-    local preselect="$4"
-
-    read -r -a args <<<"$extra"
-
-    if [[ -n "$preselect" ]]; then
-      local index
-      index=$(echo -e "$options" | grep -nxF "$preselect" | cut -d: -f1)
-      if [[ -n "$index" ]]; then
-        args+=("-c" "$index")
-      fi
-    fi
-
-    echo -e "$options" | calos-launch-walker --dmenu -N -H --minwidth 225 --minheight 1 --maxheight 600 -p "$prompt…" "${args[@]}" 2>/dev/null
-  }
-
-  terminal() {
-    $TERMINAL --class Calos -e "$@"
-  }
-
-  edit_in_nvim() {
-    $TERMINAL --class Calos -e nvim "$1"
-  }
-
-  show_style_menu() {
-    case $(menu "Style" "󰌍  Back\n󰸌  Theme\n  Background\n  Hyprland\n  Font") in
-    *Back*) back_to show_main_menu ;;
-    *Theme*)
-      BACK_TO_EXIT=false
-      show_theme_menu
-      ;;
-    *Font*)
-      BACK_TO_EXIT=false
-      show_font_menu
-      ;;
-    *Background*)
-      BACK_TO_EXIT=false
-      quickshell -c wallselect
-      ;;
-    *Hyprland*)
-      BACK_TO_EXIT=false
-      alacritty --class=Neovim -e nvim ~/.config/hypr/appearance.lua
-      ;;
-    *) show_main_menu ;;
-    esac
-  }
-
-  show_theme_menu() {
-    walker -H -N -n -m menus:calosthemes --minwidth 200 --minheight 400
-  }
-
-  show_font_menu() {
-    font=$(menu "Font" "󰌍  Back\n$(calos-font-list)" "--width 350" "$(calos-font-current)")
-
-    if [[ "$font" == "󰌍  Back" || -z "$font" ]]; then
-      back_to show_style_menu
-    else
-      calos-font-set "$font"
-    fi
-  }
-
-  show_capture_menu() {
-    local parent_menu="$1"
-
-    case $(menu "Capture" "  Screenshot\n  Screenrecord\n󰃉  Color") in
-    *Back*)
-      if [[ -n "$parent_menu" ]]; then
-        "$parent_menu"
-      else
-        exit 0
-      fi
-      ;;
-    *Screenshot*) show_screenshot_menu ;;
-    *Screenrecord*) show_screenrecord_menu ;;
-    *Color*) pkill hyprpicker || hyprpicker -a ;;
-    *) exit 0 ;;
-    esac
-  }
-
-  show_screenshot_menu() {
-    case $(menu "Screenshot" "󰌍  Back\n  Region\n  Window\n  Display") in
-    *Back*) show_capture_menu ;;
-    *Region*) hyprshot -m region --freeze ;;
-    *Window*) hyprshot -m window ;;
-    *Display*) hyprshot -m output ;;
-    *) show_capture_menu ;;
-    esac
-  }
-
-  show_screenrecord_menu() {
-    case $(menu "Screenrecord" "󰌍  Back\n  Region\n  Display") in
-    *Back*) show_capture_menu ;;
-    *Region*) calos-cmd-screenrecord ;;
-    *Display*) calos-cmd-screenrecord output ;;
-    *) show_capture_menu ;;
-    esac
-  }
-
-  show_toggle_menu() {
-    case $(menu "Toggle" "󰌍  Back\n󱄄  Screensaver\n󰔎  Hyprsunset\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󰍹  Display Swap\n󱥂  Notifications") in
-    *Back*) back_to show_main_menu ;;
-    *Hyprsunset*) calos-toggle-nightlight ;;
-    *Display*) calos-toggle-output ;;
-    *Screensaver*) calos-launch-screensaver ;;
-    *Waybar*) calos-toggle-waybar ;;
-    *Big*) calos-toggle-bigpic ;;
-    *Game*) calos-toggle-gamemode ;;
-    *Notifications*) calos-toggle-notifications ;;
-    *) show_main_menu ;;
-    esac
-  }
-
-  show_update_process_menu() {
-    case $(menu "Reload" "󰌍  Back\n  Waybar\n  Hyprland\n󰔎  Hyprsunset\n  Awww Daemon\n󱄄  SwayOSD\n  Overview\n󱓟  Walker\n󰒲  Hypridle") in
-    *Back*) back_to show_main_menu ;;
-    *Hypridle*) calos-restart-hypridle ;;
-    *Hyprland*) hyprctl reload ;;
-    *Hyprsunset*) calos-restart-hyprsunset ;;
-    *Awww*) calos-restart-awww ;;
-    *SwayOSD*) calos-restart-swayosd ;;
-    *Walker*) calos-restart-walker ;;
-    *Waybar*) calos-restart-waybar ;;
-    *Overview) calos-restart-overview ;;
-    *) show_main_menu ;;
-    esac
-  }
-
-  show_system_menu() {
-    case $(menu "System" "󰌍  Back\n  Clipboard\n  Packages\n󰚰  Update\n󰜉  Logout\n󰐥  Shutdown") in
-    *Back*) back_to show_main_menu ;;
-    *Packages*) alacritty --class packages -e calos-pkg-list ;;
-    *Update*) alacritty --class=System-Update -e calos-cmd-update ;;
-    *Clipboard*) alacritty --class clipse -e clipse ;;
-    *Logout*) calos-logoff ;;
-    *Shutdown*) calos-shutdown ;;
-    *BIOS*) calos-bios-reboot ;;
-    *) show_main_menu ;;
-    esac
-  }
-
-  show_settings_menu() {
-    case $(menu "Settings" "󰌍  Back\n󱔄  Window Rules\n  Waybar\n  Hyprland\n󱓟  Walker\n󱂬  Overview\n  Fastfetch\n  Yazi\n  Keybinds") in
-    *Back*) back_to show_main_menu ;;
-    *Window*) alacritty --class=Neovim -e nvim ~/.config/hypr/windowrules.lua ;;
-    *Waybar*) alacritty --class=Neovim -e nvim ~/.config/waybar/config.jsonc ;;
-    *Walker*) alacritty --class=Neovim -e nvim ~/.config/walker/config.toml ;;
-    *Overview*) alacritty --class=Neovim -e nvim ~/.config/quickshell/overview/config.json ;;
-    *Hyprland*) alacritty --class=Neovim -e nvim ~/.config/hypr/hyprland.lua ;;
-    *Fastfetch*) edit_in_nvim ~/.config/calos/branding/fastfetch.txt ;;
-    *Yazi*) alacritty --class=Neovim -e nvim ~/.config/yazi/yazi.toml ;;
-    *Keybinds*) alacritty --class=Neovim -e nvim ~/.config/hypr/keybinds.lua ;;
-    *) show_main_menu ;;
-    esac
-  }
-
-  show_main_menu() {
-    BACK_TO_EXIT=true
-
-    go_to_menu "$(menu "Settings" "󰙵  Programs\n  Style\n󰨙  Toggle\n  Reload\n  Settings\n  System")"
-  }
-
-  go_to_menu() {
-    case "${1,,}" in
-    *programs*) walker -p "Launch..." ;;
-    *style*)
-      BACK_TO_EXIT=false
-      show_style_menu
-      ;;
-    *capture*)
-      BACK_TO_EXIT=false
-      show_capture_menu show_main_menu
-      ;;
-    *reload*)
-      BACK_TO_EXIT=false
-      show_update_process_menu
-      ;;
-    *toggle*)
-      BACK_TO_EXIT=false
-      show_toggle_menu
-      ;;
-    *settings*)
-      BACK_TO_EXIT=false
-      show_settings_menu
-      ;;
-    *system*)
-      BACK_TO_EXIT=false
-      show_system_menu
-      ;;
-    esac
-  }
-
-  toggle_existing_menu
-
-  if [[ -n "$1" ]]; then
-    go_to_menu "$1"
+  if [[ "$BACK_TO_EXIT" == "true" ]]; then
+    exit 0
+  elif [[ -n "$parent_menu" ]]; then
+    "$parent_menu"
   else
     show_main_menu
   fi
-)$()
+}
+
+toggle_existing_menu() {
+  if pgrep -f "walker.*--dmenu" >/dev/null; then
+    walker --close >/dev/null 2>&1
+    exit 0
+  fi
+}
+
+menu() {
+  local prompt="$1"
+  local options="$2"
+  local extra="$3"
+  local preselect="$4"
+
+  read -r -a args <<<"$extra"
+
+  if [[ -n "$preselect" ]]; then
+    local index
+    index=$(echo -e "$options" | grep -nxF "$preselect" | cut -d: -f1)
+    if [[ -n "$index" ]]; then
+      args+=("-c" "$index")
+    fi
+  fi
+
+  echo -e "$options" | calos-launch-walker --dmenu -N -H --minwidth 225 --minheight 1 --maxheight 600 -p "$prompt…" "${args[@]}" 2>/dev/null
+}
+
+terminal() {
+  $TERMINAL --class Calos -e "$@"
+}
+
+edit_in_nvim() {
+  $TERMINAL --class Calos -e nvim "$1"
+}
+
+show_style_menu() {
+  case $(menu "Style" "󰌍  Back\n󰸌  Theme\n  Background\n  Hyprland\n  Font") in
+  *"󰌍  Back"*) back_to show_main_menu ;;
+  *Theme*)
+    BACK_TO_EXIT=false
+    qs -c calos-shell ipc call theme open
+    ;;
+  *Font*)
+    BACK_TO_EXIT=false
+    show_font_menu
+    ;;
+  *Background*)
+    BACK_TO_EXIT=false
+    qs -c calos-shell ipc call wallselect open
+    ;;
+  *Hyprland*)
+    BACK_TO_EXIT=false
+    alacritty --class=Neovim -e nvim ~/.config/hypr/appearance.lua
+    ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_font_menu() {
+  font=$(menu "Font" "󰌍  Back\n$(calos-font-list)" "--width 350" "$(calos-font-current)")
+
+  if [[ "$font" == "󰌍  Back" || -z "$font" ]]; then
+    back_to show_style_menu
+  else
+    calos-font-set "$font"
+  fi
+}
+
+show_capture_menu() {
+  local parent_menu="$1"
+
+  case $(menu "Capture" "  Screenshot\n  Screenrecord\n󰃉  Color") in
+  *Back*)
+    if [[ -n "$parent_menu" ]]; then
+      "$parent_menu"
+    else
+      exit 0
+    fi
+    ;;
+  *Screenshot*) show_screenshot_menu ;;
+  *Screenrecord*) show_screenrecord_menu ;;
+  *Color*) pkill hyprpicker || hyprpicker -a ;;
+  *) exit 0 ;;
+  esac
+}
+
+show_screenshot_menu() {
+  case $(menu "Screenshot" "󰌍  Back\n  Region\n  Window\n  Display") in
+  *Back*) show_capture_menu ;;
+  *Region*) hyprshot -m region --freeze ;;
+  *Window*) hyprshot -m window ;;
+  *Display*) hyprshot -m output ;;
+  *) show_capture_menu ;;
+  esac
+}
+
+show_screenrecord_menu() {
+  case $(menu "Screenrecord" "󰌍  Back\n  Region\n  Display") in
+  *Back*) show_capture_menu ;;
+  *Region*) calos-cmd-screenrecord ;;
+  *Display*) calos-cmd-screenrecord output ;;
+  *) show_capture_menu ;;
+  esac
+}
+
+show_toggle_menu() {
+  case $(menu "Toggle" "󰌍  Back\n󱄄  Screensaver\n󰔎  Hyprsunset\n󰍜  Waybar\n󰺷  Game Mode\n  Big Picture\n󰍹  Display Swap\n󱥂  Notifications") in
+  *Back*) back_to show_main_menu ;;
+  *Hyprsunset*) calos-toggle-nightlight ;;
+  *Display*) calos-toggle-output ;;
+  *Screensaver*) calos-launch-screensaver ;;
+  *Waybar*) calos-toggle-waybar ;;
+  *Big*) calos-toggle-bigpic ;;
+  *Game*) calos-toggle-gamemode ;;
+  *Notifications*) calos-toggle-notifications ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_update_process_menu() {
+  case $(menu "Reload" "󰌍  Back\n  Hyprland\n  Waybar\n󱓟  Walker\n  caliburnShell\n  Awww Daemon\n󰔎  Hyprsunset\n󰒲  Hypridle") in
+  *Back*) back_to show_main_menu ;;
+  *Hypridle*) calos-restart-hypridle ;;
+  *Hyprland*) hyprctl reload ;;
+  *Hyprsunset*) calos-restart-hyprsunset ;;
+  *Awww*) calos-restart-awww ;;
+  *caliburn*) calos-restart-qs ;;
+  *Walker*) calos-restart-walker ;;
+  *Waybar*) calos-restart-waybar ;;
+  *Overview) calos-restart-overview ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_system_menu() {
+  case $(menu "System" "󰌍  Back\n  Clipboard\n  Packages\n󰚰  Update\n󰜉  Logout\n󰐥  Shutdown") in
+  *Back*) back_to show_main_menu ;;
+  *Packages*) alacritty --class packages -e calos-pkg-list ;;
+  *Update*) alacritty --class=System-Update -e calos-cmd-update ;;
+  *Clipboard*) alacritty --class clipse -e clipse ;;
+  *Logout*) calos-logoff ;;
+  *Shutdown*) calos-shutdown ;;
+  *BIOS*) calos-bios-reboot ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_settings_menu() {
+  case $(menu "Settings" "󰌍  Back\n  Waybar\n  Hyprland\n󱔄  Window Rules\n󱓟  Walker\n  Keybinds\n  Yazi\n󱂬  Overview\n  Fastfetch") in
+  *Back*) back_to show_main_menu ;;
+  *Window*) alacritty --class=Neovim -e nvim ~/.config/hypr/windowrules.lua ;;
+  *Waybar*) alacritty --class=Neovim -e nvim ~/.config/waybar/config.jsonc ;;
+  *Walker*) alacritty --class=Neovim -e nvim ~/.config/walker/config.toml ;;
+  *Overview*) alacritty --class=Neovim -e nvim ~/.config/quickshell/overview/config.json ;;
+  *Hyprland*) alacritty --class=Neovim -e nvim ~/.config/hypr/hyprland.lua ;;
+  *Fastfetch*) edit_in_nvim ~/.config/calos/branding/fastfetch.txt ;;
+  *Yazi*) alacritty --class=Neovim -e nvim ~/.config/yazi/yazi.toml ;;
+  *Keybinds*) alacritty --class=Neovim -e nvim ~/.config/hypr/keybinds.lua ;;
+  *) show_main_menu ;;
+  esac
+}
+
+show_main_menu() {
+  BACK_TO_EXIT=true
+
+  go_to_menu "$(menu "Settings" "󰙵  Programs\n  Style\n󰨙  Toggle\n  Reload\n  Settings\n  System")"
+}
+
+go_to_menu() {
+  case "${1,,}" in
+  *programs*) walker -p "Launch..." ;;
+  *style*)
+    BACK_TO_EXIT=false
+    show_style_menu
+    ;;
+  *capture*)
+    BACK_TO_EXIT=false
+    show_capture_menu show_main_menu
+    ;;
+  *reload*)
+    BACK_TO_EXIT=false
+    show_update_process_menu
+    ;;
+  *toggle*)
+    BACK_TO_EXIT=false
+    show_toggle_menu
+    ;;
+  *settings*)
+    BACK_TO_EXIT=false
+    show_settings_menu
+    ;;
+  *system*)
+    BACK_TO_EXIT=false
+    show_system_menu
+    ;;
+  esac
+}
+
+toggle_existing_menu
+
+if [[ -n "$1" ]]; then
+  go_to_menu "$1"
+else
+  show_main_menu
+fi

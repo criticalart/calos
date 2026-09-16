@@ -15,10 +15,10 @@ CURRENT_TEMP=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
 
 if [ "$CURRENT_TEMP" == "$OFF_TEMP" -o "$CURRENT_TEMP" == "6000" ]; then
   hyprctl hyprsunset temperature $ON_TEMP
-  notify-send "  Bluelight Filter Enabled"
+  qs -c calos-shell ipc call osd bluelight true
 else
   hyprctl hyprsunset temperature $OFF_TEMP
-  notify-send "  Bluelight Filter Disabled"
+  qs -c calos-shell ipc call osd bluelight false
 fi
 
 pkill -RTMIN+11 waybar

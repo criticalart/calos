@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ! pgrep -f "qs -c calos-shell" >/dev/null; then
+  uwsm app -s b -t service -- qs -c calos-shell
+else
+  pkill -f "qs -c calos-shell"
+  sleep 1
+  uwsm app -s b -t service -- qs -c calos-shell
+fi

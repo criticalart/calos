@@ -17,9 +17,15 @@ update-packages() {
   gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Perform system update?" && sudo pacman -Su --noconfirm || exit
 
   if ((kernel_updated == 1)); then
-    gum spin --spinner "pulse" --spinner.foreground="1" --padding="4 0" --title " Kernel updated! Please reboot system to apply changes. Press any key to exit..." -- bash -c 'read -n 1 -s'
+    printf '\n%b Kernel updated! Please reboot system to apply changes.%b\n' "$BLU" "$RST"
+    printf '%bPress any key to exit...%b' "$GRN" "$RST"
+    read -n 1 -s
+    echo
   else
-    gum spin --spinner "pulse" --spinner.foreground="4" --padding="4 0" --title "Update complete! Press any key to exit..." -- bash -c 'read -n 1 -s'
+    printf '\n%bUpdate complete!%b\n' "$GRN" "$RST"
+    printf '%bPress any key to exit...%b' "$BLU" "$RST"
+    read -n 1 -s
+    echo
   fi
   pkill -SIGUSR2 waybar
 }
@@ -46,7 +52,8 @@ download-updates() {
     sleep 0.15
   done
 
-  printf "\r$(gum style --foreground 114 "[#################] 100%% - Databases synced!")"
+  printf '\r'
+  gum style --foreground 114 "[#################] 100% - Databases synced!"
   echo ""
   echo
 
@@ -57,7 +64,11 @@ download-updates() {
     echo ""
     clear
   else
-    gum spin --spinner "pulse" --spinner.foreground="4" --padding="0 0" --title "No updates found. Press any key to exit..." -- bash -c 'read -n 1 -s'
+    printf '\n%bNo updates found.%b\n' "$BLU" "$RST"
+    echo
+    printf '%bPress any key to exit...%b' "$GRN" "$RST"
+    read -n 1 -s
+    echo
     exit 0
   fi
 

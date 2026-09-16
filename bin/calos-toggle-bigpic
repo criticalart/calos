@@ -1,6 +1,6 @@
 #!/bin/bash
 
-notify-send "Launching Steam Big Picture Mode"
+qs -c calos-shell ipc call osd steam
 steam steam://open/bigpicture
 sleep 1
 hyprctl dispatch 'hl.dsp.focus({ workspace = "10" })'
