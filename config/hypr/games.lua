@@ -34,7 +34,7 @@ hl.window_rule({
 hl.window_rule({
   name = "Game Window",
   match = {
-    class = "steam_app_.*|dota2|eden|.*Metroid.*|Godot|Ryujinx|gamescope|ffxiv_dx11.exe|Crystal Project.bin.x86_64", -- add your games here, follow regex!
+    class = "steam_app_.*|dota2|eden|.*Metroid.*|Godot|Ryujinx|gamescope|ffxiv_dx11.exe|Mega Man X Regenesis", -- add your games here, follow regex!
   },
 
   fullscreen = true,
@@ -105,9 +105,6 @@ hl.define_submap("gaming", function()
   hl.bind("SUPER + CTRL + Q", hl.dsp.window.close())
   hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("sh -c \"notify-send 'Current Time' \\\"\\$(date '+%I:%M %p')\\\"\""))
   hl.bind("SUPER + G", hl.dsp.exec_cmd("calos-toggle-game"))
-  hl.bind("SUPER + ALT + SPACE", hl.dsp.exec_cmd("calos-menu"))
-  hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
-  hl.bind("SUPER + TAB", hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
 
   -- defaults that should have the universal flag, will be removed eventually
   for i = 1, 9 do

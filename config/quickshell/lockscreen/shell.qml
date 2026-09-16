@@ -12,8 +12,12 @@ ShellRoot {
 	property real sensitivity: 0.55
 	property real visualScale: 1.35
 
-	property real attack: 0.16
-	property real decay: 0.105
+	property real attack: 0.10
+	property real decay: 0.085
+
+	// Edge dampening.
+	property real edgeDamping: 0.38
+	property real edgeDampingCurve: 1.6
 
 	property var cavaColors: [
 		"#98b3b3",
@@ -207,7 +211,6 @@ ShellRoot {
 
 			var bars = root.smoothBars.slice()
 			var barCount = root.cavaBars.length
-			var lastIndex = barCount - 1
 
 			while (bars.length < barCount)
 				bars.push(0)
@@ -216,36 +219,36 @@ ShellRoot {
 				var target = root.cavaBars[i]
 				var current = bars[i]
 
-				var position =
-					lastIndex > 0
-						? i / lastIndex
+				// Symmetric edge dampening.
+				var center =
+					(barCount - 1) / 2
+
+				var distance =
+					center > 0
+						? Math.abs(i - center) / center
 						: 0
 
-				var frequencyCurve =
-					Math.pow(position, 1.4)
+				var edgeFactor =
+					1 -
+					(
+						root.edgeDamping *
+						Math.pow(
+							distance,
+							root.edgeDampingCurve
+						)
+					)
 
-				var attackFactor =
-					0.95 -
-					frequencyCurve * 0.15
+				target *= edgeFactor
 
-				var decayFactor =
-					1.0 +
-					frequencyCurve * 0.20
-
-				var currentAttack =
-					root.attack * attackFactor
-
-				var currentDecay =
-					root.decay * decayFactor
-
+				// Uniform smoothing.
 				if (target > current) {
 					current +=
 						(target - current) *
-						currentAttack
+						root.attack
 				} else {
 					current +=
 						(target - current) *
-						currentDecay
+						root.decay
 				}
 
 				bars[i] = current
@@ -298,7 +301,10 @@ ShellRoot {
 								root.sensitivity
 							)
 
-						value = Math.max(0.02, value)
+						value = Math.max(
+							0.02,
+							value
+						)
 
 						values.push(value)
 					}
@@ -446,7 +452,7 @@ ShellRoot {
 					bottom: parent.bottom
 				}
 
-				height: 270
+				height: 360
 
 				Row {
 					anchors {
@@ -456,7 +462,7 @@ ShellRoot {
 					}
 
 					height: parent.height
-					spacing: 2
+					spacing: 4
 
 					Repeater {
 						model: root.smoothBars
@@ -465,7 +471,7 @@ ShellRoot {
 							id: barContainer
 
 							property real barSpacing:
-								(root.smoothBars.length - 1) * 2
+								(root.smoothBars.length - 1) * 4
 
 							property real barWidth:
 								(

@@ -282,7 +282,7 @@ hl.layer_rule({
 
   blur = true,
   ignore_alpha = 0,
-  no_anim = true,
+  animation = "popin 99%",
 })
 
 hl.layer_rule({

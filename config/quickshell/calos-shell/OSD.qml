@@ -1,0 +1,1714 @@
+import Quickshell
+import Quickshell.Io
+import Quickshell.Wayland
+import QtQuick
+import QtQuick.Layouts
+import "./common"
+
+Scope {
+    id: root
+
+    readonly property color background: Theme.background
+    readonly property color foreground: Theme.foreground
+    readonly property color accent: Theme.accent
+    readonly property color selectedText: Theme.selectedText
+    readonly property color border: Theme.border
+
+    readonly property int osdWidth: 320
+    readonly property int mediaWidth: 480
+    readonly property int osdHeight: 120
+    readonly property real bottomPosition: 0.80
+
+    readonly property int animationInDuration: 400
+    readonly property int animationOutDuration: 360
+
+    property real cardWidth: 0
+    property real cardHeight: 10
+    property real cardRadius: 6
+
+    property real contentOpacity: 0
+    property real contentScale: 0.88
+    property real contentX: 0
+
+    property string mode: ""
+    property bool capsLock: false
+    property bool visibleState: false
+
+    property int volume: 0
+    property bool volumeMuted: false
+
+    property string mediaArtist: ""
+    property string mediaTitle: ""
+    property bool mediaPlaying: false
+
+    property bool blueLightEnabled: false
+    property bool waybarEnabled: false
+    property bool gameModeEnabled: false
+
+    function widthForMode() {
+        return root.mode === "media"
+            ? root.mediaWidth
+            : root.osdWidth;
+    }
+
+    function resizeForMode() {
+        if (!root.visibleState)
+            return;
+
+        const targetWidth = root.widthForMode();
+
+        if (root.cardWidth === targetWidth)
+            return;
+
+        mediaResizeAnimation.stop();
+        mediaResizeAnimation.to = targetWidth;
+        mediaResizeAnimation.restart();
+    }
+
+    function showCapsLock() {
+        root.mode = "caps";
+
+        capsStateProcess.running = false;
+        capsStateProcess.running = true;
+    }
+
+    function showVolumeUp() {
+        root.mode = "volume";
+
+        volumeProcess.action = "up";
+        volumeProcess.querying = false;
+        volumeProcess.running = false;
+        volumeProcess.running = true;
+
+        root.show();
+    }
+
+    function showVolumeDown() {
+        root.mode = "volume";
+
+        volumeProcess.action = "down";
+        volumeProcess.querying = false;
+        volumeProcess.running = false;
+        volumeProcess.running = true;
+
+        root.show();
+    }
+
+    function showMute() {
+        root.mode = "volume";
+
+        volumeProcess.action = "mute";
+        volumeProcess.querying = false;
+        volumeProcess.running = false;
+        volumeProcess.running = true;
+
+        root.show();
+    }
+
+    function showNext() {
+        root.mode = "media";
+
+        mediaProcess.action = "next";
+        mediaProcess.querying = false;
+        mediaProcess.running = false;
+        mediaProcess.running = true;
+
+        root.show();
+    }
+
+    function showPrevious() {
+        root.mode = "media";
+
+        mediaProcess.action = "previous";
+        mediaProcess.querying = false;
+        mediaProcess.running = false;
+        mediaProcess.running = true;
+
+        root.show();
+    }
+
+    function showPlayPause() {
+        root.mode = "media";
+
+        mediaProcess.action = "play-pause";
+        mediaProcess.querying = false;
+        mediaProcess.running = false;
+        mediaProcess.running = true;
+
+        root.show();
+    }
+
+    function showBlueLight(enabled) {
+        root.mode = "bluelight";
+        root.blueLightEnabled = enabled;
+
+        root.show();
+    }
+
+    function showGameMode(enabled) {
+        root.mode = "game";
+        root.gameModeEnabled = enabled;
+
+        root.show();
+    }
+
+    function showWaybar(enabled) {
+        root.mode = "waybar";
+        root.waybarEnabled = enabled;
+
+        root.show();
+    }
+
+    function showSteam() {
+        root.mode = "steam";
+
+        root.show();
+    }
+
+    function updateDisplay() {
+        if (root.visibleState) {
+            root.resizeForMode();
+            hideTimer.restart();
+        } else {
+            root.show();
+        }
+    }
+
+    function show() {
+        hideTimer.stop();
+
+        if (root.visibleState) {
+            outroAnimation.stop();
+
+            // Restore the fully visible state in case the outro
+            // was already part-way through closing.
+            root.cardHeight = root.osdHeight;
+            root.cardRadius = 18;
+            root.contentOpacity = 1;
+            root.contentScale = 1;
+            root.contentX = 0;
+
+            root.resizeForMode();
+            hideTimer.restart();
+            return;
+        }
+
+        mediaResizeAnimation.stop();
+
+        root.visibleState = true;
+
+        root.cardWidth = 0;
+        root.cardHeight = 10;
+        root.cardRadius = 6;
+
+        root.contentOpacity = 0;
+        root.contentScale = 0.88;
+        root.contentX = 10;
+
+        introAnimation.restart();
+
+        hideTimer.restart();
+    }
+
+    function hide() {
+        hideTimer.stop();
+        mediaResizeAnimation.stop();
+        outroAnimation.restart();
+    }
+
+    Timer {
+        id: hideTimer
+
+        interval:
+            root.mode === "caps"
+                ? 1250
+                : root.mode === "media"
+                    ? 3500
+                    : 2000
+
+        repeat: false
+
+        onTriggered: {
+            root.hide();
+        }
+    }
+
+    ParallelAnimation {
+        id: introAnimation
+
+        ParallelAnimation {
+            NumberAnimation {
+                target: root
+                property: "cardWidth"
+
+                from: 0
+                to: root.widthForMode()
+
+                duration: root.animationInDuration
+
+                easing.type: Easing.OutBack
+                easing.overshoot: 1.12
+            }
+
+            NumberAnimation {
+                target: root
+                property: "cardHeight"
+
+                from: 10
+                to: root.osdHeight
+
+                duration: root.animationInDuration
+
+                easing.type: Easing.OutCubic
+            }
+
+            NumberAnimation {
+                target: root
+                property: "cardRadius"
+
+                from: 6
+                to: 18
+
+                duration: root.animationInDuration
+
+                easing.type: Easing.OutCubic
+            }
+        }
+
+        SequentialAnimation {
+            PauseAnimation {
+                duration: 150
+            }
+
+            ParallelAnimation {
+                NumberAnimation {
+                    target: root
+                    property: "contentOpacity"
+
+                    from: 0
+                    to: 1
+
+                    duration: 260
+
+                    easing.type: Easing.OutCubic
+                }
+
+                NumberAnimation {
+                    target: root
+                    property: "contentScale"
+
+                    from: 0.88
+                    to: 1
+
+                    duration: 340
+
+                    easing.type: Easing.OutBack
+                    easing.overshoot: 1.05
+                }
+
+                NumberAnimation {
+                    target: root
+                    property: "contentX"
+
+                    from: 10
+                    to: 0
+
+                    duration: 320
+
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
+    }
+
+    NumberAnimation {
+        id: mediaResizeAnimation
+
+        target: root
+        property: "cardWidth"
+
+        duration: 280
+
+        easing.type: Easing.OutCubic
+    }
+
+    SequentialAnimation {
+        id: outroAnimation
+
+        ParallelAnimation {
+            NumberAnimation {
+                target: root
+                property: "contentOpacity"
+
+                from: 1
+                to: 0
+
+                duration: 120
+
+                easing.type: Easing.InCubic
+            }
+
+            NumberAnimation {
+                target: root
+                property: "contentScale"
+
+                from: 1
+                to: 0.92
+
+                duration: 160
+
+                easing.type: Easing.InCubic
+            }
+        }
+
+        ParallelAnimation {
+            NumberAnimation {
+                target: root
+                property: "cardWidth"
+
+                from: root.cardWidth
+                to: 0
+
+                duration: root.animationOutDuration
+
+                easing.type: Easing.InBack
+                easing.overshoot: 1.05
+            }
+
+            NumberAnimation {
+                target: root
+                property: "cardHeight"
+
+                from: root.osdHeight
+                to: 10
+
+                duration: root.animationOutDuration
+
+                easing.type: Easing.InCubic
+            }
+
+            NumberAnimation {
+                target: root
+                property: "cardRadius"
+
+                from: 18
+                to: 6
+
+                duration: root.animationOutDuration
+
+                easing.type: Easing.InCubic
+            }
+        }
+
+        ScriptAction {
+            script: {
+                root.visibleState = false;
+            }
+        }
+    }
+
+    IpcHandler {
+        target: "osd"
+
+        function caps(): void {
+            root.showCapsLock();
+        }
+
+        function volumeUp(): void {
+            root.showVolumeUp();
+        }
+
+        function volumeDown(): void {
+            root.showVolumeDown();
+        }
+
+        function mute(): void {
+            root.showMute();
+        }
+
+        function next(): void {
+            root.showNext();
+        }
+
+        function previous(): void {
+            root.showPrevious();
+        }
+
+        function playPause(): void {
+            root.showPlayPause();
+        }
+
+        function bluelight(enabled: bool): void {
+            root.showBlueLight(enabled);
+        }
+
+        function waybar(enabled: bool): void {
+            root.showWaybar(enabled);
+        }
+
+        function steam(): void {
+            root.showSteam();
+        }
+
+        function refreshTheme(): void {
+            Theme.reload();
+        }
+
+        function game(enabled: bool): void {
+            root.showGameMode(enabled);
+        }
+
+        function hide(): void {
+            root.hide();
+        }
+    }
+
+    Variants {
+        model: Quickshell.screens
+
+        delegate: Component {
+            PanelWindow {
+                required property var modelData
+
+                screen: modelData
+                visible: root.visibleState
+
+                anchors {
+                    bottom: true
+                }
+
+                margins {
+                    bottom: Math.round(
+                        modelData.height * root.bottomPosition
+                    )
+                }
+
+                implicitWidth: root.mediaWidth + 20
+                implicitHeight: root.osdHeight + 12
+
+                exclusiveZone: 0
+                aboveWindows: true
+                focusable: false
+
+                WlrLayershell.layer: WlrLayer.Overlay
+                WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+
+                color: "transparent"
+
+                Rectangle {
+                    id: card
+
+                    anchors.centerIn: parent
+
+                    width: root.cardWidth
+                    height: root.cardHeight
+
+                    radius: root.cardRadius
+                    clip: true
+
+                    color: root.background
+                    opacity: 0.92
+
+                    border.width: 1
+                    border.color: Qt.alpha(
+                        root.border,
+                        0.75
+                    )
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "caps"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: "󰪛"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "CAPS LOCK"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 15
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 1.2
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.capsLock
+                                    ? "ON"
+                                    : "OFF"
+
+                                color: root.capsLock
+                                    ? root.selectedText
+                                    : root.foreground
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 28
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+
+                                Behavior on color {
+                                    ColorAnimation {
+                                        duration: 120
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                radius: height / 2
+
+                                color: Qt.alpha(
+                                    root.foreground,
+                                    0.10
+                                )
+
+                                Rectangle {
+                                    width: root.capsLock
+                                        ? parent.width
+                                        : parent.width * 0.28
+
+                                    height: parent.height
+
+                                    radius: height / 2
+
+                                    color: root.accent
+
+                                    Behavior on width {
+                                        NumberAnimation {
+                                            duration: 180
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "volume"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: root.volumeMuted
+                                    ? "󰖁"
+                                    : "󰕾"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "VOLUME"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 15
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 1.2
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.volumeMuted
+                                    ? "MUTE"
+                                    : root.volume + "%"
+
+                                color: root.selectedText
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 28
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+                            }
+
+                            Item {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                Rectangle {
+                                    width: 160
+                                    height: parent.height
+
+                                    anchors.left: parent.left
+
+                                    radius: height / 2
+
+                                    color: Qt.alpha(
+                                        root.foreground,
+                                        0.10
+                                    )
+
+                                    visible:
+                                        root.cardWidth >= root.osdWidth
+
+                                    Rectangle {
+                                        width: parent.width *
+                                            Math.min(
+                                                root.volume / 100,
+                                                1
+                                            )
+
+                                        height: parent.height
+
+                                        radius: height / 2
+
+                                        color: root.accent
+
+                                        Behavior on width {
+                                            NumberAnimation {
+                                                duration: 180
+                                                easing.type: Easing.OutCubic
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        id: mediaLayout
+
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "media"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        function resetTitleScroll() {
+                            titleScrollTimer.stop();
+                            titleScrollAnimation.stop();
+
+                            mediaTitleText.x = 0;
+
+                            if (root.mode === "media")
+                                titleScrollTimer.restart();
+                        }
+
+                        onVisibleChanged: {
+                            if (visible)
+                                resetTitleScroll();
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: root.mediaPlaying
+                                    ? "󰝚"
+                                    : "󰝛"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.mediaPlaying
+                                    ? "󰐊 NOW PLAYING"
+                                    : "󰏤 PAUSED"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 15
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 1.2
+
+                                elide: Text.ElideRight
+                            }
+
+                            Item {
+                                id: titleViewport
+
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight:
+                                    mediaTitleText.implicitHeight
+
+                                clip: true
+
+                                Text {
+                                    id: mediaTitleText
+
+                                    text: root.mediaTitle !== ""
+                                        ? root.mediaTitle
+                                        : "NO TITLE"
+
+                                    color: root.selectedText
+
+                                    font.family: "Iosevka"
+                                    font.pixelSize: 24
+                                    font.weight: Font.Bold
+
+                                    width: implicitWidth
+                                    height: implicitHeight
+
+                                    onTextChanged: {
+                                        mediaLayout.resetTitleScroll();
+                                    }
+
+                                    onImplicitWidthChanged: {
+                                        mediaLayout.resetTitleScroll();
+                                    }
+                                }
+
+                                Timer {
+                                    id: titleScrollTimer
+
+                                    interval: 900
+                                    repeat: false
+
+                                    onTriggered: {
+                                        if (
+                                            root.mode === "media" &&
+                                            mediaTitleText.width >
+                                                titleViewport.width
+                                        ) {
+                                            titleScrollAnimation.restart();
+                                        }
+                                    }
+                                }
+
+                                SequentialAnimation {
+                                    id: titleScrollAnimation
+
+                                    loops: Animation.Infinite
+
+                                    PauseAnimation {
+                                        duration: 900
+                                    }
+
+                                    NumberAnimation {
+                                        target: mediaTitleText
+                                        property: "x"
+
+                                        to: -Math.max(
+                                            0,
+                                            mediaTitleText.width -
+                                            titleViewport.width
+                                        )
+
+                                        duration: Math.max(
+                                            1400,
+                                            (
+                                                mediaTitleText.width -
+                                                titleViewport.width
+                                            ) * 18
+                                        )
+
+                                        easing.type: Easing.Linear
+                                    }
+
+                                    PauseAnimation {
+                                        duration: 1200
+                                    }
+
+                                    NumberAnimation {
+                                        target: mediaTitleText
+                                        property: "x"
+
+                                        to: 0
+
+                                        duration: Math.max(
+                                            1400,
+                                            (
+                                                mediaTitleText.width -
+                                                titleViewport.width
+                                            ) * 18
+                                        )
+
+                                        easing.type: Easing.Linear
+                                    }
+
+                                    PauseAnimation {
+                                        duration: 1200
+                                    }
+                                }
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.mediaArtist !== ""
+                                    ? root.mediaArtist
+                                    : "UNKNOWN ARTIST"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 14
+
+                                elide: Text.ElideRight
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "bluelight"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: root.blueLightEnabled
+                                    ? "󰖔"
+                                    : "󰖙"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "BLUELIGHT FILTER"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 15
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 1.2
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.blueLightEnabled
+                                    ? "ENABLED"
+                                    : "DISABLED"
+
+                                color: root.blueLightEnabled
+                                    ? root.selectedText
+                                    : root.foreground
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 28
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+
+                                Behavior on color {
+                                    ColorAnimation {
+                                        duration: 120
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                radius: height / 2
+
+                                color: Qt.alpha(
+                                    root.foreground,
+                                    0.10
+                                )
+
+                                Rectangle {
+                                    width: root.blueLightEnabled
+                                        ? parent.width
+                                        : parent.width * 0.28
+
+                                    height: parent.height
+
+                                    radius: height / 2
+
+                                    color: root.accent
+
+                                    Behavior on width {
+                                        NumberAnimation {
+                                            duration: 180
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "game"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: root.gameModeEnabled
+                                    ? "󰊴"
+                                    : "󰊵"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "GAME MODE"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 14
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 1.2
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.gameModeEnabled
+                                    ? "ENABLED"
+                                    : "DISABLED"
+
+                                color: root.gameModeEnabled
+                                    ? root.selectedText
+                                    : root.foreground
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 28
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+
+                                Behavior on color {
+                                    ColorAnimation {
+                                        duration: 120
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                radius: height / 2
+
+                                color: Qt.alpha(
+                                    root.foreground,
+                                    0.10
+                                )
+
+                                Rectangle {
+                                    width: root.gameModeEnabled
+                                        ? parent.width
+                                        : parent.width * 0.28
+
+                                    height: parent.height
+
+                                    radius: height / 2
+
+                                    color: root.accent
+
+                                    Behavior on width {
+                                        NumberAnimation {
+                                            duration: 180
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "waybar"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: ""
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "Waybar Off"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 24
+                                font.weight: Font.DemiBold
+                                font.letterSpacing: 1.2
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: root.waybarEnabled
+                                    ? "ENABLED"
+                                    : "SUPER+CTRL+W to re-enable"
+
+                                color: root.waybarEnabled
+                                    ? root.selectedText
+                                    : root.foreground
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 12
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+
+                                Behavior on color {
+                                    ColorAnimation {
+                                        duration: 120
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                radius: height / 2
+
+                                color: Qt.alpha(
+                                    root.foreground,
+                                    0.10
+                                )
+
+                                Rectangle {
+                                    width: root.waybarEnabled
+                                        ? parent.width
+                                        : parent.width * 0.28
+
+                                    height: parent.height
+
+                                    radius: height / 2
+
+                                    color: root.accent
+
+                                    Behavior on width {
+                                        NumberAnimation {
+                                            duration: 180
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "steam"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: "󰓓"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "Big Picture Mode"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 20
+                                font.weight: Font.DemiBold
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "Launching..."
+
+                                color: root.selectedText
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 18
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                radius: height / 2
+
+                                color: Qt.alpha(
+                                    root.foreground,
+                                    0.10
+                                )
+
+                                Rectangle {
+                                    width: parent.width
+
+                                    height: parent.height
+
+                                    radius: height / 2
+
+                                    color: root.accent
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Process {
+        id: capsStateProcess
+
+        command: [
+            "bash",
+            "-c",
+            "cat /sys/class/leds/*::capslock/brightness | head -n1"
+        ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.capsLock =
+                    this.text.trim() === "1";
+
+                root.show();
+            }
+        }
+    }
+
+    Process {
+        id: volumeProcess
+
+        property string action: "up"
+        property bool querying: false
+
+        command: querying
+            ? [
+                "wpctl",
+                "get-volume",
+                "@DEFAULT_AUDIO_SINK@"
+            ]
+            : action === "up"
+                ? [
+                    "wpctl",
+                    "set-volume",
+                    "@DEFAULT_AUDIO_SINK@",
+                    "5%+"
+                ]
+                : action === "down"
+                    ? [
+                        "wpctl",
+                        "set-volume",
+                        "@DEFAULT_AUDIO_SINK@",
+                        "5%-"
+                    ]
+                    : [
+                        "wpctl",
+                        "set-mute",
+                        "@DEFAULT_AUDIO_SINK@",
+                        "toggle"
+                    ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (!volumeProcess.querying)
+                    return;
+
+                const output = this.text.trim();
+
+                const match =
+                    output.match(
+                        /Volume:\s+([0-9.]+)/
+                    );
+
+                if (match) {
+                    root.volume =
+                        Math.round(
+                            parseFloat(match[1]) * 100
+                        );
+                }
+
+                root.volumeMuted =
+                    output.includes("[MUTED]");
+
+                root.updateDisplay();
+            }
+        }
+
+        onExited: {
+            if (!querying) {
+                querying = true;
+                running = true;
+            } else {
+                querying = false;
+            }
+        }
+    }
+
+    Process {
+        id: mediaProcess
+
+        property string action: "next"
+        property bool querying: false
+
+        command: querying
+            ? [
+                "playerctl",
+                "metadata",
+                "--format",
+                "{{artist}}|||{{title}}"
+            ]
+            : action === "next"
+                ? [
+                    "playerctl",
+                    "next"
+                ]
+                : action === "previous"
+                    ? [
+                        "playerctl",
+                        "previous"
+                    ]
+                    : [
+                        "playerctl",
+                        "play-pause"
+                    ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (!mediaProcess.querying)
+                    return;
+
+                const output = this.text.trim();
+
+                const metadata =
+                    output.split("|||");
+
+                root.mediaArtist =
+                    metadata.length > 0
+                        ? metadata[0]
+                        : "";
+
+                root.mediaTitle =
+                    metadata.length > 1
+                        ? metadata[1]
+                        : "";
+
+                mediaStatusProcess.running = false;
+                mediaStatusProcess.running = true;
+            }
+        }
+
+        onExited: {
+            if (!querying) {
+                mediaQueryTimer.restart();
+            } else {
+                querying = false;
+            }
+        }
+    }
+
+    Timer {
+        id: mediaQueryTimer
+
+        interval:
+            mediaProcess.action === "play-pause"
+                ? 50
+                : 100
+
+        repeat: false
+
+        onTriggered: {
+            mediaProcess.querying = true;
+            mediaProcess.running = true;
+        }
+    }
+
+    Process {
+        id: mediaStatusProcess
+
+        command: [
+            "playerctl",
+            "status"
+        ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.mediaPlaying =
+                    this.text.trim() === "Playing";
+
+                root.updateDisplay();
+            }
+        }
+    }
+}

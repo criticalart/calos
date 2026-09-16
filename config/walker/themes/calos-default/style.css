@@ -205,7 +205,7 @@ window .list child {
 
 @keyframes slideIn {
   from {
-    transform: translateX(-15px);
+    transform: translateY(-20px);
     opacity: 0;
   }
   to {

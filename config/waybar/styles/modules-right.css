@@ -15,20 +15,24 @@ transition: all .3s ease;
 padding: 0 12px;
 background-color: @temperature;
 }
+
 #pulseaudio{
     transition: all .3s ease;
-    padding: 0 12px;
+    padding: 0 14px;
     background-color: @temperature;
 }
+
 #mpris{
     transition: all .3s ease;
     padding: 0 12px;
 }
+
 #submap{
     transition: all .3s ease;
     background-color: @temperature;
         padding: 0 12px;
   }
+
 #custom-system_update{
     transition: all .3s ease;
     padding: 0 12px;
@@ -44,6 +48,12 @@ background-color: @temperature;
 #custom-notifications label {
     transition: all .3s ease;
     padding: 0 12px;
+    background-color: @temperature;
+}
+
+#custom-steamcord{
+    transition: all .3s ease;
+    padding: 0 12px 0 6px;
     background-color: @temperature;
 }
 

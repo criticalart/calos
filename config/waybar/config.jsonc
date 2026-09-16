@@ -63,6 +63,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "network",
     "custom/recovery-usb",
 		"bluetooth",
+    "custom/steamcord",
 		"custom/system_update",
     "custom/diskdiv",
 		"group/hypr_switcher"
@@ -212,9 +213,9 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
 		"tooltip-format": "Playing: {title} - {artist}",
 		"tooltip-format-paused": "Paused: {title} - {artist}",
 		// "enable-tooltip-len-limits":
-		// "on-click":
-		// "on-click-middle":
-		// "on-click-right":
+		"on-click": "qs -c calos-shell ipc call osd playPause",
+		"on-click-middle": "qs -c calos-shell ipc call osd previous",
+		"on-click-right": "qs -c calos-shell ipc call osd next",
 		"player-icons": {
 			"default": ""
 		},
@@ -271,12 +272,16 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
   },
 
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
+    "format": "{icon}",
     "on-click": "calos-toggle-wiremix",
-    "on-click-right": "pamixer -t",
-    "tooltip": false,
+    "on-click-right": "qs -c calos-shell ipc call osd mute",
+    "tooltip": true,
+    "min-length": 2,
+    "max-length": 2,
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
+    "on-scroll-up": "qs -c calos-shell ipc call osd volumeUp",
+    "on-scroll-down": "qs -c calos-shell ipc call osd volumeDown",
     "format-muted": "",
     "format-icons": {
       "default": ["", "", ""]
@@ -489,7 +494,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
       "custom/power_menu",
 			"custom/version",
       "custom/g502-battery",
-      "custom/steamcord",
+      "custom/overlay",
       "custom/home",
 		],
 		"drawer": {
@@ -517,14 +522,14 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "tooltip-format": "Click to Open Overview",
     "min-length": 2,
 		"max-length": 2,
-    "on-click": "qs ipc -c overview call overview toggle"
+    "on-click": "qs -c calos-shell ipc call overview toggle"
 	},
 
 	"custom/steamcord": {
-		"format": "",
+		"format": "",
 		"tooltip": false,
-    "min-length": 4,
-		"max-length": 4,
+    "min-length": 2,
+		"max-length": 2,
     "on-click": "calos-toggle-steamcord"
 	},
 

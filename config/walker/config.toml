@@ -1,3 +1,24 @@
+#                                                                                                                         
+#                                                                                                                         
+#                                                         lllllll kkkkkkkk                                                
+#                                                         l:::::l k::::::k                                                
+#                                                         l:::::l k::::::k                                                
+#                                                         l:::::l k::::::k                                                
+#wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaa    l::::l  k:::::k    kkkkkkk eeeeeeeeeeee    rrrrr   rrrrrrrrr   
+# w:::::w         w:::::w         w:::::w a::::::::::::a   l::::l  k:::::k   k:::::kee::::::::::::ee  r::::rrr:::::::::r  
+#  w:::::w       w:::::::w       w:::::w  aaaaaaaaa:::::a  l::::l  k:::::k  k:::::ke::::::eeeee:::::eer:::::::::::::::::r 
+#   w:::::w     w:::::::::w     w:::::w            a::::a  l::::l  k:::::k k:::::ke::::::e     e:::::err::::::rrrrr::::::r
+#    w:::::w   w:::::w:::::w   w:::::w      aaaaaaa:::::a  l::::l  k::::::k:::::k e:::::::eeeee::::::e r:::::r     r:::::r
+#     w:::::w w:::::w w:::::w w:::::w     aa::::::::::::a  l::::l  k:::::::::::k  e:::::::::::::::::e  r:::::r     rrrrrrr
+#      w:::::w:::::w   w:::::w:::::w     a::::aaaa::::::a  l::::l  k:::::::::::k  e::::::eeeeeeeeeee   r:::::r            
+#       w:::::::::w     w:::::::::w     a::::a    a:::::a  l::::l  k::::::k:::::k e:::::::e            r:::::r            
+#        w:::::::w       w:::::::w      a::::a    a:::::a l::::::lk::::::k k:::::ke::::::::e           r:::::r            
+#         w:::::w         w:::::w       a:::::aaaa::::::a l::::::lk::::::k  k:::::ke::::::::eeeeeeee   r:::::r            
+#          w:::w           w:::w         a::::::::::aa:::al::::::lk::::::k   k:::::kee:::::::::::::e   r:::::r            
+#           www             www           aaaaaaaaaa  aaaallllllllkkkkkkkk    kkkkkkk eeeeeeeeeeeeee   rrrrrrr            
+
+
+
 force_keyboard_focus = true                                                 # forces keyboard forcus to stay in Walker
 close_when_open = true                                                      # close walker when invoking while already opened
 selection_wrap = true                                                       # wrap list if at bottom or top

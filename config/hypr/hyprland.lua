@@ -20,12 +20,7 @@ local colors = dofile(theme)
 hl.config({
   general = {
     locale = "en_US", -- change this to your locale
-
     allow_tearing = true,
-
-    gaps_in = 5,
-    gaps_out = 10,
-    border_size = 2,
 
     col = {
       active_border = colors.borderactive,
@@ -45,10 +40,6 @@ hl.config({
     force_zero_scaling = true,
   },
 
-  animations = {
-    enabled = true, -- RICE O CLOCK
-  },
-
   dwindle = {
     preserve_split = true,
     force_split = 2,
@@ -60,18 +51,35 @@ hl.config({
     disable_watchdog_warning = true,
     close_special_on_empty = true,
     focus_on_activate = true,
-    background_color = "0x000000",
   },
 })
 
 hl.workspace_rule({
   workspace = "w[tv1]",
-  gaps_out = { top = 10, right = 450, bottom = 10, left = 450 },
+  gaps_out = { top = 60, right = 750, bottom = 60, left = 750 },
 })
 
 hl.workspace_rule({
-  workspace = 1,
+  workspace = "w[tv2]",
+  gaps_out = { top = 40, right = 60, bottom = 40, left = 60 },
+  gaps_in = 30
+})
+
+hl.workspace_rule({
+  workspace = "w[tv3]",
+  gaps_out = { top = 15, right = 20, bottom = 15, left = 20 },
+  gaps_in = 10
+})
+
+hl.workspace_rule({
+  workspace = "1",
   persistent = true,
+})
+
+hl.workspace_rule({
+  workspace = "special:steamcord",
+  gaps_out = { top = 5, right = 5, bottom = 100, left = 5 },
+  gaps_in = 3,
 })
 
 hl.window_rule({

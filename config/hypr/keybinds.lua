@@ -17,21 +17,21 @@ local browser = "uwsm-app -- firefox"
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("calos-walker-launch center"))
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal .. " --working-directory=$(calos-cmd-terminal-cwd)"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd(terminal .. " --class Neovim -e nvim"))
-hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("steamcord")) -- equivalent to the "home page"
+hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("steamcord"), { submap_universal = true })
 hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi-float -e yazi"))
-hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
-hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
+hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { submap_universal = true })
+hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { submap_universal = true })
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
-hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("steamcord")) -- equivalent to the "home page"
+hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("steamcord"), { submap_universal = true })
 
 ---------------------------
 ---- SYSTEM MANAGEMENT ----
 ---------------------------
 
 require("scripts.ctrlbinds") -- allows "CTRL + " shortcuts to work with SUPER, such as copy/paste and new tabs
-hl.bind("SUPER + BACKSPACE", hl.dsp.exec_cmd("calos-toggle-opacity"))
-hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("qs -c theme"))
-hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c wallselect"))
+hl.bind("SUPER + BACKSPACE", hl.dsp.exec_cmd("calos-toggle-opacity"), { submap_universal = true })
+hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("qs -c calos-shell ipc call theme open"))
+hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c calos-shell ipc call wallselect open"))
 hl.bind("SUPER + CTRL + C", hl.dsp.exec_cmd(terminal .. " --class clipse -e clipse"))
 hl.bind("SUPER + CTRL + W", hl.dsp.exec_cmd("calos-toggle-waybar"))
 hl.bind(
@@ -40,15 +40,14 @@ hl.bind(
 )
 hl.bind("SUPER + CTRL + N", hl.dsp.exec_cmd("calos-toggle-nightlight"))
 hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("calos-menu system"))
-hl.bind("SUPER + H", hl.dsp.workspace.toggle_special("home"))             -- equivalent to the "home page"
-hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home"))        -- equivalent to the "home page"
-hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home")) -- equivalent to the "home page"
-hl.bind("SUPER + TAB", hl.dsp.exec_cmd("qs ipc -c overview call overview toggle"))
-
+hl.bind("SUPER + H", hl.dsp.workspace.toggle_special("home"))
+hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home"), { submap_universal = true })
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home"), { submap_universal = true })
+hl.bind("SUPER + TAB", hl.dsp.exec_cmd("qs -c calos-shell ipc call overview toggle"), { submap_universal = true })
 hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-cmd-lockscreen"))
-hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("swayosd-client --caps-lock"))
-hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu")) -- will close all windows on current workspace
-hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"))
+hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd caps"))
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu"), { submap_universal = true })
+hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"), { submap_universal = true })
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("calos-toggle-bigpic"))
 hl.bind("SUPER + ALT + M", hl.dsp.exec_cmd("calos-toggle-output"))
 
@@ -120,7 +119,7 @@ hl.bind("SUPER + P", hl.dsp.window.pseudo())
 ---- SCREEN CAPTURE ----
 ------------------------
 
-hl.bind("SUPER + SHIFT +S", hl.dsp.exec_cmd("hyprshot -m region --freeze"))
+hl.bind("SUPER + SHIFT +S", hl.dsp.exec_cmd("hyprshot -m region --freeze"), { submap_universal = true })
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SUPER + CONTROL + P", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
 hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("calos-cmd-screenrecord"))
@@ -129,10 +128,10 @@ hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("calos-cmd-screenrecord"))
 ---- FN KEYS MEDIA ----
 -----------------------
 
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("swayosd-client --playerctl next"))
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"))
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"))
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("swayosd-client --playerctl previous"))
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd next"))
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"))
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"))
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd previous"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeUp"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeDown"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd mute"))

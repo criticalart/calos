@@ -44,4 +44,5 @@ hl.bind("mouse:273", function()
   end
 end, {
   non_consuming = true,
+  submap_universal = true
 })

@@ -58,6 +58,14 @@ execute = [
     { run = '%s', block = true, desc = "Execute as shell command"},
 ]
 
+ziparchive = [
+    { run = 'calos-zip-archive %s', block = true, desc = "Add to zip Archive" }
+]
+
+7zarchive = [
+    { run = 'calos-7z-archive %s', block = true, desc = "Add to 7z Archive" }
+]
+
 music = [
 { run = 'ffplay -nodisp -autoexit %s' },
 ]
@@ -73,6 +81,8 @@ imageclip = [
 [open]
 
 rules = [
+
+{ url = "*/", use = ["7zarchive", "ziparchive" ] },
 
 { url = "*.{zip,rar,7z}", use = "extract" },
 
