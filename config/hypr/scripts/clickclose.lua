@@ -22,7 +22,7 @@ hl.bind("mouse:273", function()
     return
   end
 
-  -- Close any window when right-clicking its upper-right 10%
+  -- Close/toggle only when right-clicking the upper-right 10%
   local cursor = hl.get_cursor_pos()
 
   local x = w.at.x
@@ -40,7 +40,11 @@ hl.bind("mouse:273", function()
       cursor.y <= y + hitbox_height
 
   if in_upper_right then
-    hl.dispatch(hl.dsp.window.close())
+    if w.class == "vesktop" then
+      hl.dispatch(hl.dsp.workspace.toggle_special("discord"))
+    else
+      hl.dispatch(hl.dsp.window.close())
+    end
   end
 end, {
   non_consuming = true,

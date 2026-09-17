@@ -2,3 +2,6 @@ StyledText 1.0 StyledText.qml
 StyledRectangularShadow 1.0 StyledRectangularShadow.qml
 StyledToolTip 1.0 StyledToolTip.qml
 StyledToolTipContent 1.0 StyledToolTipContent.qml
+OSDStatus 1.0 OSDStatus.qml
+OSDVolume 1.0 OSDVolume.qml
+OSDMedia 1.0 OSDMedia.qml
