@@ -54,34 +54,6 @@ hl.config({
   },
 })
 
-hl.workspace_rule({
-  workspace = "w[tv1]",
-  gaps_out = { top = 60, right = 750, bottom = 60, left = 750 },
-})
-
-hl.workspace_rule({
-  workspace = "w[tv2]",
-  gaps_out = { top = 40, right = 60, bottom = 40, left = 60 },
-  gaps_in = 30
-})
-
-hl.workspace_rule({
-  workspace = "w[tv3]",
-  gaps_out = { top = 15, right = 20, bottom = 15, left = 20 },
-  gaps_in = 10
-})
-
-hl.workspace_rule({
-  workspace = "1",
-  persistent = true,
-})
-
-hl.workspace_rule({
-  workspace = "special:steamcord",
-  gaps_out = { top = 5, right = 5, bottom = 100, left = 5 },
-  gaps_in = 3,
-})
-
 hl.window_rule({
   -- Ignore maximize requests from all apps. You'll probably like this.
   name = "suppress-maximize-events",

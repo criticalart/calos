@@ -3,8 +3,6 @@
 //@ pragma Env QT_QPA_PLATFORMTHEME=
 
 import "./modules/overview/"
-import "./modules/wallselect/"
-import "./modules/theme/"
 import "./services"
 import QtQuick
 
@@ -20,32 +18,6 @@ ShellRoot {
         }
     }
 
-    IpcHandler {
-        target: "wallselect"
-
-        function open(): void {
-            GlobalStates.wallselectOpen = true;
-        }
-    }
-
-    IpcHandler {
-        target: "theme"
-
-        function open(): void {
-            GlobalStates.themeOpen = true;
-        }
-    }
-
     Overview {}
     OSD {}
-
-    LazyLoader {
-        active: GlobalStates.wallselectOpen
-        Wallselect {}
-    }
-
-    LazyLoader {
-        active: GlobalStates.themeOpen
-        Theme {}
-    }
 }

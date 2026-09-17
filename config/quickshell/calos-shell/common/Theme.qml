@@ -16,7 +16,7 @@ Singleton {
 
     readonly property string themePath:
         Quickshell.env("HOME") +
-        "/.config/calos/current/theme/walker.css"
+        "/.config/calos/current/theme/quickshell.json"
 
     FileView {
         id: themeFile
@@ -28,39 +28,27 @@ Singleton {
         }
     }
 
-    function applyTheme(css) {
-        function getColor(name) {
-            const regex = new RegExp(
-                "@define-color\\s+" +
-                name.replace("-", "\\-") +
-                "\\s+(#[0-9A-Fa-f]{6})"
-            );
+    function applyTheme(jsonText) {
+        try {
+            const theme = JSON.parse(jsonText);
 
-            const match = css.match(regex);
+            if (typeof theme.background === "string")
+                root.background = theme.background;
 
-            return match ? match[1] : null;
+            if (typeof theme.foreground === "string")
+                root.foreground = theme.foreground;
+
+            if (typeof theme.accent === "string")
+                root.accent = theme.accent;
+
+            if (typeof theme.selectedText === "string")
+                root.selectedText = theme.selectedText;
+
+            if (typeof theme.border === "string")
+                root.border = theme.border;
+        } catch (error) {
+            console.warn("Failed to parse Quickshell theme:", error);
         }
-
-        const newBackground = getColor("background");
-        const newForeground = getColor("text");
-        const newAccent = getColor("accent");
-        const newSelectedText = getColor("selected-text");
-        const newBorder = getColor("border");
-
-        if (newBackground)
-            root.background = newBackground;
-
-        if (newForeground)
-            root.foreground = newForeground;
-
-        if (newAccent)
-            root.accent = newAccent;
-
-        if (newSelectedText)
-            root.selectedText = newSelectedText;
-
-        if (newBorder)
-            root.border = newBorder;
     }
 
     function reload() {

@@ -26,7 +26,7 @@ start_screenrecording() {
 
   # Merge audio tracks into one - separate tracks only play one at a time in most players
   [[ "$AUDIO" == "true" ]] && audio_args="-a default_output|default_input"
-  [[ "$MICAUDIO" == "false" ]] && audio_args="-a default_output"
+  [[ "$MICAUDIO" == "true" ]] && audio_args="-a default_output"
   qs -c calos-shell ipc call osd screenrecord
   gpu-screen-recorder -w "$@" -f 60 -c mp4 -o "$filename" $audio_args &
   local timeout=0

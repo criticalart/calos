@@ -56,7 +56,7 @@ show_style_menu() {
   *"󰌍  Back"*) back_to show_main_menu ;;
   *Theme*)
     BACK_TO_EXIT=false
-    qs -c calos-shell ipc call theme open
+    qs -c theme
     ;;
   *Font*)
     BACK_TO_EXIT=false
@@ -64,7 +64,7 @@ show_style_menu() {
     ;;
   *Background*)
     BACK_TO_EXIT=false
-    qs -c calos-shell ipc call wallselect open
+    qs -c wallselect
     ;;
   *Hyprland*)
     BACK_TO_EXIT=false
@@ -87,7 +87,7 @@ show_font_menu() {
 show_capture_menu() {
   local parent_menu="$1"
 
-  case $(menu "Capture" "  Screenshot\n  Screenrecord\n󰃉  Color") in
+  case $(menu "Capture" "  Screenshot\n󰯜  Screenrecord\n  Color") in
   *Back*)
     if [[ -n "$parent_menu" ]]; then
       "$parent_menu"
@@ -103,7 +103,7 @@ show_capture_menu() {
 }
 
 show_screenshot_menu() {
-  case $(menu "Screenshot" "󰌍  Back\n  Region\n  Window\n  Display") in
+  case $(menu "Screenshot" "󰌍  Back\n  Region\n  Window\n󰹑  Display") in
   *Back*) show_capture_menu ;;
   *Region*) hyprshot -m region --freeze ;;
   *Window*) hyprshot -m window ;;
@@ -113,9 +113,10 @@ show_screenshot_menu() {
 }
 
 show_screenrecord_menu() {
-  case $(menu "Screenrecord" "󰌍  Back\n  Region\n  Display") in
+  case $(menu "Screenrecord" "󰌍  Back\n󰯜  Region\n  With Mic\n󰹑  Display") in
   *Back*) show_capture_menu ;;
   *Region*) calos-cmd-screenrecord ;;
+  *With*) calos-cmd-screenrecord-withmic ;;
   *Display*) calos-cmd-screenrecord output ;;
   *) show_capture_menu ;;
   esac

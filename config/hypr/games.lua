@@ -28,7 +28,7 @@ hl.window_rule({
   float = true,
   center = true,
   persistent_size = true,
-  workspace = "special:steamcord",
+  workspace = "special:steam",
 })
 
 hl.window_rule({
@@ -51,7 +51,7 @@ hl.window_rule({
   },
 
   float = false,
-  workspace = "special:steamcord",
+  workspace = "special:steam",
 })
 
 -- Steam specific options
@@ -64,7 +64,7 @@ hl.window_rule({
 
   suppress_event = "activatefocus",
   no_initial_focus = true,
-  workspace = "special:steamcord silent", -- change this to whatever workspace you want your steam to run, defaults to 3 in autostart as well
+  workspace = "special:steam silent", -- change this to whatever workspace you want your steam to run, defaults to 3 in autostart as well
 })
 
 hl.window_rule({

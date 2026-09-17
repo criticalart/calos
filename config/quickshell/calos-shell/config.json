@@ -57,7 +57,7 @@
     "includeInactiveMonitorPreviews": true,
     "previewRecaptureDelayMs": 60,
     "showSpecialWorkspaces": true,
-    "specialWorkspaces": ["steamcord","game","home"],
+    "specialWorkspaces": ["discord","home","steam"],
     "specialWorkspaceColumns": 3,
     "emptyWorkspaceWallpaper": "",
     "specialEmptyWorkspaceWallpaper": "",

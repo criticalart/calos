@@ -16,15 +16,15 @@ Scope {
 
     readonly property int osdWidth: 320
     readonly property int mediaWidth: 480
-    readonly property int osdHeight: 120
+    readonly property int osdHeight: 112
     readonly property real bottomPosition: 0.80
 
     readonly property int animationInDuration: 400
-    readonly property int animationOutDuration: 360
+    readonly property int animationOutDuration: 240
 
     property real cardWidth: 0
     property real cardHeight: 10
-    property real cardRadius: 6
+    property real cardRadius: 2
 
     property real contentOpacity: 0
     property real contentScale: 0.88
@@ -165,6 +165,12 @@ Scope {
         root.show();
     }
 
+    function showScreenRecord() {
+        root.mode = "screenrecord";
+
+        root.show();
+    }
+
     function updateDisplay() {
         if (root.visibleState) {
             root.resizeForMode();
@@ -180,10 +186,8 @@ Scope {
         if (root.visibleState) {
             outroAnimation.stop();
 
-            // Restore the fully visible state in case the outro
-            // was already part-way through closing.
             root.cardHeight = root.osdHeight;
-            root.cardRadius = 18;
+            root.cardRadius = 2;
             root.contentOpacity = 1;
             root.contentScale = 1;
             root.contentX = 0;
@@ -199,7 +203,7 @@ Scope {
 
         root.cardWidth = 0;
         root.cardHeight = 10;
-        root.cardRadius = 6;
+        root.cardRadius = 2;
 
         root.contentOpacity = 0;
         root.contentScale = 0.88;
@@ -246,7 +250,7 @@ Scope {
 
                 duration: root.animationInDuration
 
-                easing.type: Easing.OutBack
+                easing.type: Easing.OutCubic
                 easing.overshoot: 1.12
             }
 
@@ -262,17 +266,7 @@ Scope {
                 easing.type: Easing.OutCubic
             }
 
-            NumberAnimation {
-                target: root
-                property: "cardRadius"
-
-                from: 6
-                to: 18
-
-                duration: root.animationInDuration
-
-                easing.type: Easing.OutCubic
-            }
+            
         }
 
         SequentialAnimation {
@@ -302,8 +296,7 @@ Scope {
 
                     duration: 340
 
-                    easing.type: Easing.OutBack
-                    easing.overshoot: 1.05
+                    easing.type: Easing.OutCubic
                 }
 
                 NumberAnimation {
@@ -333,79 +326,43 @@ Scope {
     }
 
     SequentialAnimation {
-        id: outroAnimation
+    id: outroAnimation
 
-        ParallelAnimation {
-            NumberAnimation {
-                target: root
-                property: "contentOpacity"
-
-                from: 1
-                to: 0
-
-                duration: 120
-
-                easing.type: Easing.InCubic
-            }
-
-            NumberAnimation {
-                target: root
-                property: "contentScale"
-
-                from: 1
-                to: 0.92
-
-                duration: 160
-
-                easing.type: Easing.InCubic
-            }
+    ParallelAnimation {
+        NumberAnimation {
+            target: root
+            property: "contentOpacity"
+            from: 1
+            to: 0
+            duration: root.animationOutDuration
+            easing.type: Easing.InCubic
         }
 
-        ParallelAnimation {
-            NumberAnimation {
-                target: root
-                property: "cardWidth"
-
-                from: root.cardWidth
-                to: 0
-
-                duration: root.animationOutDuration
-
-                easing.type: Easing.InBack
-                easing.overshoot: 1.05
-            }
-
-            NumberAnimation {
-                target: root
-                property: "cardHeight"
-
-                from: root.osdHeight
-                to: 10
-
-                duration: root.animationOutDuration
-
-                easing.type: Easing.InCubic
-            }
-
-            NumberAnimation {
-                target: root
-                property: "cardRadius"
-
-                from: 18
-                to: 6
-
-                duration: root.animationOutDuration
-
-                easing.type: Easing.InCubic
-            }
+        NumberAnimation {
+            target: root
+            property: "contentScale"
+            from: 1
+            to: 0.92
+            duration: root.animationOutDuration
+            easing.type: Easing.InCubic
         }
 
-        ScriptAction {
-            script: {
-                root.visibleState = false;
-            }
+        NumberAnimation {
+            target: root
+            property: "cardHeight"
+            from: root.cardHeight
+            to: 10
+            duration: root.animationOutDuration
+            easing.type: Easing.InCubic
         }
     }
+
+    ScriptAction {
+        script: {
+            root.visibleState = false;
+        }
+    }
+}
 
     IpcHandler {
         target: "osd"
@@ -448,6 +405,10 @@ Scope {
 
         function steam(): void {
             root.showSteam();
+        }
+
+        function screenrecord(): void {
+            root.showScreenRecord();
         }
 
         function refreshTheme(): void {
@@ -795,7 +756,7 @@ Scope {
 
                             leftMargin: 26
                             rightMargin: 26
-                            topMargin: 20
+                            topMargin: 14
                             bottomMargin: 20
                         }
 
@@ -901,7 +862,7 @@ Scope {
                                     color: root.selectedText
 
                                     font.family: "Iosevka"
-                                    font.pixelSize: 24
+                                    font.pixelSize: 26
                                     font.weight: Font.Bold
 
                                     width: implicitWidth
@@ -1493,6 +1454,119 @@ Scope {
 
                                 font.family: "Iosevka"
                                 font.pixelSize: 18
+                                font.weight: Font.Bold
+
+                                elide: Text.ElideRight
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+                                Layout.preferredHeight: 3
+                                Layout.topMargin: 5
+
+                                radius: height / 2
+
+                                color: Qt.alpha(
+                                    root.foreground,
+                                    0.10
+                                )
+
+                                Rectangle {
+                                    width: parent.width
+
+                                    height: parent.height
+
+                                    radius: height / 2
+
+                                    color: root.accent
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        anchors {
+                            fill: parent
+
+                            leftMargin: 26
+                            rightMargin: 26
+                            topMargin: 20
+                            bottomMargin: 20
+                        }
+
+                        spacing: 20
+
+                        visible: root.mode === "screenrecord"
+
+                        opacity: root.contentOpacity
+                        scale: root.contentScale
+
+                        transform: Translate {
+                            x: root.contentX
+                        }
+
+                        Rectangle {
+                            Layout.preferredWidth: 68
+                            Layout.preferredHeight: 68
+
+                            radius: 16
+
+                            color: Qt.alpha(
+                                root.accent,
+                                0.13
+                            )
+
+                            border.width: 1
+                            border.color: Qt.alpha(
+                                root.accent,
+                                0.28
+                            )
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: "󰯜"
+
+                                color: root.accent
+
+                                font.pixelSize: 34
+
+                                renderType: Text.NativeRendering
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.minimumWidth: 0
+
+                            spacing: 3
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "Now Recording"
+
+                                color: root.foreground
+
+                                font.family: "Inter"
+                                font.pixelSize: 24
+                                font.weight: Font.DemiBold
+
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 0
+
+                                text: "SUPER + PRINT to Stop"
+
+                                color: root.selectedText
+
+                                font.family: "Iosevka"
+                                font.pixelSize: 14
                                 font.weight: Font.Bold
 
                                 elide: Text.ElideRight

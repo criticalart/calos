@@ -239,7 +239,7 @@ hl.window_rule({
 
   no_initial_focus = true,
   suppress_event = "activatefocus",
-  workspace = "special:steamcord silent",
+  workspace = "special:discord silent",
 })
 
 -- Miscellaneous Rules
@@ -281,7 +281,7 @@ hl.layer_rule({
   },
 
   blur = true,
-  ignore_alpha = 0,
+  ignore_alpha = 0.5,
   animation = "popin 99%",
 })
 
@@ -305,7 +305,7 @@ hl.layer_rule({
 })
 
 -- Enable blur for waybar
-
+--
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.5 })
 
 -- custom script for the 'homepage'
@@ -323,8 +323,14 @@ hl.workspace_rule({
 })
 
 hl.workspace_rule({
-  workspace = "special:steamcord",
+  workspace = "special:discord",
   layout = "master",
+})
+
+hl.workspace_rule({
+  workspace = "special:steam",
+  layout = "master",
+  decorate = false,
 })
 
 hl.workspace_rule({

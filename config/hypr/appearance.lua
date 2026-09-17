@@ -62,6 +62,42 @@ hl.config({
   }
 })
 
+-- workspace spacing
+
+hl.workspace_rule({
+  workspace = "w[tv1]",
+  gaps_out = { top = 60, right = 750, bottom = 60, left = 750 },
+})
+
+hl.workspace_rule({
+  workspace = "w[tv2]",
+  gaps_out = { top = 40, right = 60, bottom = 40, left = 60 },
+  gaps_in = 30
+})
+
+hl.workspace_rule({
+  workspace = "w[tv3]",
+  gaps_out = { top = 15, right = 20, bottom = 15, left = 20 },
+  gaps_in = 10
+})
+
+hl.workspace_rule({
+  workspace = "1",
+  persistent = true,
+})
+
+hl.workspace_rule({
+  workspace = "special:discord",
+  gaps_out = { top = 4, right = 4, bottom = 4, left = 2100 },
+  gaps_in = 3,
+})
+
+hl.workspace_rule({
+  workspace = "special:steam",
+  gaps_out = { top = 4, right = 4, bottom = 4, left = 4 },
+  gaps_in = 3,
+})
+
 -- Bezier Curves
 
 hl.curve("specialworkswitch", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })

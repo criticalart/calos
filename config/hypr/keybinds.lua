@@ -17,12 +17,12 @@ local browser = "uwsm-app -- firefox"
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("calos-walker-launch center"))
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal .. " --working-directory=$(calos-cmd-terminal-cwd)"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd(terminal .. " --class Neovim -e nvim"))
-hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("steamcord"), { submap_universal = true })
+hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("steam"), { submap_universal = true })
 hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi-float -e yazi"))
 hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { submap_universal = true })
 hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { submap_universal = true })
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
-hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("steamcord"), { submap_universal = true })
+hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("discord"), { submap_universal = true })
 
 ---------------------------
 ---- SYSTEM MANAGEMENT ----
@@ -30,8 +30,8 @@ hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("steamcord"), { submap_univ
 
 require("scripts.ctrlbinds") -- allows "CTRL + " shortcuts to work with SUPER, such as copy/paste and new tabs
 hl.bind("SUPER + BACKSPACE", hl.dsp.exec_cmd("calos-toggle-opacity"), { submap_universal = true })
-hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("qs -c calos-shell ipc call theme open"))
-hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c calos-shell ipc call wallselect open"))
+hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("qs -c theme"))
+hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c wallselect"))
 hl.bind("SUPER + CTRL + C", hl.dsp.exec_cmd(terminal .. " --class clipse -e clipse"))
 hl.bind("SUPER + CTRL + W", hl.dsp.exec_cmd("calos-toggle-waybar"))
 hl.bind(
