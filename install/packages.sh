@@ -41,7 +41,6 @@ sudo pacman -S --noconfirm --needed \
   quickshell \
   imagemagick \
   awww \
-  swayosd \
   tealdeer \
   tree-sitter-cli \
   ttf-cascadia-mono-nerd \
