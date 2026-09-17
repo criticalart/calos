@@ -1,6 +1,7 @@
 #!/bin/bash
 
 calos-cmd-close-all-windows
+qs -c calos-shell ipc call osd logout
 playerctl pause
 sleep 0.1
 awww img ~/.config/calos/branding/off.png --resize stretch --transition-type wipe --transition-angle=90 --transition-fps 144 --transition-duration 1
