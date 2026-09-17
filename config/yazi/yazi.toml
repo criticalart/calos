@@ -66,6 +66,10 @@ ziparchive = [
     { run = 'calos-7z-archive %s', block = true, desc = "Add to 7z Archive" }
 ]
 
+copypath = [
+    { run = 'realpath %s | wl-copy', desc = "Copy Path to Clipboard" }
+]
+
 music = [
 { run = 'ffplay -nodisp -autoexit %s' },
 ]
@@ -82,7 +86,7 @@ imageclip = [
 
 rules = [
 
-{ url = "*/", use = ["7zarchive", "ziparchive" ] },
+{ url = "*/", use = ["copypath", "7zarchive", "ziparchive" ] },
 
 { url = "*.{zip,rar,7z}", use = "extract" },
 
