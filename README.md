@@ -3,22 +3,23 @@
 </p>
 
 
-# caliburnOS Hyprland Starter
--caliburnOS- is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be both feature-rich, yet nominal; a blank template that the user can build on top of. With less than 600 packages on a complete install, -caliburnOS combines smart/minimal TUI-based defaults with smooth animations and extensive themeing. As of v0.8.5 quickshell integration has been complete, bringing a ton of smooth animations and polish for minimal system overhead.
+# -caliburnOS- Desktop Hyprland Starter
+-caliburnOS- is a desktop-friendly Hyprland starter setup (Arch btw) that strives to be both feature-rich, yet nominal; a blank template that the user can build on top of. With less than 600 packages on a complete install, -caliburnOS- combines smart/minimal TUI-based defaults with smooth animations and extensive themeing. Heavy emphasis on the **Desktop** part btw. If you have a lot of screen real estate this install is perfect for you, and it functions oh-so nicely on widescreen monitors. 
 
 tl;dr its dotfiles baby
 
 <p align="center">
-  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/7bb9867f-e02e-42dd-884d-031fe719cd7a" />
-  <i>Homescreen / Task Manager / Overview Script</i>
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/7bc269b3-9d8d-45c7-b6ef-bb3d13cf8ee7" />
+  <i>Overview Module</i>
 </p>
 
 ## Overview
 
-* **💻 Minimal System Apps**: Striving to be as bloat-free as possible, -caliburnOS primarily utilizes TUI applications/packages with minimal dependencies for system control. Examples include `yazi` as your file browser, `cmus` for playing local audio, and `bluetui`/`impala` for bluetooth/wifi support respectively.
-* **🎮 Gaming Friendly**: -caliburnOS ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace for games (`Super + G`), a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global push-to-talk support) and Steam pre-installed (if chosen by the installer).
-*  **🧲 Complete Walker/Waybar Integration**: Thanks to walker's extensive `dmenu` support, -caliburnOS comes with a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your current theme. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Easter egg included.
-*  **🖌️ Style**: Speaking of _style_, -caliburnOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Multiple beziers were either created or imported (from popular configs like caelestia) for a beautifuly animated system. Quickshell is woven beautifully in the OS, from your power menu to your theme menu.
+* **💻 Minimal System Apps**: Striving to be as bloat-free as possible, -caliburnOS- primarily utilizes TUI applications/packages with minimal dependencies for system control. Examples include `yazi` as your file browser, `cmus` for playing local audio, and `bluetui`/`impala` for bluetooth/wifi support respectively.
+* **🎮 Gaming Friendly**: -caliburnOS- ships with numerous gaming-oriented configurations, all found in the `games.conf` file within `.config/hypr`. Features include a special workspace for games (`Super + G`), a custom gaming submap (with full waybar integration) that disables keybinds of your choosing + enables passthrough (for global push-to-talk support) and Steam pre-installed (if chosen by the installer).
+*  **🧲 Complete Walker/Waybar/Quickshell Integration**: Thanks to walker's extensive `dmenu` support, -caliburnOS- comes with a powerful system menu that can help toggle/restart system daemons, launch applications, run system commands and even change your current theme. A custom fork of `mechabar` (Waybar) helps you keep on eye on your active workspaces, system resources, currently playing audio and pending updates. Various system binaries communicate between the both of them so any system changes or toggle-able states reflect on waybar. **caliburnShell** is the lightweight overlay/OSD module that runs in the background, allowing for custom notifications/media controls + workspace organization. These three critical system components use less than 500MB in total and look really nice.
+*  **🖌️ Style**: Speaking of _style_, -caliburnOS ships with 10+ themes that are fully integrated into the OS. Your waybar, Neovim, terminal applications, quickshell modules, audio visuializer and walker menu all change based on the theme you pick! Check out the style section below for some examples. Shoutout to Omarchy for creating the excellent theme switcher that this is based on. Multiple beziers were either created or imported (from popular configs like caelestia) for a beautifuly animated system. Quickshell is woven beautifully in the OS, from your power menu to your theme menu to your lockscreen.
+* **🖱️ Don't Forget the Mouse**: What would a desktop setup be without a mouse? Sure, there are keybinds for every system function but sometimes you just want to kick back and use your mouse to navigate your computer. Any possible feature or system action/binary can easily be accessed from `waybar`/`walker`, even running a system update! `Walker` will follow your mouse and launch dynamically based on where it is invoked, `waybar` will allow you to toggle any system state by just clicking on it and `quickshell` has complete functionality with the mouse for its theme/wallpaper/power menu. Just because you're using a window manager doesn't mean you only have to use your keyboard.
 *  **⚖️ Configurable Install**: With preconfigured dotfiles, you sometimes run the risk of too little control over what you have installed on your system. The installer rectifies this by allowing you to choose what defaults you prefer, such as picking your AUR helper `yay` vs `paru` (defaults to paru because iTS BETTER) and whether or not you want to install `Steam` with full system integration.
 *  **🔧 Tinker Friendly**: Some dotfiles also make it very difficult to change certain aspects of your system, from keybinds to default applications. This is your computer and you can do whatever you want with it. All configuration files are in the `~/.config` directory, with your `hyprland` configuration files being neatly sourced in separate files for easy editing. Don't like something? Great, change it! To easily browse installed packages and "de-bloat", open up your system menu and navigate to System -> Packages to see what comes preinstalled.
 
@@ -31,7 +32,7 @@ tl;dr its dotfiles baby
 | **Launcher** | [Walker](https://github.com/abenz1267/walker) |
 | **Waybar** | [Mechabar](https://github.com/sejjy/mechabar) |
 | **Terminal** | [Alacritty](https://alacritty.org/) |
-| **Wallpaper**| [Awww](https://github.com/LGFae/swww) |
+| **Wallpaper**| [Awww](https://codeberg.org/LGFae/awww) |
 | **Notifications**| [mako](https://github.com/emersion/mako) |
 | **Browser** | [Firefox](https://github.com/mozilla-firefox/firefox) |
 
@@ -44,11 +45,10 @@ For the uninitiated, your **Super** key is your windows key. Stop calling it the
 
 | Keybind | Action |
 | --- | --- |
-| SUPER | Open System Menu |
+| `Super (L / R)` | Open System Menu |
 | `Super + Enter` | Open Terminal |
 | `Super + Q` | Kill Active Window |
 | `Super + Escape` | Open Homepage |
-| `Super + Alt + Space` | Open System Menu (Alt) |
 | `Super + B` | Browser (Firefox) |
 | `Super + Space` | Application Launcher |
 | `Super + Y` | Yazi (File Manager)|
@@ -56,6 +56,7 @@ For the uninitiated, your **Super** key is your windows key. Stop calling it the
 | `Super + G` | Toggle Game Window |
 | `Super + S` | BTop++ System Monitor |
 | `Super + Backspace` | Toggle Opacity |
+| `CTRL + ALT + DEL` | Power Menu |
 
 
 ### System
@@ -64,14 +65,14 @@ System keybinds use **CTRL** and  **SUPER**.
 
 | Keybind | Action |
 | --- | --- |
-| `Super + CTRL + L` | Screensaver |
+| `Super + CTRL + L` | Lockscreen |
 | `Super + CTRL + N` | Toggle Bluelight |
 | `Super + CTRL + W` | Toggle Waybar |
 | `Super + CTRL + C` | Clipboard History |
 | `Super + CTRL + S` | Power Options |
 | `Super + CTRL + T` | Theme Menu |
 | `Super + CTRL + G` | Toggle Game Mode |
-| `Super + CTRL + B` | Cycle Background |
+| `Super + CTRL + B` | Background Menu |
 
 
 ### Window Management
@@ -83,29 +84,29 @@ System keybinds use **CTRL** and  **SUPER**.
 | `Super + Arrow Keys` | Switch Active Window |
 | `Super + Shift + Arrow Keys` | Swap Active Window |
 | `Super + Shift + (1,2,3)` | Move Active Window to [Number] Workspace |
+| `SUPER + L_Click` | Drag Window |
+| `SUPER + R_Click` | Resize Floating Window |
 
 
 ## Style
 
 <p align="center">
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/a04c4d61-e8bf-44d2-a9ce-066c91bce0aa" />
+  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/781ae445-6cc4-4ffe-ab73-2787461f20c8" />
   <i>Theme Menu</i>
 </p>
 
-Many, many, many (autistic) hours were spent tweaking each theme caliburnOS ships with to compliment the entire OS. Your waybar, audio visualizer, terminal and system monitoring tools will all change based on the theme you're feeling. This took so long you son of a bitch you better use the themes. All themes and screenshots taken below are from the themes bundled within caliburnOS.
-
 <p align="center">
-  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/42c7fe7a-1705-4a97-b31d-9d87717562be" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e885b0d0-16a8-4b97-8e93-80860bf7983d" />
   <br>
   <i>Launcher with Dynamic Location</i>
   <br><br>
 
-  <img width="3440" height="1439" alt="image" src="https://github.com/user-attachments/assets/69962ad9-850a-403f-b7cd-264b2c045e42" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ff05acf8-2216-412f-b25c-50fa59c78f2b" />
   <br>
   <i>Quickshell Powermenu</i>
   <br><br>
 
-  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/80845475-fd08-4c1f-9a88-6f2a22d6574c" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/b51ec43b-6fb6-4165-b94a-4de90dd12d90" />
   <br>
   <i>Glorious Window Management</i>
   <br><br>
@@ -114,6 +115,8 @@ Many, many, many (autistic) hours were spent tweaking each theme caliburnOS ship
   <br>
   <i>ok maybe a bit too much quickshell</i>
 </p>
+
+Many, many, many (autistic) hours were spent tweaking each theme caliburnOS ships with to compliment the entire OS. Your waybar, audio visualizer, terminal and system monitoring tools will all change based on the theme you're feeling. This took so long you son of a bitch you better use the themes. All themes and screenshots taken below are from the themes bundled within caliburnOS.
 
 
 # Installation and Configuration
