@@ -21,7 +21,7 @@ CACHEFIX=$(echo "$HOME/.cache/quickshell/thumbs/")
 THEMEFIX=$(echo "$HOME/.config/calos/themes")
 THACHEFIX=$(echo "$HOME/.cache/quickshell/themes")
 REGCSS=$(echo "file:///home/$USER/.config/calos/current/theme/regreet.css")
-REGTOML=$(echo "/home/$USER/.config/calos/current/background")
+REGTOML=$(echo "/home/$USER/.config/calos/current/theme/backgrounds/default.jpg")
 
 sed -i "s|wallthemefix|$WALLFIX|" ~/.config/quickshell/wallselect/config.json
 sed -i "s|cachpath|$CACHEFIX|" ~/.config/quickshell/wallselect/config.json
