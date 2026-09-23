@@ -1,0 +1,11 @@
+{
+    "plugins": {},
+    "customCspRules": {
+        "fonts.cdnfonts.com": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ]
+    }
+}

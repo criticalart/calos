@@ -106,6 +106,7 @@ hl.define_submap("gaming", function()
   hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("sh -c \"notify-send 'Current Time' \\\"\\$(date '+%I:%M %p')\\\"\""))
   hl.bind("SUPER + G", hl.dsp.exec_cmd("calos-toggle-game"))
 
+
   -- defaults that should have the universal flag, will be removed eventually
   for i = 1, 9 do
     hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
@@ -119,9 +120,6 @@ hl.define_submap("gaming", function()
   hl.bind("SUPER + right", hl.dsp.focus({ direction = "right" }))
   hl.bind("SUPER + up", hl.dsp.focus({ direction = "up" }))
   hl.bind("SUPER + down", hl.dsp.focus({ direction = "down" }))
-
-  hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
-  hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { release = true })
   hl.bind("SUPER + SHIFT + LEFT", hl.dsp.window.swap({ direction = "l" }))
   hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.window.swap({ direction = "r" }))
   hl.bind("SUPER + SHIFT + UP", hl.dsp.window.swap({ direction = "u" }))

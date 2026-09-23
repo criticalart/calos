@@ -39,7 +39,7 @@ hl.bind(
   hl.dsp.exec_cmd(terminal .. " --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start")
 )
 hl.bind("SUPER + CTRL + N", hl.dsp.exec_cmd("calos-toggle-nightlight"))
-hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("calos-menu system"))
+hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("qs -c powermenu"))
 hl.bind("SUPER + H", hl.dsp.workspace.toggle_special("home"))
 hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home"), { submap_universal = true })
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home"), { submap_universal = true })

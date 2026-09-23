@@ -21,5 +21,6 @@ ln -snf ~/.config/calos/current/theme/btop.theme ~/.config/btop/themes/current.t
 
 mkdir -p ~/.config/mako
 ln -snf ~/.config/calos/current/theme/mako.ini ~/.config/mako/config
+ln -sfn ~/.config/calos/current/theme/vesktop.css ~/.config/vesktop/themes/calos.theme.css
 
-# fix theme selector
+gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"

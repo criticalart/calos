@@ -88,7 +88,7 @@ hl.workspace_rule({
 
 hl.workspace_rule({
   workspace = "special:discord",
-  gaps_out = { top = 4, right = 4, bottom = 4, left = 2100 },
+  gaps_out = { top = 4, right = 4, bottom = 4, left = 1900 },
   gaps_in = 3,
 })
 

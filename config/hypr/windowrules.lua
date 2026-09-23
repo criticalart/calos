@@ -240,6 +240,8 @@ hl.window_rule({
   no_initial_focus = true,
   suppress_event = "activatefocus",
   workspace = "special:discord silent",
+  rounding = 2,
+  rounding_power = 1
 })
 
 -- Miscellaneous Rules
@@ -305,7 +307,6 @@ hl.layer_rule({
 })
 
 -- Enable blur for waybar
---
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.5 })
 
 -- custom script for the 'homepage'

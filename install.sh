@@ -32,7 +32,7 @@ gum style --border normal --border-foreground="4" --padding="1 3" "$(gum style -
 sleep 6
 echo
 gum spin -s pulse --spinner.foreground="4" --title="Resuming install..." -- sleep 4
-sudo pacman -S --noconfirm --needed yaru-icon-theme clipse wayland
+sudo pacman -S --noconfirm --needed clipse wayland
 paru -S --noconfirm --needed python-terminaltexteffects elephant elephant-desktopapplications elephant-menus walker --skipreview --removemake --cleanafter
 clear
 
