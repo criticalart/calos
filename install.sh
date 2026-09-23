@@ -12,7 +12,7 @@ clear
 echo
 cat ~/.local/share/calos/install/logo-complete.txt
 echo
-gum style --border normal --border-foreground="4" --padding="1 3" "Welcome to $(gum style --bold --foreground 212 'calOS')!" " " "This script will turn your base Arch Linux install into a clean, minimal, and functional Hyprland setup." "The installer will install/enable $(gum style --foreground 212 'Chaotic-AUR') as well as $(gum style --italic 'Paru') to function as your AUR helper." "There will be an option towards the end of the install to switch to yay as your AUR helper." " " "Make sure you are running this installation script on a $(gum style --foreground 212 'fresh Arch Linux installation')!"
+gum style --border normal --border-foreground="4" --padding="1 3" "Welcome to $(gum style --bold --foreground 212 'caliburnOS')!" " " "This script will turn your base Arch Linux install into a clean, minimal, and functional Hyprland setup." "The installer will install/enable $(gum style --foreground 212 'Chaotic-AUR') as well as $(gum style --italic 'Paru') to function as your AUR helper." "There will be an option towards the end of the install to switch to yay as your AUR helper." " " "Make sure you are running this installation script on a $(gum style --foreground 212 'fresh Arch Linux installation')!"
 echo
 sleep 6
 gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Proceed with Install?" && gum spin -s pulse --spinner.foreground="4" --title="Installation starting..." -- sleep 2 || exit 1
@@ -60,7 +60,7 @@ clear
 
 # Limine bootloader setup
 
-gum style --border normal --border-foreground="4" --padding="1 3" "The installer will now check which bootloader you have installed." "The default recommended bootloader is $(gum style --bold --foreground 212 'Limine'), but calOS will function on any." " " "If Limine is detected the installer will enable various features, such as automated mkinitcpio/dual-booting/ricing."
+gum style --border normal --border-foreground="4" --padding="1 3" "The installer will now check which bootloader you have installed." "The default recommended bootloader is $(gum style --bold --foreground 212 'Limine'), but caliburnOS will function on any." " " "If Limine is detected the installer will enable various features, such as automated mkinitcpio/dual-booting/ricing."
 sleep 6
 echo
 gum spin -s pulse --spinner.foreground="4" --title="Resuming install..." -- sleep 4
@@ -112,7 +112,7 @@ gum spin -s pulse --spinner.foreground="4" --title="Finalizing install..." -- sl
 
 # Installation Completion and Optional Steam Install
 
-gum style --border normal --border-foreground="4" --padding="1 3" "$(gum style --bold --foreground 212 'Installation complete!') Reboot to access system." " " "Make sure to read through your configuration files to familarize yourself with the OS, especially in $(gum style --italic '~/.config/hypr')." "Please configure your $(gum style --italic '~/.config/hypr/monitors.conf') file in order to set a proper resolution and refresh rate." " " "The default editor is Neovim, which can be launched with $(gum style --italic 'SUPER + N')." "Please open Neovim once to initialize lazyvim scripts, this will only occur on the first launch." " " "For any additional inquiries, please refer to the Github documentation."
+gum style --border normal --border-foreground="4" --padding="1 3" "$(gum style --bold --foreground 212 'Installation complete!') Reboot to access system." " " "Make sure to read through your configuration files to familarize yourself with the OS, especially in $(gum style --italic '~/.config/hypr')." "Please configure your $(gum style --italic '~/.config/hypr/monitors.conf') file in order to set a proper resolution and refresh rate." " " "The default editor is Neovim, which can be launched with $(gum style --italic 'SUPER + N')." "Make sure to launch Hyprland with UWSM when at the login screen. It will remember your choice afterwards." " " "For any additional inquiries, please refer to the Github documentation."
 sleep 5
 echo
 rm ~/.local/share/calos/steam.sh
