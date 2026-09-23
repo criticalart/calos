@@ -1,0 +1,252 @@
+/*
+ * Calos — Gruvbox Vesktop
+ */
+
+:root {
+    /*
+     * Calos palette
+     */
+    --calos-background: #282828;
+    --calos-foreground: #D6D0B8;
+    --calos-text: #D6D0B8;
+    --calos-selected: #A8B878;
+    --calos-border: #65702E;
+    --calos-hover: #65702E;
+    --calos-accent: #9BAA5F;
+
+    /*
+     * Modern Discord / Visual Refresh backgrounds
+     */
+    --background-base-lowest: #282828 !important;
+    --background-base-lower: #282828 !important;
+    --background-base-low: #282828 !important;
+    --background-base: #282828 !important;
+
+    --background-surface-high: #282828 !important;
+    --background-surface-higher: #282828 !important;
+    --background-surface-highest: #282828 !important;
+
+    --bg-base-primary: #282828 !important;
+    --bg-base-secondary: #282828 !important;
+    --bg-base-tertiary: #282828 !important;
+
+    --bg-surface-raised: #282828 !important;
+    --bg-surface-overlay: #282828 !important;
+
+    --background-primary: #282828 !important;
+    --background-secondary: #282828 !important;
+    --background-secondary-alt: #282828 !important;
+    --background-tertiary: #282828 !important;
+
+    --background-mobile-primary: #282828 !important;
+    --background-mobile-secondary: #282828 !important;
+
+    --background-nested-floating: #282828 !important;
+    --modal-background: #282828 !important;
+    --modal-footer-background: #282828 !important;
+
+    --chat-background-default: #282828 !important;
+    --custom-channel-members-bg: #282828 !important;
+
+    /*
+     * Hover / selected surfaces
+     */
+    --background-modifier-hover: #65702E !important;
+    --background-modifier-active: #65702E !important;
+    --background-modifier-selected: #65702E !important;
+    --background-modifier-accent: #65702E !important;
+
+    --bg-mod-faint: #65702E !important;
+    --bg-mod-subtle: #65702E !important;
+    --bg-mod-strong: #65702E !important;
+
+    --background-message-hover: #65702E !important;
+
+    /*
+     * Floating elements
+     */
+    --background-floating: #282828 !important;
+    --background-surface-overlay: #282828 !important;
+    --background-nested-floating: #282828 !important;
+
+    /*
+     * Text
+     */
+    --text-default: #D6D0B8 !important;
+    --text-normal: #D6D0B8 !important;
+    --text-muted: #65702E !important;
+    --text-link: #9BAA5F !important;
+
+    --header-primary: #D6D0B8 !important;
+    --header-secondary: #65702E !important;
+
+    --channels-default: #D6D0B8 !important;
+    --channel-icon: #65702E !important;
+
+    --interactive-normal: #D6D0B8 !important;
+    --interactive-hover: #9BAA5F !important;
+    --interactive-active: #9BAA5F !important;
+    --interactive-muted: #65702E !important;
+
+    /*
+     * Accent / brand
+     */
+    --brand-experiment: #9BAA5F !important;
+    --brand-experiment-560: #9BAA5F !important;
+    --brand-experiment-600: #9BAA5F !important;
+
+    --brand-500: #9BAA5F !important;
+
+    /*
+     * Borders
+     */
+    --border-faint: #65702E !important;
+    --border-subtle: #65702E !important;
+    --border-strong: #65702E !important;
+
+    --app-frame-border: #65702E !important;
+
+    --input-border: #65702E !important;
+    --input-background: #282828 !important;
+
+    /*
+     * Scrollbars
+     */
+    --scrollbar-auto-thumb: #65702E !important;
+    --scrollbar-auto-scrollbar-color-thumb: #65702E !important;
+    --scrollbar-thin-thumb: #65702E !important;
+    --scrollbar-thin-track: #282828 !important;
+
+    /*
+     * Mentions / notifications
+     */
+    --background-mentioned: #65702E !important;
+    --background-mentioned-hover: #65702E !important;
+
+    --mention-background: #65702E !important;
+    --mention-foreground: #A8B878 !important;
+
+    /*
+     * Status / semantic colors
+     */
+    --text-positive: #9BAA5F !important;
+    --text-warning: #9BAA5F !important;
+    --text-danger: #9BAA5F !important;
+}
+
+/*
+ * Apply the palette to Discord's theme roots as well.
+ */
+.theme-dark,
+.theme-darker,
+.theme-midnight {
+    --background-base-lowest: #282828 !important;
+    --background-base-lower: #282828 !important;
+    --background-base-low: #282828 !important;
+    --background-base: #282828 !important;
+
+    --background-surface-high: #282828 !important;
+    --background-surface-higher: #282828 !important;
+    --background-surface-highest: #282828 !important;
+
+    --bg-base-primary: #282828 !important;
+    --bg-base-secondary: #282828 !important;
+    --bg-base-tertiary: #282828 !important;
+
+    --bg-surface-raised: #282828 !important;
+    --bg-surface-overlay: #282828 !important;
+
+    --background-primary: #282828 !important;
+    --background-secondary: #282828 !important;
+    --background-secondary-alt: #282828 !important;
+    --background-tertiary: #282828 !important;
+
+    --background-modifier-hover: #65702E !important;
+    --background-modifier-active: #65702E !important;
+    --background-modifier-selected: #65702E !important;
+    --background-modifier-accent: #65702E !important;
+
+    --background-message-hover: #65702E !important;
+
+    --text-default: #D6D0B8 !important;
+    --text-normal: #D6D0B8 !important;
+    --text-muted: #65702E !important;
+    --text-link: #9BAA5F !important;
+
+    --header-primary: #D6D0B8 !important;
+    --header-secondary: #65702E !important;
+
+    --channels-default: #D6D0B8 !important;
+    --channel-icon: #65702E !important;
+
+    --interactive-normal: #D6D0B8 !important;
+    --interactive-hover: #9BAA5F !important;
+    --interactive-active: #9BAA5F !important;
+    --interactive-muted: #65702E !important;
+
+    --border-faint: #65702E !important;
+    --border-subtle: #65702E !important;
+    --border-strong: #65702E !important;
+
+    --scrollbar-auto-thumb: #65702E !important;
+    --scrollbar-thin-thumb: #65702E !important;
+}
+
+/*
+ * Channel list
+ */
+[class*="sidebar_"],
+[class*="sidebarContainer_"] {
+    background: #282828 !important;
+}
+
+/*
+ * Server list
+ */
+[class*="guilds_"],
+nav[aria-label="Servers"] {
+    background: #282828 !important;
+}
+
+/*
+ * Channel header
+ */
+[class*="title_"],
+[class*="header_"] {
+    border-color: #65702E;
+}
+
+/*
+ * Selected / active navigation items
+ */
+[class*="modeSelected_"],
+[class*="selected_"] {
+    background: #65702E !important;
+}
+
+/*
+ * Channel hover
+ */
+[class*="modeSelectable_"]:hover,
+[class*="interactive_"]:hover {
+    background: #65702E !important;
+}
+
+/*
+ * Text selection
+ */
+::selection {
+    background: #A8B878 !important;
+    color: #282828 !important;
+}
+
+/*
+ * Scrollbars
+ */
+::-webkit-scrollbar-thumb {
+    background: #65702E !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #282828 !important;
+}
