@@ -4,6 +4,6 @@ Comment=Screen Capture Walker Menu
 Exec=calos-walker-launch middle
 Terminal=false
 Type=Application
-Icon=/home/arthur/.local/share/icons/capture.png
+Icon=capturefix
 Categories=record;screenshot;
 StartupNotify=false

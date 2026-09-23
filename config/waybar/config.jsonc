@@ -63,7 +63,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "network",
     "custom/recovery-usb",
 		"bluetooth",
-    "custom/discord",
+    /* "custom/discord", */
 		"custom/system_update",
     "custom/diskdiv",
 		"group/hypr_switcher"

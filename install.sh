@@ -85,20 +85,20 @@ HELPER=$(gum choose --item.foreground 250 "Paru" "yay")
 [[ "$HELPER" == "yay" ]] && gum spin -s pulse --spinner.foreground="4" --title="Paru will now be replaced with yay..." -- sleep 3 && sudo pacman -S --noconfirm --needed yay && sudo pacman -Rns paru --noconfirm || gum spin -s line --title="Paru will remain your AUR helper. Resuming install..." -- sleep 3
 clear
 
+# Vesktop Installation
+
+gum style --border normal --border-foreground="4" --padding="1 3" "Would you like to install/setup $(gum style --bold --foreground 212 'Vesktop')?" "Vesktop (ships with Vencord) is a highly configurable and Linux-friendly discord client." "If installed now, more features will be enabled (e.g. theme engine integration, waybar interactivity)."
+sleep 4
+echo
+gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Install Vesktop?" && gum spin -s pulse --spinner.foreground="4" --title="Installing Vesktop..." -- sleep 3 && source $CALOS_INSTALL/vesktop.sh || echo "Vesktop will not be installed."
+sleep 1
+
 # Steam Installation
 
 gum style --border normal --border-foreground="4" --padding="1 3" "Would you like to install/setup $(gum style --bold --foreground 212 'Steam')?" "Installing Steam from this script will automatically set proper autostart/uwsm configurations." "You may always install Steam manually post-installation."
 sleep 4
 echo
 gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Install Steam?" && gum spin -s pulse --spinner.foreground="4" --title="Initializing Steam script..." -- sleep 3 && source ./steam.sh || echo "Steam will not be installed."
-sleep 1
-
-# Vesktop Installation
-
-gum style --border normal --border-foreground="4" --padding="1 3" "Would you like to install/setup $(gum style --bold --foreground 212 'Vesktop')?" "Vesktop (ships with Vencord) is a highly configurable and Linux-friendly discord client." "CaliburnOS has native Vesktop CSS themeing."
-sleep 4
-echo
-gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Install Vesktop?" && gum spin -s pulse --spinner.foreground="4" --title="Installing Vesktop..." -- sleep 3 && sudo pacman -S vesktop || echo "Vesktop will not be installed."
 sleep 1
 
 # Installation Cleanup
