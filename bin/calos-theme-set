@@ -7,6 +7,7 @@ fi
 
 THEMES_DIR="$HOME/.config/calos/themes/"
 CURRENT_THEME_DIR="$HOME/.config/calos/current/theme"
+VESKTOP_THEME="$HOME/.config/vesktop/themes/calos.theme.css"
 
 THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 THEME_PATH="$THEMES_DIR/$THEME_NAME"
@@ -19,9 +20,9 @@ fi
 
 # Update theme symlinks
 ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+ln -nsf "$THEME_PATH/vesktop.css" "$VESKTOP_THEME"
 
 # Change background with theme
-
 hyprctl reload
 calos-theme-bg-next
 touch "$HOME/.config/alacritty/alacritty.toml"

@@ -2,9 +2,9 @@
 
 pactl load-module module-null-sink sink_name=cmus_audio sink_properties=device.description=CMUS_Audio
 pactl load-module module-loopback source=cmus_audio.monitor
-sleep 2
+sleep 1.8
 qs -c calos-shell ipc call osd login
-sleep 0.3
+sleep 0.5
 hyprctl -q hyprsunset temperature 6600
 pamixer --set-volume 80
 awww img ~/.config/calos/current/background --resize stretch --transition-type wipe --transition-angle 150 --transition-fps 144 --transition-duration 2.4

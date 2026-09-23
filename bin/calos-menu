@@ -152,11 +152,12 @@ show_update_process_menu() {
 }
 
 show_system_menu() {
-  case $(menu "System" "󰌍  Back\n  Clipboard\n  Packages\n󰚰  Update\n󰜉  Logout\n󰐥  Shutdown") in
+  case $(menu "System" "󰌍  Back\n  Clipboard\n󰙵   Packages\n󰚰  Update\n󰐧  Power") in
   *Back*) back_to show_main_menu ;;
   *Packages*) alacritty --class packages -e calos-pkg-list ;;
   *Update*) alacritty --class=System-Update -e calos-cmd-update ;;
   *Clipboard*) alacritty --class clipse -e clipse ;;
+  *Power*) qs -c powermenu ;;
   *Logout*) calos-logoff ;;
   *Shutdown*) calos-shutdown ;;
   *BIOS*) calos-bios-reboot ;;
@@ -182,7 +183,7 @@ show_settings_menu() {
 show_main_menu() {
   BACK_TO_EXIT=true
 
-  go_to_menu "$(menu "Settings" "󰙵  Programs\n  Style\n󰨙  Toggle\n  Reload\n  Settings\n  System")"
+  go_to_menu "$(menu "Settings" "  Programs\n  Style\n󰨙  Toggle\n󰜉  Reload\n  Settings\n󰤆  System")"
 }
 
 go_to_menu() {
