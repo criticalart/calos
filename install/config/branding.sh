@@ -5,6 +5,7 @@ mkdir -p ~/.config/calos/branding
 mkdir -p ~/Pictures/Wallpapers
 mkdir -p ~/.cache/quickshell/thumbs
 mkdir -p ~/.cache/quickshell/themes
+mkdir -p ~/.local/share/icons
 cp ~/.local/share/calos/install/capture.png ~/.local/share/icons/capture.png
 ~/.config/quickshell/theme/cache.sh ~/.config/quickshell/theme/
 cp ~/.local/share/calos/install/icon.txt ~/.config/calos/branding/fastfetch.txt
