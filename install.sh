@@ -93,6 +93,14 @@ echo
 gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Install Steam?" && gum spin -s pulse --spinner.foreground="4" --title="Initializing Steam script..." -- sleep 3 && source ./steam.sh || echo "Steam will not be installed."
 sleep 1
 
+# Vesktop Installation
+
+gum style --border normal --border-foreground="4" --padding="1 3" "Would you like to install/setup $(gum style --bold --foreground 212 'Vesktop')?" "Vesktop (ships with Vencord) is a highly configurable and Linux-friendly discord client." "CaliburnOS has native Vesktop CSS themeing."
+sleep 4
+echo
+gum confirm --padding="1 3" --selected.foreground="0" --prompt.foreground="4" --selected.background="2" "Install Vesktop?" && gum spin -s pulse --spinner.foreground="4" --title="Installing Vesktop..." -- sleep 3 && sudo pacman -S vesktop || echo "Vesktop will not be installed."
+sleep 1
+
 # Installation Cleanup
 
 gum style --border normal --border-foreground="4" --padding="1 3" "The installer will now begin removing unnecessary files created during install." "Please keep all remaining files in $(gum style --italic '~/.local/share/calos') for system stability."

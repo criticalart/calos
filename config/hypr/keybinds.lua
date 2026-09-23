@@ -21,7 +21,7 @@ hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("steam"), { submap_universa
 hl.bind("SUPER + Y", hl.dsp.exec_cmd(terminal .. " --class yazi-float -e yazi"))
 hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("calos-walker-launch corner"), { submap_universal = true })
 hl.bind("SUPER + SUPER_R", hl.dsp.exec_cmd("calos-walker-launch corner"), { submap_universal = true })
-hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
+hl.bind("SUPER + B", hl.dsp.exec_cmd(browser), { submap_universal = true })
 hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("discord"), { submap_universal = true })
 
 ---------------------------
@@ -45,7 +45,7 @@ hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("home"), { submap_univ
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.workspace.toggle_special("home"), { submap_universal = true })
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("qs -c calos-shell ipc call overview toggle"), { submap_universal = true })
 hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("calos-cmd-lockscreen"))
-hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd caps"))
+hl.bind("CAPS + Caps_Lock", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd caps"), { submap_universal = true })
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu"), { submap_universal = true })
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"), { submap_universal = true })
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("calos-toggle-bigpic"))
@@ -56,7 +56,7 @@ hl.bind("SUPER + ALT + M", hl.dsp.exec_cmd("calos-toggle-output"))
 ---- BROWSER SHORTCUTS ----
 ---------------------------
 
-hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd(browser))
+hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd(browser), { submap_universal = true })
 hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd(browser .. " --private-window"))
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(browser .. " --new-window https://twitch.tv"))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd(browser .. " --new-window https://reddit.com"))
@@ -122,16 +122,16 @@ hl.bind("SUPER + P", hl.dsp.window.pseudo())
 hl.bind("SUPER + SHIFT +S", hl.dsp.exec_cmd("hyprshot -m region --freeze"), { submap_universal = true })
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SUPER + CONTROL + P", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
-hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("calos-cmd-screenrecord"))
+hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("calos-cmd-screenrecord"), { submap_universal = true })
 
 -----------------------
 ---- FN KEYS MEDIA ----
 -----------------------
 
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd next"))
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"))
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"))
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd previous"))
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeUp"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeDown"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd mute"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd next"), { submap_universal = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"), { submap_universal = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"), { submap_universal = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd previous"), { submap_universal = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeUp"), { submap_universal = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeDown"), { submap_universal = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd mute"), { submap_universal = true })

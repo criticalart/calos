@@ -63,7 +63,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "network",
     "custom/recovery-usb",
 		"bluetooth",
-    "custom/steamcord",
+    "custom/discord",
 		"custom/system_update",
     "custom/diskdiv",
 		"group/hypr_switcher"
@@ -124,6 +124,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "format": "{}",
     "min-length": 9,
     "max-length": 9,
+    "restart-interval": 5,
     "on-click": "calos-cmd-lockscreen",
     "tooltip": true
 },
@@ -274,14 +275,14 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
   "pulseaudio": {
     "format": "{icon}",
     "on-click": "calos-toggle-wiremix",
-    "on-click-right": "qs -c calos-shell ipc call osd mute",
+    "on-click-right": "qs -c calos-shell ipc call osd muteTopRight",
     "tooltip": true,
     "min-length": 2,
     "max-length": 2,
-    "tooltip-format": "Playing at {volume}%",
+    "tooltip-format": "Scroll to Change Volume",
     "scroll-step": 5,
-    "on-scroll-up": "qs -c calos-shell ipc call osd volumeUp",
-    "on-scroll-down": "qs -c calos-shell ipc call osd volumeDown",
+    "on-scroll-up": "qs -c calos-shell ipc call osd volumeUpTopRight",
+    "on-scroll-down": "qs -c calos-shell ipc call osd volumeDownTopRight",
     "format-muted": "",
     "format-icons": {
       "default": ["", "", ""]
@@ -371,7 +372,8 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
       "5": "V",
       "home": "",
       "game":"󰊴",
-      "steamcord":"",
+      "discord":"",
+      "steam":"",
 		},
 		"persistent-workspaces": {
 			"*": 5
@@ -494,7 +496,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
       "custom/power_menu",
 			"custom/version",
       "custom/g502-battery",
-      "custom/overlay",
+      "custom/steam",
       "custom/home",
 		],
 		"drawer": {
@@ -525,12 +527,20 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "on-click": "qs -c calos-shell ipc call overview toggle"
 	},
 
-	"custom/steamcord": {
-		"format": "",
+	"custom/steam": {
+		"format": " 󰓓 ",
+		"tooltip": false,
+    "min-length": 4,
+		"max-length": 4,
+    "on-click": "calos-toggle-steam"
+	},
+
+	"custom/discord": {
+		"format": "",
 		"tooltip": false,
     "min-length": 2,
 		"max-length": 2,
-    "on-click": "calos-toggle-steamcord"
+    "on-click": "calos-toggle-discord"
 	},
 
   	"custom/version": {

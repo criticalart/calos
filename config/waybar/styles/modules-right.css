@@ -12,7 +12,7 @@
 
 #bluetooth{
 transition: all .3s ease;
-padding: 0 12px;
+padding: 0 6px 0 12px; 
 background-color: @temperature;
 }
 
@@ -35,7 +35,7 @@ background-color: @temperature;
 
 #custom-system_update{
     transition: all .3s ease;
-    padding: 0 12px;
+    padding: 0 10px;
     background-color: @temperature;
 }
 
@@ -51,9 +51,10 @@ background-color: @temperature;
     background-color: @temperature;
 }
 
-#custom-steamcord{
+#custom-discord label {
     transition: all .3s ease;
-    padding: 0 12px 0 6px;
+    padding: 0 12px 0 9px;
+    font-size: 13px;
     background-color: @temperature;
 }
 
