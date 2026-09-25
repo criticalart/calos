@@ -96,24 +96,29 @@ System keybinds use **CTRL** and  **SUPER**.
 </p>
 
 <p align="center">
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e885b0d0-16a8-4b97-8e93-80860bf7983d" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/bf32c3aa-2d3b-4fcd-a930-9cc1ce2a0046" />
   <br>
-  <i>Launcher with Dynamic Location</i>
+  <i>Muted Forest</i>
   <br><br>
 
-  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/89638797-9c20-4e68-b87f-ab29a5198c36" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/c33161d0-1b8c-416c-8a42-e49933c383c9" />
 <br>
-  <i>Quickshell Powermenu</i>
+  <i>Red Desert</i>
   <br><br>
 
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/b51ec43b-6fb6-4165-b94a-4de90dd12d90" />
   <br>
-  <i>Glorious Window Management</i>
+  <i>Nocturne</i>
+  <br><br>
+
+  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/0087c57f-e935-4caf-b40d-36a755a731f5" />
+  <br>
+  <i>Solarized Osaka</i>
   <br><br>
   
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ddd5bd24-b951-4663-8de1-d11a4e1fac7b" />
   <br>
-  <i>ok maybe a bit too much quickshell</i>
+  <i>Faded Horizon</i>
 </p>
 
 Many, many, many (autistic) hours were spent tweaking each theme -caliburnOS- ships with to compliment the entire OS. The entire shell (`waybar`, `quickshell`, `walker`), any terminal based application (through `alacritty`), the greeter theme (using some `greetd-regreeter` hacks) and even `vesktop` all have their own unique color scheme based on the system's theme. A sleek `theme-preview` quickshell menu displays them all.
