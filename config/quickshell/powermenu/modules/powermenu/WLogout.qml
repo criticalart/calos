@@ -156,7 +156,7 @@ Scope {
                                    ? Qt.alpha(root.accent, 0.5)
                                    : Qt.alpha(root.background, 0.7)
 
-                            border.width: 0.5
+                            border.width: 0
 
                             border.color: selected
                                           ? root.accent
