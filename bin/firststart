@@ -21,4 +21,5 @@ calos-font-set JetBrainsMono Nerd Font
 qs -c theme
 wait
 ffplay -autoexit -nodisp -volume 60 ~/.config/calos/branding/start.mp3 &
+calos-restart-walker
 rm ~/.local/share/calos/bin/firststart
