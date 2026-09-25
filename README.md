@@ -101,8 +101,8 @@ System keybinds use **CTRL** and  **SUPER**.
   <i>Launcher with Dynamic Location</i>
   <br><br>
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/7c0b1d34-0435-4935-9a3e-ea28131e84a3" />
-  <br>
+  <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/89638797-9c20-4e68-b87f-ab29a5198c36" />
+<br>
   <i>Quickshell Powermenu</i>
   <br><br>
 
