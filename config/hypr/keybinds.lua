@@ -35,8 +35,8 @@ hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("qs -c wallselect"))
 hl.bind("SUPER + CTRL + C", hl.dsp.exec_cmd(terminal .. " --class clipse -e clipse"))
 hl.bind("SUPER + CTRL + W", hl.dsp.exec_cmd("calos-toggle-waybar"))
 hl.bind(
-  "SUPER + CTRL + U",
-  hl.dsp.exec_cmd(terminal .. " --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start")
+	"SUPER + CTRL + U",
+	hl.dsp.exec_cmd(terminal .. " --class=System-Update -e ~/.config/waybar/scripts/term-update.sh start")
 )
 hl.bind("SUPER + CTRL + N", hl.dsp.exec_cmd("calos-toggle-nightlight"))
 hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("qs -c powermenu"))
@@ -50,7 +50,6 @@ hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("qs -c powermenu"), { submap_univ
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("qs -c powermenu"), { submap_universal = true })
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("calos-toggle-bigpic"))
 hl.bind("SUPER + ALT + M", hl.dsp.exec_cmd("calos-toggle-output"))
-
 
 ---------------------------
 ---- BROWSER SHORTCUTS ----
@@ -70,10 +69,10 @@ hl.bind("SUPER + SHIFT + G", hl.dsp.exec_cmd(browser .. " --new-window https://g
 hl.bind("SUPER + COMMA", hl.dsp.exec_cmd("makoctl dismiss"))
 hl.bind("SUPER + SHIFT + COMMA", hl.dsp.exec_cmd("makoctl dismiss --all"))
 hl.bind(
-  "SUPER + CTRL + COMMA",
-  hl.dsp.exec_cmd(
-    "makoctl mode -t do-not-disturb && makoctl mode | grep -q 'do-not-disturb' && notify-send 'Silenced notifications' || notify-send 'Enabled notifications'"
-  )
+	"SUPER + CTRL + COMMA",
+	hl.dsp.exec_cmd(
+		"makoctl mode -t do-not-disturb && makoctl mode | grep -q 'do-not-disturb' && notify-send 'Silenced notifications' || notify-send 'Enabled notifications'"
+	)
 )
 
 --------------------------------
@@ -81,8 +80,8 @@ hl.bind(
 --------------------------------
 
 for i = 1, 9 do
-  hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
-  hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+	hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
+	hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
 hl.bind("SUPER + 0", hl.dsp.focus({ workspace = 10 }))
@@ -133,5 +132,9 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPa
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd playPause"), { submap_universal = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd previous"), { submap_universal = true })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeUp"), { submap_universal = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeDown"), { submap_universal = true })
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("qs -c calos-shell ipc call osd volumeDown"),
+	{ submap_universal = true }
+)
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("qs -c calos-shell ipc call osd mute"), { submap_universal = true })

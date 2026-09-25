@@ -11,91 +11,91 @@
 
 hl.config({
 
-  general = {
-    gaps_in = 3,
-    gaps_out = 6,
-    border_size = 1,
-  },
+	general = {
+		gaps_in = 3,
+		gaps_out = 6,
+		border_size = 1,
+	},
 
-  decoration = {
-    rounding = 1,
-    rounding_power = 1,
+	decoration = {
+		rounding = 1,
+		rounding_power = 1,
 
-    active_opacity = 0.95,
-    inactive_opacity = 0.88,
-    fullscreen_opacity = 1,
+		active_opacity = 0.95,
+		inactive_opacity = 0.88,
+		fullscreen_opacity = 1,
 
-    blur = {
-      enabled = true,
-      new_optimizations = true,
-      size = 5,
-      passes = 2,
-      brightness = 1,
-      noise = 0.03,
-      contrast = 1.3,
-      vibrancy = 0.5,
-      vibrancy_darkness = 0.3,
-      popups = false,
-      popups_ignorealpha = 0.6,
-      input_methods = true,
-      input_methods_ignorealpha = 0.8,
-    },
+		blur = {
+			enabled = true,
+			new_optimizations = true,
+			size = 5,
+			passes = 2,
+			brightness = 1,
+			noise = 0.03,
+			contrast = 1.3,
+			vibrancy = 0.5,
+			vibrancy_darkness = 0.3,
+			popups = false,
+			popups_ignorealpha = 0.6,
+			input_methods = true,
+			input_methods_ignorealpha = 0.8,
+		},
 
-    shadow = {
-      enabled = true,
-      range = 10,
-      render_power = 4,
-      color = "0x901a1a1a",
-    },
+		shadow = {
+			enabled = true,
+			range = 10,
+			render_power = 4,
+			color = "0x901a1a1a",
+		},
 
-    dim_inactive = true,
-    dim_strength = 0.05,
-    dim_special = 0.07,
-  },
+		dim_inactive = true,
+		dim_strength = 0.05,
+		dim_special = 0.07,
+	},
 
-  animations = {
-    enabled = true, -- RICE O CLOCK
-  },
+	animations = {
+		enabled = true, -- RICE O CLOCK
+	},
 
-  misc = {
-    background_color = "0x000000",
-  }
+	misc = {
+		background_color = "0x000000",
+	},
 })
 
 -- workspace spacing
 
 hl.workspace_rule({
-  workspace = "w[tv1]",
-  gaps_out = { top = 60, right = 750, bottom = 60, left = 750 },
+	workspace = "w[tv1]",
+	gaps_out = { top = 60, right = 750, bottom = 60, left = 750 },
 })
 
 hl.workspace_rule({
-  workspace = "w[tv2]",
-  gaps_out = { top = 40, right = 60, bottom = 40, left = 60 },
-  gaps_in = 30
+	workspace = "w[tv2]",
+	gaps_out = { top = 40, right = 60, bottom = 40, left = 60 },
+	gaps_in = 30,
 })
 
 hl.workspace_rule({
-  workspace = "w[tv3]",
-  gaps_out = { top = 15, right = 20, bottom = 15, left = 20 },
-  gaps_in = 10
+	workspace = "w[tv3]",
+	gaps_out = { top = 15, right = 20, bottom = 15, left = 20 },
+	gaps_in = 10,
 })
 
 hl.workspace_rule({
-  workspace = "1",
-  persistent = true,
+	workspace = "1",
+	persistent = true,
 })
 
 hl.workspace_rule({
-  workspace = "special:discord",
-  gaps_out = { top = 4, right = 4, bottom = 4, left = 1900 },
-  gaps_in = 3,
+	workspace = "special:discord",
+	gaps_out = { top = 100, right = 4, bottom = 100, left = 1900 },
+	gaps_in = 3,
 })
 
 hl.workspace_rule({
-  workspace = "special:steam",
-  gaps_out = { top = 4, right = 4, bottom = 4, left = 4 },
-  gaps_in = 3,
+	workspace = "special:steam",
+	gaps_out = { top = 4, right = 4, bottom = 4, left = 4 },
+	gaps_in = 3,
 })
 
 -- Bezier Curves
@@ -126,11 +126,11 @@ hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 1.79, bezier = "al
 hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "almostlinear" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4.6, bezier = "workspaceslide", style = "slidefade 25%" })
 hl.animation({
-  leaf = "specialWorkspace",
-  enabled = true,
-  speed = 4.6,
-  bezier = "specialworkswitch",
-  style = "slide top 80%",
+	leaf = "specialWorkspace",
+	enabled = true,
+	speed = 4.6,
+	bezier = "specialworkswitch",
+	style = "slide top 80%",
 })
 hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "standard" })
 hl.animation({ leaf = "fadeDim", enabled = true, speed = 6, bezier = "standard" })

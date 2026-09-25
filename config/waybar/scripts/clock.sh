@@ -3,7 +3,7 @@
 while true; do
   HOUR=$(date +%H)
 
-  if ((10#$HOUR >= 8 && 10#$HOUR < 20)); then
+  if ((10#$HOUR >= 8 && 10#$HOUR < 19)); then
     ICON="󰖙"
   else
     ICON="󰖔"
