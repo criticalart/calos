@@ -62,7 +62,7 @@
     "emptyWorkspaceWallpaper": "",
     "specialEmptyWorkspaceWallpaper": "",
     "effects": {
-      "enableBackdrop": false,
+      "enableBackdrop": true,
       "enableBlur": true,
       "panelOpacity": 0.25,
       "workspaceOpacity": 0.28,

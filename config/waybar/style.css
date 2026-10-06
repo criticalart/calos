@@ -85,18 +85,36 @@ button:hover {
 
 /* tooltips */
 
+
 tooltip {
 	border: 1px solid @temperature;
 	border-radius: 2px;
 	background-color: @background;
+
+	animation-name: tooltip-fade;
+	animation-duration: 180ms;
+	animation-timing-function: ease-out;
 }
+
+@keyframes tooltip-fade {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 tooltip label {
 	margin: 2px 4px;
 	font-weight: normal;
 }
+
 tooltip decoration {
 	border: none;
 	background-color: transparent;
 }
+
 
 @import "../calos/current/theme/waybar.css";

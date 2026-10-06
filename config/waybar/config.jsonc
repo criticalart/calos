@@ -63,7 +63,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "network",
     "custom/recovery-usb",
 		"bluetooth",
-    /* "custom/discord", */
+    "custom/discord",
 		"custom/system_update",
     "custom/diskdiv",
 		"group/hypr_switcher"
@@ -180,7 +180,7 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
     "tooltip": true,
     "min-length": 9,
     "max-length": 9,
-    "on-click": "alacritty --class=kernel -e sudo kmon"
+    "on-click": "alacritty --class=kernel -e sudo kmon -a blue"
 },
 
 "custom/disk": {
@@ -316,14 +316,17 @@ wwwwwww           wwwww           wwwwwwwaaaaaaaaaaaaayyyyyyy           yyyyyyyb
       "file_chooser": "  Yazi",
       "usb": "",
       "System-Update": "󰚰  System Update",
-      "packages": "󱧘  Installed Packages",
+      "packages": "󱧖  Installed Packages",
+      "package-install": "󱧘  Package Installer",
       "About": "󰖷  System Information",
       "arthur@caliburn": "  arthur@caliburn",
       "Neovim": "  Neovim",
-      "Calos": "  Neovim",
+      "neovim-float": "  Neovim",
       "ffplay": "󰯜  FFmpeg",
       "pqiv": "  pqiv",
       "kernel": "󰘚  Kernel Manager",
+      "search": "󱘶  File Search",
+      "file-search": "󱘶  File Search",
       "cmus": "󰝚  cmus Music Player",
       "vesktop": "  Discord",
       "steam": "  Steam",

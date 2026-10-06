@@ -68,7 +68,7 @@
       "type": "command",
       "key": "│ ┌󰣇 ",
       "keyColor": "blue",
-      "text": "echo 'caliburnOS v0.9.8 (Arch)'",
+      "text": "echo 'caliburnOS v0.9.8.4 (Arch)'",
     },
     {
       "type": "kernel",

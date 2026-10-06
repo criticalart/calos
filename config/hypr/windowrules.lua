@@ -96,7 +96,7 @@ hl.window_rule({
 	border_size = 0,
 	float = true,
 	dim_around = true,
-	size = "775 375",
+	size = "825 425",
 	move = { "monitor_w - 800", "47" },
 	animation = "slide top",
 	rounding = false,
@@ -128,17 +128,57 @@ hl.window_rule({
 
 hl.window_rule({
 	match = {
+		class = "neovim-float",
+	},
+
+	center = true,
+	float = true,
+	size = "1200 1000",
+})
+
+hl.window_rule({
+	match = {
 		class = "yazi-float",
 	},
 
 	center = true,
 	float = true,
-	size = "1000 600",
+	size = "1200 800",
 })
 
 hl.window_rule({
 	match = {
 		class = "packages",
+	},
+
+	center = true,
+	float = true,
+	size = "800 600",
+})
+
+hl.window_rule({
+	match = {
+		class = "search",
+	},
+
+	center = true,
+	float = true,
+	size = "600 250",
+})
+
+hl.window_rule({
+	match = {
+		class = "file-search",
+	},
+
+	center = true,
+	float = true,
+	size = "1000 800",
+})
+
+hl.window_rule({
+	match = {
+		class = "package-install",
 	},
 
 	center = true,
@@ -301,6 +341,15 @@ hl.layer_rule({
 
 	blur = true,
 	ignore_alpha = 0.8,
+})
+
+hl.layer_rule({
+	match = {
+		namespace = "quickshell",
+	},
+
+	blur = true,
+	ignore_alpha = 0.6,
 })
 
 -- Enable blur for waybar

@@ -9,32 +9,32 @@ RST='\033[0m'
 
 fzf_args=(
   --multi
-  --preview 'pacman -Qi {1}'
+  --preview 'pacman -Sii {1}'
   --preview-label=' Package Information '
   --preview-label-pos='bottom'
   --preview-window='down:55%:wrap'
 
   --bind 'ctrl-p:toggle-preview'
-  --bind 'ctrl-down:preview-half-page-down,ctrl-up:preview-half-page-up'
+  --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up'
   --bind 'ctrl-k:preview-up,ctrl-j:preview-down'
   --bind 'space:toggle'
 
-  --highlight-line
+  --color='pointer:green,marker:green'
   --layout=reverse
-  --color='pointer:red,marker:red'
+  --highlight-line
 
   --border
-  --border-label=' Installed Packages '
+  --border-label=' Package Installer '
   --prompt='➜ '
-  --marker='✗'
+  --marker='✓'
 
-  --header=' SPACE: select • CTRL-P: preview • CTRL-J/K: scroll • ENTER: remove'
+  --header=' SPACE: select • CTRL-P: preview • CTRL-J/K: scroll • ENTER: install'
   --header-first
 )
 
 while true; do
 
-  pkg_names=$(pacman -Qqe | fzf "${fzf_args[@]}")
+  pkg_names=$(pacman -Slq | fzf "${fzf_args[@]}")
 
   if [[ -z "$pkg_names" ]]; then
     clear
@@ -46,10 +46,10 @@ while true; do
 
   clear
 
-  printf '%bRemoving the following package(s):%b\n\n' "$RED" "$RST"
+  printf '%bInstalling the following package(s):%b\n\n' "$CYN" "$RST"
 
   for pkg in "${packages[@]}"; do
-    printf '  %b✗%b %s\n' "$RED" "$RST" "$pkg"
+    printf '  %b✓%b %s\n' "$GRN" "$RST" "$pkg"
   done
 
   printf '\n'
@@ -57,7 +57,7 @@ while true; do
   choice=$(
     gum choose \
       --header="Proceed?" \
-      --cursor.foreground="1" \
+      --cursor.foreground="2" \
       --selected.foreground="7" \
       --selected.background="4" \
       --header.foreground="6" \
@@ -87,16 +87,16 @@ done
 
 printf '\n'
 
-if sudo pacman -Rns --noconfirm "${packages[@]}"; then
+if sudo pacman -S --noconfirm "${packages[@]}"; then
 
   clear
 
-  printf '%b✓ Removal complete%b\n\n' "$GRN" "$RST"
+  printf '%b✓ Installation complete%b\n\n' "$GRN" "$RST"
 
-  printf '%bRemoved:%b\n\n' "$CYN" "$RST"
+  printf '%bInstalled:%b\n\n' "$CYN" "$RST"
 
   for pkg in "${packages[@]}"; do
-    printf '  %b✗%b %s\n' "$RED" "$RST" "$pkg"
+    printf '  %b✓%b %s\n' "$GRN" "$RST" "$pkg"
   done
 
   printf '\n%bPress any key to exit...%b' "$DIM" "$RST"
@@ -105,8 +105,8 @@ if sudo pacman -Rns --noconfirm "${packages[@]}"; then
 
 else
 
-  printf '\n%b✗ Removal failed.%b\n' "$RED" "$RST"
-  printf '%bSome packages may not have been removed.%b\n' "$YLW" "$RST"
+  printf '\n%b✗ Installation failed.%b\n' "$RED" "$RST"
+  printf '%bSome packages may not have been installed.%b\n' "$YLW" "$RST"
 
   printf '\n%bPress any key to exit...%b' "$DIM" "$RST"
   read -r -n 1 -s

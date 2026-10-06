@@ -51,6 +51,7 @@ Scope {
     function widthForMode() {
         return root.mode === "media" ||
             root.mode === "logout" ||
+            root.mode === "steam" ||
             root.mode === "login"
             ? root.mediaWidth
             : root.osdWidth

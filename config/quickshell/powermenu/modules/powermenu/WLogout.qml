@@ -153,10 +153,10 @@ Scope {
                             radius: 12
 
                             color: selected
-                                   ? Qt.alpha(root.accent, 0.5)
-                                   : Qt.alpha(root.background, 0.7)
+                                   ? Qt.alpha(root.accent, 0.3)
+                                   : Qt.alpha(root.background, 0.2)
 
-                            border.width: 0.5
+                            border.width: 0
 
                             border.color: selected
                                           ? root.accent
