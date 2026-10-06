@@ -136,7 +136,7 @@ if [[ "$1" != "--fzf" ]]; then
 
   search_term="$(
     gum input \
-      --prompt='            Search: ' \
+      --prompt=' Search: ' \
       --prompt.foreground=2 \
       --cursor.foreground=4 \
       --placeholder='enter a filename or path' \
