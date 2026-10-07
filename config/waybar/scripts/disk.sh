@@ -67,4 +67,4 @@ fi
 # ───────────────────────────────────────────────
 
 printf '%s\n' \
-  "{\"text\":\" ${FREE_TIB}TiB\",\"tooltip\":\" WD_BLACK SN8100 2TB\\r├─ Total  →  ${TOTAL_GB} GB\\r├─ Used   →  ${USED_GB} GB\\r└─ Free   →  ${FREE_GB} GB\\r\\r Storage SSD\\r├─ Total  →  ${SDB3_TOTAL_GB} GB\\r├─ Used   →  ${SDB3_USED_GB} GB\\r└─ Free   →  ${SDB3_FREE_GB} GB\\r\\r${USB_INFO}\"}"
+  "{\"text\":\"󰆼 ${FREE_TIB}TiB\",\"tooltip\":\" WD_BLACK SN8100 2TB\\r├─ Total  →  ${TOTAL_GB} GB\\r├─ Used   →  ${USED_GB} GB\\r└─ Free   →  ${FREE_GB} GB\\r\\r Storage SSD\\r├─ Total  →  ${SDB3_TOTAL_GB} GB\\r├─ Used   →  ${SDB3_USED_GB} GB\\r└─ Free   →  ${SDB3_FREE_GB} GB\\r\\r${USB_INFO}\"}"

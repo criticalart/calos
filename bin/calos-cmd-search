@@ -22,7 +22,7 @@ preview_file() {
 
   if [[ -d "$target" ]]; then
     printf '\033[1;36mDirectory\033[0m\n\n'
-    ls -lah -- "$target"
+    eza --tree --level=2 --icons --follow-symlinks -- "$target"
     return
   fi
 
@@ -90,9 +90,19 @@ build_search_regex() {
 
       my $lc = lc($c);
 
-      if (exists $map{$lc}) {
+      # Treat spaces, hyphens, underscores, and dots as
+      # interchangeable separators, but never allow them
+      # to cross a real path separator (/).
+      if ($c =~ /[[:space:]_.-]/) {
+        $regex .= "[[:space:]_.-]+";
+      }
+      elsif ($c eq "/") {
+        $regex .= "/";
+      }
+      elsif (exists $map{$lc}) {
         $regex .= $map{$lc};
-      } else {
+      }
+      else {
         $c =~ s/([\\.^$|(){}\[\]*+?])/\\$1/g;
         $regex .= $c;
       }
@@ -110,13 +120,27 @@ search_files() {
 
   plocate \
     --ignore-case \
-    --regexp \
+    --regex \
     -- "$regex"
+}
+
+open_in_yazi() {
+  local target="$1"
+  local yazi_target
+
+  if [[ -d "$target" ]]; then
+    yazi_target="$target"
+  else
+    yazi_target="$(dirname -- "$target")"
+  fi
+
+  alacritty --class yazi-float -e yazi -- "$yazi_target"
 }
 
 export -f preview_file
 export -f build_search_regex
 export -f search_files
+export -f open_in_yazi
 export PREVIEW_LINES
 
 if [[ "$1" != "--fzf" ]]; then
@@ -126,13 +150,13 @@ if [[ "$1" != "--fzf" ]]; then
     --padding="1 1" \
     --margin="1 0 0 0" \
     --align=left \
-    '                     FILE SEARCH'
+    '                     󱁴 FILE SEARCH'
 
   gum style \
-    --padding="0 1" \
+    --padding="0 0 0 1" \
     --margin="0 0 2 0" \
     --align=left \
-    ' Search files across your system using fzf and plocate.'
+    ' Blazing-fast system search utilizing fzf and plocate'
 
   search_term="$(
     gum input \
@@ -184,9 +208,9 @@ selected="$(
       --preview='bash -c '\''preview_file "$1"'\'' _ {}' \
       --preview-window='bottom:55%:wrap' \
       --bind 'ctrl-p:toggle-preview' \
-      --bind 'ctrl-r:reload(bash -c '\''search_files "$1"'\'' _ {q})' \
+      --bind 'ctrl-y:execute(bash -c '\''open_in_yazi "$1"'\'' _ {})+abort' \
       --bind 'ctrl-k:preview-up,ctrl-j:preview-down' \
-      --header='       CTRL-R: refresh search • CTRL-P: toggle preview • ENTER: open • ESC: quit' \
+      --header='       CTRL-Y: open in yazi • CTRL-P: toggle preview • ENTER: open • ESC: quit' \
       --header-first
 )"
 

@@ -170,7 +170,7 @@ show_settings_menu() {
   *Window*) alacritty --class=neovim-float -e nvim ~/.config/hypr/windowrules.lua ;;
   *Waybar*) alacritty --class=neovim-float -e nvim ~/.config/waybar/config.jsonc ;;
   *Walker*) alacritty --class=neovim-float -e nvim ~/.config/walker/config.toml ;;
-  *Overview*) alacritty --class=neovim-float -e nvim ~/.config/quickshell/overview/config.json ;;
+  *Overview*) alacritty --class=neovim-float -e nvim ~/.config/quickshell/calos-shell/config.json ;;
   *Hyprland*) alacritty --class=neovim-float -e nvim ~/.config/hypr/hyprland.lua ;;
   *Fastfetch*) alacritty --class=neovim-float -e nvim ~/.config/calos/branding/fastfetch.txt ;;
   *Yazi*) alacritty --class=neovim-float -e nvim ~/.config/yazi/yazi.toml ;;

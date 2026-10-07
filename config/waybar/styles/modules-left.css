@@ -19,47 +19,72 @@
 /* workspaces */
 
 #workspaces {
-	padding: 0 1px;
-
+    padding: 0 1px;
+    background: transparent;
 }
 
 #workspaces button {
-    min-width: 36px; 
+    min-width: 36px;
     padding: 0;
     margin: 0 3px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 #workspaces button label {
-	font-size: 14px;
-	color: @accent;
+    font-size: 14px;
+    color: @accent;
+    background: transparent;
+}
+
+/* empty workspaces */
+
+#workspaces button.empty {
+    background: @background;
+    border: none;
+    box-shadow: none;
 }
 
 #workspaces button.empty label {
-    padding: 0px 0px;
+    padding: 0;
     font-size: 14px;
-    margin: 0px 3px;
+    margin: 0 3px;
     border-radius: 8px;
     color: @temperature;
-    background-color: @background;
-    transition: all 0.1s ease-in-out;
+    background: @background;
+}
+
+/* active workspace */
+
+#workspaces button.active {
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 #workspaces button.active label {
-	font-size: 19px;
-	color: @accent;    
-  transition: all 0.2s ease-in-out;
-  min-width: 3px;
-  border-radius: 12px;
+    font-size: 19px;
+    color: @accent;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+    min-width: 3px;
+    border-radius: 12px;
 }
+
+/* hover */
 
 #workspaces button:hover {
     color: @accent;
     background: @background;
-    border-radius: 15px;
-    border-color: @accent;
+    border: none;
+    border-radius: 0;
     box-shadow: none;
 }
 
+#workspaces button:hover label {
+    background: transparent;
+}
 /* window title & count */
 
 #window {
